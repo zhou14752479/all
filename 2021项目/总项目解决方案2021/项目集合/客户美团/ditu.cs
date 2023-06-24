@@ -638,33 +638,9 @@ namespace 客户美团
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
+            
 
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"YVoWQ"))
-            {
-                MessageBox.Show("");
-                return;
-            }
-
-
-
-            #endregion
-
-            #region 通用检测
-
-            string ahtml = GetUrl("http://139.129.92.113/");
-
-            if (!ahtml.Contains(@"siyisoft"))
-            {
-
-                return;
-            }
-
-
-
-            #endregion
+            
 
             status = true;
             if (textBox1.Text == "" || textBox2.Text == "")

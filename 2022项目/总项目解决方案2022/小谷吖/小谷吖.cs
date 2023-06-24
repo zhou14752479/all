@@ -73,7 +73,7 @@ namespace 小谷吖
 
 
         #region POST默认请求
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        public  string PostUrlDefault(string url, string postData, string COOKIE)
         {
             string result;
             try
@@ -86,8 +86,9 @@ namespace 小谷吖
                 request.ContentType = "application/x-www-form-urlencoded";
                 // request.ContentType = "application/json";
                 WebHeaderCollection headers = request.Headers;
-                //headers.Add("Authorization: bearer a1a0adb5-5c5e-457b-b802-edd81213450f");
-                headers.Add("Authorization: bearer f164ff17-5fb2-4664-9c9a-2afadd22ac3b");
+                headers.Add("Authorization:" + textBox2.Text.Trim());
+               // headers.Add("Authorization: bearer 65aae660-f70e-4a19-b4c8-0e611bb57c19");
+               // headers.Add("Authorization: bearer f164ff17-5fb2-4664-9c9a-2afadd22ac3b");
                 request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
@@ -158,10 +159,10 @@ namespace 小谷吖
 
                     string html = PostUrlDefault(url, "{}", "");
 
-                    string price = Regex.Match(html, @"""orderAmount"":([\s\S]*?),").Groups[1].Value;
+                    string price = Regex.Match(html, @"""amount"":([\s\S]*?),").Groups[1].Value;
                     string id = Regex.Match(html, @"""detailVos"":([\s\S]*?)""id"":([\s\S]*?),").Groups[2].Value;
                     string msg = Regex.Match(html, @"""msg"":""([\s\S]*?)""").Groups[1].Value;
-
+                   // MessageBox.Show(html);
                     delete(id);
                     if (price=="")
                     {
@@ -260,6 +261,32 @@ namespace 小谷吖
                 textBox1.Text = openFileDialog1.FileName;
 
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StreamReader sr = new StreamReader("D:/token.txt", method.EncodingType.GetTxtType("D:/token.txt"));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+
+
+                textBox2.Text = texts.Trim();
+                sr.Close();  //只关闭流
+                sr.Dispose();   //销毁流内存
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
