@@ -145,7 +145,7 @@ namespace 主程序202110
             try
             {
                
-                string url = "http://irm.cninfo.com.cn/ircs/index/search";
+                string url = "http://irm.cninfo.com.cn/newircs/index/search";
                 string postdata = "pageNo=1&pageSize=20&searchTypes=1%2C11%2C&market=&industry=&stockCode=";
                 string html = PostUrl(url, postdata, "", "utf-8");
                 MatchCollection ahtmls = Regex.Matches(html, @"""esId""([\s\S]*?)}");

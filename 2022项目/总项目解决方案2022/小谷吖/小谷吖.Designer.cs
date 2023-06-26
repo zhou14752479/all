@@ -34,6 +34,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -43,9 +46,6 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -127,6 +127,35 @@
             this.groupBox1.Text = "操作界面";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(513, 21);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(83, 31);
+            this.button7.TabIndex = 218;
+            this.button7.Text = "获取token";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox2.Location = new System.Drawing.Point(122, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(370, 24);
+            this.textBox2.TabIndex = 217;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(5, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 14);
+            this.label2.TabIndex = 216;
+            this.label2.Text = "Authorization";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -207,36 +236,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(513, 21);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(83, 31);
-            this.button7.TabIndex = 218;
-            this.button7.Text = "获取token";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox2.Location = new System.Drawing.Point(122, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(370, 24);
-            this.textBox2.TabIndex = 217;
-            this.textBox2.Text = "bearer efdd3ac3-95ca-40f8-ae55-2a509fd84132";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(5, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 14);
-            this.label2.TabIndex = 216;
-            this.label2.Text = "Authorization";
             // 
             // 小谷吖
             // 

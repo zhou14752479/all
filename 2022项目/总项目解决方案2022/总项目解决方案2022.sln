@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "臻品定制", "臻品定�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "小谷吖", "小谷吖\小谷吖.csproj", "{62C8C460-3323-4AB6-B7F8-0D131C41BB3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202110", "..\..\2021项目\总项目解决方案2021\主程序202110\主程序202110.csproj", "{F6C751F4-3205-4883-9327-F5618F9C853B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -447,6 +449,18 @@ Global
 		{62C8C460-3323-4AB6-B7F8-0D131C41BB3D}.Release|x64.Build.0 = Release|Any CPU
 		{62C8C460-3323-4AB6-B7F8-0D131C41BB3D}.Release|x86.ActiveCfg = Release|Any CPU
 		{62C8C460-3323-4AB6-B7F8-0D131C41BB3D}.Release|x86.Build.0 = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|x64.Build.0 = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|x64.ActiveCfg = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|x64.Build.0 = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6C751F4-3205-4883-9327-F5618F9C853B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

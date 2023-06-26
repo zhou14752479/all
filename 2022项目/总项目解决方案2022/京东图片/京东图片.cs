@@ -207,8 +207,16 @@ namespace 京东图片
                        
                         if(price.Trim()=="")
                         {
+                           
                             price = getprice(itemid);
                         }
+
+                        if (price.Trim() == "")
+                        {
+                          
+                            price = getprice_m(itemid);
+                        }
+
 
                         dataGridView1.SelectedRows[i].Cells[0].Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dataGridView1.SelectedRows[i].Cells[32].Value = title;
@@ -330,6 +338,31 @@ namespace 京东图片
         }
 
         #endregion
+
+
+
+        #region  京东接口获取商品价格
+
+
+        public string getprice_m(string uid)
+        {
+
+          
+
+            string url = "https://item.m.jd.com/product/"+uid+".html";
+            string html = function.GetUrl(url);
+            //textBox2.Text = html;
+
+
+            string price = Regex.Match(html, @"""p"":""([\s\S]*?)""").Groups[1].Value;
+
+            return price;
+        }
+
+        #endregion
+
+
+
         private void button4_Click(object sender, EventArgs e)
         {
             
