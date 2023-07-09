@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,12 @@
     </Compile>
     <Compile Include="网站监控.Designer.cs">
       <DependentUpon>网站监控.cs</DependentUpon>
+    </Compile>
+    <Compile Include="舆情直报.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="舆情直报.Designer.cs">
+      <DependentUpon>舆情直报.cs</DependentUpon>
     </Compile>
     <Compile Include="设置.cs">
       <SubType>Form</SubType>
@@ -87,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="网站监控.resx">
       <DependentUpon>网站监控.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="舆情直报.resx">
+      <DependentUpon>舆情直报.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="设置.resx">
       <DependentUpon>设置.cs</DependentUpon>

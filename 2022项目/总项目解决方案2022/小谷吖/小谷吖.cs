@@ -178,7 +178,7 @@ namespace 小谷吖
                     {
                         this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                     }
-                    Thread.Sleep(1000); 
+                    Thread.Sleep(2000); 
                 }
                 catch (Exception ex)
                 {

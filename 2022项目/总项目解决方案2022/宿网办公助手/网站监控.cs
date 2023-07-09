@@ -145,7 +145,7 @@ namespace 宿网办公助手
                 //ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;  //用于验证服务器证书
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;//防止代理抓包
+               
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
@@ -202,9 +202,65 @@ namespace 宿网办公助手
         }
 
         #endregion
+        #region POST请求全参
+        public static string PostUrl(string url, string postData, string COOKIE, string charset, string contentType, string refer)
+        {
+            string result;
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                //添加头部
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("version:TYC-XCX-WX");
+
+                //添加头部
+                request.ContentType = contentType;
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Referer = refer;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                //result = ex.ToString();
+                //400错误也返回内容
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            return result;
+        }
+        #endregion
 
 
-      
         List<string> sendlist = new List<string>();
         List<string> list = new List<string>();
         public void run_sq360()

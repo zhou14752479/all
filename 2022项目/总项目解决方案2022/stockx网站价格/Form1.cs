@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -9,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using CsharpHttpHelper;
+using Microsoft.Win32;
+using myDLL;
 
 namespace stockx网站价格
 {
@@ -264,10 +267,14 @@ namespace stockx网站价格
 			this.button1.Text = "点击获取";
 			this.button1.Enabled = true;
 		}
-
+		
+		
 		// Token: 0x06000009 RID: 9 RVA: 0x00002A3C File Offset: 0x00000C3C
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			method.SetFeatures(11000);
+			webBrowser1.ScriptErrorsSuppressed = true;
+			
 			this.gethuilv();
 		}
 
@@ -285,14 +292,14 @@ namespace stockx网站价格
 			}
 		}
 
-		// Token: 0x0600000B RID: 11 RVA: 0x00002ABD File Offset: 0x00000CBD
+		
 		private void Button2_Click(object sender, EventArgs e)
 		{
 			this.button1.Enabled = true;
 			this.listView1.Items.Clear();
 		}
 
-		// Token: 0x0600000C RID: 12 RVA: 0x00002ADE File Offset: 0x00000CDE
+		
 		private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			this.textBox2.Text = "";
@@ -300,9 +307,20 @@ namespace stockx网站价格
 		}
 
 		// Token: 0x04000001 RID: 1
-		private string cookie = "stockx_device_id=ed25270a-c60a-42f0-99db-241176a6181e; language_code=zh; _pxvid=e1e4c9e5-958c-11ed-8799-71664c6c4468; __pxvid=e2088da8-958c-11ed-aa1a-0242ac120002; ajs_anonymous_id=4bbc3852-972c-4c84-9e8f-7ee67c19d434; tracker_device=75325615-5e5c-4faa-ae4d-867554ea118e; __ssid=615cf9804e32318265fe9dc2cdabe06; rskxRunCookie=0; rCookie=g0gyrk9rojkslo1m74m8hnlcyp2zu9; pxcts=2a2cb253-f951-11ed-8b03-776453485a66; _px3=71aa777f2bcf0580c7a85d9c888f098eb601086b30c88c081b6b7b02c03ae141:swAkER2F8XCCTGQzfPuR06ezJM2afUfwWHzpRiA55MKT74ZnXeDua5jyBzVD+6ZkmKaOAeHYml1HEdfP7lUYlw==:1000:y2xtWwAq4vvPBircLgJ8uqMyQDm08bz1mvSBGs6SWcdPwzTsyDT30xxo7djiXJ4ioxfwpeLXOm5oEmDNi8Ik09/QOwu8wp9KxaLtGDNJ7vPb/QxI7BDdqDx/bOidJSQ3HR6AlblEXJBsJI1OOMZDCpgcAAx/mR9CYDBWUfsrX2TsreLXHSqVEMKPsd4RdK4NAHl05kMRd7YfWGeslCovsw==; stockx_session_id=63f91cee-5c6a-4f6f-b082-c85a096cebbd; stockx_session=baca515a-96e1-4b7b-8fbe-fc15a85b4cc0; stockx_selected_region=CN; ftr_blst_1h=1684836274613; stockx_preferred_market_activity=sales; stockx_product_visits=2; lastRskxRun=1684836284676; forterToken=8b0950916dcd4429aec3d29023454fc6_1684836284435__UDF43-m4_13ck; __cf_bm=kvuR1INiWgN0E2_Fy9GTBrwl8ncv5UZXIGiaeALtKQQ-1684836356-0-ASWagilAtNRJs8n1m8/NiPssgP3N4kDGhO4S7vnfw1TW9CkP0GTney+ldaLwyS+pMvEKBrFoylmSb8ypnouut1o=; _pxde=862def79dc10be8d708b05e48017839d11a42f59699324897748c008b9775bb7:eyJ0aW1lc3RhbXAiOjE2ODQ4MzYzNjE4ODEsImZfa2IiOjB9; _dd_s=rum=0&expire=1684837264749";
-
+		private string cookie = "stockx_device_id=ed25270a-c60a-42f0-99db-241176a6181e; language_code=zh; _pxvid=e1e4c9e5-958c-11ed-8799-71664c6c4468; __pxvid=e2088da8-958c-11ed-aa1a-0242ac120002; ajs_anonymous_id=4bbc3852-972c-4c84-9e8f-7ee67c19d434; tracker_device=75325615-5e5c-4faa-ae4d-867554ea118e; __ssid=615cf9804e32318265fe9dc2cdabe06; rskxRunCookie=0; rCookie=g0gyrk9rojkslo1m74m8hnlcyp2zu9; stockx_session_id=daae1a0f-dd6e-4c2e-ab90-8a4ff0dfa3c4; stockx_session=a484fcd8-23f4-4754-94ff-fe5a5bb8c172; stockx_selected_region=CN; pxcts=2bad47a0-1a52-11ee-8fcd-76796244626c; _px3=c14ba9ba0c9b617ac69d30d9f6ef5a2e998347bec7a563e834ee576afbaef2ad:2gC82bGfXXpaqZNXzuvWSwFeswlgoCoim4nXA2U8gHhwjWm8wPU0mXEaA3OdETtBfPtyHSMsLbng/NbCoWZ2IQ==:1000:cvKqGMtWd8kB3N6QYigTyFmXYfXzhknI91jeY3oakwIQ3iNVCHLgGsZIdNyfrsPvl+4yQgbaUNkzStH8ApwAE1cgAxhWYqdgjt97FW0YHMIAI4bwT3hlhbVTlReee0rjOEZsUT6dvgb8ibghvro7Lt6qHyhN0spvY6/sH1GGao/rnBCX/4VqSeWurJnQqITickKZQapWb+jeaEuSFpXGvg==; RoktRecogniser=a2d4579a-7b37-4efd-9bf3-563ba5514e3b; ftr_blst_1h=1688465078171; stockx_preferred_market_activity=sales; forterToken=8b0950916dcd4429aec3d29023454fc6_1688465076879__UDF43-m4_13ck; stockx_product_visits=1; lastRskxRun=1688465080516; stockx_homepage=sneakers; _pxde=51c3db8a166ac39680c1c5f755ac0c6c11bed765cce7d529ca38ba13cb37b11c:eyJ0aW1lc3RhbXAiOjE2ODg0NjUwNzgyOTksImZfa2IiOjB9; __cf_bm=AeVIcYL6DX3Rtf88d65wAnqnlqLxnDO0VPa0foVMAsE-1688465083-0-AcGn3pcjVte6tSFfmb4R2NN/HFMKeYX8dkXE31g8N7EbCguWzFtpIlsbwCKcIQNKcKFqcEvuItkTlVNH2lCeWhI=; _dd_s=rum=0&expire=1688465982996";
 		// Token: 0x04000002 RID: 2
 		private Thread thread;
-	}
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+			webBrowser1.Navigate("https://stockx.com/zh-cn/adidas-yeezy-slide-black-onyx");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+			cookie = method.GetCookies("https://stockx.com/zh-cn/adidas-yeezy-slide-black-onyx");
+			MessageBox.Show(cookie);
+        }
+    }
 }
