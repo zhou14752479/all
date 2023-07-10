@@ -104,7 +104,14 @@ namespace 宿网办公助手
                     title = textBox1.Text.Replace(url, "");
                 }
             }
-
+            if (title == "")
+            {
+                if (url != "")
+                {
+                    string html = 网站监控.GetUrl(url,"utf-8");
+                    title = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value; ;
+                }
+            }
             textBox2.Text = url;
             textBox3.Text = title;  
             textBox4.Text = title;  

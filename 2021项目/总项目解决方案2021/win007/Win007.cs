@@ -550,8 +550,9 @@ namespace win007
 
         private void Win007_Load(object sender, EventArgs e)
         {
-            
-            
+
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
             
            // this.WindowState = FormWindowState.Maximized;
@@ -1023,6 +1024,8 @@ namespace win007
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            rule1_txtbox.Text = "";
+            
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 40;
             TextBox t=new TextBox();
@@ -1050,6 +1053,7 @@ namespace win007
      
         private void button3_Click(object sender, EventArgs e)
         {
+            rule2_txtbox.Text = "";
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView2.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7,  textBox13);
@@ -1075,6 +1079,8 @@ namespace win007
         
         private void button6_Click(object sender, EventArgs e)
         {
+            rule3_txtbox.Text = "";
+
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView3.ColumnHeadersHeight = 50;
             TextBox t = new TextBox();
@@ -1099,6 +1105,7 @@ namespace win007
 
         private void button7_Click(object sender, EventArgs e)
         {
+            rule4_txtbox.Text = "";
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView4.ColumnHeadersHeight = 40;
 
@@ -1123,6 +1130,7 @@ namespace win007
 
         private void button8_Click(object sender, EventArgs e)
         {
+            rule5_txtbox.Text = "";
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView5.ColumnHeadersHeight = 50;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox13);
@@ -1149,6 +1157,7 @@ namespace win007
 
         private void button9_Click(object sender, EventArgs e)
         {
+            rule6_txtbox.Text = "";
             dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView6.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7,  textBox13);
@@ -1370,6 +1379,7 @@ namespace win007
 
         private void button16_Click(object sender, EventArgs e)
         {
+            rule1_txtbox_2.Text = "";
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 40;
             TextBox t = new TextBox();
@@ -1392,6 +1402,7 @@ namespace win007
 
         private void button15_Click(object sender, EventArgs e)
         {
+            rule2_txtbox_2.Text = "";
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView2.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7,  textBox13);
@@ -1416,6 +1427,7 @@ namespace win007
 
         private void button14_Click(object sender, EventArgs e)
         {
+            rule3_txtbox_2.Text = "";
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView3.ColumnHeadersHeight = 50;
             TextBox t = new TextBox();
@@ -1439,6 +1451,7 @@ namespace win007
 
         private void button13_Click(object sender, EventArgs e)
         {
+            rule4_txtbox_2.Text = "";
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView4.ColumnHeadersHeight = 40;
 
@@ -1463,6 +1476,7 @@ namespace win007
 
         private void button12_Click(object sender, EventArgs e)
         {
+            rule5_txtbox_2.Text = "";
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView5.ColumnHeadersHeight = 50;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox13);
@@ -1488,6 +1502,7 @@ namespace win007
 
         private void button11_Click(object sender, EventArgs e)
         {
+            rule6_txtbox_2.Text = "";
             dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView6.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7,  textBox13);
@@ -1517,6 +1532,7 @@ namespace win007
 
         private void button25_Click(object sender, EventArgs e)
         {
+            rule1_txtbox_3.Text = "";
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 40;
             TextBox t = new TextBox();
@@ -1539,6 +1555,7 @@ namespace win007
 
         private void button24_Click(object sender, EventArgs e)
         {
+            rule2_txtbox_3.Text = "";
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView2.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label23, label22, label21, comboBox1, dataGridView2, textBox9, textBox8, textBox7,  textBox13);
@@ -1563,6 +1580,7 @@ namespace win007
 
         private void button23_Click(object sender, EventArgs e)
         {
+            rule3_txtbox_3.Text = "";
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView3.ColumnHeadersHeight = 50;
             TextBox t = new TextBox();
@@ -1586,6 +1604,7 @@ namespace win007
 
         private void button22_Click(object sender, EventArgs e)
         {
+            rule4_txtbox_3.Text = "";
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView4.ColumnHeadersHeight = 40;
 
@@ -1610,6 +1629,7 @@ namespace win007
 
         private void button21_Click(object sender, EventArgs e)
         {
+            rule5_txtbox_3.Text = "";
             dataGridView5.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView5.ColumnHeadersHeight = 50;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5, label41, label40, label39, comboBox1, dataGridView5, textBox9, textBox8, textBox7, textBox13);
@@ -1635,6 +1655,7 @@ namespace win007
 
         private void button20_Click(object sender, EventArgs e)
         {
+            rule6_txtbox_3.Text = "";
             dataGridView6.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView6.ColumnHeadersHeight = 40;
             //chaxun(textBox1, textBox2, textBox3, textBox4, textBox5,  label29, label28, label27, comboBox1, dataGridView3, textBox9, textBox8, textBox7,  textBox13);
