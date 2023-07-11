@@ -66,13 +66,20 @@ namespace 宿网办公助手
         #region 获取Location
         public static string getLocation(string url)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Timeout = 10000;
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-            request.AllowAutoRedirect = false;
-            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-            return response.GetResponseHeader("Location");
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Timeout = 10000;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.AllowAutoRedirect = false;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                return response.GetResponseHeader("Location");
+            }
+            catch (Exception)
+            {
+
+                return url;            }
         }
         #endregion
 
