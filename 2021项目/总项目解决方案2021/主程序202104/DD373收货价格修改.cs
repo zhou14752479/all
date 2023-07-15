@@ -78,7 +78,7 @@ namespace 主程序202104
 
                 string url = "https://goods.dd373.com/Api/Receive/UserCenter/List?LastId=&GoodsType=&Status=-1&PageIndex=" + page + "&PageSize=80";
                 string html = method.GetUrlWithCookie(url, cookies, "utf-8");
-
+               
                 MatchCollection uids = Regex.Matches(html, @"LastId"":""([\s\S]*?)""");
                 MatchCollection types = Regex.Matches(html, @"GoodsType"":""([\s\S]*?)""");
 
@@ -105,21 +105,26 @@ namespace 主程序202104
                 string postdata = sb.ToString();
                 string ahtml = method.PostUrl(aurl, postdata, cookies, "utf-8", "application/json; charset=UTF-8", "https://goods.dd373.com/");
                 MatchCollection Identifys = Regex.Matches(ahtml, @"tify"":""([\s\S]*?)""");
+
+              
                 MatchCollection names = Regex.Matches(ahtml, @"Name"":""([\s\S]*?)""");
-                for (int a = 0; a < Identifys.Count / 5; a++)
+                for (int a = 0; a < Identifys.Count / 4; a++)
                 {
 
-                    string priceurl = "https://www.dd373.com/s-" + Identifys[5 * a].Groups[1].Value + "-" + Identifys[(5 * a) + 1].Groups[1].Value + "-" + Identifys[(5 * a) + 2].Groups[1].Value + "-" + Identifys[(5 * a) + 3].Groups[1].Value + "-0-0-jk5sj0-0-0-recycle-0-0-1-0-0-0.html";
+                    //string priceurl = "https://www.dd373.com/s-" + Identifys[5 * a].Groups[1].Value + "-" + Identifys[(5 * a) + 1].Groups[1].Value + "-" + Identifys[(5 * a) + 2].Groups[1].Value + "-" + Identifys[(5 * a) + 3].Groups[1].Value + "-0-0-jk5sj0-0-0-recycle-0-0-1-0-0-0.html";
+                    string priceurl = "https://www.dd373.com/s-7u2tcu-q6m7m8-"+ Identifys[(4 * a) + 2].Groups[1].Value + "-qqnsrh-0-0-qqnsrh-0-0-recycle-0-0-1-0-0-0.html";
 
 
+                    //textBox1.Text = priceurl;
+                    //MessageBox.Show(priceurl);
                     string newprice = getprice(priceurl);
                     ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
 
-                    lv1.SubItems.Add(names[5 * a].Groups[1].Value.Trim() + names[(5 * a) + 1].Groups[1].Value.Trim() + names[(5 * a) + 2].Groups[1].Value.Trim() + names[(5 * a) + 3].Groups[1].Value.Trim() + names[(5 * a) + 4].Groups[1].Value.Trim());
+                    lv1.SubItems.Add(names[4 * a].Groups[1].Value.Trim() + names[(4 * a) + 1].Groups[1].Value.Trim() + names[(4* a) + 2].Groups[1].Value.Trim() + names[(4* a) + 3].Groups[1].Value.Trim() );
 
                     lv1.SubItems.Add("设置完成");
                     lv1.SubItems.Add(newprice);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                     if (newprice != "")
                     {
                         textBox1.Text = changePrice(ShopNos[a].Groups[1].Value, TotalQuantitys[a].Groups[1].Value, newprice, MinQuantitys[a].Groups[1].Value, MaxQuantitys[a].Groups[1].Value);
@@ -136,11 +141,16 @@ namespace 主程序202104
         public string changePrice(string shopNo,string TotalQuantity,string UnitPriceByMoney, string MinQuantity,string MaxQuantity)
         {
             string aurl = "https://goods.dd373.com/Api/Receive/UserCenter/Save";
-            string postdata = "Goods%5B0%5D%5BShopNumber%5D="+ shopNo + "&Goods%5B0%5D%5BTotalQuantity%5D="+ TotalQuantity + "&Goods%5B0%5D%5BUnitPrice%5D="+ UnitPriceByMoney + "&Goods%5B0%5D%5BMinQuantity%5D="+ MinQuantity + "&Goods%5B0%5D%5BMaxQuantity%5D="+ MaxQuantity;
-            string ahtml = method.PostUrl(aurl, postdata, cookies, "utf-8", "application/x-www-form-urlencoded; charset=UTF-8", "https://goods.dd373.com/");
+            //string postdata = "Goods%5B0%5D%5BShopNumber%5D="+ shopNo + "&Goods%5B0%5D%5BTotalQuantity%5D="+ TotalQuantity + "&Goods%5B0%5D%5BUnitPrice%5D="+ UnitPriceByMoney + "&Goods%5B0%5D%5BMinQuantity%5D="+ MinQuantity + "&Goods%5B0%5D%5BMaxQuantity%5D="+ MaxQuantity;
+
+            string postdata = "{\"Goods\":[{\"ShopNumber\":\"" + shopNo + "\",\"TotalQuantity\":" + TotalQuantity + ",\"UnitPrice\":" + UnitPriceByMoney + ",\"MinQuantity\":" + MinQuantity + ",\"MaxQuantity\":"+ MaxQuantity + "}]}";
+
+           
+            string ahtml = method.PostUrl(aurl, postdata, cookies, "utf-8", "application/json; charset=UTF-8", "https://goods.dd373.com/");
+            //MessageBox.Show(ahtml);
             return ahtml;
 
-
+           
         }
 
 
@@ -226,7 +236,7 @@ namespace 主程序202104
             #endregion
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            cookies = "acw_tc=76b20f7116171889186127464e4d83bff26aab1ee3aa926dac5fa945a88fb1; SERVERID=a7219fc38e119fffac9ed962aad2f2b1|1617189823|1617189822; loginToken=23121d9f-7cf4-411c-8b8f-4ade720a839c; clientId=43cc571a-70ed-4c52-b6f5-77dcbe048756; Hm_lvt_b1609ca2c0a77d0130ec3cf8396eb4d5=1617188886; member_session=P%2bHfgCJ3uFRV2UZJk8jK4sygEZEZB%2bOWihIRjNa8UcUlS1%2fk9nrbgTNxbLB%2bqvwJ1Au04qWVy0Ie%2b9tPAGjbPhu%2bGpCigAAYCDtUaGIkenXAKo50t7Q6hXy9M6Al2f4NZ6EJxxRjpZH3%2bkKnSLcnrsK1LRA5MfVSrYmdVhPvEf0Tg1onTbrZQP1Y3uojvu6Zl5Ak%2fGjomJSL9J86l3jyS3I23ftfNI1hIUkhW9TycUNBO7IbYl7KnZkoGAh7nOAPaUP%2f8g1DQLCZ0ttkS1aH1G4FV3TYvoA%2f0J%2bvOZQQs0u8HhQGUjiUYJ09%2fWUNE5Zp%2f3jsTqsMJPi%2fxQqW%2fQPzQA%3d%3d; refreshToken=974ff9cf-d1ff-457b-9d43-5fcfbad8b193; login.dd373.com=5f24b243-a78d-4dae-9826-b531748032b4; goods.dd373.com=41a40532-3a4b-4a50-9858-4625f7650998; hb.dd373.com=7b23212d-5fbe-4e1c-83a7-01bfc596b8ef; point.dd373.com=3f492953-b6ed-4abd-af20-79cd557121ed; newpay.dd373.com=27ad0aea-e717-4a83-a298-696ceaa527d6; newuser.dd373.com=1592936d-fb7b-4090-8103-a3bae760bc01; thirdbind.dd373.com=b6b5c5d1-352a-47e7-85c5-5935bcf6f820; mission.dd373.com=103c058b-164a-482c-8e0a-41cf3a2d2a9c; order.dd373.com=03ebb39c-e31b-4e3a-9355-fdb61b3bfb9c";
+            cookies = "Hm_lvt_b1609ca2c0a77d0130ec3cf8396eb4d5=1689387327; Hm_lpvt_b1609ca2c0a77d0130ec3cf8396eb4d5=1689387327; loginToken=c131c6b8-430d-45ea-95c9-6cd5b250fdad; refreshToken=dbd8b395-fa9b-40af-acd7-e11e4136d78e; clientId=7d20c02b-1134-b232-9aee-ad6755eb1516; new_pc_rememberPassword=1; login.dd373.com=fad0e5bd-66e2-4583-93cc-7b468953b022; userName_cc=laoyou1; newpay.dd373.com=4d0de003-caca-4e99-9649-041f57c0862d; newuser.dd373.com=bdeb9f64-78d3-400f-942f-3b0af99a46f1; point.dd373.com=5ea43e62-23d2-4793-a5bc-d59ef9c82a48; order.dd373.com=789d911d-b964-4714-8d5f-95227f890273; thirdbind.dd373.com=df6f7235-4dd7-410d-84e2-f0878ec7a879; menu.dd373.com=bd27ea97-9e31-4abe-9d3b-3e81740550b0; mission.dd373.com=c3cdb8f9-4375-4de6-8242-3ca482e8504a; goods.dd373.com=d72bcce2-b9f0-4ace-84a3-dacc3650ea92; hb.dd373.com=13ce7d0e-712a-488b-9e42-2abd72e55dcd; imservice.dd373.com=341f7904-9009-4621-ad8b-be73bbd9fbd7; RUNREADSUM=%7B%22orderNum%22%3A0%2C%22shopNum%22%3A0%2C%22serverNum%22%3A0%2C%22recentNum%22%3A0%2C%22allMum%22%3A0%7D";
 
             try
             {
