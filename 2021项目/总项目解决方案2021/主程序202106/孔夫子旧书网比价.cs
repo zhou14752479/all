@@ -28,9 +28,7 @@ namespace 主程序202106
         Thread thread;
         bool zanting = true;
         bool status = true;
-        string cookie = "";
-
-
+      
 
 
         //导入ISBN、品相查询低价
@@ -148,6 +146,8 @@ namespace 主程序202106
 
         }
 
+
+        //APP端
         //导入ISBN查询低价\邮费、已售数量
         public void run1()
         {
@@ -231,6 +231,94 @@ namespace 主程序202106
                 MessageBox.Show(ex.ToString());
             }
         }
+
+
+        //小程序手机端
+        //导入ISBN查询低价\邮费、已售数量
+        public void run_xcx()
+        {
+
+            try
+            {
+                if (textBox2.Text == "")
+                {
+                    MessageBox.Show("请导入账号");
+                    return;
+                }
+                //  DataTable dt = method.ReadExcelToTable(textBox2.Text);
+                // DataTable dt = method.ExcelToDataTable(textBox2.Text,true);
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+
+                StreamReader sr = new StreamReader(textBox2.Text, method.EncodingType.GetTxtType(textBox2.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text.Length; i++)
+                {
+
+                    //DataRow dr = dt.Rows[i];
+                    // string isbn = dr[0].ToString();
+                    string isbn = text[i];
+                    if (isbn == "")
+                        continue;
+                    string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
+                    string postdata = "bizType=wechat&host=msearch&type=1&params=%7B%22key%22%3A%22"+isbn+"%22%2C%22status%22%3A0%2C%22pagenum%22%3A1%2C%22pagesize%22%3A10%2C%22order%22%3A100%2C%22select%22%3A0%2C%22isFuzzy%22%3Afalse%2C%22area%22%3A1001000000%2C%22quaselect%22%3A1%7D";
+                    string html = method.PostUrlDefault(url, postdata,"utf-8");
+                    html = method.Unicode2String(html);
+                    MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
+                    string itemid = Regex.Match(html, @"""itemId"":([\s\S]*?),").Groups[1].Value;
+                    string userid = Regex.Match(html, @"""userId"":([\s\S]*?),").Groups[1].Value;
+
+                    string fee = getfee(itemid, userid);
+
+
+                    Thread.Sleep(1000);
+                    //获取已售搜索个数
+
+                    string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+
+                    string html2 = PostUrl(url, postdata2);
+                    string count = Regex.Match(html2, @"""recordCount"":([\s\S]*?),").Groups[1].Value;
+                    string isFuzzy = Regex.Match(html2, @"""isFuzzy"":([\s\S]*?),").Groups[1].Value;
+                    Thread.Sleep(1000);
+
+                    if (isFuzzy == "1")
+                    {
+                        count = "无";
+                    }
+
+                    label1.Text = "正在查询：" + isbn;
+                    string price = "无";
+                    if (prices.Count > 0)
+                    {
+                        price = prices[0].Groups[1].Value;
+                    }
+                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
+                    lv1.SubItems.Add(isbn);
+                    lv1.SubItems.Add(price.Replace("\"", ""));
+                    lv1.SubItems.Add(fee);
+                    lv1.SubItems.Add(count);
+
+
+
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                }
+                label1.Text = ("查询结束");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
         /// <summary>
         /// 获取时间戳毫秒
         /// </summary>
@@ -254,13 +342,19 @@ namespace 主程序202106
             cookie =  "randomcodekey=" +randomcodekey+ ";randomcode="+ randomcode+ ";randomcodesign=fJVv1m762rVRYl5awRz2U%2Fs7bUDFoabKHHZIo0uTiIgqnX5H3CuSGVadurKvAhwNWES5%2BJ3lN5K%2BRgl7itwtDw%3D%3D; shoppingCartSessionId=3fe92fe84a861dcf66c0b202bdb6a127; reciever_area=1006000000; __utma=82106124.573931208.1617870285.1617870285.1617870285.1; __utmz=82106124.1617870285.1.1.utmcsr=item.kongfz.com|utmccn=(referral)|utmcmd=referral|utmcct=/; kfz_uuid=730dfe90-8b2c-4912-96e4-07ef46916144; PHPSESSID=3jeoib1pm5ek922ct7oggcbr16; acw_tc=276077cc16234095012965126e357c05cd481f38eed8e36489f8f6f4a87691; kfz_trace=730dfe90-8b2c-4912-96e4-07ef46916144|0|49218c7e6eb9255e|; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1622700438,1622771855,1623032930,1623409512; Hm_lvt_33be6c04e0febc7531a1315c9594b136=1622700438,1622771855,1623032930,1623409512; TY_SESSION_ID=5db9fd1b-ce6f-4778-b8b1-9305dd087d70; kfz-tid=12635a593fdb5cf6dfe8ad947736512b; Hm_lpvt_33be6c04e0febc7531a1315c9594b136=1623410175; Hm_lpvt_bca7840de7b518b3c5e6c6d73ca2662c=1623410175";
            // MessageBox.Show(cookie);
         }
+
+
+        public static string cookie = "";
+
+
+
         private void button6_Click(object sender, EventArgs e)
         {
             //getcookies();
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run1);
+                thread = new Thread(run_xcx);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

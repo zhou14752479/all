@@ -464,7 +464,7 @@ namespace 主程序202106
 
         private void 美团酒店_Load(object sender, EventArgs e)
         {
-            ProvinceCity.ProvinceCity.BindProvince(comboBox2);
+            //ProvinceCity.ProvinceCity.BindProvince(comboBox2);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -489,7 +489,7 @@ namespace 主程序202106
                 comboBox3.Text = "天津";
                 return;
             }
-            ProvinceCity.ProvinceCity.BindCity(comboBox2, comboBox3);
+            //ProvinceCity.ProvinceCity.BindCity(comboBox2, comboBox3);
         }
 
         private void button2_Click(object sender, EventArgs e)
