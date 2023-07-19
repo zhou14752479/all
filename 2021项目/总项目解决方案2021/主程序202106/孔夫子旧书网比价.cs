@@ -187,7 +187,7 @@ namespace 主程序202106
                     string fee = getfee(itemid,userid);
 
 
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                     //获取已售搜索个数
                    
                     string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
@@ -195,7 +195,7 @@ namespace 主程序202106
                     string html2 =PostUrl(url, postdata2);
                     string count=  Regex.Match(html2, @"""recordCount"":([\s\S]*?),").Groups[1].Value;
                     string isFuzzy = Regex.Match(html2, @"""isFuzzy"":([\s\S]*?),").Groups[1].Value;
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
 
                     if(isFuzzy=="1")
                     {
@@ -354,7 +354,7 @@ namespace 主程序202106
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run_xcx);
+                thread = new Thread(run1);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
@@ -394,16 +394,16 @@ namespace 主程序202106
                 //request.Proxy = null;//防止代理抓包
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("X-Tingyun-Id:lLmhN035-8Y;c=2;r=1510130765;u=b62bf55b6da98676c7af69e7063790e6::85C1D76CAE16FFDC");
-                headers.Add("ssid:1681723846000257004");
+                headers.Add("X-Tingyun-Id:58rG1RHpflE;c=2;r=1635436235;u=bc79049057b4b68538bbcf9565bb2afb::BD4E4C616020FB61");
+                headers.Add("ssid:1689757110000231373");
                 headers.Add("refUrl:KFZDynamicHomePageViewController");
 
 
                 headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
-                headers.Add("accessToken:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("access-token:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("token:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("ssid: 1634870855000744763");
+                headers.Add("accessToken:6aa5f840-c7ed-44b1-bed1-a920a90c0f3e");
+                headers.Add("access-token:6aa5f840-c7ed-44b1-bed1-a920a90c0f3e");
+                headers.Add("token:6aa5f840-c7ed-44b1-bed1-a920a90c0f3e");
+           
 
 
 
