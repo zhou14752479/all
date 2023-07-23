@@ -47,7 +47,7 @@ namespace 孔夫子APP
         {
             try
             {
-                string COOKIE = "Hm_lvt_33be6c04e0febc7531a1315c9594b136=1681722675; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1681722675; kfz_trace=51AF83E2DF004296B46750EE4142DE68|16134930|25d779d6950d2456|102002001000; kfz_uuid=51AF83E2DF004296B46750EE4142DE68; shoppingCartSessionId=d59bcc36a03c4e4e6fd4d7eb8eed4fa4; utm_source=102002001000; mpDialog=true; PHPSESSID=40rov8apgcfrnbitaodb8lg56jf42s01; acw_tc=2760828d16817226717025190ed5e3f83b2de9217167a48faff1b35cc8d629";
+                string COOKIE = "PHPSESSID=746thl2h6l9gbse9ioehqrp0b6h3hap0;";
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -62,10 +62,10 @@ namespace 孔夫子APP
 
 
                 headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
-                headers.Add("accessToken:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("access-token:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("token:734dbc2b-faff-4381-aec5-d99f710ea572");
-                headers.Add("ssid: 1634870855000744763");
+                headers.Add("accessToken:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
+                headers.Add("access-token:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
+                headers.Add("token:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
+                headers.Add("ssid: 1689944873000198921");
 
 
 
@@ -149,8 +149,8 @@ namespace 孔夫子APP
 
                         // string jiagepaixu = "100"; //总价从低达高
                         string jiagepaixu = "1";  //价格从低到高
-                        string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22"+jiagepaixu+"%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
-
+                       string postdata = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22"+jiagepaixu+"%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22" + q1 + "%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                        //string postdata = "page=1&params=%7B%22key%22%3A%229787122115300%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%220%22%2C%22order%22%3A%220%22%2C%22area%22%3A%22%22%2C%22select%22%3A%220%22%2C%22quality%22%3A%22%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
                       
                         string html = PostUrlDefault(url, postdata);
                         html = method.Unicode2String(html);
@@ -193,7 +193,8 @@ namespace 孔夫子APP
                         if (status == false)
                             return;
                         label2.Text = "正在查询：" + isbn;
-                        Thread.Sleep(1000);
+                        Random rand = new Random();
+                        Thread.Sleep(rand.Next(1000,3000));
 
                     }
                     catch (Exception ex)
@@ -242,7 +243,8 @@ namespace 孔夫子APP
 
             #endregion
 
-
+            //cookie = method.GetCookies("https://search.kongfz.com/product_result/?key=9787101151824&status=0&_stpmt=eyJzZWFyY2hfdHlwZSI6ImFjdGl2ZSJ9&order=100&ajaxdata=4");
+            //textBox1.Text = cookie;
 
             if (textBox1.Text == "")
             {
@@ -301,10 +303,15 @@ namespace 孔夫子APP
             }
         }
 
+        public string cookie = "";
+      
+
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
-            
-            if(DateTime.Now> Convert.ToDateTime("2023-08-10"))
+            //method.SetFeatures(11000);
+            //webBrowser1.ScriptErrorsSuppressed = true;
+            //webBrowser1.Navigate("https://search.kongfz.com/product_result/?key=9787101151824&status=0&_stpmt=eyJzZWFyY2hfdHlwZSI6ImFjdGl2ZSJ9&order=100&ajaxdata=4");
+            if(DateTime.Now> Convert.ToDateTime("2024-07-10"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;

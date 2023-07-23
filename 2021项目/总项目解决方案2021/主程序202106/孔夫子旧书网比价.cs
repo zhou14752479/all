@@ -232,12 +232,71 @@ namespace 主程序202106
             }
         }
 
+        #region POST默认请求
+        public static string PostUrlDefault(string url, string postData, string COOKIE,string ip)
+        {
+            string result;
+            try
+            {
+                string charset = "utf-8";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("version:TYC-XCX-WX");
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.ContentType = "application/json";
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                //result = ex.ToString();
+                //400错误也返回内容
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            return result;
+        }
+        #endregion
+
 
         //小程序手机端
         //导入ISBN查询低价\邮费、已售数量
         public void run_xcx()
         {
-
+            string ip = textBox1.Text;
             try
             {
                 if (textBox2.Text == "")
@@ -264,8 +323,9 @@ namespace 主程序202106
                         continue;
                     string url = "https://app.kongfz.com/invokeSearch/app/product/productSearchV2";
                     string postdata = "bizType=wechat&host=msearch&type=1&params=%7B%22key%22%3A%22"+isbn+"%22%2C%22status%22%3A0%2C%22pagenum%22%3A1%2C%22pagesize%22%3A10%2C%22order%22%3A100%2C%22select%22%3A0%2C%22isFuzzy%22%3Afalse%2C%22area%22%3A1001000000%2C%22quaselect%22%3A1%7D";
-                    string html = method.PostUrlDefault(url, postdata,"utf-8");
+                    string html = PostUrlDefault(url, postdata,"utf-8",ip);
                     html = method.Unicode2String(html);
+                 
                     MatchCollection prices = Regex.Matches(html, @"""price"":([\s\S]*?),");
                     string itemid = Regex.Match(html, @"""itemId"":([\s\S]*?),").Groups[1].Value;
                     string userid = Regex.Match(html, @"""userId"":([\s\S]*?),").Groups[1].Value;
@@ -276,17 +336,19 @@ namespace 主程序202106
                     Thread.Sleep(1000);
                     //获取已售搜索个数
 
-                    string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
+                    //string postdata2 = "_stpmt=ewoKfQ%3D%3D&params=%7B%22key%22%3A%22" + isbn + "%22%2C%22pagesize%22%3A%2220%22%2C%22status%22%3A%221%22%2C%22pagenum%22%3A%221%22%2C%22order%22%3A%22100%22%2C%22area%22%3A%221001000000%22%2C%22select%22%3A%220%22%2C%22isFuzzy%22%3A%220%22%7D&type=2";
 
-                    string html2 = PostUrl(url, postdata2);
-                    string count = Regex.Match(html2, @"""recordCount"":([\s\S]*?),").Groups[1].Value;
-                    string isFuzzy = Regex.Match(html2, @"""isFuzzy"":([\s\S]*?),").Groups[1].Value;
-                    Thread.Sleep(1000);
+                    //string html2 = PostUrl(url, postdata2);
+                    //string count = Regex.Match(html2, @"""recordCount"":([\s\S]*?),").Groups[1].Value;
+                    //string isFuzzy = Regex.Match(html2, @"""isFuzzy"":([\s\S]*?),").Groups[1].Value;
+                    //Thread.Sleep(1000);
 
-                    if (isFuzzy == "1")
-                    {
-                        count = "无";
-                    }
+                    //if (isFuzzy == "1")
+                    //{
+                    //    count = "无";
+                    //}
+
+                    string count = "0";
 
                     label1.Text = "正在查询：" + isbn;
                     string price = "无";
@@ -354,7 +416,7 @@ namespace 主程序202106
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(run1);
+                thread = new Thread(run_xcx);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

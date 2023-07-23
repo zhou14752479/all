@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202104", "..\..\20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202106", "..\..\2021项目\总项目解决方案2021\主程序202106\主程序202106.csproj", "{CF3FB382-5828-40A7-99E9-BDE21279843E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "药房网", "..\..\2021项目\总项目解决方案2021\项目集合\药房网\药房网.csproj", "{5B50582D-40EE-4228-90C1-789665843B68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -349,6 +351,18 @@ Global
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x64.Build.0 = Release|Any CPU
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.ActiveCfg = Release|Win32
 		{CF3FB382-5828-40A7-99E9-BDE21279843E}.Release|x86.Build.0 = Release|Win32
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|x64.Build.0 = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Debug|x86.Build.0 = Debug|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|x64.ActiveCfg = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|x64.Build.0 = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B50582D-40EE-4228-90C1-789665843B68}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
