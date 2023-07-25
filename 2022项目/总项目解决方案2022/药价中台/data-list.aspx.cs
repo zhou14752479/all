@@ -15,9 +15,8 @@ namespace 药价中台
 
             if (HttpContext.Current.Request.RequestType == "POST")
             {
-                string code = Request["code"];
-                Application["code"] = code;
-                Response.Write(code);
+                string username = Request["username"];
+          
             }
 
 

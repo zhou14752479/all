@@ -3,6 +3,8 @@ var domainhost = 'localhost';
 
 $(document).ready(function () {
 
+
+
     if (getCookie("username")) {
         var username = getCookie("username");
         var password = getCookie("password");
@@ -15,12 +17,12 @@ $(document).ready(function () {
     }
     else {
         var pathurl = window.location.pathname;
-        if (pathurl == '/login.html' || pathurl == '/register.html' || pathurl.indexOf("articles") != -1) {
+        if (pathurl == '/login.aspx' || pathurl == '/register.html' || pathurl.indexOf("articles") != -1) {
 
         }
         else {
 
-            location.href = 'login.html'
+           // location.href = 'login.aspx'
         }
 
     }

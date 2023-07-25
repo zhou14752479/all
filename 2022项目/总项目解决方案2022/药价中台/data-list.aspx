@@ -32,21 +32,17 @@
         </a>
     </div>
     <div class="x-body">
-         <form id="form1" runat="server">
-        <div class="layui-row">
-          <div class="layui-form layui-col-md12 x-so">
-                <input type="text"  name="code" placeholder="兑换码" autocomplete="off" class="layui-input" value=<%=Application["code"]%>  >
-                <button class="layui-btn"  lay-submit="" lay-filter="sreach">显示资料</button>
-            </div>
-        </div>
-            
+        
+     
         <xblock style="text-align:center">
-         
+         <input id="username" />
            <span style="font-size:20px">导入表格</span>： <input class="layui-btn"  type="file" id="export" >
       
+             <button class="layui-btn" id="getprice" lay-submit="" lay-filter="sreach">查询价格</button>
+             <button class="layui-btn" id="deleteprice" lay-submit="" lay-filter="sreach">清空记录</button>
         </xblock>
 
-        <table class="layui-table" id="codetable">
+        <table class="layui-table" id="datatable">
             <thead>
                 <tr>
                 
@@ -55,12 +51,13 @@
                     <th>药品名称</th>
                     <th>规格</th> 
                     <th>价格</th> 
-                    <th>比价&nbsp;&nbsp;</th>
+                    <th>药房价格</th>
+                     <th>查询时间</th> 
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
-              </form>
+            
         <div id="page" style="text-align: center;"></div>
     </div>
 
@@ -102,28 +99,79 @@
                 for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
                 {
                     var tr;
-                    tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name+ '</td>' + '<td>' + data[i].guige+ '</td>' + '<td>' + data[i].price+ '</td>'  + '<td class="td-manage">' +
-
-                        ' <button class="layui-btn">比价</button>' +
-                
-
-                        '</td>'
-
-
-                    $("#codetable").append('<tr>' + tr + '</tr>')
+                    tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>...</td>' + '<td>正在查价</td>' 
+                       
+                    $("#datatable").append('<tr>' + tr + '</tr>')
                 }
-
-
+                    $.ajax({
+                        url: "api.aspx?method=uploadprice&username=<%=Application["username"]%>",
+                        async: true,
+                        type: 'post',
+                        dataType: 'JSON',
+                        contentType: 'application/json',
+                        data: JSON.stringify(persons),
+                        success: function (data) {
+                            layer.alert("比价完成");
+                           
+                        }
+                    });
+              
+                layer.alert("比价完成，点击查询获取比价");
         };
             // 以二进制方式打开文件
             fileReader.readAsBinaryString(files[0]);
-    });
+            });
 
 
 
-     
+
+        $("#getprice").click(function () {
+
+            $("#datatable  tbody").html(""); //翻页清空表数据，保留表头
+            var username = $("#username").val().trim()
+        
+            $.ajax({
+                url: `api.aspx?method=getprice&username=${username}`,
+               async: true,
+               type: 'post',
+               data: '',
+                success: function (data) {
+
+                    var data = JSON.parse(data);
+                    console.log(data);
+                    for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
+                    {
+                        var tr;
+                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + data[i].time + '</td>' 
+
+                        $("#datatable").append('<tr>' + tr + '</tr>')
+                    }
+                    layer.alert("查询完成");
 
 
+               }
+           });
+        })
+
+        $("#deleteprice").click(function () {
+
+            $("#datatable  tbody").html(""); //翻页清空表数据，保留表头
+            var username = $("#username").val().trim()
+  
+           $.ajax({
+               url: `api.aspx?method=deleteprice&username=${username}`,
+               async: true,
+               type: 'post',
+               data: '',
+               success: function (data) {
+
+                   console.log(data);
+                   layer.alert(data);
+
+
+               }
+           });
+       })
   
 
 

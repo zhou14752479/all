@@ -11,7 +11,7 @@ namespace 药价中台
 {
 
 
-    public partial class data_list
+    public partial class api
     {
     }
 }
