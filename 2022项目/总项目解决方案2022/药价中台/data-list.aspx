@@ -51,7 +51,10 @@
                     <th>药品名称</th>
                     <th>规格</th> 
                     <th>价格</th> 
+                    <th>价格-10%</th> 
+                   
                     <th>药房价格</th>
+                     <th>价格对比</th> 
                      <th>查询时间</th> 
                 </tr>
             </thead>
@@ -141,8 +144,20 @@
                     console.log(data);
                     for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
                     {
+
                         var tr;
-                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + data[i].time + '</td>' 
+                        var price9 = (data[i].price * 0.9).toFixed(2);
+                      
+
+                        if (Number(price9) > Number(data[i].yfprice)) {
+                            var duibi = '×';
+                        }
+                        else {
+                            var duibi = '√';
+                        }
+
+                        
+                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + price9 + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + duibi + '</td>' + '<td>' + data[i].time + '</td>' 
 
                         $("#datatable").append('<tr>' + tr + '</tr>')
                     }

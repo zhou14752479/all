@@ -252,10 +252,20 @@ namespace 药价中台
         public void run(string html,string username)
         {
           
-            MatchCollection wenhao = Regex.Matches(html, @"""wenhao"":""([\s\S]*?)""");
-            MatchCollection name = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
-            MatchCollection guige = Regex.Matches(html, @"""guige"":""([\s\S]*?)""");
-            MatchCollection price = Regex.Matches(html, @"""price"":""([\s\S]*?)""");
+            MatchCollection wenhao = Regex.Matches(html, @"""批准文号"":""([\s\S]*?)""");
+            MatchCollection name = Regex.Matches(html, @"""药品名称"":""([\s\S]*?)""");
+            MatchCollection guige = Regex.Matches(html, @"""规格"":""([\s\S]*?)""");
+            MatchCollection price = Regex.Matches(html, @"""价格"":""([\s\S]*?)""");
+
+            MatchCollection changjia = Regex.Matches(html, @"""生产厂家"":""([\s\S]*?)""");
+            MatchCollection shengchan_time = Regex.Matches(html, @"""生产日期"":""([\s\S]*?)""");
+            if (wenhao.Count==0)
+            {
+
+            }
+            
+            
+            
             for (int i = 0; i < wenhao.Count; i++)
             {
                 string yaofang_price = yaofangwang(wenhao[i].Groups[1].Value);
