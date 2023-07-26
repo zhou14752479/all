@@ -35,11 +35,12 @@
         
      
         <xblock style="text-align:center">
-         <input id="username" />
+       
            <span style="font-size:20px">导入表格</span>： <input class="layui-btn"  type="file" id="export" >
       
              <button class="layui-btn" id="getprice" lay-submit="" lay-filter="sreach">查询价格</button>
-             <button class="layui-btn" id="deleteprice" lay-submit="" lay-filter="sreach">清空记录</button>
+             <button class="layui-btn" id="deleteprice" lay-submit="" lay-filter="sreach">清空数据</button>
+            <button class="layui-btn" id="exportBtn" lay-submit="" lay-filter="sreach">导出数据</button>
         </xblock>
 
         <table class="layui-table" id="datatable">
@@ -67,6 +68,14 @@
      <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
     <script>
+
+
+
+
+
+
+       
+
 
     //给input标签绑定change事件，一上传选中的.xls文件就会触发该函数
             $('#export').change(function(e) {
@@ -106,8 +115,10 @@
                        
                     $("#datatable").append('<tr>' + tr + '</tr>')
                 }
+
+                var username = getCookie("username");
                     $.ajax({
-                        url: "api.aspx?method=uploadprice&username=<%=Application["username"]%>",
+                        url: `api.aspx?method=uploadprice&username=${username}`,
                         async: true,
                         type: 'post',
                         dataType: 'JSON',
@@ -119,7 +130,7 @@
                         }
                     });
               
-                layer.alert("比价完成，点击查询获取比价");
+                layer.alert("后台查价中..稍后点击查询");
         };
             // 以二进制方式打开文件
             fileReader.readAsBinaryString(files[0]);
@@ -131,8 +142,8 @@
         $("#getprice").click(function () {
 
             $("#datatable  tbody").html(""); //翻页清空表数据，保留表头
-            var username = $("#username").val().trim()
-        
+          
+            var username = getCookie("username");
             $.ajax({
                 url: `api.aspx?method=getprice&username=${username}`,
                async: true,
@@ -150,10 +161,10 @@
                       
 
                         if (Number(price9) > Number(data[i].yfprice)) {
-                            var duibi = '×';
+                            var duibi = '';
                         }
                         else {
-                            var duibi = '√';
+                            var duibi = '价格优势';
                         }
 
                         
@@ -171,7 +182,7 @@
         $("#deleteprice").click(function () {
 
             $("#datatable  tbody").html(""); //翻页清空表数据，保留表头
-            var username = $("#username").val().trim()
+            var username = getCookie("username");
   
            $.ajax({
                url: `api.aspx?method=deleteprice&username=${username}`,
@@ -187,7 +198,37 @@
                }
            });
        })
-  
+
+
+
+
+
+
+
+
+        $('#exportBtn').click(function () {
+            // 获取表格数据
+            var tableData = [
+                { "name": "张三", "age": 18, "gender": "男" },
+                { "name": "李四", "age": 20, "gender": "女" },
+                { "name": "王五", "age": 22, "gender": "男" }
+            ];
+
+            // 导出Excel文件
+            var options = {
+                filename: '数据表格',
+                cols: [
+                    { field: 'name', title: '姓名' },
+                    { field: 'age', title: '年龄' },
+                    { field: 'gender', title: '性别' }
+                ],
+                limit: tableData.length,
+                data: tableData
+            };
+            table.exportFile(['name', 'age', 'gender'], tableData, 'xls', options);
+        });
+      
+   
 
 
     </script>

@@ -7,9 +7,7 @@ $(document).ready(function () {
 
     if (getCookie("username")) {
         var username = getCookie("username");
-        var password = getCookie("password");
-    
-
+      
         if (document.querySelector("#nickname") != null) {
             document.querySelector("#nickname").innerHTML = username;
         }
@@ -22,7 +20,7 @@ $(document).ready(function () {
         }
         else {
 
-           // location.href = 'login.aspx'
+           location.href = 'login.aspx'
         }
 
     }
@@ -54,12 +52,8 @@ function setCookie(c_name, value, expireSeconds) {
 }
 
 function loginout() {
-    var userid = getCookie("userid");
     var username = getCookie("username");
-    var password = getCookie("password");
-    setCookie('userid', userid, -3600)
     setCookie('username', username, -3600)
-    setCookie('password', password, -3600)
 }
 
 function timestampToTime(timestamp) {
@@ -75,11 +69,11 @@ function timestampToTime(timestamp) {
 
 
 
-function user_add(username, password, shanghuname,usertype) {
+function user_add(username, password) {
   
     $.ajaxSettings.async = false;//设置为同步
-   var url = `http://${domainhost}/api/user.php?username=${username}&usertype=${usertype}&password=${password}&shanghuname=${shanghuname}&method=register`
-    $.get(url, function (data) {
+   var url = `api.aspx?username=${username}&password=${password}&method=adduser`
+    $.post(url, function (data) {
 
         if (data.status == "1") {
 
@@ -136,8 +130,8 @@ function getusers() {
    var usertype = getCookie("usertype");
     $(function () {
         $.ajax({
-            url: `http://${domainhost}/api/user.php?usertype=${usertype}&page=${page}&method=getusers`,
-            type: 'get',
+            url: `api.aspx?method=getusers`,
+            type: 'post',
             dataType: 'json',
             success: function (data) {
 
@@ -146,14 +140,12 @@ function getusers() {
                 for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
                 {
                     var tr;
-                    tr = '<td>' + data[i].userid + '</td>'+'<td>' + data[i].username+ '</td>' + '<td>' + data[i].password + '</td>' + '<td>' + data[i].usertype+ '</td>' + '<td>' + data[i].shanghuname + '</td>' + '<td class="td-manage">' +
+                    tr = '<td>' + data[i].id + '</td>'+'<td>' + data[i].username+ '</td>' + '<td>' + data[i].password + '</td>' + '<td>' + data[i].time+ '</td>'  + '<td class="td-manage">' +
 
-                       '<a title="删除账号"  onclick=\'user_del("' + data[i].userid + '")\' href="javascript:;">' +
+                       '<a title="删除账号"  onclick=\'user_del("' + data[i].id + '")\' href="javascript:;">' +
                         '<i class="layui-icon" style="font-size: 20px;">&#xe640;</i>&nbsp;&nbsp;&nbsp;&nbsp;' +
                         '</a>' +
-                        '<a title="修改账号" onclick="user_del(this,' + data[i].userid + ')" href="javascript:;">' +
-                        '<i class="layui-icon" style="font-size: 20px;">&#xe62d;</i>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                        '</a>' +
+                      
                         
                         '</td>'
 

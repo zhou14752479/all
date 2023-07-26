@@ -29,6 +29,7 @@ namespace 药价中台
                 
                 string method = Request["method"];
                 string username= Request["username"];
+                string password = Request["password"];
                 if (method=="uploadprice")
                 {
                     run(data,username);
@@ -41,6 +42,14 @@ namespace 药价中台
                 if (method == "deleteprice")
                 {
                     deleteprice(username);
+                }
+                if (method == "getusers")
+                {
+                    getusers();
+                }
+                if (method == "adduser")
+                {
+                    adduser(username,password);
                 }
                 // Response.Write(data );
 
@@ -118,7 +127,7 @@ namespace 药价中台
         }
         #endregion
 
-        static string constr = "Host =localhost;Database=yaopin;Username=root;Password=root";
+       public static string constr = "Host =localhost;Database=yaopin;Username=root;Password=root";
 
         #region  插入数据库
 
@@ -248,6 +257,75 @@ namespace 药价中台
 
         #endregion
 
+        #region 获取用户列表
+        public void getusers()
+        {
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+            string query = "SELECT * FROM users ";
+            MySqlCommand command = new MySqlCommand(query, mycon);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                string json = JsonConvert.SerializeObject(dataTable);
+
+                Response.Write(json);
+                mycon.Close();
+                reader.Close();
+
+            }
+            else
+            {
+
+                mycon.Close();
+                reader.Close();
+
+            }
+
+        }
+        #endregion
+
+        #region  添加用户
+
+        public string adduser( string username,string password)
+        {
+
+            try
+            {
+
+
+
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO users (username,password,time)VALUES('" + username + " ', '" + password + " ', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+
+                    mycon.Close();
+                    return "{\"status\":\"1\"}";
+
+                }
+                else
+                {
+                    return "{\"status\":\"0\"}";
+                }
+
+
+            }
+
+            catch (System.Exception ex)
+            {
+                return (ex.ToString());
+            }
+        }
+        #endregion
 
         public void run(string html,string username)
         {
