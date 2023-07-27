@@ -53,9 +53,11 @@
                     <th>规格</th> 
                     <th>价格</th> 
                     <th>价格-10%</th> 
-                   
-                    <th>药房价格</th>
-                     <th>价格对比</th> 
+                    <th>药房网价格</th>
+                     <th>药房网价格对比</th> 
+                      <th>京东价格</th>
+                     <th>京东价格对比</th> 
+
                      <th>查询时间</th> 
                 </tr>
             </thead>
@@ -108,13 +110,13 @@
                // $("#area").val(JSON.stringify(persons));
 
                 var data = persons;
-                for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
-                {
-                    var tr;
-                    tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>...</td>' + '<td>正在查价</td>' 
+                //for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
+                //{
+                //    var tr;
+                //    tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>...</td>' + '<td>正在查价</td>' 
                        
-                    $("#datatable").append('<tr>' + tr + '</tr>')
-                }
+                //    $("#datatable").append('<tr>' + tr + '</tr>')
+                //}
 
                 var username = getCookie("username");
                     $.ajax({
@@ -161,14 +163,20 @@
                       
 
                         if (Number(price9) > Number(data[i].yfprice)) {
-                            var duibi = '';
+                            var yfduibi = '';
                         }
                         else {
-                            var duibi = '价格优势';
+                            var yfduibi = '价格优势';
                         }
 
+                        if (Number(price9) > Number(data[i].jdprice)) {
+                            var jdduibi = '';
+                        }
+                        else {
+                            var jdduibi = '价格优势';
+                        }
                         
-                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + price9 + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + duibi + '</td>' + '<td>' + data[i].time + '</td>' 
+                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + price9 + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + yfduibi + '</td>' + '<td>' + data[i].jdprice + '</td>' + '<td>' + jdduibi + '</td>' + '<td>' + data[i].time + '</td>' 
 
                         $("#datatable").append('<tr>' + tr + '</tr>')
                     }
@@ -207,25 +215,19 @@
 
 
         $('#exportBtn').click(function () {
-            // 获取表格数据
-            var tableData = [
-                { "name": "张三", "age": 18, "gender": "男" },
-                { "name": "李四", "age": 20, "gender": "女" },
-                { "name": "王五", "age": 22, "gender": "男" }
-            ];
+            var username = getCookie("username");
+            $.ajax({
+                url: `api.aspx?method=downexcel&username=${username}`,
+                async: true,
+                type: 'post',
+                data: '',
+                success: function (data) {
+                  
+                    layer.alert(data);
 
-            // 导出Excel文件
-            var options = {
-                filename: '数据表格',
-                cols: [
-                    { field: 'name', title: '姓名' },
-                    { field: 'age', title: '年龄' },
-                    { field: 'gender', title: '性别' }
-                ],
-                limit: tableData.length,
-                data: tableData
-            };
-            table.exportFile(['name', 'age', 'gender'], tableData, 'xls', options);
+
+                }
+            });
         });
       
    

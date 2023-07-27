@@ -51,6 +51,10 @@ namespace 药价中台
                 {
                     adduser(username,password);
                 }
+                if (method == "downexcel")
+                {
+                    downexcel(username);
+                }
                 // Response.Write(data );
 
 
@@ -200,6 +204,38 @@ namespace 药价中台
         }
         #endregion
 
+        #region 导出表格
+        public void downexcel(string username)
+        {
+            string filename = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "/excel/" + username + ".xlsx";
+
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+            string query = "SELECT * FROM datas where username=  '" + username + "' ";
+            MySqlCommand command = new MySqlCommand(query, mycon);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                myDLL.method.DataTableToExcelName(dataTable, filename, true);
+                mycon.Close();
+                reader.Close();
+
+                 Response.Write(@"<script>alert('生成表格成功！');window.location.href='\\excel\\"+username+".xlsx'</script>");
+
+            }
+            else
+            {
+                Response.Write("生成表格失败");
+                mycon.Close();
+                reader.Close();
+
+            }
+
+        }
+        #endregion
+
         #region 清空数据库价格
         public void deleteprice(string username)
         {
@@ -244,6 +280,30 @@ namespace 药价中台
 
                 string guoyaozhunzi = Regex.Match(html, @"""authorized_code"":""([\s\S]*?)""").Groups[1].Value;
                 string price_min = Regex.Match(html, @"""price_min"":([\s\S]*?),").Groups[1].Value;
+                return price_min;
+            }
+            catch (Exception)
+            {
+
+                return "药房网获取失败";
+            }
+
+        }
+
+
+        #endregion
+
+
+        #region 京东价格
+        public string jd(string title)
+        {
+            try
+            {
+                string url = "https://search.jd.com/Search?keyword="+title+"&enc=utf-8&wq="+title+"&pvid=38423187e3834c9299643a8354764b6b";
+                string html = GetUrl(url, "utf-8");
+
+
+                string price_min = Regex.Match(html, @"prices:'([\s\S]*?),").Groups[1].Value;
                 return price_min;
             }
             catch (Exception)
@@ -347,7 +407,8 @@ namespace 药价中台
             for (int i = 0; i < wenhao.Count; i++)
             {
                 string yaofang_price = yaofangwang(wenhao[i].Groups[1].Value);
-                insertdata(wenhao[i].Groups[1].Value,name[i].Groups[1].Value, guige[i].Groups[1].Value, price[i].Groups[1].Value, yaofang_price,"0",username);
+                string jd_price = jd(name[i].Groups[1].Value + guige[i].Groups[1].Value);
+                insertdata(wenhao[i].Groups[1].Value,name[i].Groups[1].Value, guige[i].Groups[1].Value, price[i].Groups[1].Value, yaofang_price,jd_price,username);
                 Response.Write(yaofang_price);
             }
 
