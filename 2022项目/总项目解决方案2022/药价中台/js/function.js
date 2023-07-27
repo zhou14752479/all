@@ -96,27 +96,6 @@ function user_add(username, password) {
     }, "json")
 }
 
-function login(username, password) {
-   
-    var url = `http://${domainhost}/api/user.php?username=${username}&password=${password}&method=login`
-    $.get(url, function (data) {
-        console.log(data.status)
-        if (data.status == "1") {
-          
-            setCookie('username', username, 3600 * 24 * 3)
-             setCookie('usertype', data.usertype, 3600 * 24 * 3)
-           
-            layer.msg("登录成功，即将跳转后台......")
-            setTimeout(" location.href='admin.html'", 2000);
-
-            document.querySelector("#nickname").innerHTML = usernmae;
-        }
-        else {
-            layer.msg("密码错误")
-
-        }
-    }, "json")
-}
 
 
 

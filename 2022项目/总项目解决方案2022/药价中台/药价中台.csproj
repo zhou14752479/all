@@ -90,7 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api.aspx" />
-    <Content Include="data-list.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -101,13 +100,6 @@
     </Compile>
     <Compile Include="api.aspx.designer.cs">
       <DependentUpon>api.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="data-list.aspx.cs">
-      <DependentUpon>data-list.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="data-list.aspx.designer.cs">
-      <DependentUpon>data-list.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

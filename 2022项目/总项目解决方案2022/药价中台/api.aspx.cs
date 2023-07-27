@@ -55,8 +55,7 @@ namespace 药价中台
                 {
                     downexcel(username);
                 }
-                // Response.Write(data );
-
+             
 
             }
 
@@ -387,6 +386,8 @@ namespace 药价中台
         }
         #endregion
 
+
+        
         public void run(string html,string username)
         {
           
