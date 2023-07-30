@@ -162,7 +162,7 @@
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 74;
             this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -173,7 +173,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(54, 23);
             this.textBox4.TabIndex = 73;
-            this.textBox4.Text = "2.4";
+            this.textBox4.Text = "1.69";
             // 
             // label1
             // 
@@ -192,7 +192,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(54, 23);
             this.textBox5.TabIndex = 71;
-            this.textBox5.Text = "2.85";
+            this.textBox5.Text = "3.6";
             // 
             // label2
             // 
@@ -277,7 +277,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(54, 23);
             this.textBox2.TabIndex = 61;
-            this.textBox2.Text = "2.8";
+            this.textBox2.Text = "3.6";
             // 
             // label6
             // 
@@ -296,7 +296,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(54, 23);
             this.textBox1.TabIndex = 59;
-            this.textBox1.Text = "2.4";
+            this.textBox1.Text = "1.67";
             // 
             // label5
             // 

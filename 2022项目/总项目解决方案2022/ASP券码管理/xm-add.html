@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <title>后台管理</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/md5.min_1.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="x-body">
+        <div class="layui-form">
+
+
+
+
+            <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>项目号码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="xm_code" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+  <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>项目名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="xm_name" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+
+             <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>商户代码
+                </label>
+                <div class="layui-input-inline">
+                     <select id="userselect">
+
+                     </select>
+                                        
+                </div> 
+                  <div class="layui-form-mid layui-word-aux">
+                   <button id="getuserstoselect" class="layui-btn">
+                    点击获取所有商户代码
+                </button>
+                </div>
+            </div>
+
+
+ <div class="layui-form-item">
+                <label for="L_repass" class="layui-form-label">
+                    <span class="x-red">*</span>生成数量
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="codeadd_count" name="codeadd_count" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+               <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>总共需要生成的兑换码个数
+                </div>
+            </div>
+ <div class="layui-form-item">
+  <label for="L_repass" class="layui-form-label">
+                    <span class="x-red">*</span>导入表格
+                </label> <input class="layui-btn"  type="file" id="export" >
+
+  </div>
+
+
+            <div class="layui-form-item">
+                <label for="L_repass" class="layui-form-label">
+                </label>
+                <button id="addcodes" class="layui-btn">
+                    添加
+                </button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
+   <script>
+
+
+
+
+
+
+       var codedatas="";
+
+
+    //给input标签绑定change事件，一上传选中的.xls文件就会触发该函数
+            $('#export').change(function(e) {
+        var files = e.target.files;
+            var fileReader = new FileReader();
+            fileReader.onload = function(ev) {
+            try {
+                var data = ev.target.result
+            var workbook = XLSX.read(data, {
+                type: 'binary'
+                }) // 以二进制流方式读取得到整份excel表格对象
+            var persons = []; // 存储获取到的数据
+            } catch (e) {
+                console.log('文件类型不正确');
+            return;
+            }
+            // 表格的表格范围，可用于判断表头是否数量是否正确
+            var fromTo = '';
+            // 遍历每张表读取
+            for (var sheet in workbook.Sheets) {
+                if (workbook.Sheets.hasOwnProperty(sheet)) {
+                fromTo = workbook.Sheets[sheet]['!ref'];
+            console.log(fromTo);
+            persons = persons.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
+                    //break; // 如果只取第一张表，就取消注释这行
+                }
+            }
+            //在控制台打印出来表格中的数据
+            console.log(persons);
+               // $("#area").val(JSON.stringify(persons));
+
+              codedatas = persons;
+
+              
+        };
+            // 以二进制方式打开文件
+            fileReader.readAsBinaryString(files[0]);
+            });
+
+
+
+
+
+
+
+
+
+
+
+        $('#addcodes').click(function () {
+             var usertype =getCookie("usertype");
+          
+            var xm_code = $("#xm_code ").val().trim()
+             var xm_name = $("#xm_name ").val().trim()
+              var codeadd_count = $("#codeadd_count ").val().trim()
+            var username =$("#userselect").find("option:selected").val();
+            $.ajax({
+                 url: `api.aspx?method=addcodes&username=${username}&xm_name=${xm_name}&xm_code=${xm_code}&codeadd_count=${codeadd_count}`,
+               async: true,
+                        type: 'post',
+                        dataType: 'JSON',
+                        contentType: 'application/json',
+                        data: JSON.stringify(codedatas),
+                        success: function (data) {
+                            if (data.status == "1") {
+            layer.msg("添加成功")
+
+
+
+        }
+        else {
+            layer.msg("添加失败")
+           
+
+        }
+                }
+            });
+        });
+      
+   
+ $('#getuserstoselect').click(function () {
+             
+              var usertype =getCookie("usertype");
+             $.ajax({
+            url: `api.aspx?usertype=${usertype}&method=getusers`,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+                console.log(data);
+                //方法中传入的参数data为后台获取的数据
+                for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
+                {
+              
+                    $("#userselect").append('<option>'+ data[i].username+'</option>')
+                }
+
+                form.render();
+
+            }
+        })
+           
+            var form = layui.form;
+form.render();
+
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

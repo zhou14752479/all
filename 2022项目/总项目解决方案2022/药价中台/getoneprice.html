@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <title>后台管理</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/md5.min_1.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+</head>
+
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">价格查询</a>
+          
+        </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:30px">ဂ</i>
+        </a>
+    </div>
+    <div class="x-body">
+        
+     
+         <div class="layui-form layui-col-md12 x-so">
+          
+                <input type="text" name="yaopinname" id="yaopinname" placeholder="请输入药品名称" autocomplete="off" class="layui-input">
+                <button  id="getoneprice" class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            </div>
+
+        <table class="layui-table" id="datatable">
+            <thead>
+                <tr>
+                
+                
+                    <th>批准文号</th>
+                    <th>药品名称</th>
+                    <th>规格</th> 
+                     <th>生产厂家</th> 
+                    <th>药房网价格</th>
+                      <th>京东价格</th>
+                     <th>查询时间</th> 
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+            
+        <div id="page" style="text-align: center;"></div>
+    </div>
+
+     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
+    <script>
+
+
+
+
+        $("#getoneprice").click(function () {
+
+            var yaopinname = $("#yaopinname").val().trim()
+            $.ajax({
+                url: `api.aspx?method=getoneprice&yaopinname=${yaopinname}`,
+               async: true,
+               type: 'post',
+               dataType: 'JSON',
+             contentType: 'application/json',
+               data: '',
+                success: function (data) {
+
+                  // var data = JSON.parse(data);
+                    console.log(data);
+                    for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
+                    {
+
+                        var tr;
+                       
+                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].changjia + '</td>'   + '<td>' + data[i].yfprice + '</td>'  + '<td>' + data[i].jdprice + '</td>'+ 
+                        '<td>' + data[i].time + '</td>' 
+
+                        $("#datatable").append('<tr>' + tr + '</tr>')
+                    }
+                    layer.alert("查询完成");
+
+
+               }
+           });
+        })
+
+
+    </script>
+
+</body>
+
+</html>

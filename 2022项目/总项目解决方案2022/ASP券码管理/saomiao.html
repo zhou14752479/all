@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="language" content="English">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+<title>识别二维码</title>
+<script type="text/javascript" src="./qr/llqrcode.js"></script>
+ <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <style type="text/css">
+        
+   .fileinput-button {   
+            position: relative;   
+            display: inline-block;   
+            overflow: hidden;   
+        }   
+        .fileinput-button input{   
+            position:absolute;   
+            right: 0px;   
+            top: 0px;   
+            opacity: 0;   
+            -ms-filter: 'alpha(opacity=0)';   
+            font-size: 200px;   
+        }   
+
+        .btn{
+
+ width: 130px;
+  height: 40px;
+  background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  border-bottom: 4px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: left;
+  text-indent: 5px;
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;
+        }
+
+        textarea {
+border-radius: 5px;
+border: none;
+padding: 8px;
+background-color: #f3f3f3;
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+width: 300px;
+height: 100px;
+resize: none;
+}
+
+input[type="text" i] {
+    padding: 1px 2px;
+    font-size: 30px;
+}
+
+    </style>
+
+<div style="text-align:center;">
+
+
+<textarea  id="scanResult" rows="10" cols="50">
+    </textarea>
+    <br ><br ><br >
+     <span class="btn btn-success fileinput-button">  
+    <button class="btn">扫描二维码</button>  <input type="file"    id="fileBtn" capture="camera" onchange="handleFiles(this.files)" accept="image/*" >
+
+
+
+    </span> 
+
+
+<br ><br ><br >
+<button class="btn" onclick="getcode()">手动输入查询</button> 
+</div>
+
+
+<script type="text/javascript">
+function handleFiles(f)
+{
+    var reader = new FileReader();
+    reader.onload = (function(e) {
+		return function(e) {
+			qrcode.decode(e.target.result);
+		};
+    })(f[0]);
+    qrcode.callback = function(a){document.getElementById("scanResult").value=a;};
+    reader.readAsDataURL(f[0]);
+}
+
+
+function getcode()
+ {
+ var code = $("#scanResult").val().trim();
+ $(function () {
+    $.ajax({
+            url: `api.aspx?code=${code}&method=querencode`,
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+             
+                if(data.date=="")
+                {
+                   var msg='找到二维码,未被使用'+'\n';
+                }
+                else
+                {
+                    var msg='找到二维码,已被使用'+'\n\n'+'这张二维码已经被使用';
+                }
+                  $("#scanResult").val(msg);
+            },
+            error:function (data, status, e){   
+          var msg='没有找到二维码'+'\n\n'+'这张二维码不存在系统，请联系管理员';
+             $("#scanResult").val(msg);  
+                }
+
+           
+        })
+    })
+}
+</script>
+</body>
+</html>

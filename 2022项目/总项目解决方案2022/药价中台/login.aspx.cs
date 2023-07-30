@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace 药价中台
+namespace ASP药价中台
 {
     public partial class login : System.Web.UI.Page
     {
@@ -55,7 +55,7 @@ namespace 药价中台
                     if (pass == password)
                     {
                         HttpCookie hcUserName1 = new HttpCookie("username"); // 创建一个名为uname的cookie
-                        hcUserName1.Expires = DateTime.Now.AddDays(3); // 设置该cookie的有效时间
+                        hcUserName1.Expires = DateTime.Now.AddDays(1); // 设置该cookie的有效时间
                         hcUserName1.Value = username; // 给cookie赋值（也就是你想保存的账号，或者密码）
                         HttpContext.Current.Response.Cookies.Add(hcUserName1); // 提交cookie
 

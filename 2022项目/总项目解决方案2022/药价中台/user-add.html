@@ -82,16 +82,16 @@
     <script>
         $("#user_add").click(function () {
 
-           var usertype =$("#usertype").find("option:selected").val();
+         
             var username = $("#username").val().trim()
             var password = $("#password").val().trim()
-            var shanghuname = $("#shanghuname").val().trim()
-            if (shanghuname == "" || shanghuname== "") {
+         
+            if (username == "" || password == "") {
                 layer.msg("请输入完整参数")
             }
             else {
 
-                user_add(username, password, shanghuname,usertype);
+                user_add(username, password);
                 layer.msg("添加成功")
                
             }

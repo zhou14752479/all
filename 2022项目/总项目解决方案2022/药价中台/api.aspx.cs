@@ -13,7 +13,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace 药价中台
+namespace ASP药价中台
 {
     public partial class api : System.Web.UI.Page
     {
@@ -30,6 +30,8 @@ namespace 药价中台
                 string method = Request["method"];
                 string username= Request["username"];
                 string password = Request["password"];
+                string yaopinname = Request["yaopinname"];
+
                 if (method=="uploadprice")
                 {
                     run(data,username);
@@ -55,7 +57,10 @@ namespace 药价中台
                 {
                     downexcel(username);
                 }
-             
+                if (method == "getoneprice")
+                {
+                    getoneprice(yaopinname);
+                }
 
             }
 
@@ -277,7 +282,7 @@ namespace 药价中台
                 string guige = Regex.Match(html, @"""standard"":""([\s\S]*?)""").Groups[1].Value;
                 //string changjia = Regex.Match(html, @"生产厂家：([\s\S]*?)""").Groups[1].Value;
 
-                string guoyaozhunzi = Regex.Match(html, @"""authorized_code"":""([\s\S]*?)""").Groups[1].Value;
+                string guoyaozhunzi = Regex.Match(html, @"""authorizedCode"":""([\s\S]*?)""").Groups[1].Value;
                 string price_min = Regex.Match(html, @"""price_min"":([\s\S]*?),").Groups[1].Value;
                 return price_min;
             }
@@ -387,7 +392,48 @@ namespace 药价中台
         #endregion
 
 
-        
+
+        #region 获取单个价格
+        public void getoneprice(string yaopinname)
+        {
+            try
+            {
+                string url = "https://pub.yaofangwang.com/4000/4000/0/guest.medicine.getSearchPageData?pageIndex=1&pageSize=20&keywords=" + yaopinname + "&orderBy=&storeid=&searcha_type=&__client=app_wx&app_version=5.0.11&osVersion=miniapp&deviceName=microsoft&os=windows&version=3.9.6&market=microsoft&networkType=true&lat=33.96271241099666&lng=118.24239343364114&user_city_name=%E5%AE%BF%E8%BF%81%E5%B8%82&user_region_id=1739&idfa=wx_0a1gExFa1OBPIF0Iz9Ha1mpmKw2gExFI&device_no=wx_0a1gExFa1OBPIF0Iz9Ha1mpmKw2gExFI";
+                string html = GetUrl(url, "utf-8");
+
+
+                MatchCollection stores = Regex.Matches(html, @"""store_title"":""([\s\S]*?)""");
+                MatchCollection store_prices = Regex.Matches(html, @"""real_price"":([\s\S]*?),");
+
+                MatchCollection name = Regex.Matches(html, @"""medicine_name"":""([\s\S]*?)""");
+                MatchCollection guige = Regex.Matches(html, @"""standard"":""([\s\S]*?)""");
+                MatchCollection changjia = Regex.Matches(html, @"""title"":""([\s\S]*?)""");
+
+                MatchCollection guoyaozhunzi = Regex.Matches(html, @"""authorizedCode"":""([\s\S]*?)""");
+                MatchCollection price_min = Regex.Matches(html, @"""price_min"":([\s\S]*?),");
+
+                string json = "";
+
+                string jdprice = "";
+                for (int i = 0; i <name.Count ; i++)
+                {
+                   json =json+ "{\"wenhao\":\"" + guoyaozhunzi[i].Groups[1].Value + "\",\"name\":\"" + name[i].Groups[1].Value + "\", \"guige\":\"" + guige[i].Groups[1].Value + "\",\"changjia\":\"" + changjia[i].Groups[1].Value + "\",\"yfprice\":\"" + price_min[i].Groups[1].Value + "\",\"jdprice\":\"" + jdprice + "\",\"time\":\"" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\"}"+",";
+                }
+               
+                
+               Response.Write("["+json.Remove(json.Length-1,1)+"]");
+            }
+            catch (Exception)
+            {
+
+                Response.Write("{\"name\":\"获取失败\"}");
+            }
+
+        }
+
+
+        #endregion
+
         public void run(string html,string username)
         {
           

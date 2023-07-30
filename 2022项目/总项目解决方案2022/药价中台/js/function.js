@@ -11,6 +11,10 @@ $(document).ready(function () {
         if (document.querySelector("#nickname") != null) {
             document.querySelector("#nickname").innerHTML = username;
         }
+        if(username!='admin')
+        {
+            $("#userdisplay").css("display", "none");
+        }
 
     }
     else {

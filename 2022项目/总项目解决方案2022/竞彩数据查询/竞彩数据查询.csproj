@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>竞彩数据查询</RootNamespace>
     <AssemblyName>竞彩数据查询</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
