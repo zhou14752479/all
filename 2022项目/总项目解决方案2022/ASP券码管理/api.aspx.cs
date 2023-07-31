@@ -43,6 +43,10 @@ namespace ASP券码管理
                 }
                 if (method == "adduser")
                 {
+                    if(usertype=="操作员" &&)
+                    {
+
+                    }
                     adduser(username, password,usertype,shanghuname);
                 }
                 if (method == "getusers")
@@ -65,7 +69,7 @@ namespace ASP券码管理
                 }
                 if (method == "querencode")
                 {
-                    querencode(code);
+                    querencode(code,username);
                 }
             }
         }
@@ -84,7 +88,7 @@ namespace ASP券码管理
 
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
-            string query = "SELECT * FROM users where username=  '" + username + "' ";
+            string query = "SELECT * FROM users where username= '" + username + "' ";
             MySqlCommand command = new MySqlCommand(query, mycon);
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -250,41 +254,40 @@ namespace ASP券码管理
         #endregion
 
         #region 确认code
-        public void querencode(string code)
+        public void querencode(string code,string username)
         {
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
-            string query = "SELECT * FROM codes where code=  '" + code + "' ";
+            string query = "SELECT * FROM codes where code= '" + code + "' and username='" + username + "' ";
           
             MySqlCommand command = new MySqlCommand(query, mycon);
             MySqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
             {
-                reader.Read();  
-                string date = reader["date"].ToString().Trim();
-
+              
+               
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
                 string json = JsonConvert.SerializeObject(dataTable);
 
                 Response.Write(json);
-
+              
                 reader.Close();
                 mycon.Close();
 
-                if (date.Trim()=="")
+
+                DataRow dr = dataTable.Rows[0];
+                string date = dr["date"].ToString();
+                
+                if (date.Trim() == "")
                 {
-                    MySqlConnection con = new MySqlConnection(constr);
-                    con.Open();
+                    
+                 
                     string sql = "update codes set date='" + DateTime.Now.ToString("yyyy-MM-dd") + "',time='" + DateTime.Now.ToString("HH:mm:ss") + "' where code=  '" + code + "' ";
-                    MySqlCommand cmd= new MySqlCommand(query, con);
-                    MySqlDataReader re = cmd.ExecuteReader();
-   
-                    re.Close();
-                   con.Close();
+                    SQL(sql);
+                 
                 }
-              
-              
+
 
             }
             else
@@ -398,6 +401,40 @@ namespace ASP券码管理
             {
                 Response.Write(ex.ToString());
                 
+            }
+        }
+        #endregion
+
+
+        #region  添加用户
+
+        public void SQL(string sql)
+        {
+
+            try
+            {
+
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand(sql, mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    mycon.Close();
+                    //Response.Write("{\"status\":\"1\"}");
+                }
+                else
+                {
+                   // Response.Write("{\"status\":\"0\"}");
+                }
+                
+            }
+
+            catch (System.Exception ex)
+            {
+               // Response.Write("{\"status\":\"0\"}");
             }
         }
         #endregion

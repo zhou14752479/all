@@ -6,10 +6,17 @@ $(document).ready(function () {
     if (getCookie("username")) {
         var username = getCookie("username");
         var password = getCookie("password");
-    
+    var usertype= getCookie("usertype");
 
         if (document.querySelector("#nickname") != null) {
             document.querySelector("#nickname").innerHTML = username;
+             document.querySelector("#user_vip_txt").innerHTML = usertype;
+        }
+
+          if(usertype=='商户')
+        {
+            $("#userdisplay").css("display", "none");
+             $("#xmadddisplay").css("display", "none");
         }
 
     }
@@ -107,13 +114,13 @@ function login(username, password) {
         console.log(data.status)
         if (data.userid != "") {
           
-            setCookie('username', username, 3600 * 24 * 3)
-             setCookie('usertype', data.usertype, 3600 * 24 * 3)
+            setCookie('username', data[0].username, 3600 * 24 * 3)
+             setCookie('usertype', data[0].usertype, 3600 * 24 * 3)
            
             layer.msg("登录成功，即将跳转后台......")
             setTimeout(" location.href='admin.html'", 2000);
 
-            document.querySelector("#nickname").innerHTML = usernmae;
+            document.querySelector("#nickname").innerHTML = data[0].username;
         }
         else {
             layer.msg("密码错误")

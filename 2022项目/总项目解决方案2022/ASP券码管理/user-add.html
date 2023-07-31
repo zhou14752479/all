@@ -34,9 +34,9 @@
                 <div class="layui-input-inline">
                      <select id="usertype">
 
-<option>管理员</option>
+<option class="gly">管理员</option>
 
-<option>操作员</option>
+<option class="gly">操作员</option>
 
 <option>商户</option>
 
@@ -119,16 +119,32 @@
             var username = $("#username").val().trim()
             var password = $("#password").val().trim()
             var shanghuname = $("#shanghuname").val().trim()
+          
             if (shanghuname == "" || shanghuname== "") {
                 layer.msg("请输入完整参数")
             }
             else {
+
+
 
                 user_add(username, password, shanghuname,usertype);
               
                
             }
         })
+
+
+
+        var usertype= getCookie("usertype");
+
+          if(usertype!='管理员')
+        {
+            var option=$('#usertype').find('option').eq(0);
+            option.remove();
+            
+             var option1=$('#usertype').find('option').eq(0);
+            option1.remove();
+        }
 
 
 

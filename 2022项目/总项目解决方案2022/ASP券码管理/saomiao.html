@@ -5,8 +5,10 @@
 <meta name="language" content="English">
 <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
 <title>识别二维码</title>
+
 <script type="text/javascript" src="./qr/llqrcode.js"></script>
  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/function.js"></script>
 </head>
 
 <body>
@@ -100,17 +102,20 @@ function handleFiles(f)
 
 function getcode()
  {
+    var username = getCookie("username");
  var code = $("#scanResult").val().trim();
  $(function () {
     $.ajax({
-            url: `api.aspx?code=${code}&method=querencode`,
+            url: `api.aspx?code=${code}&username=${username}&method=querencode`,
             type: 'post',
             dataType: 'json',
             success: function (data) {
              
-                if(data.date=="")
+             var myDate = new Date();
+
+                if(data[0].date=="")
                 {
-                   var msg='找到二维码,未被使用'+'\n';
+                   var msg='找到二维码,未被使用'+'\n优惠券'+code+'已经确认\n确认时间：'+myDate.toLocaleString();
                 }
                 else
                 {
