@@ -50,7 +50,6 @@
                     <th>药品名称</th>
                     <th>规格</th> 
                     <th>价格</th> 
-                    <th>价格-10%</th> 
                     <th>药房网价格</th>
                      <th>药房网价格对比</th> 
                       <th>京东价格</th>
@@ -157,24 +156,12 @@
                     {
 
                         var tr;
-                        var price9 = (data[i].price * 0.9).toFixed(2);
+                        var yfduibi = (data[i].price-data[i].yfprice).toFixed(2);
+                      var  jdduibi = (data[i].price-data[i].jdprice).toFixed(2);
+
                       
-
-                        if (Number(price9) > Number(data[i].yfprice)) {
-                            var yfduibi = '';
-                        }
-                        else {
-                            var yfduibi = '价格优势';
-                        }
-
-                        if (Number(price9) > Number(data[i].jdprice)) {
-                            var jdduibi = '';
-                        }
-                        else {
-                            var jdduibi = '价格优势';
-                        }
                         
-                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + price9 + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + yfduibi + '</td>' + '<td>' + data[i].jdprice + '</td>' + '<td>' + jdduibi + '</td>' + '<td>' + data[i].time + '</td>' 
+                        tr = '<td>' + data[i].wenhao + '</td>' + '<td>' + data[i].name + '</td>' + '<td>' + data[i].guige + '</td>' + '<td>' + data[i].price + '</td>' + '<td>' + data[i].yfprice + '</td>' + '<td>' + yfduibi + '</td>' + '<td>' + data[i].jdprice + '</td>' + '<td>' + jdduibi + '</td>' + '<td>' + data[i].time + '</td>' 
 
                         $("#datatable").append('<tr>' + tr + '</tr>')
                     }
