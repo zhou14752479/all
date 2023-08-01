@@ -43,10 +43,7 @@ namespace ASP券码管理
                 }
                 if (method == "adduser")
                 {
-                    if(usertype=="操作员" &&)
-                    {
-
-                    }
+                   
                     adduser(username, password,usertype,shanghuname);
                 }
                 if (method == "getusers")
