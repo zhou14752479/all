@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <title>后台管理</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/md5.min_1.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="x-body">
+        <div class="layui-form">
+
+
+
+
+            <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>用户名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+  <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>新密码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="newpassword" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+              <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>确认密码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="newpassword" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+
+           
+                   
+
+            <div class="layui-form-item">
+                <label for="L_repass" class="layui-form-label">
+                </label>
+                <button id="editeuser" class="layui-btn">
+                    确定修改
+                </button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
+   <script>
+
+
+
+
+
+
+
+$(document).ready(function () {
+
+    if (getCookie("username")) {
+        var username = getCookie("username");
+        $("#username ").val(username);
+}
+ });
+
+
+
+
+
+        $('#editeuser').click(function () {
+           
+           var username = getCookie("username");
+            var password =$("#newpassword").val();
+            $.ajax({
+                 url: `api.aspx?method=editeuser&username=${username}&password=${password}`,
+               async: true,
+                        type: 'post',
+                        dataType: 'JSON',
+                        contentType: 'application/json',
+                        data: '',
+                        success: function (data) {
+                            if (data.status == "1") {
+            layer.msg("修改成功")
+            loginout();
+
+            setTimeout("window.parent.location.href='login.html'", 1000);
+
+
+        }
+        else {
+            layer.msg("修改失败")
+           
+
+        }
+                }
+            });
+        });
+      
+   
+
+    </script>
+</body>
+
+</html>

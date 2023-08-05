@@ -204,6 +204,7 @@
             dataType: 'json',
             success: function (data) {
 
+                $("#userselect").html("")
                 console.log(data);
                 //方法中传入的参数data为后台获取的数据
                 for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引

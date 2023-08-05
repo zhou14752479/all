@@ -34,6 +34,22 @@ $(document).ready(function () {
 })
 
 
+
+
+function getQueryString(name) {
+    var url = location.search; //获取url中"?"符后的字串
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+        }
+    }
+    return theRequest[name];
+}
+
+
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
         c_start = document.cookie.indexOf(c_name + "=")
@@ -65,6 +81,7 @@ function loginout() {
     setCookie('userid', userid, -3600)
     setCookie('username', username, -3600)
     setCookie('password', password, -3600)
+     setCookie('usertype', '', -3600)
 }
 
 function timestampToTime(timestamp) {
@@ -111,19 +128,19 @@ function login(username, password) {
    
     var url = `api.aspx?username=${username}&password=${password}&method=login`
     $.post(url, function (data) {
-        console.log(data.status)
-        if (data.userid != "") {
+      
+        if (data.userid != "" && data.userid!=null) {
           
-            setCookie('username', data[0].username, 3600 * 24 * 3)
-             setCookie('usertype', data[0].usertype, 3600 * 24 * 3)
+            setCookie('username', data.username, 3600 * 24 * 3)
+             setCookie('usertype', data.usertype, 3600 * 24 * 3)
            
             layer.msg("登录成功，即将跳转后台......")
             setTimeout(" location.href='admin.html'", 2000);
 
-            document.querySelector("#nickname").innerHTML = data[0].username;
+            document.querySelector("#nickname").innerHTML = data.username;
         }
         else {
-            layer.msg("密码错误")
+            layer.msg("用户名或密码错误")
 
         }
     }, "json")
@@ -173,12 +190,20 @@ function getusers() {
 
 
 
+function code_del(obj,id) {
+            layer.confirm('确认要删除吗？', function (index) {
+                //发异步删除数据
+                code_del_func(id);
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', { icon: 1, time: 1000 });
+            });
+        }
 
 
 
-function user_del_func(userid) {
+function code_del_func(code) {
    
-var url = `api.aspx?userid=${userid}&method=deluser`
+var url = `api.aspx?code=${code}&method=delcode`
         $.post(url, function (data) {
             if (data.status == "1") {
 
@@ -253,10 +278,10 @@ function getcodes(username,code,xm_code) {
                     var tr;
                     tr = '<td>' + data[i].xm_code+ '</td>' + '<td>' + data[i].username+ '</td>' + '<td>' + data[i].xm_name+ '</td>' + '<td>' + data[i].code+ '</td>' + '<td>' + data[i].date + '</td>' +'<td>' + data[i].time + '</td>'+ '<td class="td-manage">' +
 
-                       '<a title="删除账号"  onclick=\'user_del("' + data[i].code+ '")\' href="javascript:;">' +
+                       '<a title="删除券码"  onclick="code_del(this,\'' + data[i].code + '\')" href="javascript:;">' +
                         '<i class="layui-icon" style="font-size: 20px;">&#xe640;</i>&nbsp;&nbsp;&nbsp;&nbsp;' +
                         '</a>' +
-                        '<a title="修改账号" onclick="user_del(this,' + data[i].code + ')" href="javascript:;">' +
+                        '<a title="修改券码" onclick="x_admin_show(\'修改券码\',\'code-edite.html?code=' + data[i].code + '&xm_code=' + data[i].xm_code + '&username=' + data[i].username + '&xm_name=' + data[i].xm_name + '&date=' + data[i].date + '&time=' + data[i].time + '\',400,600)" href="javascript:;">' +
                         '<i class="layui-icon" style="font-size: 20px;">&#xe62d;</i>&nbsp;&nbsp;&nbsp;&nbsp;' +
                         '</a>' +
                         

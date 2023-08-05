@@ -28,6 +28,8 @@ namespace ASP券码管理
 
 
                 string method = Request["method"];
+                string date = Request["date"];
+                string time= Request["time"];
                 string username = Request["username"];
                 string password = Request["password"];
                 string usertype= Request["usertype"];
@@ -54,6 +56,10 @@ namespace ASP券码管理
                 {
                     deluser(userid);
                 }
+                if (method == "editeuser")
+                {
+                    editeuser(username,password);
+                }
 
                 if (method == "getcodes")
                 {
@@ -67,6 +73,14 @@ namespace ASP券码管理
                 if (method == "querencode")
                 {
                     querencode(code,username);
+                }
+                if (method == "delcode")
+                {
+                    delcode(code);
+                }
+                if (method == "editecode")
+                {
+                    editecode(code,username,xm_code,xm_name,date,time);
                 }
             }
         }
@@ -88,15 +102,32 @@ namespace ASP券码管理
             string query = "SELECT * FROM users where username= '" + username + "' ";
             MySqlCommand command = new MySqlCommand(query, mycon);
             MySqlDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
-            {
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
-                string json = JsonConvert.SerializeObject(dataTable);
+           
+            //DataTable dataTable = new DataTable();
+            //dataTable.Load(reader);
+            //string json = JsonConvert.SerializeObject(dataTable);
 
-                Response.Write(json);
-                mycon.Close();
-                reader.Close();
+            if (reader.Read())
+            {
+                string userid = reader["userid"].ToString().Trim();
+                string pass = reader["password"].ToString().Trim();
+                string usertype = reader["usertype"].ToString().Trim();
+                if (pass == password)
+                {
+
+                   
+
+                    Response.Write("{\"userid\":\"" + userid + "\",\"username\":\"" + username+ "\",\"usertype\":\"" + usertype + "\"}");
+                    mycon.Close();
+                    reader.Close();
+                }
+                else
+                {
+                    Response.Write("{\"status\":\"0\"}");
+                    mycon.Close();
+                    reader.Close();
+
+                }
 
             }
             else
@@ -106,6 +137,8 @@ namespace ASP券码管理
                 reader.Close();
 
             }
+
+
           
         }
         #endregion
@@ -122,6 +155,38 @@ namespace ASP券码管理
                 mycon.Open();
 
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO users (username,password,usertype,shanghuname,time)VALUES('" + username + " ', '" + password + " ', '" + usertype + " ','" + shanghuname + " ','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+
+                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
+                if (count > 0)
+                {
+                    mycon.Close();
+                    Response.Write("{\"status\":\"1\"}");
+                }
+                else
+                {
+                    Response.Write("{\"status\":\"0\"}");
+                }
+            }
+
+            catch (System.Exception ex)
+            {
+                Response.Write("{\"status\":\"0\"}");
+            }
+        }
+        #endregion
+
+        #region  修改用户
+
+        public void editeuser(string username, string password)
+        {
+
+            try
+            {
+
+                MySqlConnection mycon = new MySqlConnection(constr);
+                mycon.Open();
+
+                MySqlCommand cmd = new MySqlCommand("update users set password='" + password + " ' where username='" + username + " ' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
                 if (count > 0)
@@ -207,12 +272,12 @@ namespace ASP券码管理
         {
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
-            string query = "SELECT * FROM codes where username=  '" + username + "' ";
+            string query = "SELECT * FROM codes where username=  '" + username + "' ORDER BY date desc";
             if (code!=null)
             {
                 if (code.Trim() != "")
                 {
-                    query = "SELECT * FROM codes where code=  '" + code + "' ";
+                    query = "SELECT * FROM codes where code=  '" + code + "' ORDER BY date desc";
                 }
             }
 
@@ -220,7 +285,7 @@ namespace ASP券码管理
             {
                 if(xm_code.Trim() != "")
                 {
-                    query = "SELECT * FROM codes where xm_code=  '" + xm_code + "' ";
+                    query = "SELECT * FROM codes where xm_code=  '" + xm_code + "' ORDER BY date desc";
                 }
                
             }
@@ -299,30 +364,57 @@ namespace ASP券码管理
         #endregion
 
         #region 修改code
-        public void xiugaicode(string code)
+        public void editecode(string code,string username,string xm_code,string xm_name,string date,string time)
         {
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
-            string query = "SELECT * FROM codes where code=  '" + code + "' ";
-
-            MySqlCommand command = new MySqlCommand(query, mycon);
-            MySqlDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
+           
+            string query = "update codes set username='" + username+ "',xm_code='" + xm_code + "',xm_name='" + xm_name + "',date='" + date+ "',time='" + time+ "' where code=  '" + code + "' ";
+            MySqlCommand cmd = new MySqlCommand(query, mycon);
+            int count = cmd.ExecuteNonQuery();
+            if (count > 0)
             {
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
-                string json = JsonConvert.SerializeObject(dataTable);
 
-                Response.Write(json);
+
+                Response.Write("{\"status\":\"1\"}");
                 mycon.Close();
-                reader.Close();
+
 
             }
             else
             {
-
+                Response.Write(query);
+                Response.Write("{\"status\":\"0\"}");
                 mycon.Close();
-                reader.Close();
+
+
+            }
+
+        }
+        #endregion
+
+        #region 删除code
+        public void delcode(string code)
+        {
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+            string query = "delete FROM codes where code=  '" + code + "' ";
+            MySqlCommand cmd = new MySqlCommand(query, mycon);
+            int count = cmd.ExecuteNonQuery();
+            if (count > 0)
+            {
+
+
+                Response.Write("{\"status\":\"1\"}");
+                mycon.Close();
+
+
+            }
+            else
+            {
+                Response.Write("{\"status\":\"0\"}");
+                mycon.Close();
+
 
             }
 
@@ -368,10 +460,14 @@ namespace ASP券码管理
                     sb.Append("('"+codess[i].Groups[1].Value+ "','" + username + "','" + xm_code + "','" + xm_name + "','',''  ),");
                 }
 
-                for (int i = 0; i <Convert.ToInt32(acount); i++)
+                if(acount!=null && acount!="")
                 {
-                    string code = getsuijizimushuzi();
-                    sb.Append("('" + code + "','" + username + "','" + xm_code + "','" + xm_name + "','',''),");
+                    for (int i = 0; i < Convert.ToInt32(acount); i++)
+                    {
+                        string code = getsuijizimushuzi();
+                        sb.Append("('" + code + "','" + username + "','" + xm_code + "','" + xm_name + "','',''),");
+                    }
+
                 }
 
 
