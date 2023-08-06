@@ -583,6 +583,16 @@ namespace titan007
 				string ysb_6 = "";
 				string ysb_7 = "";
 				string ysb_8 = "";
+
+
+				string vcbet = "";
+				string vcbet_2 = "";
+				string vcbet_3 = "";
+				string vcbet_4 = "";
+				string vcbet_5 = "";
+				string vcbet_6 = "";
+				string vcbet_7 = "";
+				string vcbet_8 = "";
 				try
 				{
 
@@ -604,6 +614,17 @@ namespace titan007
 					
 						if (a.Count != 0)
 						{
+							if (gongsi.Contains("36*"))
+							{
+								a365 = liansai;
+								a365_2 = team.Groups[1].Value.Trim();
+								a365_3 = team.Groups[2].Value.Trim();
+								a365_4 = date + " " + time;
+								a365_5 = gongsi.Replace("36*", "bet 365");
+								a365_6 = a[0].Groups[1].Value;
+								a365_7 = a[1].Groups[1].Value;
+								a365_8 = a[2].Groups[1].Value;
+							}
 							if (gongsi.Contains("18*"))
 							{
 								a18 = liansai;
@@ -614,6 +635,17 @@ namespace titan007
 								a18_6 = a[0].Groups[1].Value;
 								a18_7 = a[1].Groups[1].Value;
 								a18_8 = a[2].Groups[1].Value;
+							}
+							if (gongsi.Contains("伟*"))
+							{
+								vcbet = liansai;
+								vcbet_2 = team.Groups[1].Value.Trim();
+								vcbet_3 = team.Groups[2].Value.Trim();
+								vcbet_4 = date + " " + time;
+								vcbet_5 = gongsi.Replace("伟*", "伟德");
+								vcbet_6 = a[0].Groups[1].Value;
+								vcbet_7 = a[1].Groups[1].Value;
+								vcbet_8 = a[2].Groups[1].Value;
 							}
 
 							//if (gongsi.Contains("澳"))
@@ -627,122 +659,101 @@ namespace titan007
 							//	aomen_7 = a[1].Groups[1].Value;
 							//	aomen_8 = a[2].Groups[1].Value;
 							//}
-							if (gongsi.Contains("易*"))
-							{
-								ysb = liansai;
-								ysb_2 = team.Groups[1].Value.Trim();
-								ysb_3 = team.Groups[2].Value.Trim();
-								ysb_4 = date + " " + time;
-								ysb_5 = gongsi.Replace("易*", "易胜博");
-								ysb_6 = a[0].Groups[1].Value;
-								ysb_7 = a[1].Groups[1].Value;
-								ysb_8 = a[2].Groups[1].Value;
-							}
+							//if (gongsi.Contains("易*"))
+							//{
+							//	ysb = liansai;
+							//	ysb_2 = team.Groups[1].Value.Trim();
+							//	ysb_3 = team.Groups[2].Value.Trim();
+							//	ysb_4 = date + " " + time;
+							//	ysb_5 = gongsi.Replace("易*", "易胜博");
+							//	ysb_6 = a[0].Groups[1].Value;
+							//	ysb_7 = a[1].Groups[1].Value;
+							//	ysb_8 = a[2].Groups[1].Value;
+							//}
 
 
-							if (gongsi.Contains("12*"))
-							{
-								a12 = liansai;
-								a12_2 = team.Groups[1].Value.Trim();
-								a12_3 = team.Groups[2].Value.Trim();
-								a12_4 = date + " " + time;
-								a12_5 = gongsi.Replace("12*", "12bet");
-								a12_6 = a[0].Groups[1].Value;
-								a12_7 = a[1].Groups[1].Value;
-								a12_8 = a[2].Groups[1].Value;
-							}
+							//if (gongsi.Contains("12*"))
+							//{
+							//	a12 = liansai;
+							//	a12_2 = team.Groups[1].Value.Trim();
+							//	a12_3 = team.Groups[2].Value.Trim();
+							//	a12_4 = date + " " + time;
+							//	a12_5 = gongsi.Replace("12*", "12bet");
+							//	a12_6 = a[0].Groups[1].Value;
+							//	a12_7 = a[1].Groups[1].Value;
+							//	a12_8 = a[2].Groups[1].Value;
+							//}
 
-							if (gongsi.Contains("利*"))
-							{
-								li = liansai;
-								li_2 = team.Groups[1].Value.Trim();
-								li_3 = team.Groups[2].Value.Trim();
-								li_4 = date + " " + time;
-								li_5 = gongsi.Replace("利*", "利记");
-								li_6 = a[0].Groups[1].Value;
-								li_7 = a[1].Groups[1].Value;
-								li_8 = a[2].Groups[1].Value;
-							}
+							//if (gongsi.Contains("利*"))
+							//{
+							//	li = liansai;
+							//	li_2 = team.Groups[1].Value.Trim();
+							//	li_3 = team.Groups[2].Value.Trim();
+							//	li_4 = date + " " + time;
+							//	li_5 = gongsi.Replace("利*", "利记");
+							//	li_6 = a[0].Groups[1].Value;
+							//	li_7 = a[1].Groups[1].Value;
+							//	li_8 = a[2].Groups[1].Value;
+							//}
 
-							if (gongsi.Contains("Crow*"))
-							{
-								crown = liansai;
-								crown_2 = team.Groups[1].Value.Trim();
-								crown_3 = team.Groups[2].Value.Trim();
-								crown_4 = date + " " + time;
-								crown_5 = gongsi.Replace("Crow*", "Crown");
-								crown_6 = a[0].Groups[1].Value;
-								crown_7 = a[1].Groups[1].Value;
-								crown_8 = a[2].Groups[1].Value;
-							}
+							//if (gongsi.Contains("Crow*"))
+							//{
+							//	crown = liansai;
+							//	crown_2 = team.Groups[1].Value.Trim();
+							//	crown_3 = team.Groups[2].Value.Trim();
+							//	crown_4 = date + " " + time;
+							//	crown_5 = gongsi.Replace("Crow*", "Crown");
+							//	crown_6 = a[0].Groups[1].Value;
+							//	crown_7 = a[1].Groups[1].Value;
+							//	crown_8 = a[2].Groups[1].Value;
+							//}
 
-							if (gongsi.Contains("36*"))
-							{
-								a365 = liansai;
-								a365_2 = team.Groups[1].Value.Trim();
-								a365_3 = team.Groups[2].Value.Trim();
-								a365_4 = date + " " + time;
-								a365_5 = gongsi.Replace("Crow*", "a365");
-								a365_6 = a[0].Groups[1].Value;
-								a365_7 = a[1].Groups[1].Value;
-								a365_8 = a[2].Groups[1].Value;
-							}
+
 
 
 						}
 
 					}
 
-					if (crown != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(crown);
-						lv3.SubItems.Add(crown_2);
-						lv3.SubItems.Add(crown_3);
-						lv3.SubItems.Add(crown_4);
-						lv3.SubItems.Add(crown_5);
-						lv3.SubItems.Add(crown_6);
-						lv3.SubItems.Add(crown_7);
-						lv3.SubItems.Add(crown_8);
-					}
+					//if (crown != "")
+					//{
+					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+					//	lv3.SubItems.Add(crown);
+					//	lv3.SubItems.Add(crown_2);
+					//	lv3.SubItems.Add(crown_3);
+					//	lv3.SubItems.Add(crown_4);
+					//	lv3.SubItems.Add(crown_5);
+					//	lv3.SubItems.Add(crown_6);
+					//	lv3.SubItems.Add(crown_7);
+					//	lv3.SubItems.Add(crown_8);
+					//}
 
-					if (a365 != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(a365);
-						lv3.SubItems.Add(a365_2);
-						lv3.SubItems.Add(a365_3);
-						lv3.SubItems.Add(a365_4);
-						lv3.SubItems.Add(a365_5);
-						lv3.SubItems.Add(a365_6);
-						lv3.SubItems.Add(a365_7);
-						lv3.SubItems.Add(a365_8);
-					}
-					if (ysb != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(ysb);
-						lv3.SubItems.Add(ysb_2);
-						lv3.SubItems.Add(ysb_3);
-						lv3.SubItems.Add(ysb_4);
-						lv3.SubItems.Add(ysb_5);
-						lv3.SubItems.Add(ysb_6);
-						lv3.SubItems.Add(ysb_7);
-						lv3.SubItems.Add(ysb_8);
-					}
 
-					if (a12 != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(a12);
-						lv3.SubItems.Add(a12_2);
-						lv3.SubItems.Add(a12_3);
-						lv3.SubItems.Add(a12_4);
-						lv3.SubItems.Add(a12_5);
-						lv3.SubItems.Add(a12_6);
-						lv3.SubItems.Add(a12_7);
-						lv3.SubItems.Add(a12_8);
-					}
+					//if (ysb != "")
+					//{
+					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+					//	lv3.SubItems.Add(ysb);
+					//	lv3.SubItems.Add(ysb_2);
+					//	lv3.SubItems.Add(ysb_3);
+					//	lv3.SubItems.Add(ysb_4);
+					//	lv3.SubItems.Add(ysb_5);
+					//	lv3.SubItems.Add(ysb_6);
+					//	lv3.SubItems.Add(ysb_7);
+					//	lv3.SubItems.Add(ysb_8);
+					//}
+
+					//if (a12 != "")
+					//{
+					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+					//	lv3.SubItems.Add(a12);
+					//	lv3.SubItems.Add(a12_2);
+					//	lv3.SubItems.Add(a12_3);
+					//	lv3.SubItems.Add(a12_4);
+					//	lv3.SubItems.Add(a12_5);
+					//	lv3.SubItems.Add(a12_6);
+					//	lv3.SubItems.Add(a12_7);
+					//	lv3.SubItems.Add(a12_8);
+					//}
 
 					//if (aomen != "")
 					//{
@@ -757,32 +768,55 @@ namespace titan007
 					//	lv3.SubItems.Add(aomen_8);
 					//}
 
-					if (li != "")
+					//if (li != "")
+					//{
+					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+					//	lv3.SubItems.Add(li);
+					//	lv3.SubItems.Add(li_2);
+					//	lv3.SubItems.Add(li_3);
+					//	lv3.SubItems.Add(li_4);
+					//	lv3.SubItems.Add(li_5);
+					//	lv3.SubItems.Add(li_6);
+					//	lv3.SubItems.Add(li_7);
+					//	lv3.SubItems.Add(li_8);
+					//}
+
+					if (a365 != "")
 					{
 						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(li);
-						lv3.SubItems.Add(li_2);
-						lv3.SubItems.Add(li_3);
-						lv3.SubItems.Add(li_4);
-						lv3.SubItems.Add(li_5);
-						lv3.SubItems.Add(li_6);
-						lv3.SubItems.Add(li_7);
-						lv3.SubItems.Add(li_8);
+						lv3.SubItems.Add(a365);
+						lv3.SubItems.Add(a365_2);
+						lv3.SubItems.Add(a365_3);
+						lv3.SubItems.Add(a365_4);
+						lv3.SubItems.Add(a365_5);
+						lv3.SubItems.Add(a365_6);
+						lv3.SubItems.Add(a365_7);
+						lv3.SubItems.Add(a365_8);
 					}
-
-
+					if (vcbet != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(vcbet);
+						lv3.SubItems.Add(vcbet_2);
+						lv3.SubItems.Add(vcbet_3);
+						lv3.SubItems.Add(vcbet_4);
+						lv3.SubItems.Add(vcbet_5);
+						lv3.SubItems.Add(vcbet_6);
+						lv3.SubItems.Add(vcbet_7);
+						lv3.SubItems.Add(vcbet_8);
+					}
 					if (a18 != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(a18);
-						lv3.SubItems.Add(a18_2);
-						lv3.SubItems.Add(a18_3);
-						lv3.SubItems.Add(a18_4);
-						lv3.SubItems.Add(a18_5);
-						lv3.SubItems.Add(a18_6);
-						lv3.SubItems.Add(a18_7);
-						lv3.SubItems.Add(a18_8);
-					}
+                    {
+                        ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+                        lv3.SubItems.Add(a18);
+                        lv3.SubItems.Add(a18_2);
+                        lv3.SubItems.Add(a18_3);
+                        lv3.SubItems.Add(a18_4);
+                        lv3.SubItems.Add(a18_5);
+                        lv3.SubItems.Add(a18_6);
+                        lv3.SubItems.Add(a18_7);
+                        lv3.SubItems.Add(a18_8);
+                    }
 
 
 
@@ -797,7 +831,7 @@ namespace titan007
 
 
 
-					if (data.Count > 0)
+                    if (data.Count > 0)
 					{
 						ListViewItem lv4 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
 						lv4.SubItems.Add("------------");
@@ -920,6 +954,15 @@ namespace titan007
 				string ysb_6 = "";
 				string ysb_7 = "";
 				string ysb_8 = "";
+
+				string vcbet = "";
+				string vcbet_2 = "";
+				string vcbet_3 = "";
+				string vcbet_4 = "";
+				string vcbet_5 = "";
+				string vcbet_6 = "";
+				string vcbet_7 = "";
+				string vcbet_8 = "";
 				try
 				{
 
@@ -940,17 +983,7 @@ namespace titan007
 
 						if (a.Count != 0)
 						{
-							if (gongsi.Contains("18*"))
-							{
-								a18 = liansai;
-								a18_2 = team.Groups[1].Value.Trim();
-								a18_3 = team.Groups[2].Value.Trim();
-								a18_4 = date+" "+time;
-								a18_5 = gongsi.Replace("18*", "18bet");
-								a18_6 = a[0].Groups[2].Value;
-								a18_7 = a[1].Groups[2].Value;
-								a18_8 = a[2].Groups[2].Value;
-							}
+							
 
 							//if (gongsi.Contains("澳"))
 							//{
@@ -963,54 +996,54 @@ namespace titan007
 							//	aomen_7 = a[1].Groups[1].Value;
 							//	aomen_8 = a[2].Groups[1].Value;
 							//}
-							if (gongsi.Contains("易*"))
-							{
-								ysb = liansai;
-								ysb_2 = team.Groups[1].Value.Trim();
-								ysb_3 = team.Groups[2].Value.Trim();
-								ysb_4 = date + " " + time;
-								ysb_5 = gongsi.Replace("易*", "易胜博");
-								ysb_6 = a[0].Groups[2].Value;
-								ysb_7 = a[1].Groups[2].Value;
-								ysb_8 = a[2].Groups[2].Value;
-							}
+							//if (gongsi.Contains("易*"))
+							//{
+							//	ysb = liansai;
+							//	ysb_2 = team.Groups[1].Value.Trim();
+							//	ysb_3 = team.Groups[2].Value.Trim();
+							//	ysb_4 = date + " " + time;
+							//	ysb_5 = gongsi.Replace("易*", "易胜博");
+							//	ysb_6 = a[0].Groups[2].Value;
+							//	ysb_7 = a[1].Groups[2].Value;
+							//	ysb_8 = a[2].Groups[2].Value;
+							//}
 
 
-							if (gongsi.Contains("12*"))
-							{
-								a12 = liansai;
-								a12_2 = team.Groups[1].Value.Trim();
-								a12_3 = team.Groups[2].Value.Trim();
-								a12_4 = date + " " + time;
-								a12_5 = gongsi.Replace("12*", "12bet");
-								a12_6 = a[0].Groups[2].Value;
-								a12_7 = a[1].Groups[2].Value;
-								a12_8 = a[2].Groups[2].Value;
-							}
+							//if (gongsi.Contains("12*"))
+							//{
+							//	a12 = liansai;
+							//	a12_2 = team.Groups[1].Value.Trim();
+							//	a12_3 = team.Groups[2].Value.Trim();
+							//	a12_4 = date + " " + time;
+							//	a12_5 = gongsi.Replace("12*", "12bet");
+							//	a12_6 = a[0].Groups[2].Value;
+							//	a12_7 = a[1].Groups[2].Value;
+							//	a12_8 = a[2].Groups[2].Value;
+							//}
 
-							if (gongsi.Contains("利*"))
-							{
-								li = liansai;
-								li_2 = team.Groups[1].Value.Trim();
-								li_3 = team.Groups[2].Value.Trim();
-								li_4 = date + " " + time;
-								li_5 = gongsi.Replace("利*", "利记");
-								li_6 = a[0].Groups[2].Value;
-								li_7 = a[1].Groups[2].Value;
-								li_8 = a[2].Groups[2].Value;
-							}
+							//if (gongsi.Contains("利*"))
+							//{
+							//	li = liansai;
+							//	li_2 = team.Groups[1].Value.Trim();
+							//	li_3 = team.Groups[2].Value.Trim();
+							//	li_4 = date + " " + time;
+							//	li_5 = gongsi.Replace("利*", "利记");
+							//	li_6 = a[0].Groups[2].Value;
+							//	li_7 = a[1].Groups[2].Value;
+							//	li_8 = a[2].Groups[2].Value;
+							//}
 
-							if (gongsi.Contains("Crow*"))
-							{
-								crown = liansai;
-								crown_2 = team.Groups[1].Value.Trim();
-								crown_3 = team.Groups[2].Value.Trim();
-								crown_4 = date + " " + time;
-								crown_5 = gongsi.Replace("Crow*", "Crown");
-								crown_6 = a[0].Groups[2].Value;
-								crown_7 = a[1].Groups[2].Value;
-								crown_8 = a[2].Groups[2].Value;
-							}
+							//if (gongsi.Contains("Crow*"))
+							//{
+							//	crown = liansai;
+							//	crown_2 = team.Groups[1].Value.Trim();
+							//	crown_3 = team.Groups[2].Value.Trim();
+							//	crown_4 = date + " " + time;
+							//	crown_5 = gongsi.Replace("Crow*", "Crown");
+							//	crown_6 = a[0].Groups[2].Value;
+							//	crown_7 = a[1].Groups[2].Value;
+							//	crown_8 = a[2].Groups[2].Value;
+							//}
 
 							if (gongsi.Contains("36*"))
 							{
@@ -1018,10 +1051,34 @@ namespace titan007
 								a365_2 = team.Groups[1].Value.Trim();
 								a365_3 = team.Groups[2].Value.Trim();
 								a365_4 = date + " " + time;
-								a365_5 = gongsi.Replace("Crow*", "a365");
+								a365_5 = gongsi.Replace("36*", "bet 365");
 								a365_6 = a[0].Groups[2].Value;
 								a365_7 = a[1].Groups[2].Value;
 								a365_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("伟*"))
+							{
+								
+								vcbet = liansai;
+								vcbet_2 = team.Groups[1].Value.Trim();
+								vcbet_3 = team.Groups[2].Value.Trim();
+								vcbet_4 = date + " " + time;
+								vcbet_5 = gongsi.Replace("伟*", "伟德");
+								vcbet_6 = a[0].Groups[2].Value;
+								vcbet_7 = a[1].Groups[2].Value;
+								vcbet_8 = a[2].Groups[2].Value;
+							}
+
+							if (gongsi.Contains("18*"))
+							{
+								a18 = liansai;
+								a18_2 = team.Groups[1].Value.Trim();
+								a18_3 = team.Groups[2].Value.Trim();
+								a18_4 = date + " " + time;
+								a18_5 = gongsi.Replace("18*", "18bet");
+								a18_6 = a[0].Groups[2].Value;
+								a18_7 = a[1].Groups[2].Value;
+								a18_8 = a[2].Groups[2].Value;
 							}
 
 
@@ -1029,56 +1086,45 @@ namespace titan007
 
 					}
 
-					if (crown != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(crown);
-						lv3.SubItems.Add(crown_2);
-						lv3.SubItems.Add(crown_3);
-						lv3.SubItems.Add(crown_4);
-						lv3.SubItems.Add(crown_5);
-						lv3.SubItems.Add(crown_6);
-						lv3.SubItems.Add(crown_7);
-						lv3.SubItems.Add(crown_8);
-					}
+					//if (crown != "")
+					//{
+					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+					//	lv3.SubItems.Add(crown);
+					//	lv3.SubItems.Add(crown_2);
+					//	lv3.SubItems.Add(crown_3);
+					//	lv3.SubItems.Add(crown_4);
+					//	lv3.SubItems.Add(crown_5);
+					//	lv3.SubItems.Add(crown_6);
+					//	lv3.SubItems.Add(crown_7);
+					//	lv3.SubItems.Add(crown_8);
+					//}
 
-					if (a365 != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(a365);
-						lv3.SubItems.Add(a365_2);
-						lv3.SubItems.Add(a365_3);
-						lv3.SubItems.Add(a365_4);
-						lv3.SubItems.Add(a365_5);
-						lv3.SubItems.Add(a365_6);
-						lv3.SubItems.Add(a365_7);
-						lv3.SubItems.Add(a365_8);
-					}
-					if (ysb != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(ysb);
-						lv3.SubItems.Add(ysb_2);
-						lv3.SubItems.Add(ysb_3);
-						lv3.SubItems.Add(ysb_4);
-						lv3.SubItems.Add(ysb_5);
-						lv3.SubItems.Add(ysb_6);
-						lv3.SubItems.Add(ysb_7);
-						lv3.SubItems.Add(ysb_8);
-					}
 
-					if (a12 != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(a12);
-						lv3.SubItems.Add(a12_2);
-						lv3.SubItems.Add(a12_3);
-						lv3.SubItems.Add(a12_4);
-						lv3.SubItems.Add(a12_5);
-						lv3.SubItems.Add(a12_6);
-						lv3.SubItems.Add(a12_7);
-						lv3.SubItems.Add(a12_8);
-					}
+					//if (ysb != "")
+					//{
+					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+					//	lv3.SubItems.Add(ysb);
+					//	lv3.SubItems.Add(ysb_2);
+					//	lv3.SubItems.Add(ysb_3);
+					//	lv3.SubItems.Add(ysb_4);
+					//	lv3.SubItems.Add(ysb_5);
+					//	lv3.SubItems.Add(ysb_6);
+					//	lv3.SubItems.Add(ysb_7);
+					//	lv3.SubItems.Add(ysb_8);
+					//}
+
+					//if (a12 != "")
+					//{
+					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+					//	lv3.SubItems.Add(a12);
+					//	lv3.SubItems.Add(a12_2);
+					//	lv3.SubItems.Add(a12_3);
+					//	lv3.SubItems.Add(a12_4);
+					//	lv3.SubItems.Add(a12_5);
+					//	lv3.SubItems.Add(a12_6);
+					//	lv3.SubItems.Add(a12_7);
+					//	lv3.SubItems.Add(a12_8);
+					//}
 
 					//if (aomen != "")
 					//{
@@ -1093,19 +1139,44 @@ namespace titan007
 					//	lv3.SubItems.Add(aomen_8);
 					//}
 
-					if (li != "")
+					//if (li != "")
+					//{
+					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+					//	lv3.SubItems.Add(li);
+					//	lv3.SubItems.Add(li_2);
+					//	lv3.SubItems.Add(li_3);
+					//	lv3.SubItems.Add(li_4);
+					//	lv3.SubItems.Add(li_5);
+					//	lv3.SubItems.Add(li_6);
+					//	lv3.SubItems.Add(li_7);
+					//	lv3.SubItems.Add(li_8);
+					//}
+
+					if (a365 != "")
 					{
 						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(li);
-						lv3.SubItems.Add(li_2);
-						lv3.SubItems.Add(li_3);
-						lv3.SubItems.Add(li_4);
-						lv3.SubItems.Add(li_5);
-						lv3.SubItems.Add(li_6);
-						lv3.SubItems.Add(li_7);
-						lv3.SubItems.Add(li_8);
+						lv3.SubItems.Add(a365);
+						lv3.SubItems.Add(a365_2);
+						lv3.SubItems.Add(a365_3);
+						lv3.SubItems.Add(a365_4);
+						lv3.SubItems.Add(a365_5);
+						lv3.SubItems.Add(a365_6);
+						lv3.SubItems.Add(a365_7);
+						lv3.SubItems.Add(a365_8);
 					}
 
+					if (vcbet != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(vcbet);
+						lv3.SubItems.Add(vcbet_2);
+						lv3.SubItems.Add(vcbet_3);
+						lv3.SubItems.Add(vcbet_4);
+						lv3.SubItems.Add(vcbet_5);
+						lv3.SubItems.Add(vcbet_6);
+						lv3.SubItems.Add(vcbet_7);
+						lv3.SubItems.Add(vcbet_8);
+					}
 
 					if (a18 != "")
 					{
