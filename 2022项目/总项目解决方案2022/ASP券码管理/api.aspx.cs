@@ -63,7 +63,7 @@ namespace ASP券码管理
 
                 if (method == "getcodes")
                 {
-                    getcodes(username,code,xm_code);
+                    getcodes(usertype, username,code,xm_code);
                 }
                 if (method == "addcodes")
                 {
@@ -268,11 +268,18 @@ namespace ASP券码管理
         #endregion
 
         #region 查询code
-        public void getcodes(string username,string code,string xm_code)
+        public void getcodes(string usertype, string username,string code,string xm_code)
         {
             MySqlConnection mycon = new MySqlConnection(constr);
             mycon.Open();
             string query = "SELECT * FROM codes where username=  '" + username + "' ORDER BY date desc";
+           
+            if(usertype=="商户")
+            {
+                query = "SELECT * FROM codes where username=  '" + username + "' and date!='' ORDER BY date desc";
+            }
+            
+            
             if (code!=null)
             {
                 if (code.Trim() != "")

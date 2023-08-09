@@ -223,6 +223,24 @@ layer.msg("删除成功")
 
 
 
+function user_del_func(userid) {
+   
+
+var url = `api.aspx?userid=${userid}&method=deluser`
+        $.post(url, function (data) {
+            if (data.status == "1") {
+
+layer.msg("删除成功")
+            }
+            else {
+                layer.msg("删除失败")
+
+
+            }
+
+ }, "json")
+}
+
 
 
 
@@ -261,12 +279,12 @@ function exportExcel(taskid, taskname) {
 
 function getcodes(username,code,xm_code) {
    
-
+ var usertype = getCookie("usertype");
     $("#codetable  tbody").html(""); //翻页清空表数据，保留表头
    
     $(function () {
         $.ajax({
-            url: `api.aspx?xm_code=${xm_code}&code=${code}&username=${username}&method=getcodes`,
+            url: `api.aspx?usertype=${usertype}&xm_code=${xm_code}&code=${code}&username=${username}&method=getcodes`,
             type: 'post',
             dataType: 'json',
             success: function (data) {
@@ -276,6 +294,9 @@ function getcodes(username,code,xm_code) {
                 for (i in data) //data.data指的是数组，数组里是8个对象，i为数组的索引
                 {
                     var tr;
+
+                   
+
                     tr = '<td>' + data[i].xm_code+ '</td>' + '<td>' + data[i].username+ '</td>' + '<td>' + data[i].xm_name+ '</td>' + '<td>' + data[i].code+ '</td>' + '<td>' + data[i].date + '</td>' +'<td>' + data[i].time + '</td>'+ '<td class="td-manage">' +
 
                        '<a title="删除券码"  onclick="code_del(this,\'' + data[i].code + '\')" href="javascript:;">' +

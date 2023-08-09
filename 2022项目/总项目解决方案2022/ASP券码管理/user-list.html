@@ -44,7 +44,7 @@
 -->
         </div>
         <xblock>
-            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>全部删除</button>
+           
             <button class="layui-btn" onclick="x_admin_show('添加任务','./user-add.html',600,400)"><i class="layui-icon"></i>添加用户</button>
 
             <a class="layui-btn layui-btn-small" id="refresh" style="line-height:1.6em;margin-top:3px;" href="javascript:location.replace(location.href);" title="刷新">
@@ -76,6 +76,14 @@
 
    /*任务-删除*/
         function user_del(obj,id) {
+
+            if(id==0)
+   {
+    layer.msg("管理员账户禁止删除");
+    return;
+
+   }
+
             layer.confirm('确认要删除吗？', function (index) {
                 //发异步删除数据
                 user_del_func(id);
