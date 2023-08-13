@@ -529,9 +529,9 @@ namespace win007
                         }
                     }
                 }
-                string l1 = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
-                string l2= Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
-                string l3 = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2");
+                string l1 = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字","无");
+                string l2= Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
+                string l3 = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
 
                 xianshi.Text = xianshi.Text+l1 + " " + l2 + " " + l3 + "   ";
 
@@ -552,8 +552,8 @@ namespace win007
         {
 
             method.SetFeatures(11000);
-            webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
+           webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Navigate("https://live.titan007.com/");
             
            // this.WindowState = FormWindowState.Maximized;
             #region 通用检测
@@ -1332,6 +1332,12 @@ namespace win007
                 max = b;
                
             }
+
+           else if (a > b)
+            {
+                min = b;
+                max = a;
+            }
             else
             {
                 min = b;
@@ -1377,6 +1383,79 @@ namespace win007
             return "";
         }
 
+
+        public string getminmaxvalue_old(int hang, int sort)
+        {
+            double a = Convert.ToDouble(textBox1.Text);
+            double b = Convert.ToDouble(textBox2.Text);
+            double c = Convert.ToDouble(textBox3.Text);
+            if (hang == 1)
+            {
+
+
+            }
+            if (hang == 2)
+            {
+                a = Convert.ToDouble(textBox9.Text);
+                b = Convert.ToDouble(textBox8.Text);
+                c = Convert.ToDouble(textBox7.Text);
+            }
+
+            double min, max, mid;
+
+
+            if (a < b)
+            {
+                min = a;
+                max = b;
+
+            }
+
+
+            else
+            {
+                min = b;
+                max = a;
+            }
+
+            if (min > c)
+            {
+                min = c;
+            }
+
+            if (max < c)
+            {
+                max = c;
+            }
+
+            if (a != min && a != max)
+            {
+                mid = a;
+            }
+            else if (b != min && b != max)
+            {
+                mid = b;
+            }
+            else
+            {
+                mid = c;
+            }
+
+            if (sort == 1)
+            {
+                return min.ToString();
+            }
+            if (sort == 2)
+            {
+                return mid.ToString();
+            }
+            if (sort == 3)
+            {
+                return max.ToString();
+            }
+
+            return "";
+        }
         private void button16_Click(object sender, EventArgs e)
         {
             rule1_txtbox_2.Text = "";

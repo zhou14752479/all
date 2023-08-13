@@ -197,7 +197,7 @@
             this.比赛ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1539, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1542, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -240,7 +240,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1539, 1078);
+            this.tabControl1.Size = new System.Drawing.Size(1542, 1078);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -256,7 +256,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(1531, 1040);
+            this.tabPage1.Size = new System.Drawing.Size(1534, 1040);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "      数据查询      ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -268,7 +268,7 @@
             this.dataGridView6.Location = new System.Drawing.Point(4, 355);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.RowTemplate.Height = 23;
-            this.dataGridView6.Size = new System.Drawing.Size(1523, 108);
+            this.dataGridView6.Size = new System.Drawing.Size(1526, 108);
             this.dataGridView6.TabIndex = 31;
             // 
             // dataGridView5
@@ -278,7 +278,7 @@
             this.dataGridView5.Location = new System.Drawing.Point(4, 463);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowTemplate.Height = 23;
-            this.dataGridView5.Size = new System.Drawing.Size(1523, 108);
+            this.dataGridView5.Size = new System.Drawing.Size(1526, 108);
             this.dataGridView5.TabIndex = 30;
             // 
             // dataGridView4
@@ -288,7 +288,7 @@
             this.dataGridView4.Location = new System.Drawing.Point(4, 571);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(1523, 102);
+            this.dataGridView4.Size = new System.Drawing.Size(1526, 102);
             this.dataGridView4.TabIndex = 29;
             // 
             // dataGridView3
@@ -298,7 +298,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(4, 673);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(1523, 117);
+            this.dataGridView3.Size = new System.Drawing.Size(1526, 117);
             this.dataGridView3.TabIndex = 28;
             // 
             // dataGridView2
@@ -308,7 +308,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(4, 790);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(1523, 135);
+            this.dataGridView2.Size = new System.Drawing.Size(1526, 135);
             this.dataGridView2.TabIndex = 27;
             // 
             // dataGridView1
@@ -318,7 +318,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(4, 925);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1523, 110);
+            this.dataGridView1.Size = new System.Drawing.Size(1526, 110);
             this.dataGridView1.TabIndex = 26;
             // 
             // groupBox2
@@ -389,7 +389,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1523, 1030);
+            this.groupBox2.Size = new System.Drawing.Size(1526, 1030);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "条件查询";
@@ -1729,7 +1729,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1539, 1103);
+            this.ClientSize = new System.Drawing.Size(1542, 1103);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
