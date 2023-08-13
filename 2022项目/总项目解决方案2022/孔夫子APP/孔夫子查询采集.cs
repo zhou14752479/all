@@ -47,7 +47,7 @@ namespace 孔夫子APP
         {
             try
             {
-                string COOKIE = "PHPSESSID=746thl2h6l9gbse9ioehqrp0b6h3hap0;";
+                string COOKIE = "PHPSESSID=6i7hfd9nie39ng5tiptvhodsp82e41ep;";
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -62,9 +62,9 @@ namespace 孔夫子APP
 
 
                 headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
-                headers.Add("accessToken:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
-                headers.Add("access-token:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
-                headers.Add("token:976e5c7a-ba8b-4554-b8fb-d96e662c835a");
+                headers.Add("accessToken:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
+                headers.Add("access-token:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
+                headers.Add("token:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
                 headers.Add("ssid: 1689944873000198921");
 
 
