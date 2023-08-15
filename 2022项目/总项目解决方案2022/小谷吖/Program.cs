@@ -16,7 +16,7 @@ namespace 小谷吖
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 小谷吖());
+            Application.Run(new 骑马收书());
         }
     }
 }
