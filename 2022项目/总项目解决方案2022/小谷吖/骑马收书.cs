@@ -259,5 +259,15 @@ namespace 小谷吖
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
     }
 }
