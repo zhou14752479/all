@@ -16,7 +16,7 @@ namespace 主程序202305
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 发票51());
+            Application.Run(new 越睡通());
         }
     }
 }
