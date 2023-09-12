@@ -98,11 +98,11 @@ namespace 主程序202305
                
 
                     string hjjexx = Regex.Match(html, @"""hjjexx"":([\s\S]*?),").Groups[1].Value;
-                    string nsrmc = Regex.Match(html, @"""nsrmc"":""([\s\S]*?)""").Groups[1].Value;
+                    string gmfmc = Regex.Match(html, @"""gmfmc"":""([\s\S]*?)""").Groups[1].Value;
                     string errMsg = Regex.Match(html, @"""errMsg"":""([\s\S]*?)""").Groups[1].Value;
 
                     listView1.Items[i].SubItems[2].Text = hjjexx;
-                    listView1.Items[i].SubItems[3].Text = nsrmc;
+                    listView1.Items[i].SubItems[3].Text = gmfmc;
                     listView1.Items[i].SubItems[4].Text = errMsg;
 
                     Thread.Sleep(1000/Convert.ToInt32(textBox1.Text));
