@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP券码管理", "ASP券�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockx网站价格", "stockx网站价格\stockx网站价格.csproj", "{4A5FAF3B-AFD5-48F0-9D94-518CA34F80AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP舆情统计", "ASP舆情统计\ASP舆情统计.csproj", "{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -363,6 +365,18 @@ Global
 		{4A5FAF3B-AFD5-48F0-9D94-518CA34F80AB}.Release|x64.Build.0 = Release|Any CPU
 		{4A5FAF3B-AFD5-48F0-9D94-518CA34F80AB}.Release|x86.ActiveCfg = Release|Any CPU
 		{4A5FAF3B-AFD5-48F0-9D94-518CA34F80AB}.Release|x86.Build.0 = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|x64.Build.0 = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Debug|x86.Build.0 = Debug|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|x64.ActiveCfg = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|x64.Build.0 = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{1155E2E4-FA01-4C5A-A624-63CC1A3C49CC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

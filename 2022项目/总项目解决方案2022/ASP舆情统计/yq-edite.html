@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <title>后台管理</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/md5.min_1.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="x-body">
+        <div class="layui-form">
+
+
+  <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>兑换码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="code" name="user" disabled readonly required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+            <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>项目号码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="xm_code" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+  <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>商户代码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="username" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+              <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>项目名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="xm_name" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+
+            <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>兑换日期
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="date" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+
+             <div class="layui-form-item">
+                <label for="L_email" class="layui-form-label">
+                    <span class="x-red">*</span>换领时间
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="time" name="user" required="" lay-verify=""
+                           autocomplete="off" class="layui-input">
+                </div>
+              
+            </div>
+                   
+
+            <div class="layui-form-item">
+                <label for="L_repass" class="layui-form-label">
+                </label>
+                <button id="editecode" class="layui-btn">
+                    确定修改
+                </button>
+            </div>
+
+
+
+
+        </div>
+    </div>
+   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.core.min.js"></script>
+   <script>
+
+
+
+
+
+$(document).ready(function () {
+
+$("#code").val(getQueryString('code'));
+    $("#xm_code").val(getQueryString('xm_code'));
+     $("#username").val(getQueryString('username'));
+      $("#xm_name").val(getQueryString('xm_name'));
+       $("#date").val(getQueryString('date'));
+        $("#time").val(getQueryString('time'));
+ });
+
+
+
+
+
+
+
+
+        $('#editecode').click(function () {
+           
+           var code =$("#code").val();
+           var xm_code =$("#xm_code").val();
+           var username = $("#username").val();
+            var xm_name =$("#xm_name").val();
+var date =$("#date").val();
+var time =$("#time").val();
+            $.ajax({
+                 url: `api.aspx?method=editecode&xm_code=${xm_code}&username=${username}&xm_name=${xm_name}&date=${date}&time=${time}&code=${code}`,
+               async: true,
+                        type: 'post',
+                        dataType: 'JSON',
+                        contentType: 'application/json',
+                        data: '',
+                        success: function (data) {
+                            if (data.status == "1") {
+            layer.msg("修改成功")
+          
+           
+
+        }
+        else {
+            layer.msg("修改失败")
+           
+
+        }
+                }
+            });
+        });
+      
+   
+
+    </script>
+</body>
+
+</html>

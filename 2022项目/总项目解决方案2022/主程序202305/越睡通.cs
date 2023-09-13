@@ -75,6 +75,13 @@ namespace 主程序202305
             return result;
         }
 
+
+        string path = AppDomain.CurrentDomain.BaseDirectory;
+
+        static ReaderWriterLockSlim sucessLogWriteLockSlim = new ReaderWriterLockSlim();
+
+
+        List<int> finishes = new List<int>();
         public void run()
         {
 
@@ -85,6 +92,9 @@ namespace 主程序202305
                 try
                 {
 
+                    if (finishes.Contains(i))
+                        continue;
+                    finishes.Add(i);    
                     string texts = listView1.Items[i].SubItems[1].Text.ToString();
 
                     string[] text = texts.Split(new string[] { "," }, StringSplitOptions.None);
@@ -105,7 +115,40 @@ namespace 主程序202305
                     listView1.Items[i].SubItems[3].Text = gmfmc;
                     listView1.Items[i].SubItems[4].Text = errMsg;
 
-                    Thread.Sleep(1000/Convert.ToInt32(textBox1.Text));
+
+
+
+                   
+
+
+                    try
+                    {
+                        sucessLogWriteLockSlim.EnterWriteLock();
+                        FileStream fs1 = new FileStream(path + DateTime.Now.ToString("yyyyMMdd") + ".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+
+                        if (checkBox1.Checked)
+                        {
+                            sw.WriteLine(texts + "-" + gmfmc);
+                        }
+                        else
+                        {
+                            sw.WriteLine(texts);
+                        }
+
+                        sw.Close();
+                        fs1.Close();
+                        sw.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        sucessLogWriteLockSlim.ExitWriteLock();
+                    }
+
 
                     if (listView1.Items.Count > 2)
                     {
@@ -127,6 +170,9 @@ namespace 主程序202305
 
 
         }
+
+
+
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -144,12 +190,13 @@ namespace 主程序202305
             #endregion
 
             status = true;
-          
-            if (thread == null || !thread.IsAlive)
+
+            for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
             {
-                thread = new Thread(run);
+                Thread thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
+                Thread.Sleep(100);
             }
         }
 
@@ -193,7 +240,7 @@ namespace 主程序202305
                 e.Cancel = true;//点取消的代码 
             }
         }
-        Thread thread;
+       
 
         bool zanting = true;
         bool status = true;
