@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(58, 23);
             this.textBox1.TabIndex = 210;
-            this.textBox1.Text = "2";
+            this.textBox1.Text = "10";
             // 
             // label1
             // 
@@ -95,6 +95,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(862, 106);
             this.panel1.TabIndex = 212;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(204, 26);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(96, 16);
+            this.checkBox1.TabIndex = 214;
+            this.checkBox1.Text = "显示开票公司";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -197,18 +209,6 @@
             this.columnHeader5.Text = "状态";
             this.columnHeader5.Width = 100;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(204, 26);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(96, 16);
-            this.checkBox1.TabIndex = 214;
-            this.checkBox1.Text = "显示开票公司";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // 越睡通
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -220,6 +220,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "越睡通【仅供学习交流】";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.越睡通_FormClosing);
+            this.Load += new System.EventHandler(this.越睡通_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

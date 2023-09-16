@@ -109,6 +109,7 @@ namespace 主程序202305
 
                     string hjjexx = Regex.Match(html, @"""hjjexx"":([\s\S]*?),").Groups[1].Value;
                     string gmfmc = Regex.Match(html, @"""gmfmc"":""([\s\S]*?)""").Groups[1].Value;
+                    string kprq = Regex.Match(html, @"""kprq"":""([\s\S]*?)""").Groups[1].Value;
                     string errMsg = Regex.Match(html, @"""errMsg"":""([\s\S]*?)""").Groups[1].Value;
 
                     listView1.Items[i].SubItems[2].Text = hjjexx;
@@ -129,11 +130,11 @@ namespace 主程序202305
 
                         if (checkBox1.Checked)
                         {
-                            sw.WriteLine(texts + "-" + gmfmc);
+                            sw.WriteLine(text[0]+"," + text[1] + "," + text[2] + "," + text[3] + "," + hjjexx + "," + kprq + "," + text[6] + "-" + gmfmc);
                         }
                         else
                         {
-                            sw.WriteLine(texts);
+                            sw.WriteLine(text[0] + "," + text[1] + "," + text[2] + "," + text[3] + "," + hjjexx + "," + kprq.Replace("-","") + "," + text[6]);
                         }
 
                         sw.Close();
@@ -191,14 +192,152 @@ namespace 主程序202305
 
             status = true;
 
-            for (int i = 0; i < Convert.ToInt32(textBox1.Text); i++)
+            for (int i = 0; i < listView1.Items.Count; i++)
             {
-                Thread thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-                Thread.Sleep(100);
+                string texts=listView1.Items[i].SubItems[1].Text;   
+                AddDown(texts,i);
+            }
+            StartDown(Convert.ToInt32(textBox1.Text));
+        }
+
+       
+        List<Thread> list = new List<Thread>();
+        public void AddDown(string texts, int i)
+        {
+            Thread tsk = new Thread(() =>
+            {
+                download(texts,i);
+            });
+            list.Add(tsk);
+        }
+
+        public void StartDown(int StartNum)
+        {
+
+            for (int i2 = 0; i2 < StartNum; i2++)
+            {
+                lock (list)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].ThreadState == System.Threading.ThreadState.Unstarted || list[i].ThreadState == ThreadState.Suspended)
+                        {
+                            list[i].Start();
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+        private void Change(DownMsg msg)
+        {
+            if (msg.Tag == "end")
+            {
+                StartDown(1);
             }
         }
+
+
+        public delegate void dlgSendMsg(DownMsg msg);
+        public event dlgSendMsg doSendMsg;
+
+
+        public class DownMsg
+        {
+            public string Tag;
+
+        }
+
+        public void download(string texts,int i)
+        {
+
+            DownMsg msg = new DownMsg();
+
+            try
+                {
+
+
+                    string[] text = texts.Split(new string[] { "," }, StringSplitOptions.None);
+
+                    string url = "https://yst.guangdong.chinatax.gov.cn/app/yss/fpcy/fpcyForWx";
+                    string postdata = "{\"fplb\":\"10\",\"fpdm\":\"" + text[2] + "\",\"fphm\":\"" + text[3] + "\",\"fpje\":\"" + text[4] + "\",\"kprq\":\"" + text[5] + "\",\"hsbz\":\"N\",\"timeOut\":\"20000\",\"ignore\":\"true\",\"wglx\":\"yss\",\"requestId\":\"2efc8bef-daaf-41e4-8655-fde4fe31c95c\"}";
+
+                    string html = PostUrlDefault(url, postdata, "", "application/json");
+                    html = System.Web.HttpUtility.UrlDecode(html);
+
+
+
+                    string hjjexx = Regex.Match(html, @"""hjjexx"":([\s\S]*?),").Groups[1].Value;
+                    string gmfmc = Regex.Match(html, @"""gmfmc"":""([\s\S]*?)""").Groups[1].Value;
+                    string kprq = Regex.Match(html, @"""kprq"":""([\s\S]*?)""").Groups[1].Value;
+                    string errMsg = Regex.Match(html, @"""errMsg"":""([\s\S]*?)""").Groups[1].Value;
+
+                    listView1.Items[i].SubItems[2].Text = hjjexx;
+                    listView1.Items[i].SubItems[3].Text = gmfmc;
+                    listView1.Items[i].SubItems[4].Text = errMsg;
+
+
+
+
+
+
+
+                    try
+                    {
+                        sucessLogWriteLockSlim.EnterWriteLock();
+                        FileStream fs1 = new FileStream(path + DateTime.Now.ToString("yyyyMMdd") + ".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                        StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+
+                        if (checkBox1.Checked)
+                        {
+                            sw.WriteLine(text[0] + "," + text[1] + "," + text[2] + "," + text[3] + "," + hjjexx + "," + kprq + "," + text[6] + "-" + gmfmc);
+                        }
+                        else
+                        {
+                            sw.WriteLine(text[0] + "," + text[1] + "," + text[2] + "," + text[3] + "," + hjjexx + "," + kprq.Replace("-", "") + "," + text[6]);
+                        }
+
+                        sw.Close();
+                        fs1.Close();
+                        sw.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        sucessLogWriteLockSlim.ExitWriteLock();
+                    }
+
+
+                    if (listView1.Items.Count > 2)
+                    {
+                        this.listView1.Items[i].EnsureVisible();
+                    }
+                    while (this.zanting == false)
+                    {
+                        Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                    }
+                    if (status == false)
+                        return;
+                msg.Tag = "end";
+                doSendMsg(msg);
+            }
+                catch (Exception ex)
+                {
+                msg.Tag = "end";
+                doSendMsg(msg);
+                MessageBox.Show(ex.ToString());
+                }
+            
+
+
+        }
+
+
+
 
         private void listView1_DragEnter(object sender, DragEventArgs e)
         {
@@ -270,6 +409,13 @@ namespace 主程序202305
         private void button5_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+        }
+
+        private void 越睡通_Load(object sender, EventArgs e)
+        {
+            Control.CheckForIllegalCrossThreadCalls = false;
+            doSendMsg += Change;
+           // doSendMsg += SendMsgHander;//下载过程处理事件
         }
     }
 }
