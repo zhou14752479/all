@@ -1016,9 +1016,17 @@ namespace win007
         public void sancirun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5,  DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
         {
             chaxun(t1, t2, t3, t4, t5, comboBox1, dgv1, t9, t8, t7, t13, xianshi);
+
+            getshishidata(comboBox2.Text.Trim());
             chaxun(t1, t2, t3, t4, t5, comboBox2, dgv1, t9, t8, t7, t13, xianshi);
+
+            getshishidata(comboBox3.Text.Trim());
             chaxun(t1, t2, t3, t4, t5, comboBox3, dgv1, t9, t8, t7, t13, xianshi);
+
+            getshishidata(comboBox4.Text.Trim());
             chaxun(t1, t2, t3, t4, t5, comboBox4, dgv1, t9, t8, t7, t13, xianshi);
+
+            getshishidata(comboBox5.Text.Trim());
             chaxun(t1, t2, t3, t4, t5, comboBox5, dgv1, t9, t8, t7, t13, xianshi);
 
         }
@@ -1190,13 +1198,23 @@ namespace win007
 
         private void 比赛ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            getshishidata(comboBox1.Text.Trim());
+
+
+
+
+        }
+
+
+        public void getshishidata(string company)
+        {
             try
             {
                 label48.Text = "";
                 string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
-                
-                string data = function.getshishidata(id, comboBox1.Text.Trim());
-               MessageBox.Show(data);
+
+                string data = function.getshishidata(id, company);
+                // MessageBox.Show(data);
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
                 if (text.Length > 6)
                 {
@@ -1205,22 +1223,22 @@ namespace win007
                     string p1 = "平";
 
                     string s2 = "平";
-                    string j2= "平";
+                    string j2 = "平";
                     string p2 = "平";
 
 
 
-                    textBox1.Text = text[1];
-                    textBox2.Text = text[2];
-                    textBox3.Text = text[3];
-                    textBox9.Text = text[4];
-                    textBox8.Text = text[5];
-                    textBox7.Text = text[6];
+                    textBox1.Text = text[1].Replace("\"","");
+                    textBox2.Text = text[2].Replace("\"", "");
+                    textBox3.Text = text[3].Replace("\"", "");
+                    textBox9.Text = text[4].Replace("\"", "");
+                    textBox8.Text = text[5].Replace("\"", "");
+                    textBox7.Text = text[6].Replace("\"", "");
 
 
 
                     s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) < 0 ? "降" : "升";
-                    j1= Convert.ToDouble(text[2]) - Convert.ToDouble(text[5]) < 0 ? "降" : "升";
+                    j1 = Convert.ToDouble(text[2]) - Convert.ToDouble(text[5]) < 0 ? "降" : "升";
                     p1 = Convert.ToDouble(text[3]) - Convert.ToDouble(text[6]) < 0 ? "降" : "升";
 
                     s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) == 0 ? "平" : s1;
@@ -1250,19 +1268,15 @@ namespace win007
 
 
 
-                    textBox4.Text = s1+j1+p1;
-                    textBox13.Text = s2 + j2+ p2;
+                    textBox4.Text = s1 + j1 + p1;
+                    textBox13.Text = s2 + j2 + p2;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
-
-        
-           
         }
-
 
         public void teshujiance()
         {
@@ -1797,6 +1811,31 @@ namespace win007
         private void button26_Click(object sender, EventArgs e)
         {
             webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
+        }
+
+        private void 公司一ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getshishidata(comboBox1.Text.Trim());
+        }
+
+        private void 公司二ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getshishidata(comboBox2.Text.Trim());
+        }
+
+        private void 公司三ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getshishidata(comboBox3.Text.Trim());
+        }
+
+        private void 公司四ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getshishidata(comboBox4.Text.Trim());
+        }
+
+        private void 公司五ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getshishidata(comboBox5.Text.Trim());
         }
     }
 }

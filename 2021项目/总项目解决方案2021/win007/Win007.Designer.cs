@@ -168,6 +168,11 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button26 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.公司一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司二ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司三ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司四ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司五ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -224,6 +229,12 @@
             // 
             // 比赛ToolStripMenuItem
             // 
+            this.比赛ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.公司一ToolStripMenuItem,
+            this.公司二ToolStripMenuItem,
+            this.公司三ToolStripMenuItem,
+            this.公司四ToolStripMenuItem,
+            this.公司五ToolStripMenuItem});
             this.比赛ToolStripMenuItem.Name = "比赛ToolStripMenuItem";
             this.比赛ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.比赛ToolStripMenuItem.Text = "填入实时数据";
@@ -1481,7 +1492,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(1531, 1040);
+            this.tabPage2.Size = new System.Drawing.Size(1534, 1040);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "      更新数据      ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1511,7 +1522,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(4, 116);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1523, 919);
+            this.listView1.Size = new System.Drawing.Size(1526, 919);
             this.listView1.TabIndex = 380;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1592,7 +1603,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1523, 111);
+            this.panel2.Size = new System.Drawing.Size(1526, 111);
             this.panel2.TabIndex = 1;
             // 
             // groupBox5
@@ -1698,7 +1709,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1531, 1040);
+            this.tabPage3.Size = new System.Drawing.Size(1534, 1040);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "网站实时数据选择";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1721,9 +1732,44 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1525, 1034);
+            this.webBrowser1.Size = new System.Drawing.Size(1528, 1034);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
+            // 
+            // 公司一ToolStripMenuItem
+            // 
+            this.公司一ToolStripMenuItem.Name = "公司一ToolStripMenuItem";
+            this.公司一ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司一ToolStripMenuItem.Text = "公司一";
+            this.公司一ToolStripMenuItem.Click += new System.EventHandler(this.公司一ToolStripMenuItem_Click);
+            // 
+            // 公司二ToolStripMenuItem
+            // 
+            this.公司二ToolStripMenuItem.Name = "公司二ToolStripMenuItem";
+            this.公司二ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司二ToolStripMenuItem.Text = "公司二";
+            this.公司二ToolStripMenuItem.Click += new System.EventHandler(this.公司二ToolStripMenuItem_Click);
+            // 
+            // 公司三ToolStripMenuItem
+            // 
+            this.公司三ToolStripMenuItem.Name = "公司三ToolStripMenuItem";
+            this.公司三ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司三ToolStripMenuItem.Text = "公司三";
+            this.公司三ToolStripMenuItem.Click += new System.EventHandler(this.公司三ToolStripMenuItem_Click);
+            // 
+            // 公司四ToolStripMenuItem
+            // 
+            this.公司四ToolStripMenuItem.Name = "公司四ToolStripMenuItem";
+            this.公司四ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司四ToolStripMenuItem.Text = "公司四";
+            this.公司四ToolStripMenuItem.Click += new System.EventHandler(this.公司四ToolStripMenuItem_Click);
+            // 
+            // 公司五ToolStripMenuItem
+            // 
+            this.公司五ToolStripMenuItem.Name = "公司五ToolStripMenuItem";
+            this.公司五ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.公司五ToolStripMenuItem.Text = "公司五";
+            this.公司五ToolStripMenuItem.Click += new System.EventHandler(this.公司五ToolStripMenuItem_Click);
             // 
             // Win007
             // 
@@ -1909,5 +1955,10 @@
         private System.Windows.Forms.TextBox rule2_txtbox_2;
         private System.Windows.Forms.TextBox rule4_txtbox_2;
         private System.Windows.Forms.TextBox rule3_txtbox_2;
+        private System.Windows.Forms.ToolStripMenuItem 公司一ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 公司二ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 公司三ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 公司四ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 公司五ToolStripMenuItem;
     }
 }
