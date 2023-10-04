@@ -195,21 +195,19 @@ namespace titan007
                 string he_18 = "";
                 string fu_18 = "";
 
-                string sheng_libo = "";
-                string he_libo = "";
-                string fu_libo = "";
+                string sheng_Crown = "";
+                string he_Crown = "";
+                string fu_Crown = "";
 
 
 
-                string sheng_weilian = "";
-                string he_weilian = "";
-                string fu_weilian = "";
+          
 
                 for (int i = 0; i < trs.Count; i++)
                 {
                     try
                     {
-                        if (trs[i].Groups[1].Value.Contains("18*"))
+                        if (trs[i].Groups[1].Value.Contains("金宝*"))
                         {
                             MatchCollection value_18s = Regex.Matches(trs[i].Groups[1].Value, @"l=0'\)"">([\s\S]*?)</td>");
                           
@@ -219,27 +217,18 @@ namespace titan007
 
                         }
 
-                        if (trs[i].Groups[1].Value.Contains("立*(英国)"))
+                        if (trs[i].Groups[1].Value.Contains("Crow*"))
                         {
                             MatchCollection value_libos = Regex.Matches(trs[i].Groups[1].Value, @"l=0'\)"">([\s\S]*?)</td>");
 
-                           // MessageBox.Show(value_libos.Count.ToString());
-                            sheng_libo = Regex.Replace(value_libos[0].Groups[1].Value, "<[^>]+>", "").Trim();
-                            he_libo = Regex.Replace(value_libos[1].Groups[1].Value, "<[^>]+>", "").Trim();
-                            fu_libo = Regex.Replace(value_libos[2].Groups[1].Value, "<[^>]+>", "").Trim();
+                            // MessageBox.Show(value_libos.Count.ToString());
+                            sheng_Crown = Regex.Replace(value_libos[0].Groups[1].Value, "<[^>]+>", "").Trim();
+                            he_Crown = Regex.Replace(value_libos[1].Groups[1].Value, "<[^>]+>", "").Trim();
+                            fu_Crown = Regex.Replace(value_libos[2].Groups[1].Value, "<[^>]+>", "").Trim();
 
                         }
                        
-                        if (trs[i].Groups[1].Value.Contains("威廉"))
-                        {
-                         
-                              MatchCollection value_weilians = Regex.Matches(trs[i].Groups[1].Value, @"l=0'\)"">([\s\S]*?)</td>");
-                           
-                            sheng_weilian = Regex.Replace(value_weilians[0].Groups[1].Value, "<[^>]+>", "").Trim();
-                            he_weilian = Regex.Replace(value_weilians[1].Groups[1].Value, "<[^>]+>", "").Trim();
-                            fu_weilian = Regex.Replace(value_weilians[2].Groups[1].Value, "<[^>]+>", "").Trim();
-
-                        }
+                      
                     }
                     catch (Exception ex)
                     {
@@ -261,22 +250,6 @@ namespace titan007
                 if (home != "")
                 {
                     //第一行
-                   if(sheng_18!="")
-                    {
-                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(liansai);
-                        lv1.SubItems.Add(home);
-                        lv1.SubItems.Add(guest);
-                        lv1.SubItems.Add("2023-" + time);
-
-                        lv1.SubItems.Add("18bet");
-                        lv1.SubItems.Add(sheng_18);
-                        lv1.SubItems.Add(he_18);
-                        lv1.SubItems.Add(fu_18);
-                    }
-
-
-                    //第二行
                     ListViewItem lv = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
                     lv.SubItems.Add(liansai);
                     lv.SubItems.Add(home);
@@ -287,36 +260,40 @@ namespace titan007
                     lv.SubItems.Add(text[2].Trim());
                     lv.SubItems.Add(text[3].Trim());
 
+                    //第二行
+                    if (sheng_18!="")
+                    {
+                        ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                        lv1.SubItems.Add(liansai);
+                        lv1.SubItems.Add(home);
+                        lv1.SubItems.Add(guest);
+                        lv1.SubItems.Add("2023-" + time);
+
+                        lv1.SubItems.Add("金宝博");
+                        lv1.SubItems.Add(sheng_18);
+                        lv1.SubItems.Add(he_18);
+                        lv1.SubItems.Add(fu_18);
+                    }
+
+
+
 
                     //第三行
-                    if (sheng_libo!="")
+                    if (sheng_Crown!= "")
                     {
                         ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
                         lv2.SubItems.Add(liansai);
                         lv2.SubItems.Add(home);
                         lv2.SubItems.Add(guest);
                         lv2.SubItems.Add("2023-" + time);
-                        lv2.SubItems.Add("立博");
-                        lv2.SubItems.Add(sheng_libo);
-                        lv2.SubItems.Add(he_libo);
-                        lv2.SubItems.Add(fu_libo);
+                        lv2.SubItems.Add("Crown");
+                        lv2.SubItems.Add(sheng_Crown);
+                        lv2.SubItems.Add(he_Crown);
+                        lv2.SubItems.Add(fu_Crown);
                     }
 
 
-                    //第四行
-                    if (sheng_weilian != "")
-                    {
-                        ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
-                        lv2.SubItems.Add(liansai);
-                        lv2.SubItems.Add(home);
-                        lv2.SubItems.Add(guest);
-                        lv2.SubItems.Add("2023-" + time);
-                        lv2.SubItems.Add("威廉希尔");
-                        lv2.SubItems.Add(sheng_weilian);
-                        lv2.SubItems.Add(he_weilian);
-                        lv2.SubItems.Add(fu_weilian);
-                    }
-
+               
 
 
                     ListViewItem lv3 = listView1.Items.Add(listView1.Items.Count.ToString());

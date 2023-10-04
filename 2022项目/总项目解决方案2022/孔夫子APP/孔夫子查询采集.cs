@@ -62,9 +62,9 @@ namespace 孔夫子APP
 
 
                 headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
-                headers.Add("accessToken:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
-                headers.Add("access-token:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
-                headers.Add("token:e5147ac8-8af9-4c3f-9bfc-3b940a2424f2");
+                headers.Add("accessToken:78dc9857-90af-44e1-871d-5a13bb5cd62e");
+                headers.Add("access-token:78dc9857-90af-44e1-871d-5a13bb5cd62e");
+                headers.Add("token:78dc9857-90af-44e1-871d-5a13bb5cd62e");
                 headers.Add("ssid: 1689944873000198921");
 
 
