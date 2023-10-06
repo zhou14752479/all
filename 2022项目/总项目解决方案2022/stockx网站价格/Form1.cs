@@ -284,15 +284,19 @@ namespace stockx网站价格
 				Match match = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"");
 			
 				string html = Request_new(match.Groups[1].Value) ;
+				//textBox3.Text = html;
+				html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
 
-			
-				MatchCollection amounts = Regex.Matches(html, "\"amount\":\"([\\s\\S]*?)\"");
-				MatchCollection sizes = Regex.Matches(html, "\"size\":\"([\\s\\S]*?)\"");
+				
+				MatchCollection highestBidSize = Regex.Matches(html, "\"highestBidSize\":\"([\\s\\S]*?)\"");
+				MatchCollection highestBid = Regex.Matches(html, "\"highestBid\":([\\s\\S]*?),");
+				MatchCollection lowestAsk = Regex.Matches(html, "\"lowestAsk\":([\\s\\S]*?),");
 
-				for (int i = 0; i < amounts.Count; i++)
+				for (int i = 0; i < highestBidSize.Count; i++)
                 {
-					ListViewItem listViewItem = this.listView1.Items.Add("US " + sizes[i].Groups[1].Value.Replace("null", "-"));
-					listViewItem.SubItems.Add(amounts[i].Groups[1].Value.ToString());
+					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("null", "-"));
+					listViewItem.SubItems.Add(lowestAsk[i].Groups[1].Value.ToString());
+					listViewItem.SubItems.Add(highestBid[i].Groups[1].Value.ToString());
 					
 				}
 			}
@@ -360,43 +364,42 @@ namespace stockx网站价格
 			try
 			{
 				string charset = "utf-8";
-				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stockx.com/api/p/e");
 
 				request.KeepAlive = true;
 				request.Headers.Add("sec-ch-ua", @"""Not/A)Brand"";v=""99"", ""Google Chrome"";v=""115"", ""Chromium"";v=""115""");
-				request.Headers.Add("x-operation-name", @"GetProductPriceLevels");
-				request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN");
-				request.Headers.Add("App-Platform", @"Iron");
-				request.Headers.Add("selected-country", @"CN");
-				request.Headers.Add("x-stockx-session-id", @"af245aac-387a-4628-a68d-4e66319fe61e");
-				request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
 				request.Headers.Add("apollographql-client-name", @"Iron");
-				request.Headers.Add("x-user-legacy-price-levels", @"legacy");
+				request.Headers.Add("App-Version", @"2023.10.01.01");
+				request.Headers.Add("x-operation-name", @"GetMarketData");
+				request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN");
 				request.Headers.Add("sec-ch-ua-mobile", @"?0");
+				request.Headers.Add("App-Platform", @"Iron");
 				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
 				request.ContentType = "application/json";
-				request.Accept = "application/json";
+				request.Accept = "*/*";
+				request.Headers.Add("selected-country", @"CN");
 				request.Headers.Add("x-stockx-device-id", @"ed25270a-c60a-42f0-99db-241176a6181e");
-				request.Headers.Add("apollographql-client-version", @"2023.09.24.01");
-				request.Headers.Add("App-Version", @"2023.09.24.01");
+				request.Headers.Add("apollographql-client-version", @"2023.10.01.01");
+				request.Headers.Add("x-stockx-session-id", @"deb83535-154b-4d2e-9001-2789037baec0");
+				request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
 				request.Headers.Add("Origin", @"https://stockx.com");
 				request.Headers.Add("Sec-Fetch-Site", @"same-origin");
 				request.Headers.Add("Sec-Fetch-Mode", @"cors");
 				request.Headers.Add("Sec-Fetch-Dest", @"empty");
-				request.Referer = "https://stockx.com/zh-cn/nike-kobe-5-protro-chaos";
+				request.Referer = "https://stockx.com/zh-cn/nike-dunk-low-cacao-wow-womens";
 				//request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
-				request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=ed25270a-c60a-42f0-99db-241176a6181e; language_code=zh; __pxvid=e2088da8-958c-11ed-aa1a-0242ac120002; ajs_anonymous_id=4bbc3852-972c-4c84-9e8f-7ee67c19d434; tracker_device=75325615-5e5c-4faa-ae4d-867554ea118e; __ssid=615cf9804e32318265fe9dc2cdabe06; rskxRunCookie=0; rCookie=g0gyrk9rojkslo1m74m8hnlcyp2zu9; RoktRecogniser=a2d4579a-7b37-4efd-9bf3-563ba5514e3b; stockx_homepage=sneakers; _pxvid=e1e4c9e5-958c-11ed-8799-d0acddfc711b; _ga=GA1.1.1207394361.1692097924; _gcl_au=1.1.474060180.1692097924; OptanonAlertBoxClosed=2023-08-15T11:12:04.451Z; _ga_TYYSNQDG4W=GS1.1.1692097923.1.1.1692097927.0.0.0; _ga=GA1.1.1207394361.1692097924; OptanonConsent=isGpcEnabled=0&datestamp=Tue+Aug+15+2023+19%3A12%3A08+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&version=202211.2.0&isIABGlobal=false&hosts=&consentId=816d683c-ae1c-4ce4-bae3-7e5d3ad86859&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0004%3A1%2CC0005%3A1%2CC0003%3A1&geolocation=CN%3BGD&AwaitingReconsent=false; _uetvid=903519503b5c11ee9ab8295f6a39bb6d; stockx_session_id=af245aac-387a-4628-a68d-4e66319fe61e; stockx_session=bbe5fd7e-dd7f-46c9-89bc-d1bd92884670; stockx_selected_region=CN; pxcts=c578d0da-6274-11ee-88da-a92b4397520b; display_location_selector=false; ftr_blst_1h=1696396421874; stockx_preferred_market_activity=sales; stockx_product_visits=2; lastRskxRun=1696397135368; forterToken=8b0950916dcd4429aec3d29023454fc6_1696397134741__UDF43-m4_13ck; __cf_bm=kfKjP9b82kqcU9KuXIV0baM0U_k6evDKxHjlX7iwVbw-1696397342-0-AWVBxymVQYLzBOyWpoc+InwDAqwg1nvU9xJNlAKFhxRBZwgZZjR84l57LsCB+ItFvfiU71oNkbPJjO+y3ZNKVvw=; _pxde=26982be5aa97b948e1c88c3e5313a1f12d74d5c2fc49ac3369dd443caf171ca8:eyJ0aW1lc3RhbXAiOjE2OTYzOTc4NTIyNjAsImZfa2IiOjB9; _pxhd=HCM2oy-ShKelw5etbGHlYKHSUZYQZRlJrEejJ3ctYZOCqDtl9oPxZ9LsEltwVDj7G8W68bxLjUWPGhHVHSux7A==:7pagPN4kwDuyYN2wCd6/2-PI78j-Sq0ItiWpxySURkzyITp5MVNnstVQRYeYphtiWlBdNR3ZfJBHZ3KyhFMPHGUOeiLLHiHBytSOkizN5gI=; cf_clearance=i.aHusTjKYYvgk6.bKayi0qegaUbFJJcQM0NN4conBU-1696397932-0-1-1005a0c1.f77d388d.14d174ad-0.2.1696397932; _dd_s=rum=0&expire=1696398895952&logs=1&id=57ecaf16-d983-4dbb-b5b8-608241e8a314&created=1696396419058");
+				request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=ed25270a-c60a-42f0-99db-241176a6181e; language_code=zh; __pxvid=e2088da8-958c-11ed-aa1a-0242ac120002; ajs_anonymous_id=4bbc3852-972c-4c84-9e8f-7ee67c19d434; tracker_device=75325615-5e5c-4faa-ae4d-867554ea118e; __ssid=615cf9804e32318265fe9dc2cdabe06; rskxRunCookie=0; rCookie=g0gyrk9rojkslo1m74m8hnlcyp2zu9; RoktRecogniser=a2d4579a-7b37-4efd-9bf3-563ba5514e3b; stockx_homepage=sneakers; _pxvid=e1e4c9e5-958c-11ed-8799-d0acddfc711b; _ga=GA1.1.1207394361.1692097924; _gcl_au=1.1.474060180.1692097924; OptanonAlertBoxClosed=2023-08-15T11:12:04.451Z; _ga_TYYSNQDG4W=GS1.1.1692097923.1.1.1692097927.0.0.0; _ga=GA1.1.1207394361.1692097924; OptanonConsent=isGpcEnabled=0&datestamp=Tue+Aug+15+2023+19%3A12%3A08+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&version=202211.2.0&isIABGlobal=false&hosts=&consentId=816d683c-ae1c-4ce4-bae3-7e5d3ad86859&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0004%3A1%2CC0005%3A1%2CC0003%3A1&geolocation=CN%3BGD&AwaitingReconsent=false; _uetvid=903519503b5c11ee9ab8295f6a39bb6d; stockx_session_id=deb83535-154b-4d2e-9001-2789037baec0; stockx_session=3175e3d2-51ba-4355-9a02-6f6553a6fffd; __cf_bm=dZpIahNIR9rsP18qo3f0W01aOW2SFPswklcVfmbvyzI-1696585213-0-Af/3V8X6yo5kt+bBNtodYpJF2RRhLcKi+GtbIHri+TweswP9uylNRvGWUqptG0LjhCCu7oIQcZawwR9Wuu4e7W8=; stockx_selected_region=CN; pxcts=59e50c05-642c-11ee-9762-4933eacc042a; display_location_selector=false; cf_clearance=LdxU1s24N58YKMHc1Qhb1xMhY1d17yBOlL8Bmz6XNMM-1696585215-0-1-1005a0c1.f77d388d.14d174ad-0.2.1696585215; ftr_blst_1h=1696585218173; forterToken=8b0950916dcd4429aec3d29023454fc6_1696585217483__UDF43-m4_13ck; stockx_preferred_market_activity=sales; stockx_product_visits=1; lastRskxRun=1696585222809; stockx_default_size=%7B%22sneakers%22%3A%225W%22%2C%22shoes%22%3A%225W%22%7D; _pxde=269beed9d7af28b44bd5380b3ffa00aea3299db19d2b81c867b1e090e405c037:eyJ0aW1lc3RhbXAiOjE2OTY1ODU2OTYzMDgsImZfa2IiOjB9; _dd_s=rum=0&expire=1696586635390&logs=1&id=a22af02e-f46a-4edf-a3ea-f4b85169d22e&created=1696585217149");
 
 				request.Method = "POST";
 				request.ServicePoint.Expect100Continue = false;
 
-				string body = @"{""query"":""query GetProductPriceLevels($productId: String!, $market: String, $currencyCode: CurrencyCode, $transactionType: TransactionType, $page: Int, $limit: Int, $enableAIAPrices: Boolean, $isVariant: Boolean!) {\n  product(id: $productId) @skip(if: $isVariant) {\n    id\n    market(currencyCode: $currencyCode) {\n      ...MarketPriceLevelsFragment\n    }\n  }\n  variant(id: $productId) @include(if: $isVariant) {\n    id\n    market(currencyCode: $currencyCode) {\n      ...MarketPriceLevelsFragment\n    }\n  }\n}\n\nfragment MarketPriceLevelsFragment on Market {\n  priceLevels(\n    market: $market\n    transactionType: $transactionType\n    page: $page\n    limit: $limit\n    enableAIAPrices: $enableAIAPrices\n  ) {\n    edges {\n      node {\n        count\n        ownCount\n        amount\n        variant {\n          id\n          traits {\n            size\n          }\n        }\n      }\n    }\n  }\n}"",""variables"":{""productId"":"""+aid+"\",\"market\":\"CN\",\"currencyCode\":\"USD\",\"transactionType\":\"ASK\",\"page\":1,\"limit\":50,\"enableAIAPrices\":true,\"isVariant\":false},\"operationName\":\"GetProductPriceLevels\"}";
+				string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String) {\n  product(id: $id) {\n    id\n    urlKey\n    title\n    uuid\n    contentGroup\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        bidAskData(country: $countryCode, market: $marketName) {\n          highestBid\n          highestBidSize\n          lowestAsk\n          lowestAskSize\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n      }\n    }\n    ...BidButtonFragment\n    ...BidButtonContentFragment\n    ...BuySellFragment\n    ...BuySellContentFragment\n    ...XpressAskPDPFragment\n    ...LastSaleFragment\n  }\n}\n\nfragment BidButtonFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BidButtonContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  minimumBid(currencyCode: $currencyCode)\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n      numberOfAsks\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n        numberOfAsks\n      }\n    }\n  }\n}\n\nfragment BuySellFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BuySellContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment XpressAskPDPFragment on Product {\n  market(currencyCode: $currencyCode) {\n    state(country: $countryCode) {\n      numberOfCustodialAsks\n    }\n  }\n  variants {\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode) {\n        numberOfCustodialAsks\n      }\n    }\n  }\n}\n\nfragment LastSaleFragment on Product {\n  id\n  market(currencyCode: $currencyCode) {\n    statistics(market: $marketName) {\n      ...LastSaleMarketStatistics\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      statistics(market: $marketName) {\n        ...LastSaleMarketStatistics\n      }\n    }\n  }\n}\n\nfragment LastSaleMarketStatistics on MarketStatistics {\n  lastSale {\n    amount\n    changePercentage\n    changeValue\n    sameFees\n  }\n}"",""variables"":{""id"":"""+aid+"\",\"currencyCode\":\"USD\",\"countryCode\":\"CN\",\"marketName\":null},\"operationName\":\"GetMarketData\"}";
 				byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
 				request.ContentLength = postBytes.Length;
 				Stream stream = request.GetRequestStream();
 				stream.Write(postBytes, 0, postBytes.Length);
 				stream.Close();
+
 
 				HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 				bool flag = response.Headers["Content-Encoding"] == "gzip";
@@ -456,5 +459,19 @@ namespace stockx网站价格
 			cookie = method.GetCookies("https://stockx.com/zh-cn/adidas-yeezy-slide-black-onyx");
 			MessageBox.Show(cookie);
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+			if (dr == DialogResult.OK)
+			{
+				// Environment.Exit(0);
+				System.Diagnostics.Process.GetCurrentProcess().Kill();
+			}
+			else
+			{
+				e.Cancel = true;//点取消的代码 
+			}
+		}
     }
 }
