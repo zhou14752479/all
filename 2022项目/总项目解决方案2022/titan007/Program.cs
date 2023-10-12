@@ -16,7 +16,7 @@ namespace titan007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 欧赔初陪初盘平均值());
+            Application.Run(new titan007());
         }
     }
 }

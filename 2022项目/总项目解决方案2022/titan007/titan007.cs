@@ -554,10 +554,11 @@ namespace titan007
 
                 for (int x = 1; x < ids.Count; x++)
                 {
-                    string data365 = "";
-                    string databetathome = "";
-                    string dataWilliamHill = "";
-                    string dataLadbrokes = "";
+                    string data18= "";
+                    string dataysb = "";
+                    string datacrown = "";
+                    string data12 = "";
+                    string datalibo = "";
 
                     string aid = "2" + ids[x].Groups[1].Value;
                     string datajsurl = "http://1x2d.titan007.com/" + aid + ".js?r=007133062314590247588";
@@ -589,21 +590,21 @@ namespace titan007
                             switch (cname)
                             {
 
-                                //case "Bet 365":
-
-                                //    gongsi_dics.Add(cid, "Bet 365");
-                                //    break;
-                                //case "Vcbet":
-                                //    gongsi_dics.Add(cid, "Vcbet");
-                                //    break;
-                                case "William Hill":
-                                    gongsi_dics.Add(cid, "William Hill");
-                                    break;
-                                //case "Interwetten":
-                                //    gongsi_dics.Add(cid, "Interwetten");
-                                //    break;
                                 case "18Bet":
+
                                     gongsi_dics.Add(cid, "18Bet");
+                                    break;
+                                case "12bet":
+                                    gongsi_dics.Add(cid, "12bet");
+                                    break;
+                                case "Easybets":
+                                    gongsi_dics.Add(cid, "Easybets");
+                                    break;
+                                case "Crown":
+                                    gongsi_dics.Add(cid, "Crown");
+                                    break;
+                                case "Ladbrokes":
+                                    gongsi_dics.Add(cid, "Ladbrokes");
                                     break;
 
                             }
@@ -686,30 +687,30 @@ namespace titan007
 
 
 
-                                //if (gongsi_name== "Bet 365")
-                                //{
-                                //    data365 = matchname_cn + "#" +hometeam_cn + "#" + guestteam_cn+ "#" + MatchTime + "#" + gongsi_name+ "#" + data1 + "#" + data2 + "#" + data3;
-
-                                //}
-                                //if (gongsi_name == "Vcbet")
-                                //{
-                                //    databetathome = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "伟德" + "#" + data1 + "#" + data2 + "#" + data3;
-
-                                //}
-                                if (gongsi_name == "William Hill")
-                                {
-                                    dataWilliamHill = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "威廉希尔" + "#" + data1 + "#" + data2 + "#" + data3;
-
-                                }
-                                //if (gongsi_name == "Interwetten")
-                                //{
-                                //    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
-
-                                //}
-
                                 if (gongsi_name == "18Bet")
                                 {
-                                    dataLadbrokes = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+                                    data18= matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "Easybets")
+                                {
+                                    dataysb = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "易胜博"+ "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "Crown")
+                                {
+                                    datacrown = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+                                if (gongsi_name == "12Bet")
+                                {
+                                    data12 = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + gongsi_name + "#" + data1 + "#" + data2 + "#" + data3;
+
+                                }
+
+                                if (gongsi_name == "Ladbrokes")
+                                {
+                                    datalibo = matchname_cn + "#" + hometeam_cn + "#" + guestteam_cn + "#" + MatchTime + "#" + "立博"+ "#" + data1 + "#" + data2 + "#" + data3;
 
                                 }
 
@@ -734,44 +735,10 @@ namespace titan007
 
 
 
-                    //if (data365.Length > 20)
-                    //{
-                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                    //    string[] text = data365.Split(new string[] { "#" }, StringSplitOptions.None);
-
-                    //    for (int i = 0; i < text.Length; i++)
-                    //    {
-                    //        lv.SubItems.Add(text[i]);
-                    //    }
-                    //}
-
-
-                    //if (databetathome.Length > 20)
-                    //{
-                    //    ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                    //    string[] text = databetathome.Split(new string[] { "#" }, StringSplitOptions.None);
-
-                    //    for (int i = 0; i < text.Length; i++)
-                    //    {
-                    //        lv.SubItems.Add(text[i]);
-                    //    }
-                    //}
-
-                    if (dataWilliamHill.Length > 20)
+                    if (data18.Length > 20)
                     {
                         ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                        string[] text = dataWilliamHill.Split(new string[] { "#" }, StringSplitOptions.None);
-
-                        for (int i = 0; i < text.Length; i++)
-                        {
-                            lv.SubItems.Add(text[i]);
-                        }
-                    }
-
-                    if (dataLadbrokes.Length > 20)
-                    {
-                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
-                        string[] text = dataLadbrokes.Split(new string[] { "#" }, StringSplitOptions.None);
+                        string[] text = data18.Split(new string[] { "#" }, StringSplitOptions.None);
 
                         for (int i = 0; i < text.Length; i++)
                         {
@@ -780,8 +747,51 @@ namespace titan007
                     }
 
 
+                    if (dataysb.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = dataysb.Split(new string[] { "#" }, StringSplitOptions.None);
 
-                    if (data365.Length > 20)
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (datacrown.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = datacrown.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+                    if (data12.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = data12.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+                    if (datalibo.Length > 20)
+                    {
+                        ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
+                        string[] text = datalibo.Split(new string[] { "#" }, StringSplitOptions.None);
+
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            lv.SubItems.Add(text[i]);
+                        }
+                    }
+
+
+                    if (data18.Length > 20)
                     {
                         ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
                         lv.SubItems.Add("------------");
@@ -808,6 +818,7 @@ namespace titan007
         }
 
         #endregion
+
         Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
 
         private void titan007_Load(object sender, EventArgs e)

@@ -294,9 +294,22 @@ namespace stockx网站价格
 
 				for (int i = 0; i < highestBidSize.Count; i++)
                 {
+					double high = 0;
+					double low = 0;
+					if (highestBid[i].Groups[1].Value!= "null" && highestBid[i].Groups[1].Value!="")
+                    {
+						high = Convert.ToDouble(this.textBox2.Text) * Convert.ToDouble(highestBid[i].Groups[1].Value);
+					}
+					if(lowestAsk[i].Groups[1].Value!= "null" && lowestAsk[i].Groups[1].Value!="")
+                    {
+						low = Convert.ToDouble(this.textBox2.Text) * Convert.ToDouble(lowestAsk[i].Groups[1].Value);
+					}
+					
+					
+
 					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("null", "-"));
-					listViewItem.SubItems.Add(lowestAsk[i].Groups[1].Value.ToString());
-					listViewItem.SubItems.Add(highestBid[i].Groups[1].Value.ToString());
+					listViewItem.SubItems.Add(low.ToString("F2"));
+					listViewItem.SubItems.Add(high.ToString("F2"));
 					
 				}
 			}

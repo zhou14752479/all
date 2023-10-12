@@ -75,7 +75,7 @@ namespace titan007
         bool zanting = true;
         bool status = true;
 
-        #region 订单信息
+        #region 进球数
         public void run()
         {
 
@@ -243,6 +243,8 @@ namespace titan007
         }
         #endregion
 
+
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
