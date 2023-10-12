@@ -595,7 +595,7 @@ namespace titan007
                                     gongsi_dics.Add(cid, "18Bet");
                                     break;
                                 case "12bet":
-                                    gongsi_dics.Add(cid, "12bet");
+                                    gongsi_dics.Add(cid, "12Bet");
                                     break;
                                 case "Easybets":
                                     gongsi_dics.Add(cid, "Easybets");
