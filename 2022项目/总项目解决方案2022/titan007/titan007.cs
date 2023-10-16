@@ -791,7 +791,7 @@ namespace titan007
                     }
 
 
-                    if (data18.Length > 20)
+                    if (data18.Length > 20 || data12.Length>20 || dataysb.Length > 20 || datacrown.Length > 20 || datalibo.Length > 20)
                     {
                         ListViewItem lv = listView1.Items.Add(listView1.Items.Count.ToString());
                         lv.SubItems.Add("------------");
