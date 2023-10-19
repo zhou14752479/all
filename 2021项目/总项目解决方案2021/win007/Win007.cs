@@ -1283,89 +1283,13 @@ namespace win007
 
 
 
-        public string getminmaxvalue(int hang,int sort)
+
+
+        public string getminmaxvalue(int hang, int sort)
         {
             double a = Convert.ToDouble(textBox1.Text);
-            double b = Convert.ToDouble(textBox2.Text);
-            double c = Convert.ToDouble(textBox3.Text);
-            if (hang==1)
-            {
-                
-
-            }
-            if(hang==2)
-            {
-                a = Convert.ToDouble(textBox9.Text);
-                b = Convert.ToDouble(textBox8.Text);
-                c = Convert.ToDouble(textBox7.Text);
-            }
-
-            double min, max,mid;
-
-
-            if (a < b)
-            {
-                min = a;
-                max = b;
-               
-            }
-
-           else if (a > b)
-            {
-                min = b;
-                max = a;
-            }
-            else
-            {
-                min = b;
-                max = a;
-            }
-
-            if (min > c)
-            {
-                min = c;
-            }
-
-            if (max < c)
-            {
-                max = c;
-            }
-
-            if(a!=min&&a!=max)
-            {
-                mid = a;
-            }
-            else if (b!= min && b != max)
-            {
-                mid = b;
-            }
-            else
-            {
-                mid = c;
-            }
-
-            if(sort==1)
-            {
-                return min.ToString();
-            }
-            if (sort == 2)
-            {
-                return mid.ToString();
-            }
-            if (sort == 3)
-            {
-                return max.ToString();
-            }
-
-            return "";
-        }
-
-
-        public string getminmaxvalue_old(int hang, int sort)
-        {
-            double a = Convert.ToDouble(textBox1.Text);
-            double b = Convert.ToDouble(textBox2.Text);
-            double c = Convert.ToDouble(textBox3.Text);
+            double b = Convert.ToDouble(textBox3.Text);
+          
             if (hang == 1)
             {
 
@@ -1374,58 +1298,36 @@ namespace win007
             if (hang == 2)
             {
                 a = Convert.ToDouble(textBox9.Text);
-                b = Convert.ToDouble(textBox8.Text);
-                c = Convert.ToDouble(textBox7.Text);
+                b = Convert.ToDouble(textBox7.Text);
+               
             }
 
-            double min, max, mid;
+            double min, max;
 
 
-            if (a < b)
+            if(a<b)
             {
                 min = a;
                 max = b;
-
             }
 
-
-            else
+           else if (a > b)
             {
                 min = b;
                 max = a;
             }
-
-            if (min > c)
+            else 
             {
-                min = c;
+                min = a;
+                max = b;
             }
 
-            if (max < c)
-            {
-                max = c;
-            }
-
-            if (a != min && a != max)
-            {
-                mid = a;
-            }
-            else if (b != min && b != max)
-            {
-                mid = b;
-            }
-            else
-            {
-                mid = c;
-            }
 
             if (sort == 1)
             {
                 return min.ToString();
             }
-            if (sort == 2)
-            {
-                return mid.ToString();
-            }
+           
             if (sort == 3)
             {
                 return max.ToString();
@@ -1677,20 +1579,7 @@ namespace win007
             TextBox t = new TextBox();
             t.Text = "";
 
-            if (getminmaxvalue(1, 2) == textBox1.Text.Trim())
-            {
-                sancirun(t, textBox2, textBox3, textBox4, textBox5, dataGridView3, t, t, t, t, rule3_txtbox_3);
-            }
-            if (getminmaxvalue(1, 2) == textBox2.Text.Trim())
-            {
-                sancirun(textBox1, t, textBox3, textBox4, textBox5, dataGridView3, t, t, t, t, rule3_txtbox_3);
-
-            }
-            if (getminmaxvalue(1, 2) == textBox3.Text.Trim())
-            {
-                sancirun(textBox1, textBox2, t, textBox4, textBox5, dataGridView3, t, t, t, t, rule3_txtbox_3);
-
-            }
+            sancirun(textBox1, t, textBox3, textBox4, textBox5, dataGridView3, t, t, t, t, rule3_txtbox_3);
         }
 
         private void button22_Click(object sender, EventArgs e)
