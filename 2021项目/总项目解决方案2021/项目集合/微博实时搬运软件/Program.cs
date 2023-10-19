@@ -16,7 +16,7 @@ namespace 微博实时搬运软件
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 微博实时搬运软件());
+            Application.Run(new 微博搬运5eplay());
         }
     }
 }
