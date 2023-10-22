@@ -43,7 +43,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(594, 49);
+            this.button1.Location = new System.Drawing.Point(322, 32);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 35);
             this.button1.TabIndex = 0;
@@ -71,6 +71,7 @@
             this.radioButton1.TabIndex = 2;
             this.radioButton1.Text = "福建幼儿园350628198908185048";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.Visible = false;
             // 
             // radioButton2
             // 
@@ -82,6 +83,7 @@
             this.radioButton2.TabIndex = 3;
             this.radioButton2.Text = "安徽幼儿园342224199208051927";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Visible = false;
             // 
             // radioButton3
             // 
@@ -93,6 +95,7 @@
             this.radioButton3.TabIndex = 4;
             this.radioButton3.Text = "xiaoben365陕西61272519960129422X";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.Visible = false;
             // 
             // radioButton4
             // 
@@ -104,6 +107,7 @@
             this.radioButton4.TabIndex = 5;
             this.radioButton4.Text = "scts.scedu.com.cn 18583980979";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.Visible = false;
             // 
             // radioButton5
             // 
@@ -115,10 +119,11 @@
             this.radioButton5.TabIndex = 6;
             this.radioButton5.Text = "scnlts.scedu.com.cn";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.Visible = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(594, 90);
+            this.button2.Location = new System.Drawing.Point(479, 32);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 35);
             this.button2.TabIndex = 7;
@@ -129,10 +134,10 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(545, 131);
+            this.textBox2.Location = new System.Drawing.Point(322, 90);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(232, 101);
+            this.textBox2.Size = new System.Drawing.Size(405, 99);
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = resources.GetString("textBox2.Text");
             this.textBox2.Visible = false;
@@ -149,6 +154,7 @@
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "陕西师范大学";
             this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.Visible = false;
             // 
             // 客户文档下载
             // 

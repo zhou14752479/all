@@ -214,20 +214,21 @@ namespace 客户文档下载
                 sr.Close();  //只关闭流
                 sr.Dispose();   //销毁流内存
 
-                for (int page = Convert.ToInt32(lastpage); page < 19107; page++)
+                for (int page = Convert.ToInt32(lastpage); page < 270; page++)
                 {
-                    FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\page.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
+                    textBox1.Text = "";
+                   FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\page.txt", FileMode.Create, FileAccess.Write);//创建写入文件 
                     StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
                     sw.WriteLine(page);
                     sw.Close();
                     fs1.Close();
                     sw.Dispose();
 
-                    string url = "http://www.bcvet.cn/admin/rest/resource/resourceList/dataList";
-                    string postdata = "{\"pageNo\":"+page+",\"title\":\"\",\"sortBy\":\"create_time\",\"sortDesc\":\"desc\",\"typeList\":[{\"value\":\"all\",\"typeId\":\"resource_type\"},{\"value\":\"\",\"typeId\":\"STUDYSUBJ\"},{\"value\":\"\",\"typeId\":\"STUDYGRADE\"},{\"value\":\"\",\"typeId\":\"region\"}],\"ifGood\":0}";
-                    string html = PostUrlDefault(url, postdata, cookie, "application/json");
+                    string url = "http://study.bcvet.com.cn/proj/studentwork/activity/yx_detial_user_data.htm?dictLevelId1=2203069&dictLevelId2=&dictLevelId3=&dictLevelId4=&realName=&usrDictId2=-1&markAll=1&st=undefined&ptcode=40199&id=134177&state=&isRecommend=&checkLevel=&actStatus=1&actNeedmark=1&pageSize=10&curPage="+page+"&_=1697939026007";
+
+                    string html = GetUrlWithCookie(url,cookie,"utf-8");
                   
-                    MatchCollection ids = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+                    MatchCollection ids = Regex.Matches(html, @"otherwork\(([\s\S]*?)\)");
                    
                     for (int i = 0; i < ids.Count; i++)
                     {
@@ -239,14 +240,13 @@ namespace 客户文档下载
                             Directory.CreateDirectory(sPath); //创建文件夹
                         }
 
-                        string aurl = "http://www.bcvet.cn/admin/rest/resource/info/view?id="+ids[i].Groups[1].Value+"&_=1652512165493";
+                        string aurl = "http://study.bcvet.com.cn/proj/studentwork/activity/swapAjax/replyList.json";
+                        string postdata = "activityId=134177&stepId=381667&userId="+ids[i].Groups[1].Value+"&bianlunfang=&isParentIdNull=false&ptcode=40199";
+                        string ahtml = PostUrlDefault(aurl,postdata,cookie, "application/x-www-form-urlencoded");
 
-                        string ahtml = GetUrlWithCookie(aurl,cookie,"utf-8");
-
-                        string downurl =  Regex.Match(ahtml, @"""fastdfsPath"":""([\s\S]*?)""").Groups[1].Value ;
-                        string title = Regex.Match(ahtml, @"""title"":""([\s\S]*?)""").Groups[1].Value.ToLower();
-                        string filesize = Regex.Match(ahtml, @"""fileSize"":""([\s\S]*?)""").Groups[1].Value.ToLower();
-
+                        string downurl =  Regex.Match(ahtml, @"http([\s\S]*?)""").Groups[1].Value ;
+                        string title = Regex.Match(ahtml, @"""context"":""([\s\S]*?)&").Groups[1].Value.ToLower();
+                      
 
                         textBox1.Text += "正在下载：页码：  " + page + "------ " + title+"\r\n" ;
                         if (downurl == "")
@@ -256,23 +256,14 @@ namespace 客户文档下载
                             continue;
                         }
 
-                        if (filesize!="")
-                        {
-                            //超过30MB不下载
-                            if(Convert.ToDouble(filesize)>30720)
-                            {
-                                textBox1.Text += title + "文件超过30MB" + "\r\n";
-                                continue;
-                            }
-                          
-                        }
+                      
 
                         if (title.Contains("png")|| title.Contains("jpg")|| title.Contains("jpeg")|| title.Contains("mp4") || title.Contains("mp3") || title.Contains("zip") || title.Contains("rar"))
                         {
-                            textBox1.Text += title + "格式不符合" + "\r\n";
+                           // textBox1.Text += title + "格式不符合" + "\r\n";
                             continue;
                         }
-                        downloadFile("http://www.bcvet.cn/" + downurl, sPath, title, cookie);
+                        downloadFile("http"+downurl, sPath, title, cookie);
                         
                     }
 
@@ -748,63 +739,70 @@ namespace 客户文档下载
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
-            {
-                //福建幼儿园350628198908185048
+            //if (radioButton1.Checked == true)
+            //{
+            //    //福建幼儿园350628198908185048
 
-                Thread thread = new Thread(run_fujianyoueryuan);
+            //    Thread thread = new Thread(run_fujianyoueryuan);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+
+
+            //    Thread thread1 = new Thread(run_fujianyoueryuan_2);
+            //    thread1.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+
+            //}
+
+            //if (radioButton2.Checked == true)
+            //{
+            //    //福建幼儿园350628198908185048
+            //    if (thread == null || !thread.IsAlive)
+            //    {
+            //        thread = new Thread(run_anhuiyoueryuan);
+            //        thread.Start();
+            //        Control.CheckForIllegalCrossThreadCalls = false;
+            //    }
+            //}
+
+            //if (radioButton3.Checked == true)
+            //{
+            //    //校本
+            //    if (thread == null || !thread.IsAlive)
+            //    {
+            //        thread = new Thread(run_xiaoben_fujian);
+            //        thread.Start();
+            //        Control.CheckForIllegalCrossThreadCalls = false;
+            //    }
+            //}
+
+            //if (radioButton6.Checked == true)
+            //{
+
+            //    if (thread == null || !thread.IsAlive)
+            //    {
+            //        thread = new Thread(shanxishifan);
+            //        thread.Start();
+            //        Control.CheckForIllegalCrossThreadCalls = false;
+            //    }
+            //}
+
+            //if (radioButton4.Checked == true)
+            //{
+            //    //四川金牛区
+            //    if (thread == null || !thread.IsAlive)
+            //    {
+            //        thread = new Thread(scedu_jinniuqu);
+            //        thread.Start();
+            //        Control.CheckForIllegalCrossThreadCalls = false;
+            //    }
+            //}
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(myrun);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
-
-
-                Thread thread1 = new Thread(run_fujianyoueryuan_2);
-                thread1.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-
-            }
-
-            if (radioButton2.Checked == true)
-            {
-                //福建幼儿园350628198908185048
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(run_anhuiyoueryuan);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
-            }
-
-            if (radioButton3.Checked == true)
-            {
-                //校本
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(run_xiaoben_fujian);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
-            }
-
-            if (radioButton6.Checked == true)
-            {
-              
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(shanxishifan);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
-            }
-
-            if (radioButton4.Checked == true)
-            {
-                //四川金牛区
-                if (thread == null || !thread.IsAlive)
-                {
-                    thread = new Thread(scedu_jinniuqu);
-                    thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
-                }
             }
         }
 
