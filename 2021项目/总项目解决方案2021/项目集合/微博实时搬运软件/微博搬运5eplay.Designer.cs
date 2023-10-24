@@ -50,9 +50,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -69,7 +69,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(873, 604);
+            this.tabPage2.Size = new System.Drawing.Size(914, 601);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "浏览器登录";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(867, 598);
+            this.webBrowser1.Size = new System.Drawing.Size(908, 595);
             this.webBrowser1.TabIndex = 5;
             // 
             // comboBox2
@@ -271,6 +271,18 @@
             this.tabPage1.Text = "主界面";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
+            this.textBox3.Location = new System.Drawing.Point(41, 386);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(867, 76);
+            this.textBox3.TabIndex = 416;
+            this.textBox3.Visible = false;
+            this.textBox3.WordWrap = false;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(204, 99);
@@ -291,17 +303,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(922, 627);
             this.tabControl1.TabIndex = 2;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 11F);
-            this.textBox3.Location = new System.Drawing.Point(41, 386);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(867, 76);
-            this.textBox3.TabIndex = 416;
-            this.textBox3.WordWrap = false;
             // 
             // 微博搬运5eplay
             // 
