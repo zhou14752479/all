@@ -151,8 +151,8 @@ namespace 微博实时搬运软件
 
 
         string COOKIE = "SUB=_2A25MO3ekDeRhGeBK41EW8ifNzziIHXVvMe5srDV8PUNbmtB-LWrskW9NR5TvTSZaDjRHYgXXvMN97qgvhofxJijx; SSOLoginState=1631520753; _s_tentry=-; Apache=2892027443189.608.1631520760089; wvr=6; SINAGLOBAL=3000818319191.1.1631409320223; ALF=1663056754; webim_unReadCount=%7B%22time%22%3A1631520783381%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A75%2C%22chat_group_notice%22%3A0%2C%22allcountNum%22%3A126%2C%22msgbox%22%3A0%7D; SCF=ArqSqpl5iSE-imD8ulC6vYCgQXmg0i0xM3dHh0LoQ4V2KkocpI9VgGbzsvkA0BpcteYibgOh5C6l1ZC_DU9FIo0.; ULV=1631520760593:24:24:24:2892027443189.608.1631520760089:1631520638987; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KMhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4";
-        //string uid = "5269475300"; //我的UID
-        string uid = "7797604772";  //客户UID
+        string uid = "6483729144"; //客户UID
+       // string uid = "7797604772";  //我的UID
         #region POST请求
         /// <summary>
         /// POST请求
@@ -555,7 +555,7 @@ namespace 微博实时搬运软件
                     {
 
                         ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据   
-                        lv1.SubItems.Add(Regex.Match(detailhtml, @"""title"": ""([\s\S]*?)""").Groups[1].Value);
+                        lv1.SubItems.Add(Regex.Match(detailhtml, @"title   = '([\s\S]*?)'").Groups[1].Value);
                         lv1.SubItems.Add("发布成功");
                         //IniWriteValue("values", "uids", uidini + "," + uid);
                     }
@@ -574,7 +574,11 @@ namespace 微博实时搬运软件
 
         private void 微博搬运5eplay_Load(object sender, EventArgs e)
         {
-            COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; UOR=,,www.baidu.com; login_sid_t=a00ca1af5162eb1576391f894f9be1bc; cross_origin_proto=SSL; _s_tentry=weibo.com; Apache=4195577799759.42.1697713588362; ULV=1697713588363:2:2:1:4195577799759.42.1697713588362:1696127602452; UPSTREAM-CARD=; PC_TOKEN=cbe97333f3; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WhzQHYxRiGZZ1T2c2jB6BdV5JpX5o275NHD95QNS0.NSo5XS0MEWs4DqcjZUcLV9JvEdK-EeBtt; SSOLoginState=1697714803; SCF=ArjfG7Oxq2ksfkd3Kje4Ddqr-LEVYvihDm9Sgcotv21NJkStO6j3O2zxRBrHMfiIN-CHT1IepwW-DZbBi_x9hOY.; SUB=_2A25INWIjDeRhGeFJ4lUX8CrLzD6IHXVrQ9TrrDV8PUNbmtAGLVnhkW9NfrwsB4HqJ8w7LzHTgBvKBtVCeJmLK4oi; ALF=1729250803; ustat=__121.226.141.214_1697714809_0.18773500";
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Navigate("https://weibo.com/login.php");
+            //tabControl1.SelectedIndex = 1;
+            COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; UOR=,,www.baidu.com; _s_tentry=weibo.com; Apache=4883797395102.274.1698316072574; ULV=1698316072577:3:3:2:4883797395102.274.1698316072574:1697713588363; WBtopGlobal_register_version=2023102619; PC_TOKEN=1f89f57e82; appkey=; login_sid_t=717a02d29dbd1275384677412e4c18e2; cross_origin_proto=SSL; SCF=ArjfG7Oxq2ksfkd3Kje4Ddqr-LEVYvihDm9Sgcotv21NF4PINyXn-vqSjZGRHMRqChM16aESjJM0au_5Ps8u05k.; SUB=_2A25IPjjDDeRhGeBK41EW8ifNzziIHXVrMjQLrDV8PUNbmtAGLRDbkW9NR5TvTWPkjn61MbVpvLCNXkQ10vzoqBW-; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KzhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4; ALF=1729854483; SSOLoginState=1698318484; ustat=__121.226.141.214_1698318555_0.30873000";
         }
     }
 }
