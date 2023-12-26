@@ -33,6 +33,11 @@
             this.导出查询数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空数据库全部数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.比赛ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司二ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司三ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司四ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.公司五ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
@@ -168,11 +173,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button26 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.公司一ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.公司二ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.公司三ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.公司四ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.公司五ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -239,6 +239,41 @@
             this.比赛ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.比赛ToolStripMenuItem.Text = "填入实时数据";
             this.比赛ToolStripMenuItem.Click += new System.EventHandler(this.比赛ToolStripMenuItem_Click);
+            // 
+            // 公司一ToolStripMenuItem
+            // 
+            this.公司一ToolStripMenuItem.Name = "公司一ToolStripMenuItem";
+            this.公司一ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.公司一ToolStripMenuItem.Text = "公司一";
+            this.公司一ToolStripMenuItem.Click += new System.EventHandler(this.公司一ToolStripMenuItem_Click);
+            // 
+            // 公司二ToolStripMenuItem
+            // 
+            this.公司二ToolStripMenuItem.Name = "公司二ToolStripMenuItem";
+            this.公司二ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.公司二ToolStripMenuItem.Text = "公司二";
+            this.公司二ToolStripMenuItem.Click += new System.EventHandler(this.公司二ToolStripMenuItem_Click);
+            // 
+            // 公司三ToolStripMenuItem
+            // 
+            this.公司三ToolStripMenuItem.Name = "公司三ToolStripMenuItem";
+            this.公司三ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.公司三ToolStripMenuItem.Text = "公司三";
+            this.公司三ToolStripMenuItem.Click += new System.EventHandler(this.公司三ToolStripMenuItem_Click);
+            // 
+            // 公司四ToolStripMenuItem
+            // 
+            this.公司四ToolStripMenuItem.Name = "公司四ToolStripMenuItem";
+            this.公司四ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.公司四ToolStripMenuItem.Text = "公司四";
+            this.公司四ToolStripMenuItem.Click += new System.EventHandler(this.公司四ToolStripMenuItem_Click);
+            // 
+            // 公司五ToolStripMenuItem
+            // 
+            this.公司五ToolStripMenuItem.Name = "公司五ToolStripMenuItem";
+            this.公司五ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.公司五ToolStripMenuItem.Text = "公司五";
+            this.公司五ToolStripMenuItem.Click += new System.EventHandler(this.公司五ToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -1284,7 +1319,7 @@
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(195, 91);
+            this.textBox13.Location = new System.Drawing.Point(192, 91);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(91, 23);
             this.textBox13.TabIndex = 79;
@@ -1735,41 +1770,6 @@
             this.webBrowser1.Size = new System.Drawing.Size(1528, 1034);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
-            // 
-            // 公司一ToolStripMenuItem
-            // 
-            this.公司一ToolStripMenuItem.Name = "公司一ToolStripMenuItem";
-            this.公司一ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.公司一ToolStripMenuItem.Text = "公司一";
-            this.公司一ToolStripMenuItem.Click += new System.EventHandler(this.公司一ToolStripMenuItem_Click);
-            // 
-            // 公司二ToolStripMenuItem
-            // 
-            this.公司二ToolStripMenuItem.Name = "公司二ToolStripMenuItem";
-            this.公司二ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.公司二ToolStripMenuItem.Text = "公司二";
-            this.公司二ToolStripMenuItem.Click += new System.EventHandler(this.公司二ToolStripMenuItem_Click);
-            // 
-            // 公司三ToolStripMenuItem
-            // 
-            this.公司三ToolStripMenuItem.Name = "公司三ToolStripMenuItem";
-            this.公司三ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.公司三ToolStripMenuItem.Text = "公司三";
-            this.公司三ToolStripMenuItem.Click += new System.EventHandler(this.公司三ToolStripMenuItem_Click);
-            // 
-            // 公司四ToolStripMenuItem
-            // 
-            this.公司四ToolStripMenuItem.Name = "公司四ToolStripMenuItem";
-            this.公司四ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.公司四ToolStripMenuItem.Text = "公司四";
-            this.公司四ToolStripMenuItem.Click += new System.EventHandler(this.公司四ToolStripMenuItem_Click);
-            // 
-            // 公司五ToolStripMenuItem
-            // 
-            this.公司五ToolStripMenuItem.Name = "公司五ToolStripMenuItem";
-            this.公司五ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.公司五ToolStripMenuItem.Text = "公司五";
-            this.公司五ToolStripMenuItem.Click += new System.EventHandler(this.公司五ToolStripMenuItem_Click);
             // 
             // Win007
             // 

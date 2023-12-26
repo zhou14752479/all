@@ -1029,6 +1029,8 @@ namespace win007
             getshishidata(comboBox5.Text.Trim());
             chaxun(t1, t2, t3, t4, t5, comboBox5, dgv1, t9, t8, t7, t13, xianshi);
 
+            getshishidata(comboBox1.Text.Trim());
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -1169,7 +1171,7 @@ namespace win007
         }
 
 
-        public void getshishidata(string company)
+        public  void getshishidata(string company)
         {
             try
             {
@@ -1285,7 +1287,7 @@ namespace win007
 
 
 
-        public string getminmaxvalue(int hang, int sort)
+        public  string getminmaxvalue(int hang, int sort)
         {
             double a = Convert.ToDouble(textBox1.Text);
             double b = Convert.ToDouble(textBox3.Text);

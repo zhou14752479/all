@@ -130,7 +130,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(173, 23);
             this.textBox5.TabIndex = 411;
-            this.textBox5.Text = "转载自Max";
+            this.textBox5.Text = "转载自5EPLAY";
             // 
             // label5
             // 

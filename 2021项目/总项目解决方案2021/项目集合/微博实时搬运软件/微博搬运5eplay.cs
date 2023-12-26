@@ -320,10 +320,10 @@ namespace 微博实时搬运软件
                 string date = Regex.Match(dateid, @"""updated"":""([\s\S]*?)""").Groups[1].Value;
                 string url = "https://card.weibo.com/article/v3/aj/editor/draft/save?uid=" + uid + "&id=" + id;
 
-
+                //https%3A%2F%2Fwx4.sinaimg.cn%2Flarge%2Fabd13f1bly1fjb28knztnj20ku0bqwh5.jpg
 
                 //string postdata = "title=" + title + "&type=&summary=" + summary + "&writer=" + writer + "&cover=" + cover + "&content=" + content + "&collection=%5B%5D&" + dateid + "&subtitle=%E6%9D%A5%E8%87%AA%E4%BA%8ECSGO%E8%B6%85%E8%AF%9D&status=0&publish_at=&error_msg=&error_code=0&free_content=&is_word=0&article_recommend=%5B%5D&is_article_free=0&follow_to_read=1&follow_to_read_detail%5Bresult%5D=1&follow_to_read_detail%5Bx%5D=0&follow_to_read_detail%5By%5D=0&follow_to_read_detail%5Breadme_link%5D=http%3A%2F%2Ft.cn%2FA6UnJsqW&follow_to_read_detail%5Blevel%5D=&isreward=0&pay_setting=%7B%22ispay%22%3A0%2C%22isvclub%22%3A0%7D&source=0&action=2&content_type=0&save=1&draft=%7B%22title%22%3A%22%22%2C%22subtitle%22%3A%22%E6%9D%A5%E8%87%AA%E4%BA%8ECSGO%E8%B6%85%E8%AF%9D%22%2C%22summary%22%3A%22%22%2C%22content%22%3A%22%22%7D&extra=%7B%22topic_id%22%3A%221022%3A1008088d36655014ba3f03b370ef57ccf2f12e%22%2C%22extparams%22%3A%22100808%22%7D&sign=" + sign;
-                string postdata = "title="+title+"&type=&summary="+summary+"&writer="+writer+ "&cover=https%3A%2F%2Fwx4.sinaimg.cn%2Flarge%2Fabd13f1bly1fjb28knztnj20ku0bqwh5.jpg&content=" + content+"&collection=%5B%5D&updated="+date+"&id="+id+"&subtitle=&extra=null&status=0&publish_at=&error_msg=&error_code=0&free_content=&is_word=0&article_recommend=%7B%7D&publish_local_at=&timestamp=&is_article_free=0&only_render_h5=0&is_ai_plugins=0&is_aigc_used=0&is_v4=0&follow_to_read=1&follow_to_read_detail%5Bresult%5D=1&follow_to_read_detail%5Bx%5D=0&follow_to_read_detail%5By%5D=0&follow_to_read_detail%5Breadme_link%5D=http%3A%2F%2Ft.cn%2FA6UnJsqW&follow_to_read_detail%5Blevel%5D=&follow_to_read_detail%5Bdaily_limit%5D=1&follow_to_read_detail%5Bdaily_limit_notes%5D=%E9%9D%9E%E8%AE%A4%E8%AF%81%E7%94%A8%E6%88%B7%E5%8D%95%E6%97%A5%E4%BB%85%E9%99%901%E7%AF%87%E6%96%87%E7%AB%A0%E4%BD%BF%E7%94%A8&follow_to_read_detail%5Bshow_level_tips%5D=0&isreward=0&isreward_tips=&isreward_tips_url=https%3A%2F%2Fcard.weibo.com%2Farticle%2Fv3%2Faj%2Feditor%2Fdraft%2Fapplyisrewardtips%3Fuid"+uid+"&pay_setting=%5B%5D&source=0&action=2&is_single_pay_new=&money=&is_vclub_single_pay=&vclub_single_pay_money=&content_type=0&save=1&wbeditorRef=30&ver=4.0&_rid=G53tLemHA5PVa9ZE";
+                string postdata = "title="+title+"&type=&summary="+summary+"&writer="+writer+ "&cover=https://wx1.sinaimg.cn/large/0074N48wly4gk30kldeouj30li0b8jrz.jpg&content=" + content+"&collection=%5B%5D&updated="+date+"&id="+id+"&subtitle=&extra=null&status=0&publish_at=&error_msg=&error_code=0&free_content=&is_word=0&article_recommend=%7B%7D&publish_local_at=&timestamp=&is_article_free=0&only_render_h5=0&is_ai_plugins=0&is_aigc_used=0&is_v4=0&follow_to_read=1&follow_to_read_detail%5Bresult%5D=1&follow_to_read_detail%5Bx%5D=0&follow_to_read_detail%5By%5D=0&follow_to_read_detail%5Breadme_link%5D=http%3A%2F%2Ft.cn%2FA6UnJsqW&follow_to_read_detail%5Blevel%5D=&follow_to_read_detail%5Bdaily_limit%5D=1&follow_to_read_detail%5Bdaily_limit_notes%5D=%E9%9D%9E%E8%AE%A4%E8%AF%81%E7%94%A8%E6%88%B7%E5%8D%95%E6%97%A5%E4%BB%85%E9%99%901%E7%AF%87%E6%96%87%E7%AB%A0%E4%BD%BF%E7%94%A8&follow_to_read_detail%5Bshow_level_tips%5D=0&isreward=0&isreward_tips=&isreward_tips_url=https%3A%2F%2Fcard.weibo.com%2Farticle%2Fv3%2Faj%2Feditor%2Fdraft%2Fapplyisrewardtips%3Fuid"+uid+"&pay_setting=%5B%5D&source=0&action=2&is_single_pay_new=&money=&is_vclub_single_pay=&vclub_single_pay_money=&content_type=0&save=1&wbeditorRef=30&ver=4.0&_rid=G53tLemHA5PVa9ZE";
              
                 string html = PostUrl(url, postdata);
 
@@ -485,14 +485,17 @@ namespace 微博实时搬运软件
                 textBox1.Text += DateTime.Now.ToLongTimeString() + "：开启监控...";
 
 
-                string url = "https://csgo.5eplay.com/api/article?page=1&type_id=0&time=0&order_by=0";
+                //string url = "https://csgo.5eplay.com/api/article?page=1&type_id=0&time=0&order_by=0";
+                //string html = method.GetUrl(url, "utf-8");
+                //MatchCollection jump_links = Regex.Matches(html.Replace("\\",""), @"""jump_link"":""([\s\S]*?)""");
+
+                string url = "https://csgo.5eplay.com/";
                 string html = method.GetUrl(url, "utf-8");
-                MatchCollection jump_links = Regex.Matches(html.Replace("\\",""), @"""jump_link"":""([\s\S]*?)""");
-              
+                MatchCollection jump_links = Regex.Matches(html.Replace("\\", ""), @"<li class=""main-title([\s\S]*?)<a href=""([\s\S]*?)""");
                 for (int i = 0; i < 3; i++)  //监控两篇
                 {
-                    string jump_link = jump_links[i].Groups[1].Value;
-                 
+                    string jump_link = jump_links[i].Groups[2].Value;
+                  //  MessageBox.Show(jump_link);
                     string uidini = "";
 
                     StreamReader sr = new StreamReader(path, method.EncodingType.GetTxtType(path));
@@ -517,32 +520,38 @@ namespace 微博实时搬运软件
                     detailhtml = method.Unicode2String(detailhtml);
                     string title = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"title   = '([\s\S]*?)'").Groups[1].Value);
 
-                    string content = getnewpics(Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim().Replace("\",​​", "​​"));
+                    //string content = getnewpics(Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim());
+                    string content = Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim().Replace("<img class=\"vam inlineBlock need_choose_img_src\"", "<img style=\"display: none;\"");
 
+                    content = System.Web.HttpUtility.UrlEncode(content).Trim();
                     string writer = System.Web.HttpUtility.UrlEncode(textBox5.Text);
 
-                    if (comboBox1.Text == "图片添加到顶部")
+                    if (comboBox2.Text != "")
                     {
-                        content = System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/" + comboBox2.Text + ".jpg\"></p>") + content;  //文章开始图片
-                    }
+                        if (comboBox1.Text == "图片添加到顶部")
+                        {
+                            content = System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/" + comboBox2.Text + ".jpg\"></p>") + content;  //文章开始图片
+                        }
 
-                    if (comboBox1.Text == "图片添加到底部")
-                    {
-                        content = content + System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/" + comboBox2.Text + ".jpg\"></p>");  //文章结尾图片
+                        if (comboBox1.Text == "图片添加到底部")
+                        {
+                            content = content + System.Web.HttpUtility.UrlEncode("<p img-box=\"img-box\" class=\"picbox\"><img src=\"https://wx2.sinaimg.cn/large/" + comboBox2.Text + ".jpg\"></p>");  //文章结尾图片
 
+                        }
                     }
-                    content = content.Replace("\n", ""); //去掉多余的\n
+                    content = content.Replace("\n", "").Replace("\t", ""); //去掉多余的\n
 
                     string cover = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"<p class=""justifycenter""><img src=""([\s\S]*?)""").Groups[1].Value.Trim());
 
                     string summary = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"desc: '([\s\S]*?)'").Groups[1].Value);
 
-                 
+                    content =  System.Web.HttpUtility.UrlEncode("<p>"+textBox5.Text+"</p>")+ content;
 
                     //记录ID
                     //IniWriteValue("values", "uids", uidini + "," + uid);
                     System.IO.File.WriteAllText(path, uidini + "," + uid, Encoding.UTF8);
                     textBox3.Text = cover;
+                   
                     string postdata = createbody(title, content, cover, summary, writer);
                     string result = createtitle(postdata);
 
@@ -578,7 +587,7 @@ namespace 微博实时搬运软件
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://weibo.com/login.php");
             //tabControl1.SelectedIndex = 1;
-            COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; UOR=,,www.baidu.com; _s_tentry=weibo.com; Apache=4883797395102.274.1698316072574; ULV=1698316072577:3:3:2:4883797395102.274.1698316072574:1697713588363; WBtopGlobal_register_version=2023102619; PC_TOKEN=1f89f57e82; appkey=; login_sid_t=717a02d29dbd1275384677412e4c18e2; cross_origin_proto=SSL; SCF=ArjfG7Oxq2ksfkd3Kje4Ddqr-LEVYvihDm9Sgcotv21NF4PINyXn-vqSjZGRHMRqChM16aESjJM0au_5Ps8u05k.; SUB=_2A25IPjjDDeRhGeBK41EW8ifNzziIHXVrMjQLrDV8PUNbmtAGLRDbkW9NR5TvTWPkjn61MbVpvLCNXkQ10vzoqBW-; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KzhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4; ALF=1729854483; SSOLoginState=1698318484; ustat=__121.226.141.214_1698318555_0.30873000";
+            COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KMhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4; ALF=1706185456; SSOLoginState=1703593458; SCF=AhJbpszPBT1l4GqwGid5Og40DAIRE_43y3kyhtZN0GTw1zSLMo2kPXWF5EI41OJTJZoqt2uZhQQb6ZLY3KjW8Og.; SUB=_2A25IjrWiDeRhGeBK41EW8ifNzziIHXVr5bdqrDV8PUNbmtANLU2jkW9NR5TvTWynz4qjmjf_gEL8zWH1LnQuOVV6; ustat=__121.226.159.152_1703593468_0.78020300; _s_tentry=weibo.com; Apache=5309412802185.54.1703593470348; ULV=1703593470349:10:1:1:5309412802185.54.1703593470348:1700478171886; UPSTREAM-CARD=";
         }
     }
 }

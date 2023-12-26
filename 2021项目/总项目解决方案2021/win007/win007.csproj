@@ -80,6 +80,12 @@
     <Compile Include="Win007.Designer.cs">
       <DependentUpon>Win007.cs</DependentUpon>
     </Compile>
+    <Compile Include="软件6套9列.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="软件6套9列.Designer.cs">
+      <DependentUpon>软件6套9列.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -92,6 +98,9 @@
     </Compile>
     <EmbeddedResource Include="Win007.resx">
       <DependentUpon>Win007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="软件6套9列.resx">
+      <DependentUpon>软件6套9列.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
