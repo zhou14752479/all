@@ -118,7 +118,7 @@ namespace win007
 
                 //计算
 
-                for (int i = 0; i < dt.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                for (int i = 0; i < dt.Rows.Count; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
                     try
                     {
@@ -134,6 +134,7 @@ namespace win007
                         string value8 = dt.Rows[i]["data8"].ToString();
                         string value9 = dt.Rows[i]["data9"].ToString();
 
+                        //rule1_txtbox.Text+= (dt.Rows[i]["bifen"].ToString()+"--");
                         double cha1 = Convert.ToDouble(value1) - Convert.ToDouble(value4);
                         double cha2 = Convert.ToDouble(value2) - Convert.ToDouble(value5);
                         double cha3 = Convert.ToDouble(value3) - Convert.ToDouble(value6);
