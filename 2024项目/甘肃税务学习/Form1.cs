@@ -12,6 +12,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using myDLL;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.IO.Compression;
 
 namespace 主程序1225
 {
@@ -21,6 +23,70 @@ namespace 主程序1225
         {
             InitializeComponent();
         }
+
+        #region POST请求全参
+        public  string PostUrl(string url, string postData, string ip)
+        {
+            string result;
+            try
+            {
+                ServicePointManager.Expect100Continue = false;
+                string charset = "utf-8";
+               // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+              
+            
+
+                request.Method = "Post";
+                //添加头部
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("Proxy-Authorization:Basic MTA2MDg0NzU4MDM2MTQxMjYwOCUzQXBnOXZwUXBL");
+                WebProxy proxy = new WebProxy(ip);
+                request.Proxy = proxy;
+                //添加头部
+                request.ContentType = "application/json";
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                //request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = true;
+                request.KeepAlive = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
+                request.Headers.Add("Cookie", "");
+                request.Referer = "";
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                //result = ex.ToString();
+                //400错误也返回内容
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            return result;
+        }
+        #endregion
 
         //webBrowser1.Document.InvokeScript("dodo", new object[] { "91340104MA8PDWDU0U" }).ToString();
 
@@ -78,12 +144,14 @@ namespace 主程序1225
                         ens = webBrowser1.Document.InvokeScript("dodo", new object[] { company }).ToString();
                     });
 
-                  
+                    string ip = "http://http-dynamic-S04.xiaoxiangdaili.com:10030";
 
                     string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
                     string postdata = "{\"xzqh\":\""+code+"\",\"nsrsbh\":\"" + ens + "\"}";
-                    string ahtml = method.PostUrl(aurl, postdata, "", "utf-8", "application/json", "");
-                   if(ahtml.Contains("快"))
+                    string ahtml = PostUrl(aurl, postdata,ip);
+                    label3.Text = "";
+                    label1.Text = "正在读取：" + company;
+                    if (ahtml.Contains("快"))
                     {
                         
                         label3.Text = ahtml;
@@ -97,7 +165,7 @@ namespace 主程序1225
                     {
                         try
                         {
-                            label1.Text = "正在读取：" + company;
+                           
                             ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(xms[a].Groups[1].Value);
                             lv1.SubItems.Add(sfzjhms[a].Groups[1].Value);

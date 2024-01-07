@@ -31,6 +31,9 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -47,9 +50,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -110,10 +110,69 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "北京11",
+            "天津12",
+            "河北13",
+            "山西14",
+            "内蒙古15",
+            "辽宁21",
+            "吉林22",
+            "黑龙江23",
+            "上海31",
+            "江苏32",
+            "浙江33",
+            "安徽34",
+            "福建35",
+            "江西36",
+            "山东37",
+            "河南41",
+            "湖北42",
+            "湖南43",
+            "广东44",
+            "广西45",
+            "海南46",
+            "重庆50",
+            "四川51",
+            "贵州52",
+            "云南53",
+            "西藏54",
+            "陕西61",
+            "甘肃62",
+            "青海63",
+            "宁夏64",
+            "新疆65"});
+            this.comboBox1.Location = new System.Drawing.Point(20, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 393;
+            this.comboBox1.Text = "安徽34";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 10F);
+            this.label4.Location = new System.Drawing.Point(470, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 14);
+            this.label4.TabIndex = 391;
+            this.label4.Text = "间隔（秒）";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(553, 64);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(37, 21);
+            this.textBox1.TabIndex = 392;
+            this.textBox1.Text = "1";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(293, 97);
+            this.label3.Location = new System.Drawing.Point(190, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(11, 12);
             this.label3.TabIndex = 390;
@@ -149,7 +208,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 97);
+            this.label1.Location = new System.Drawing.Point(18, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(11, 12);
             this.label1.TabIndex = 25;
@@ -247,65 +306,6 @@
             // 
             this.columnHeader5.Text = "code";
             this.columnHeader5.Width = 200;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 10F);
-            this.label4.Location = new System.Drawing.Point(470, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 14);
-            this.label4.TabIndex = 391;
-            this.label4.Text = "间隔（秒）";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(553, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(37, 21);
-            this.textBox1.TabIndex = 392;
-            this.textBox1.Text = "5";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "北京11",
-            "天津12",
-            "河北13",
-            "山西14",
-            "内蒙古15",
-            "辽宁21",
-            "吉林22",
-            "黑龙江23",
-            "上海31",
-            "江苏32",
-            "浙江33",
-            "安徽34",
-            "福建35",
-            "江西36",
-            "山东37",
-            "河南41",
-            "湖北42",
-            "湖南43",
-            "广东44",
-            "广西45",
-            "海南46",
-            "重庆50",
-            "四川51",
-            "贵州52",
-            "云南53",
-            "西藏54",
-            "陕西61",
-            "甘肃62",
-            "青海63",
-            "宁夏64",
-            "新疆65"});
-            this.comboBox1.Location = new System.Drawing.Point(20, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 393;
-            this.comboBox1.Text = "安徽34";
             // 
             // Form1
             // 

@@ -135,7 +135,7 @@
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(144, 26);
             this.textBox2.TabIndex = 20;
-            this.textBox2.Text = "7.0813";
+            this.textBox2.Text = "7.1463";
             // 
             // label1
             // 
