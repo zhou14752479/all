@@ -209,7 +209,7 @@ namespace 主程序1225
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                label1.Text = (ex.ToString());
             }
 
 
