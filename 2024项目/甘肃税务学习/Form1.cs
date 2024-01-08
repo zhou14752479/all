@@ -14,6 +14,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.IO.Compression;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace 主程序1225
 {
@@ -30,7 +31,7 @@ namespace 主程序1225
             string result;
             try
             {
-                ServicePointManager.Expect100Continue = false;
+                //ServicePointManager.Expect100Continue = false;
                 string charset = "utf-8";
                // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -40,15 +41,23 @@ namespace 主程序1225
                 request.Method = "Post";
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
-                headers.Add("Proxy-Authorization:Basic MTA2MDg0NzU4MDM2MTQxMjYwOCUzQXBnOXZwUXBL");
-                WebProxy proxy = new WebProxy(ip);
+
+                //WebProxy proxy = new WebProxy(ip);
+                //request.Proxy = proxy;
+                string tunnelhost = "a401.kdltps.com";
+                int tunnelport = 15818;
+                string username = "t10470417153447";
+                string password = "0rdgs8p9";
+                WebProxy proxy = new WebProxy();
+                proxy.Address = new Uri(String.Format("http://{0}:{1}", tunnelhost, tunnelport));
+              proxy.Credentials = new NetworkCredential(username, password);
                 request.Proxy = proxy;
                 //添加头部
                 request.ContentType = "application/json";
                 request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
-                //request.Headers.Add("Accept-Encoding", "gzip");
+                request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = true;
-                request.KeepAlive = true;
+                request.KeepAlive = false;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
                 request.Headers.Add("Cookie", "");
                 request.Referer = "";
@@ -144,7 +153,7 @@ namespace 主程序1225
                         ens = webBrowser1.Document.InvokeScript("dodo", new object[] { company }).ToString();
                     });
 
-                    string ip = "http://http-dynamic-S04.xiaoxiangdaili.com:10030";
+                    string ip = "a400.kdltps.com:15818";
 
                     string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
                     string postdata = "{\"xzqh\":\""+code+"\",\"nsrsbh\":\"" + ens + "\"}";
