@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82E81FBE-E1BF-46D4-A9B8-037195DD7BC1}</ProjectGuid>
+    <ProjectGuid>{E1047CCE-7A76-42AA-877B-4FCB7BA66ADD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>主程序1225</RootNamespace>
-    <AssemblyName>主程序1225</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>主程序202401</RootNamespace>
+    <AssemblyName>主程序202401</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,21 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\DLL\myDLL.dll</HintPath>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\..\DLL\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>..\..\..\DLL\NPOI.dll</HintPath>
+      <HintPath>..\..\..\..\DLL\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>..\..\..\DLL\NPOI.OOXML.dll</HintPath>
+      <HintPath>..\..\..\..\DLL\NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\..\..\DLL\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>..\..\..\..\DLL\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\..\..\DLL\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>..\..\..\..\DLL\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,17 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="百度酒店.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="百度酒店.Designer.cs">
+      <DependentUpon>百度酒店.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,8 +77,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="百度酒店.resx">
+      <DependentUpon>百度酒店.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,17 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="MSScriptControl">
-      <Guid>{0E59F1D2-1FBE-11D0-8FF2-00A0D10038BC}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

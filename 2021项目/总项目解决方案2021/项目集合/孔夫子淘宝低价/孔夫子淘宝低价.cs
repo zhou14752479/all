@@ -643,10 +643,11 @@ namespace 孔夫子淘宝低价
                     return;
                 }
                 DataTable dt = method.ExcelToDataTable(textBox2.Text, true);
+                MessageBox.Show(dt.Rows.Count.ToString());
                 string q1 = "100h"; //全新
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-
+                   
                     try
                     {
                         DataRow dr = dt.Rows[i];
@@ -765,7 +766,7 @@ namespace 孔夫子淘宝低价
             catch (Exception ex)
             {
 
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
         public string getHtml(string url)
@@ -819,18 +820,7 @@ namespace 孔夫子淘宝低价
         private void button1_Click(object sender, EventArgs e)
         {
 
-            #region 通用检测
-
-
-            string html = getHtml("http://acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"DZkGm"))
-            {
-
-                return;
-            }
-
-            #endregion
+            
             //cookie = webbrowser.COOKIE;
 
             //if (cookie == "")
