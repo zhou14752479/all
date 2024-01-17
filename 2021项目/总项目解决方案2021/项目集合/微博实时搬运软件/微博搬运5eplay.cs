@@ -495,7 +495,7 @@ namespace 微博实时搬运软件
                 string url = "https://csgo.5eplay.com/";
                 string html = method.GetUrl(url, "utf-8");
                 MatchCollection jump_links = Regex.Matches(html.Replace("\\", ""), @"<li class=""main-title([\s\S]*?)<a href=""([\s\S]*?)""");
-                for (int i = 0; i < 1; i++)  //监控两篇
+                for (int i = 0; i < 3; i++)  //监控两篇
                 {
                     string jump_link = jump_links[i].Groups[2].Value;
                 
@@ -523,11 +523,18 @@ namespace 微博实时搬运软件
                     //string detailUrl = "https://csgo.5eplay.com/article/240116w9n28s";
                     string detailhtml = method.GetUrl(detailUrl, "utf-8");
                     detailhtml = method.Unicode2String(detailhtml);
+
+                    if(detailhtml.Contains("vod-player"))
+                    {
+                        textBox1.Text = "包含视频跳过";
+                        //包含视频的跳过
+                        continue;
+                    }
                     string title = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"title   = '([\s\S]*?)'").Groups[1].Value);
                     
                     string content =  Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim();
-                    
-                    
+
+                    content = content.Replace("class=\"vam inlineBlock", "style=\"display: inline\" class=\"vam inlineBlock");  //处理国旗图标图片
                     
                     //string content = Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim().Replace("<img class=\"vam inlineBlock need_choose_img_src\"", "<img style=\"display: none;\"");
 
@@ -536,6 +543,8 @@ namespace 微博实时搬运软件
                         content = getnewpics(Regex.Match(detailhtml, @"<div class=""video-detail clearfix"">([\s\S]*?)<div class=""video-detail-list floatL"">").Groups[1].Value.Trim());
                     }
                     // textBox3.Text = content;
+
+
                    
                     content = System.Web.HttpUtility.UrlEncode(content).Trim();
                     string writer = System.Web.HttpUtility.UrlEncode(textBox5.Text);
