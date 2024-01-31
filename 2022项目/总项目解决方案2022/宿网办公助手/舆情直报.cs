@@ -115,7 +115,7 @@ namespace 宿网办公助手
             {
                 if (url != "")
                 {
-                    string html = 网站监控.GetUrl(url,"utf-8");
+                    string html = 网站监控.GetUrl(url,"utf-8","");
                     title = Regex.Match(html, @"<title>([\s\S]*?)</title>").Groups[1].Value; ;
                 }
             }
@@ -148,7 +148,7 @@ namespace 宿网办公助手
             {
              
                 string url = "https://www.12345.suzhou.com.cn/hswz-apis/bbs/post/list?currentPage=1&pageSize=50&themeType=&moduleCode=2&postType=&orderType=1&timeType=&areaCode=&quickSearch=";
-                string html =网站监控.GetUrl(url, "utf-8");
+                string html =网站监控.GetUrl(url, "utf-8","");
 
                 MatchCollection titles = Regex.Matches(html, @"""theme"":""([\s\S]*?)""");
                 MatchCollection times = Regex.Matches(html, @"createTime"":""([\s\S]*?)""");

@@ -16,7 +16,7 @@ namespace 宿网办公助手
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 舆情直报());
+            Application.Run(new 网站监控());
         }
     }
 }
