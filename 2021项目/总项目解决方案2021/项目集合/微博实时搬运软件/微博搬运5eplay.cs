@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
+using static System.Windows.Forms.LinkLabel;
 
 namespace 微博实时搬运软件
 {
@@ -45,8 +46,10 @@ namespace 微博实时搬运软件
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // textBox3.Text =Regex.Replace(textBox3.Text, @"<table.*</table>", ""); 
 
-           // textBox1.Text=(getnewpics("<img class=\"vam inlineBlock need_choose_img_src\" src=\"https://oss.5eplay.com/sport/csgo/team/ceihtff4nfq43341522g.png?x-oss-process=image/indexcrop,x_300,i_0/resize,h_150,m_lfit\" data-src=\"https://oss.5eplay.com/sport/csgo/team/ceihtff4nfq43341522g.png\" width=\"22\"/><a href=\"fiveeplay://5eplay.com/team/detail?alias=csgo_tm_10851\" target=\"_self\">Wings Up</a></span>下跌18名来到第112位，<span class=\"insertTeam\"><img class=\"vam inlineBlock need_choose_img_src\" src=\"https://oss.5eplay.com/cloudx/p/sport/csgo/team/cgm4f374nfqe2nie3tig.png?x-oss-process=image/indexcrop,x_300,i_0/resize,h_150,m_lfit\" data-src=\"https://oss.5eplay.com/cloudx/p/sport/csgo/team/cgm4f374nfqe2nie3tig.png\" width=\"22\"/><a href=\"fiveeplay://5eplay.com/team/detail?alias=csgo_tm_11514\" target=\"_self\">Rare Atom</a></span>下跌28名目前排在第170位。</p><p class=\"justifyleft\"><strong>TOP30完整榜单如下：</strong></p><p class=\"justifycenter\"><img src=\"https://oss.5eplay.com/editor/20240116/fa88460d3e40772ce17d731b2d660526.PNG\" _src=\"https://oss.5eplay.com/editor/20240116/fa88460d3e40772ce17d731b2d660526.PNG\"/></p><p class=\"justifycenter\"><img src=\"https://oss.5eplay.com/editor/20240116/f25758bfa4398adc3d6659be9937d906.PNG\" _src=\"https://oss.5eplay.com/editor/20240116/f25758bfa4398adc3d6659be9937d906.PNG\"/></p>\r\n"));
+            textBox3.Text = Regex.Match(textBox3.Text, @"<section.*</section>", RegexOptions.Singleline).Groups[0].Value;
+            // textBox1.Text=(getnewpics("<img class=\"vam inlineBlock need_choose_img_src\" src=\"https://oss.5eplay.com/sport/csgo/team/ceihtff4nfq43341522g.png?x-oss-process=image/indexcrop,x_300,i_0/resize,h_150,m_lfit\" data-src=\"https://oss.5eplay.com/sport/csgo/team/ceihtff4nfq43341522g.png\" width=\"22\"/><a href=\"fiveeplay://5eplay.com/team/detail?alias=csgo_tm_10851\" target=\"_self\">Wings Up</a></span>下跌18名来到第112位，<span class=\"insertTeam\"><img class=\"vam inlineBlock need_choose_img_src\" src=\"https://oss.5eplay.com/cloudx/p/sport/csgo/team/cgm4f374nfqe2nie3tig.png?x-oss-process=image/indexcrop,x_300,i_0/resize,h_150,m_lfit\" data-src=\"https://oss.5eplay.com/cloudx/p/sport/csgo/team/cgm4f374nfqe2nie3tig.png\" width=\"22\"/><a href=\"fiveeplay://5eplay.com/team/detail?alias=csgo_tm_11514\" target=\"_self\">Rare Atom</a></span>下跌28名目前排在第170位。</p><p class=\"justifyleft\"><strong>TOP30完整榜单如下：</strong></p><p class=\"justifycenter\"><img src=\"https://oss.5eplay.com/editor/20240116/fa88460d3e40772ce17d731b2d660526.PNG\" _src=\"https://oss.5eplay.com/editor/20240116/fa88460d3e40772ce17d731b2d660526.PNG\"/></p><p class=\"justifycenter\"><img src=\"https://oss.5eplay.com/editor/20240116/f25758bfa4398adc3d6659be9937d906.PNG\" _src=\"https://oss.5eplay.com/editor/20240116/f25758bfa4398adc3d6659be9937d906.PNG\"/></p>\r\n"));
             timer1.Stop();
         }
 
@@ -58,7 +61,7 @@ namespace 微博实时搬运软件
         private void timer1_Tick(object sender, EventArgs e)
         {
             status = true;
-            COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
+            //COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
             //webBrowser1.Refresh();
             if (thread == null || !thread.IsAlive)
             {
@@ -154,7 +157,7 @@ namespace 微博实时搬运软件
 
 
 
-        string COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KMhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4; SCF=AhJbpszPBT1l4GqwGid5Og40DAIRE_43y3kyhtZN0GTw1zSLMo2kPXWF5EI41OJTJZoqt2uZhQQb6ZLY3KjW8Og.; ALF=1707958126; SUB=_2A25IoaI-DeRhGeBK41EW8ifNzziIHXVr3rv2rDV8PUJbkNAGLUP6kW1NR5TvTQLLPmSGkyxQeKIQvzJj9qXYULLr; _s_tentry=weibo.com; Apache=2804313547804.691.1705372490494; ULV=1705372490496:11:1:1:2804313547804.691.1705372490494:1703593470349; UPSTREAM-CARD=; ustat=__121.226.141.117_1705380897_0.55032300";
+        string COOKIE = "SINAGLOBAL=288107035391.38947.1659338812367; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W58Bimr7LVLB9MC.y-Wc8M65JpX5KMhUgL.FoqX1heNeo.pShB2dJLoIp9h-XUli--fiK.7i-2Ni--fi-2ci-z4; SCF=AhJbpszPBT1l4GqwGid5Og40DAIRE_43y3kyhtZN0GTw1zSLMo2kPXWF5EI41OJTJZoqt2uZhQQb6ZLY3KjW8Og.; ALF=1708667459; SUB=_2A25ItNUTDeRhGeBK41EW8ifNzziIHXVryGjbrDV8PUJbkNANLRHmkW1NR5TvTR9XFMkx5cJrUUqq2UzTE7wQLHHn; ustat=__121.226.182.177_1706536346_0.49641100; _s_tentry=weibo.com; Apache=8996969254021.426.1706536347855; ULV=1706536347859:15:5:1:8996969254021.426.1706536347855:1706075477542";
         string uid = "6483729144"; //客户UID
        // string uid = "7797604772";  //我的UID
         #region POST请求
@@ -294,7 +297,7 @@ namespace 微博实时搬运软件
                 string date = Regex.Match(html, @"""updated"":""([\s\S]*?)""").Groups[1].Value;
                 if (id == "")
                 {
-                    textBox1.Text = DateTime.Now.ToLongTimeString() + "创建文章失败，账号已掉线";
+                    textBox1.Text = DateTime.Now.ToLongTimeString() + "创建文章失败，账号已掉线或草稿箱已满";
                     status = false;
 
                 }
@@ -331,7 +334,7 @@ namespace 微博实时搬运软件
              
                 string html = PostUrl(url, postdata);
 
-                textBox1.Text = html;
+                textBox1.Text += "1"+html;
                 string tags = System.Web.HttpUtility.UrlEncode(textBox2.Text);
                 string text = title + tags;
             
@@ -342,7 +345,7 @@ namespace 微博实时搬运软件
             catch (Exception ex)
             {
 
-                textBox1.Text = "创建文章正文" + ex.ToString();
+                textBox1.Text = "2" + "创建文章正文" + ex.ToString();
                 return "";
             }
         }
@@ -482,7 +485,7 @@ namespace 微博实时搬运软件
             return true;
         }
 
-
+        List<string> fabulist = new List<string>();
         string path = AppDomain.CurrentDomain.BaseDirectory + "//uid.txt";
         public void run()
         {
@@ -495,47 +498,78 @@ namespace 微博实时搬运软件
                 string url = "https://csgo.5eplay.com/";
                 string html = method.GetUrl(url, "utf-8");
                 MatchCollection jump_links = Regex.Matches(html.Replace("\\", ""), @"<li class=""main-title([\s\S]*?)<a href=""([\s\S]*?)""");
-                for (int i = 0; i < 1; i++)  //监控两篇
+                for (int i = 0; i < 3; i++)  //监控两篇
                 {
                     string jump_link = jump_links[i].Groups[2].Value;
-                
-                    string uidini = "";
 
-                    StreamReader sr = new StreamReader(path, method.EncodingType.GetTxtType(path));
-                    //一次性读取完 
-                    uidini = sr.ReadToEnd();
-                    sr.Close();
-                    sr.Dispose();
-
-
-                    if (uidini.Contains(jump_link))
+                    if(fabulist.Contains(jump_link))
                     {
-
+                        textBox1.Text = "";
                         textBox1.Text += "\r\n" + DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
+                        
                         continue;
                     }
+
+                    fabulist.Add(jump_link);
+
+                    //string uidini = "";
+
+                    //StreamReader sr = new StreamReader(path, method.EncodingType.GetTxtType(path));
+                    ////一次性读取完 
+                    //uidini = sr.ReadToEnd();
+                    //sr.Close();
+                    //sr.Dispose();
+
+
+                    //if (uidini.Contains(jump_link))
+                    //{
+
+                    //    textBox1.Text += "\r\n" + DateTime.Now.ToLongTimeString() + "：正在监控...无最新文章";
+                    //    continue;
+                    //}
 
 
 
 
                     string detailUrl = jump_link;
+                   // string detailUrl = "https://csgo.5eplay.com/article/240119y594lt";
 
-                    //string detailUrl = "https://csgo.5eplay.com/article/240116w9n28s";
                     string detailhtml = method.GetUrl(detailUrl, "utf-8");
                     detailhtml = method.Unicode2String(detailhtml);
+
+                    if(detailhtml.Contains("vod-player"))
+                    {
+                        textBox1.Text = "包含视频跳过";
+                        //包含视频的跳过
+                        continue;
+                    }
+
+                    detailhtml = Regex.Replace(detailhtml, @"<section.*?</section>", "", RegexOptions.Singleline);
+                    detailhtml = Regex.Replace(detailhtml, @"<table.*?</table>", "",RegexOptions.Singleline);
+                    detailhtml = Regex.Replace(detailhtml, @"<p><strong>地图.*&nbsp;</section>", "", RegexOptions.Singleline);
+                  
+
                     string title = System.Web.HttpUtility.UrlEncode(Regex.Match(detailhtml, @"title   = '([\s\S]*?)'").Groups[1].Value);
                     
                     string content =  Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim();
-                    
-                    
-                    
+
+                   
+
+                  
+                    //处理国旗图标图片
+                    content = content.Replace("class=\"vam inlineBlock", "style=\"display: inline\" class=\"vam inlineBlock");
+
+
+                   
                     //string content = Regex.Match(detailhtml, @"<!--文章内容-->([\s\S]*?)<div class=""tcenter"">").Groups[1].Value.Trim().Replace("<img class=\"vam inlineBlock need_choose_img_src\"", "<img style=\"display: none;\"");
 
-                    if(content=="")
+                    if (content=="")
                     {
                         content = getnewpics(Regex.Match(detailhtml, @"<div class=""video-detail clearfix"">([\s\S]*?)<div class=""video-detail-list floatL"">").Groups[1].Value.Trim());
                     }
-                    // textBox3.Text = content;
+                    
+
+
                    
                     content = System.Web.HttpUtility.UrlEncode(content).Trim();
                     string writer = System.Web.HttpUtility.UrlEncode(textBox5.Text);
@@ -567,7 +601,7 @@ namespace 微博实时搬运软件
 
                     //记录ID
                     //IniWriteValue("values", "uids", uidini + "," + uid);
-                    System.IO.File.WriteAllText(path, uidini + "," + uid, Encoding.UTF8);
+                    //System.IO.File.WriteAllText(path, uidini + "," + uid, Encoding.UTF8);
                     
                    
                     string postdata = createbody(title, content, cover, summary, writer);

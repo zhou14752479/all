@@ -26,7 +26,7 @@ namespace 主程序1225
         }
 
         #region POST请求全参
-        public  string PostUrl(string url, string postData, string ip)
+        public  string PostUrl(string url, string postData)
         {
             string result;
             try
@@ -44,10 +44,10 @@ namespace 主程序1225
 
                 //WebProxy proxy = new WebProxy(ip);
                 //request.Proxy = proxy;
-                string tunnelhost = "a401.kdltps.com";
+                string tunnelhost = "b370.kdltps.com";
                 int tunnelport = 15818;
-                string username = "t10470417153447";
-                string password = "0rdgs8p9";
+                string username = "t10677405404859";
+                string password = "497v4a0e";
                 WebProxy proxy = new WebProxy();
                 proxy.Address = new Uri(String.Format("http://{0}:{1}", tunnelhost, tunnelport));
               proxy.Credentials = new NetworkCredential(username, password);
@@ -153,11 +153,11 @@ namespace 主程序1225
                         ens = webBrowser1.Document.InvokeScript("dodo", new object[] { company }).ToString();
                     });
 
-                    string ip = "a400.kdltps.com:15818";
+                   
 
                     string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
                     string postdata = "{\"xzqh\":\""+code+"\",\"nsrsbh\":\"" + ens + "\"}";
-                    string ahtml = PostUrl(aurl, postdata,ip);
+                    string ahtml = PostUrl(aurl, postdata);
                     label3.Text = "";
                     label1.Text = "正在读取：" + company;
                     if (ahtml.Contains("快"))

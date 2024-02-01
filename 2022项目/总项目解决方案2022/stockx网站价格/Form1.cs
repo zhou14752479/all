@@ -288,12 +288,16 @@ namespace stockx网站价格
 				html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
 
 				
-				MatchCollection highestBidSize = Regex.Matches(html, "\"highestBidSize\":\"([\\s\\S]*?)\"");
+				MatchCollection highestBidSize = Regex.Matches(html, "\"highestBidSize\":([\\s\\S]*?),");
 				MatchCollection highestBid = Regex.Matches(html, "\"highestBid\":([\\s\\S]*?),");
 				MatchCollection lowestAsk = Regex.Matches(html, "\"lowestAsk\":([\\s\\S]*?),");
 
 				for (int i = 0; i < highestBidSize.Count; i++)
                 {
+					if(highestBidSize[i].Groups[1].Value.Contains("null"))
+					{
+						continue;
+					}
 					double high = 0;
 					double low = 0;
 					if (highestBid[i].Groups[1].Value!= "null" && highestBid[i].Groups[1].Value!="")
@@ -306,8 +310,13 @@ namespace stockx网站价格
 					}
 
 					high = Convert.ToDouble(this.textBox2.Text) * (high + high * 0.08 + 14.95);
-					low = Convert.ToDouble(this.textBox2.Text) * (low +low * 0.08 + 14.95);
+					low = Convert.ToDouble(this.textBox2.Text) * (low + low * 0.08 + 14.95);
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b5857d98f043be903ffd81905e26215b3a28b06e
 					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("\"", ""));
 					listViewItem.SubItems.Add(low.ToString("F2"));
 					listViewItem.SubItems.Add(high.ToString("F2"));
@@ -330,7 +339,7 @@ namespace stockx网站价格
 			method.SetFeatures(11000);
 			//webBrowser1.ScriptErrorsSuppressed = true;
 			
-			//this.gethuilv();
+			this.gethuilv();
 		}
 
 		// Token: 0x0600000A RID: 10 RVA: 0x00002A48 File Offset: 0x00000C48

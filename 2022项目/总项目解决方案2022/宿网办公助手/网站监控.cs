@@ -16,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using myDLL;
 
 namespace 宿网办公助手
 {
@@ -70,10 +71,10 @@ namespace 宿网办公助手
         /// </summary>
         /// <param name="Url">网址</param>
         /// <returns></returns>
-        public static string GetUrl(string Url, string charset)
+        public static string GetUrl(string Url, string charset,string COOKIE)
         {
             string html = "";
-            string COOKIE = "";
+          
             try
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -265,17 +266,20 @@ namespace 宿网办公助手
         List<string> list = new List<string>();
         public void run_sq360()
         {
+            webBrowser1.Refresh();
+            string COOKIE = method.GetCookies("https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline");
             try
             {
                 //label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁零距离。";
                 this.Text = "上次监控：" + DateTime.Now.ToString("HH:mm:ss");
                 string url = "https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline";
-                string html = GetUrl(url, "gb2312");
+                string html = GetUrl(url, "gb2312",COOKIE);
 
                 MatchCollection titles = Regex.Matches(html, @"class=""s xst"">([\s\S]*?)</a>");
                 MatchCollection times = Regex.Matches(html, @"<em><span([\s\S]*?)title=""([\s\S]*?)</span>");
                 MatchCollection urls = Regex.Matches(html, @"<td class=""num""><a href=""([\s\S]*?)""");
 
+                //textBox1.Text = html;
                 for (int a = 0; a < tiaoshu; a++)
                 {
                     try
@@ -348,12 +352,13 @@ namespace 宿网办公助手
         {
             try
             {
+                string COOKIE = method.GetCookies("https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline");
 
                 //label2.Text = DateTime.Now.ToString("HH:mm:ss") + "：监控了宿迁论坛。";
                 this.Text = "上次监控：" + DateTime.Now.ToString("HH:mm:ss"); ;
 
                 string url = "http://www.sqee.cn/forum.php?mod=forumdisplay&fid=24&filter=author&orderby=dateline";
-                string html = GetUrl(url, "gb2312");
+                string html = GetUrl(url, "gb2312",COOKIE);
 
                 MatchCollection titles = Regex.Matches(html, @"class=""s xst"">([\s\S]*?)</a>");
                 MatchCollection times = Regex.Matches(html, @"<em><span([\s\S]*?)title=""([\s\S]*?)</span>");
@@ -509,7 +514,7 @@ namespace 宿网办公助手
             StringBuilder sb = new StringBuilder();
             string url = "http://wxpusher.zjiecode.com/api/fun/wxuser/v2?appToken=AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ&page=1";
 
-            string html = GetUrl(url, "utf-8");
+            string html = GetUrl(url, "utf-8","");
 
             MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
             foreach (Match item in uids)
@@ -547,6 +552,9 @@ namespace 宿网办公助手
 
         private void 网站监控_Load(object sender, EventArgs e)
         {
+            webBrowser1.Navigate("https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline");
+            method.SetFeatures(11000);
+            webBrowser1.ScriptErrorsSuppressed = true;
             try
             {
                 if (ExistINIFile())
@@ -630,6 +638,7 @@ namespace 宿网办公助手
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             listView1.Items.Clear();
+            webBrowser1.Navigate("https://www.suqian360.com/forum.php?mod=forumdisplay&fid=96&filter=author&orderby=dateline");
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run_sq360);
@@ -667,5 +676,7 @@ namespace 宿网办公助手
         {
            
         }
+
+      
     }
     }

@@ -29,17 +29,13 @@ namespace 主程序202401
 
             string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
 
-            if (!html.Contains(@"QNrIn"))
+            if (!html.Contains(@"u7WSe"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;
             }
 
-            if (!html.Contains(@"WPFko"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
+           
 
             #endregion
             status = true;
@@ -64,14 +60,17 @@ namespace 主程序202401
                 {
 
                     string code = citycode[comboBox1.Text];
-                    string url = "https://hotel.pae.baidu.com/hotel/xcx/list?req_from=fw_xcx&xcx_from=fw_xcx&hotel_sid=&source=&courierId=&promotionCom=&xfrom=&qid=&fr=&platform=web&pn=2&rn=10&startDate="+DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")+ "&endDate="+DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")+"&cityId="+ code + "&realCityId="+ code + "&query=%E9%85%92%E5%BA%97&bound=&_pfName=HOTEL_LIST_MAP";
+                    string url = "https://hotel.pae.baidu.com/hotel/xcx/list?req_from=fw_xcx&xcx_from=fw_xcx&hotel_sid=&source=&courierId=&promotionCom=&xfrom=&qid=&fr=&platform=web&pn="+i+"&rn=10&startDate="+DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")+ "&endDate="+DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")+"&cityId="+ code + "&realCityId="+ code + "&query=%E9%85%92%E5%BA%97&bound=&_pfName=HOTEL_LIST_MAP";
                  
                     string html = method.GetUrl(url, "utf-8");
                    
            
                 
                     MatchCollection uids = Regex.Matches(html, @"""uid"":""([\s\S]*?)""");
-                  
+                    if (uids.Count == 0)
+                    {
+                        continue;
+                    }
 
                     for (int a = 0; a < uids.Count; a++)
                     {
