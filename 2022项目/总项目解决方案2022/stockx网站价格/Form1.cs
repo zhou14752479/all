@@ -308,7 +308,7 @@ namespace stockx网站价格
 					high = Convert.ToDouble(this.textBox2.Text) * (high + high * 0.08 + 14.95);
 					low = Convert.ToDouble(this.textBox2.Text) * (low +low * 0.08 + 14.95);
 
-					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("null", "-"));
+					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("\"", ""));
 					listViewItem.SubItems.Add(low.ToString("F2"));
 					listViewItem.SubItems.Add(high.ToString("F2"));
 					
