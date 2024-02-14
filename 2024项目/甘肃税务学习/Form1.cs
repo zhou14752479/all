@@ -160,6 +160,7 @@ namespace 主程序1225
                         string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
                         string postdata = "{\"xzqh\":\"" + code + "\",\"nsrsbh\":\"" + ens + "\"}";
                         string ahtml = PostUrl(aurl, postdata);
+                        MessageBox.Show(ahtml);
                         label3.Text = "";
                         label1.Text = "正在读取：" + company;
                         if (ahtml.Contains("快"))
