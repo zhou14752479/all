@@ -44,10 +44,10 @@ namespace 主程序1225
 
                 //WebProxy proxy = new WebProxy(ip);
                 //request.Proxy = proxy;
-                string tunnelhost = "b370.kdltps.com";
+                string tunnelhost = "w608.kdltps.com";
                 int tunnelport = 15818;
-                string username = "t10677405404859";
-                string password = "497v4a0e";
+                string username = "t10721026081698";
+                string password = "cyhsajr7";
                 WebProxy proxy = new WebProxy();
                 proxy.Address = new Uri(String.Format("http://{0}:{1}", tunnelhost, tunnelport));
               proxy.Credentials = new NetworkCredential(username, password);
@@ -145,64 +145,72 @@ namespace 主程序1225
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
-                    DataRow dr = dt.Rows[i];
-                    string company = dr[0].ToString();
-                    string ens = "";
-                    this.webBrowser1.Invoke((MethodInvoker)delegate ()
+                    try
                     {
-                        ens = webBrowser1.Document.InvokeScript("dodo", new object[] { company }).ToString();
-                    });
-
-                   
-
-                    string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
-                    string postdata = "{\"xzqh\":\""+code+"\",\"nsrsbh\":\"" + ens + "\"}";
-                    string ahtml = PostUrl(aurl, postdata);
-                    label3.Text = "";
-                    label1.Text = "正在读取：" + company;
-                    if (ahtml.Contains("快"))
-                    {
-                        
-                        label3.Text = ahtml;
-                    }
-                    MatchCollection xms = Regex.Matches(ahtml, @"""xm"":""([\s\S]*?)""");
-                    MatchCollection sfzjhms = Regex.Matches(ahtml, @"""sfzjhm"":""([\s\S]*?)""");
-                    MatchCollection mobiles = Regex.Matches(ahtml, @"""mobile"":""([\s\S]*?)""");
-
-
-                    for (int a = 0; a < xms.Count; a++)
-                    {
-                        try
+                        DataRow dr = dt.Rows[i];
+                        string company = dr[0].ToString();
+                        string ens = "";
+                        this.webBrowser1.Invoke((MethodInvoker)delegate ()
                         {
-                           
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(xms[a].Groups[1].Value);
-                            lv1.SubItems.Add(sfzjhms[a].Groups[1].Value);
-                            lv1.SubItems.Add(mobiles[a].Groups[1].Value);
-                            lv1.SubItems.Add(company);
+                            ens = webBrowser1.Document.InvokeScript("dodo", new object[] { company }).ToString();
+                        });
 
-                            if (listView1.Items.Count > 2)
-                            {
-                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                            }
-                            while (this.zanting == false)
-                            {
-                                Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
-                            }
-                            if (status == false)
-                                return;
-                        }
-                        catch (Exception)
+
+
+                        string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
+                        string postdata = "{\"xzqh\":\"" + code + "\",\"nsrsbh\":\"" + ens + "\"}";
+                        string ahtml = PostUrl(aurl, postdata);
+                        label3.Text = "";
+                        label1.Text = "正在读取：" + company;
+                        if (ahtml.Contains("快"))
                         {
 
-                            continue;
+                            label3.Text = ahtml;
                         }
+                        MatchCollection xms = Regex.Matches(ahtml, @"""xm"":""([\s\S]*?)""");
+                        MatchCollection sfzjhms = Regex.Matches(ahtml, @"""sfzjhm"":""([\s\S]*?)""");
+                        MatchCollection mobiles = Regex.Matches(ahtml, @"""mobile"":""([\s\S]*?)""");
+
+
+                        for (int a = 0; a < xms.Count; a++)
+                        {
+                            try
+                            {
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(xms[a].Groups[1].Value);
+                                lv1.SubItems.Add(sfzjhms[a].Groups[1].Value);
+                                lv1.SubItems.Add(mobiles[a].Groups[1].Value);
+                                lv1.SubItems.Add(company);
+
+                                if (listView1.Items.Count > 2)
+                                {
+                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                }
+                                while (this.zanting == false)
+                                {
+                                    Application.DoEvents();//如果loader是false表明正在加载,,则Application.DoEvents()意思就是处理其他消息。阻止当前的队列继续执行。
+                                }
+                                if (status == false)
+                                    return;
+                            }
+                            catch (Exception)
+                            {
+
+                                continue;
+                            }
+                        }
+
+
+
+                        Thread.Sleep(Convert.ToInt32(textBox1.Text) * 1000);
+
                     }
+                    catch (Exception)
+                    {
 
-
-
-                    Thread.Sleep(Convert.ToInt32(textBox1.Text)*1000);
-
+                        continue;
+                    }
                 }
 
 
