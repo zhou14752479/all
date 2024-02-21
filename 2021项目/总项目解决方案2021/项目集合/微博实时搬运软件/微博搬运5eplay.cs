@@ -29,8 +29,8 @@ namespace 微博实时搬运软件
         private void button1_Click(object sender, EventArgs e)
         {
             status = true;
-
-        
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt", textBox6.Text.Trim(), Encoding.UTF8);
+            COOKIE = textBox6.Text.Trim();
             timer1.Interval = Convert.ToInt32(textBox4.Text) * 60 * 1000;
             timer1.Start();
            // COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
@@ -635,6 +635,13 @@ namespace 微博实时搬运软件
 
         private void 微博搬运5eplay_Load(object sender, EventArgs e)
         {
+            StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            textBox6.Text = texts;
+            sr.Close();  //只关闭流
+            sr.Dispose();   //销毁流内存
+
             //method.SetFeatures(11000);
             //webBrowser1.ScriptErrorsSuppressed = true;
             //webBrowser1.Navigate("https://weibo.com/login.php");
