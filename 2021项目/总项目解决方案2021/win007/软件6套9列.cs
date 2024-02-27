@@ -1147,14 +1147,25 @@ namespace win007
                 {
                     if (item.Text != "全部运算")
                     {
-                        Button button = (Button)item;
-                        button.PerformClick();
+                        new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                            Button button = (Button)item;
+                            button.PerformClick();
+
+
+
+                        }).Start();
+                       
                     }
 
                 }
 
             }
         }
+
+
+
+
 
 
     }
