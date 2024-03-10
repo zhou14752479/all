@@ -31,6 +31,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -178,10 +182,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -298,6 +298,82 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "7";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "Intertops",
+            "SNAI",
+            "Titanbet",
+            "Crown",
+            "William Hill",
+            "Bet3000",
+            "Vcbet",
+            "Betsson",
+            "Dafabet"});
+            this.comboBox5.Location = new System.Drawing.Point(339, 132);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(80, 20);
+            this.comboBox5.TabIndex = 301;
+            this.comboBox5.Text = "Crown";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "Intertops",
+            "SNAI",
+            "Titanbet",
+            "Crown",
+            "William Hill",
+            "Bet3000",
+            "Vcbet",
+            "Betsson",
+            "Dafabet"});
+            this.comboBox4.Location = new System.Drawing.Point(339, 106);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(80, 20);
+            this.comboBox4.TabIndex = 300;
+            this.comboBox4.Text = "Crown";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Intertops",
+            "SNAI",
+            "Titanbet",
+            "Crown",
+            "William Hill",
+            "Bet3000",
+            "Vcbet",
+            "Betsson",
+            "Dafabet"});
+            this.comboBox3.Location = new System.Drawing.Point(339, 80);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(80, 20);
+            this.comboBox3.TabIndex = 299;
+            this.comboBox3.Text = "Crown";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Intertops",
+            "SNAI",
+            "Titanbet",
+            "Crown",
+            "William Hill",
+            "Bet3000",
+            "Vcbet",
+            "Betsson",
+            "Dafabet"});
+            this.comboBox2.Location = new System.Drawing.Point(339, 54);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(80, 20);
+            this.comboBox2.TabIndex = 298;
+            this.comboBox2.Text = "Crown";
             // 
             // label35
             // 
@@ -1857,7 +1933,7 @@
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(129, 21);
             this.textBox13.TabIndex = 79;
-            this.textBox13.Text = "平平升";
+            this.textBox13.Text = "降平平";
             // 
             // textBox7
             // 
@@ -1865,7 +1941,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(54, 21);
             this.textBox7.TabIndex = 70;
-            this.textBox7.Text = "4.2";
+            this.textBox7.Text = "2.75";
             // 
             // textBox8
             // 
@@ -1873,7 +1949,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(53, 21);
             this.textBox8.TabIndex = 68;
-            this.textBox8.Text = "4.33";
+            this.textBox8.Text = "3.3";
             // 
             // textBox9
             // 
@@ -1881,7 +1957,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(53, 21);
             this.textBox9.TabIndex = 66;
-            this.textBox9.Text = "1.5";
+            this.textBox9.Text = "2.4";
             // 
             // textBox5
             // 
@@ -1889,7 +1965,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(80, 21);
             this.textBox5.TabIndex = 59;
-            this.textBox5.Text = "半球";
+            this.textBox5.Text = "平手";
             // 
             // textBox4
             // 
@@ -1897,7 +1973,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(49, 21);
             this.textBox4.TabIndex = 51;
-            this.textBox4.Text = "平平降";
+            this.textBox4.Text = "升平平";
             // 
             // comboBox1
             // 
@@ -1916,7 +1992,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 20);
             this.comboBox1.TabIndex = 49;
-            this.comboBox1.Text = "Crown";
+            this.comboBox1.Text = "SNAI";
             // 
             // textBox3
             // 
@@ -1924,7 +2000,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(54, 21);
             this.textBox3.TabIndex = 47;
-            this.textBox3.Text = "4";
+            this.textBox3.Text = "2.75";
             // 
             // textBox2
             // 
@@ -1932,7 +2008,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(53, 21);
             this.textBox2.TabIndex = 45;
-            this.textBox2.Text = "4.33";
+            this.textBox2.Text = "3.3";
             // 
             // textBox1
             // 
@@ -1940,7 +2016,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(53, 21);
             this.textBox1.TabIndex = 43;
-            this.textBox1.Text = "1.5";
+            this.textBox1.Text = "2.45";
             // 
             // tabPage2
             // 
@@ -1990,82 +2066,6 @@
             this.webBrowser1.Size = new System.Drawing.Size(1544, 758);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Intertops",
-            "SNAI",
-            "Titanbet",
-            "Crown",
-            "William Hill",
-            "Bet3000",
-            "Vcbet",
-            "Betsson",
-            "Dafabet"});
-            this.comboBox2.Location = new System.Drawing.Point(339, 54);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(80, 20);
-            this.comboBox2.TabIndex = 298;
-            this.comboBox2.Text = "Crown";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Intertops",
-            "SNAI",
-            "Titanbet",
-            "Crown",
-            "William Hill",
-            "Bet3000",
-            "Vcbet",
-            "Betsson",
-            "Dafabet"});
-            this.comboBox3.Location = new System.Drawing.Point(339, 80);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(80, 20);
-            this.comboBox3.TabIndex = 299;
-            this.comboBox3.Text = "Crown";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "Intertops",
-            "SNAI",
-            "Titanbet",
-            "Crown",
-            "William Hill",
-            "Bet3000",
-            "Vcbet",
-            "Betsson",
-            "Dafabet"});
-            this.comboBox4.Location = new System.Drawing.Point(339, 106);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(80, 20);
-            this.comboBox4.TabIndex = 300;
-            this.comboBox4.Text = "Crown";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "Intertops",
-            "SNAI",
-            "Titanbet",
-            "Crown",
-            "William Hill",
-            "Bet3000",
-            "Vcbet",
-            "Betsson",
-            "Dafabet"});
-            this.comboBox5.Location = new System.Drawing.Point(339, 132);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(80, 20);
-            this.comboBox5.TabIndex = 301;
-            this.comboBox5.Text = "Crown";
             // 
             // 软件6套9列
             // 

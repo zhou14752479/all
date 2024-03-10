@@ -227,7 +227,7 @@ namespace 微博实时搬运软件
         {
             try
             {
-                COOKIE = method.GetCookies("https://card.weibo.com/article/v3/editor#/draft/2377288");
+                COOKIE = textBox6.Text.Trim();
                 string url = "https://card.weibo.com/article/v3/aj/editor/plugins/albumimagelist?cur_id=0";
 
                 string html = method.GetUrlWithCookie(url, COOKIE, "utf-8");
@@ -236,7 +236,7 @@ namespace 微博实时搬运软件
 
                 for (int i = 0; i < pids.Count; i++)
                 {
-                    comboBox2.Items.Add(pids[i].Groups[1].Value);
+                    comboBox2.Items.Add( pids[i].Groups[1].Value);
                 }
                 if (comboBox2.Items.Count > 0)
                 {

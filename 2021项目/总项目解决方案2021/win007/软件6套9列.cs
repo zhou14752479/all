@@ -1135,8 +1135,8 @@ namespace win007
         private void button47_Click(object sender, EventArgs e)
         {
             //Thread thread = new Thread(allbutton);
-            // thread.Start();
-             Control.CheckForIllegalCrossThreadCalls = false;
+            //thread.Start();
+            Control.CheckForIllegalCrossThreadCalls = false;
             allbutton();
         }
 
