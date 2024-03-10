@@ -220,8 +220,8 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox5);
-            this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.comboBox4);
+            this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label34);
@@ -302,7 +302,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(416, 128);
+            this.label35.Location = new System.Drawing.Point(435, 134);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(47, 12);
             this.label35.TabIndex = 297;
@@ -311,7 +311,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(416, 102);
+            this.label34.Location = new System.Drawing.Point(435, 108);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(47, 12);
             this.label34.TabIndex = 296;
@@ -320,7 +320,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(416, 76);
+            this.label33.Location = new System.Drawing.Point(435, 82);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(47, 12);
             this.label33.TabIndex = 295;
@@ -329,7 +329,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(416, 52);
+            this.label32.Location = new System.Drawing.Point(435, 58);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(47, 12);
             this.label32.TabIndex = 294;
@@ -338,7 +338,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(416, 25);
+            this.label31.Location = new System.Drawing.Point(435, 31);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(47, 12);
             this.label31.TabIndex = 293;
@@ -1855,7 +1855,7 @@
             // 
             this.textBox13.Location = new System.Drawing.Point(204, 55);
             this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(91, 21);
+            this.textBox13.Size = new System.Drawing.Size(129, 21);
             this.textBox13.TabIndex = 79;
             this.textBox13.Text = "平平升";
             // 
@@ -1887,13 +1887,13 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(202, 28);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(38, 21);
+            this.textBox5.Size = new System.Drawing.Size(80, 21);
             this.textBox5.TabIndex = 59;
             this.textBox5.Text = "半球";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(246, 28);
+            this.textBox4.Location = new System.Drawing.Point(284, 28);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(49, 21);
             this.textBox4.TabIndex = 51;
@@ -1910,8 +1910,9 @@
             "William Hill",
             "Bet3000",
             "Vcbet",
-            "Betsson"});
-            this.comboBox1.Location = new System.Drawing.Point(320, 22);
+            "Betsson",
+            "Dafabet"});
+            this.comboBox1.Location = new System.Drawing.Point(339, 28);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 20);
             this.comboBox1.TabIndex = 49;
@@ -1949,7 +1950,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1550, 831);
+            this.tabPage2.Size = new System.Drawing.Size(1550, 764);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "----浏览器-----";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1986,7 +1987,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1544, 825);
+            this.webBrowser1.Size = new System.Drawing.Size(1544, 758);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
@@ -2001,8 +2002,9 @@
             "William Hill",
             "Bet3000",
             "Vcbet",
-            "Betsson"});
-            this.comboBox2.Location = new System.Drawing.Point(320, 47);
+            "Betsson",
+            "Dafabet"});
+            this.comboBox2.Location = new System.Drawing.Point(339, 54);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(80, 20);
             this.comboBox2.TabIndex = 298;
@@ -2019,11 +2021,12 @@
             "William Hill",
             "Bet3000",
             "Vcbet",
-            "Betsson"});
-            this.comboBox3.Location = new System.Drawing.Point(320, 73);
+            "Betsson",
+            "Dafabet"});
+            this.comboBox3.Location = new System.Drawing.Point(339, 80);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(80, 20);
-            this.comboBox3.TabIndex = 300;
+            this.comboBox3.TabIndex = 299;
             this.comboBox3.Text = "Crown";
             // 
             // comboBox4
@@ -2037,11 +2040,12 @@
             "William Hill",
             "Bet3000",
             "Vcbet",
-            "Betsson"});
-            this.comboBox4.Location = new System.Drawing.Point(320, 99);
+            "Betsson",
+            "Dafabet"});
+            this.comboBox4.Location = new System.Drawing.Point(339, 106);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(80, 20);
-            this.comboBox4.TabIndex = 299;
+            this.comboBox4.TabIndex = 300;
             this.comboBox4.Text = "Crown";
             // 
             // comboBox5
@@ -2055,11 +2059,12 @@
             "William Hill",
             "Bet3000",
             "Vcbet",
-            "Betsson"});
-            this.comboBox5.Location = new System.Drawing.Point(320, 125);
+            "Betsson",
+            "Dafabet"});
+            this.comboBox5.Location = new System.Drawing.Point(339, 132);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(80, 20);
-            this.comboBox5.TabIndex = 302;
+            this.comboBox5.TabIndex = 301;
             this.comboBox5.Text = "Crown";
             // 
             // 软件6套9列
@@ -2248,8 +2253,8 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
     }
 }
