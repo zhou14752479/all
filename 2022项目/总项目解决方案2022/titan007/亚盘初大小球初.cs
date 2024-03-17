@@ -593,6 +593,38 @@ namespace titan007
 				string vcbet_6 = "";
 				string vcbet_7 = "";
 				string vcbet_8 = "";
+
+				//利记
+				string Sbobet = "";
+				string Sbobet_2 = "";
+				string Sbobet_3 = "";
+				string Sbobet_4 = "";
+				string Sbobet_5 = "";
+				string Sbobet_6 = "";
+				string Sbobet_7 = "";
+				string Sbobet_8 = "";
+
+				//金宝博
+				string bet188 = "";
+				string bet188_2 = "";
+				string bet188_3 = "";
+				string bet188_4 = "";
+				string bet188_5 = "";
+				string bet188_6 = "";
+				string bet188_7 = "";
+				string bet188_8 = "";
+
+
+				//盈和
+				string Wewbet = "";
+				string Wewbet_2 = "";
+				string Wewbet_3 = "";
+				string Wewbet_4 = "";
+				string Wewbet_5 = "";
+				string Wewbet_6 = "";
+				string Wewbet_7 = "";
+				string Wewbet_8 = "";
+
 				try
 				{
 
@@ -614,17 +646,7 @@ namespace titan007
 					
 						if (a.Count != 0)
 						{
-							if (gongsi.Contains("36*"))
-							{
-								a365 = liansai;
-								a365_2 = team.Groups[1].Value.Trim();
-								a365_3 = team.Groups[2].Value.Trim();
-								a365_4 = date + " " + time;
-								a365_5 = gongsi.Replace("36*", "bet 365");
-								a365_6 = a[0].Groups[1].Value;
-								a365_7 = a[1].Groups[1].Value;
-								a365_8 = a[2].Groups[1].Value;
-							}
+						
 							if (gongsi.Contains("18*"))
 							{
 								a18 = liansai;
@@ -636,17 +658,85 @@ namespace titan007
 								a18_7 = a[1].Groups[1].Value;
 								a18_8 = a[2].Groups[1].Value;
 							}
-							if (gongsi.Contains("伟*"))
+							if (gongsi.Contains("盈*"))
 							{
-								vcbet = liansai;
-								vcbet_2 = team.Groups[1].Value.Trim();
-								vcbet_3 = team.Groups[2].Value.Trim();
-								vcbet_4 = date + " " + time;
-								vcbet_5 = gongsi.Replace("伟*", "伟德");
-								vcbet_6 = a[0].Groups[1].Value;
-								vcbet_7 = a[1].Groups[1].Value;
-								vcbet_8 = a[2].Groups[1].Value;
+								Wewbet = liansai;
+								Wewbet_2 = team.Groups[1].Value.Trim();
+								Wewbet_3 = team.Groups[2].Value.Trim();
+								Wewbet_4 = date + " " + time;
+								Wewbet_5 = gongsi.Replace("盈*", "盈和");
+								Wewbet_6 = a[0].Groups[1].Value;
+								Wewbet_7 = a[1].Groups[1].Value;
+								Wewbet_8 = a[2].Groups[1].Value;
 							}
+							if (gongsi.Contains("12*"))
+							{
+								a12 = liansai;
+								a12_2 = team.Groups[1].Value.Trim();
+								a12_3 = team.Groups[2].Value.Trim();
+								a12_4 = date + " " + time;
+								a12_5 = gongsi.Replace("12*", "12bet");
+								a12_6 = a[0].Groups[1].Value;
+								a12_7 = a[1].Groups[1].Value;
+								a12_8 = a[2].Groups[1].Value;
+							}
+							if (gongsi.Contains("36*"))
+							{
+								a365 = liansai;
+								a365_2 = team.Groups[1].Value.Trim();
+								a365_3 = team.Groups[2].Value.Trim();
+								a365_4 = date + " " + time;
+								a365_5 = gongsi.Replace("36*", "bet 365");
+								a365_6 = a[0].Groups[1].Value;
+								a365_7 = a[1].Groups[1].Value;
+								a365_8 = a[2].Groups[1].Value;
+							}
+							if (gongsi.Contains("Crow*"))
+							{
+								crown = liansai;
+								crown_2 = team.Groups[1].Value.Trim();
+								crown_3 = team.Groups[2].Value.Trim();
+								crown_4 = date + " " + time;
+								crown_5 = gongsi.Replace("Crow*", "Crown");
+								crown_6 = a[0].Groups[1].Value;
+								crown_7 = a[1].Groups[1].Value;
+								crown_8 = a[2].Groups[1].Value;
+							}
+
+							if (gongsi.Contains("金宝*"))
+							{
+								bet188 = liansai;
+								bet188_2 = team.Groups[1].Value.Trim();
+								bet188_3 = team.Groups[2].Value.Trim();
+								bet188_4 = date + " " + time;
+								bet188_5 = gongsi.Replace("金宝*", "金宝博");
+								bet188_6 = a[0].Groups[1].Value;
+								bet188_7 = a[1].Groups[1].Value;
+								bet188_8 = a[2].Groups[1].Value;
+							}
+							if (gongsi.Contains("利*"))
+							{
+								Sbobet = liansai;
+								Sbobet_2 = team.Groups[1].Value.Trim();
+								Sbobet_3 = team.Groups[2].Value.Trim();
+								Sbobet_4 = date + " " + time;
+								Sbobet_5 = gongsi.Replace("利*", "利记");
+								Sbobet_6 = a[0].Groups[1].Value;
+								Sbobet_7 = a[1].Groups[1].Value;
+								Sbobet_8 = a[2].Groups[1].Value;
+							}
+
+							//if (gongsi.Contains("伟*"))
+							//{
+							//	vcbet = liansai;
+							//	vcbet_2 = team.Groups[1].Value.Trim();
+							//	vcbet_3 = team.Groups[2].Value.Trim();
+							//	vcbet_4 = date + " " + time;
+							//	vcbet_5 = gongsi.Replace("伟*", "伟德");
+							//	vcbet_6 = a[0].Groups[1].Value;
+							//	vcbet_7 = a[1].Groups[1].Value;
+							//	vcbet_8 = a[2].Groups[1].Value;
+							//}
 
 							//if (gongsi.Contains("澳"))
 							//{
@@ -672,17 +762,7 @@ namespace titan007
 							//}
 
 
-							//if (gongsi.Contains("12*"))
-							//{
-							//	a12 = liansai;
-							//	a12_2 = team.Groups[1].Value.Trim();
-							//	a12_3 = team.Groups[2].Value.Trim();
-							//	a12_4 = date + " " + time;
-							//	a12_5 = gongsi.Replace("12*", "12bet");
-							//	a12_6 = a[0].Groups[1].Value;
-							//	a12_7 = a[1].Groups[1].Value;
-							//	a12_8 = a[2].Groups[1].Value;
-							//}
+
 
 							//if (gongsi.Contains("利*"))
 							//{
@@ -696,17 +776,7 @@ namespace titan007
 							//	li_8 = a[2].Groups[1].Value;
 							//}
 
-							//if (gongsi.Contains("Crow*"))
-							//{
-							//	crown = liansai;
-							//	crown_2 = team.Groups[1].Value.Trim();
-							//	crown_3 = team.Groups[2].Value.Trim();
-							//	crown_4 = date + " " + time;
-							//	crown_5 = gongsi.Replace("Crow*", "Crown");
-							//	crown_6 = a[0].Groups[1].Value;
-							//	crown_7 = a[1].Groups[1].Value;
-							//	crown_8 = a[2].Groups[1].Value;
-							//}
+
 
 
 
@@ -714,21 +784,92 @@ namespace titan007
 						}
 
 					}
+					if (a18 != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(a18);
+						lv3.SubItems.Add(a18_2);
+						lv3.SubItems.Add(a18_3);
+						lv3.SubItems.Add(a18_4);
+						lv3.SubItems.Add(a18_5);
+						lv3.SubItems.Add(a18_6);
+						lv3.SubItems.Add(a18_7);
+						lv3.SubItems.Add(a18_8);
+					}
+					if (Wewbet != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(Wewbet);
+						lv3.SubItems.Add(Wewbet_2);
+						lv3.SubItems.Add(Wewbet_3);
+						lv3.SubItems.Add(Wewbet_4);
+						lv3.SubItems.Add(Wewbet_5);
+						lv3.SubItems.Add(Wewbet_6);
+						lv3.SubItems.Add(Wewbet_7);
+						lv3.SubItems.Add(Wewbet_8);
+					}
+                    if (a12 != "")
+                    {
+                        ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+                        lv3.SubItems.Add(a12);
+                        lv3.SubItems.Add(a12_2);
+                        lv3.SubItems.Add(a12_3);
+                        lv3.SubItems.Add(a12_4);
+                        lv3.SubItems.Add(a12_5);
+                        lv3.SubItems.Add(a12_6);
+                        lv3.SubItems.Add(a12_7);
+                        lv3.SubItems.Add(a12_8);
+                    }
+					if (a365 != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(a365);
+						lv3.SubItems.Add(a365_2);
+						lv3.SubItems.Add(a365_3);
+						lv3.SubItems.Add(a365_4);
+						lv3.SubItems.Add(a365_5);
+						lv3.SubItems.Add(a365_6);
+						lv3.SubItems.Add(a365_7);
+						lv3.SubItems.Add(a365_8);
+					}
+					if (crown != "")
+                    {
+                        ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+                        lv3.SubItems.Add(crown);
+                        lv3.SubItems.Add(crown_2);
+                        lv3.SubItems.Add(crown_3);
+                        lv3.SubItems.Add(crown_4);
+                        lv3.SubItems.Add(crown_5);
+                        lv3.SubItems.Add(crown_6);
+                        lv3.SubItems.Add(crown_7);
+                        lv3.SubItems.Add(crown_8);
+                    }
 
-					//if (crown != "")
-					//{
-					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-					//	lv3.SubItems.Add(crown);
-					//	lv3.SubItems.Add(crown_2);
-					//	lv3.SubItems.Add(crown_3);
-					//	lv3.SubItems.Add(crown_4);
-					//	lv3.SubItems.Add(crown_5);
-					//	lv3.SubItems.Add(crown_6);
-					//	lv3.SubItems.Add(crown_7);
-					//	lv3.SubItems.Add(crown_8);
-					//}
+					if (bet188 != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(bet188);
+						lv3.SubItems.Add(bet188_2);
+						lv3.SubItems.Add(bet188_3);
+						lv3.SubItems.Add(bet188_4);
+						lv3.SubItems.Add(bet188_5);
+						lv3.SubItems.Add(bet188_6);
+						lv3.SubItems.Add(bet188_7);
+						lv3.SubItems.Add(bet188_8);
+					}
 
-
+					if (Sbobet != "")
+					{
+						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+						lv3.SubItems.Add(Sbobet);
+						lv3.SubItems.Add(Sbobet_2);
+						lv3.SubItems.Add(Sbobet_3);
+						lv3.SubItems.Add(Sbobet_4);
+						lv3.SubItems.Add(Sbobet_5);
+						lv3.SubItems.Add(Sbobet_6);
+						lv3.SubItems.Add(Sbobet_7);
+						lv3.SubItems.Add(Sbobet_8);
+					}
 					//if (ysb != "")
 					//{
 					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
@@ -742,18 +883,7 @@ namespace titan007
 					//	lv3.SubItems.Add(ysb_8);
 					//}
 
-					//if (a12 != "")
-					//{
-					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-					//	lv3.SubItems.Add(a12);
-					//	lv3.SubItems.Add(a12_2);
-					//	lv3.SubItems.Add(a12_3);
-					//	lv3.SubItems.Add(a12_4);
-					//	lv3.SubItems.Add(a12_5);
-					//	lv3.SubItems.Add(a12_6);
-					//	lv3.SubItems.Add(a12_7);
-					//	lv3.SubItems.Add(a12_8);
-					//}
+
 
 					//if (aomen != "")
 					//{
@@ -781,42 +911,21 @@ namespace titan007
 					//	lv3.SubItems.Add(li_8);
 					//}
 
-					if (a365 != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(a365);
-						lv3.SubItems.Add(a365_2);
-						lv3.SubItems.Add(a365_3);
-						lv3.SubItems.Add(a365_4);
-						lv3.SubItems.Add(a365_5);
-						lv3.SubItems.Add(a365_6);
-						lv3.SubItems.Add(a365_7);
-						lv3.SubItems.Add(a365_8);
-					}
-					if (vcbet != "")
-					{
-						ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-						lv3.SubItems.Add(vcbet);
-						lv3.SubItems.Add(vcbet_2);
-						lv3.SubItems.Add(vcbet_3);
-						lv3.SubItems.Add(vcbet_4);
-						lv3.SubItems.Add(vcbet_5);
-						lv3.SubItems.Add(vcbet_6);
-						lv3.SubItems.Add(vcbet_7);
-						lv3.SubItems.Add(vcbet_8);
-					}
-					if (a18 != "")
-                    {
-                        ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
-                        lv3.SubItems.Add(a18);
-                        lv3.SubItems.Add(a18_2);
-                        lv3.SubItems.Add(a18_3);
-                        lv3.SubItems.Add(a18_4);
-                        lv3.SubItems.Add(a18_5);
-                        lv3.SubItems.Add(a18_6);
-                        lv3.SubItems.Add(a18_7);
-                        lv3.SubItems.Add(a18_8);
-                    }
+
+
+
+					//if (vcbet != "")
+					//{
+					//	ListViewItem lv3 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
+					//	lv3.SubItems.Add(vcbet);
+					//	lv3.SubItems.Add(vcbet_2);
+					//	lv3.SubItems.Add(vcbet_3);
+					//	lv3.SubItems.Add(vcbet_4);
+					//	lv3.SubItems.Add(vcbet_5);
+					//	lv3.SubItems.Add(vcbet_6);
+					//	lv3.SubItems.Add(vcbet_7);
+					//	lv3.SubItems.Add(vcbet_8);
+					//}
 
 
 
@@ -831,7 +940,7 @@ namespace titan007
 
 
 
-                    if (data.Count > 0)
+					if (data.Count > 0)
 					{
 						ListViewItem lv4 = this.listView1.Items.Add(this.listView1.Items.Count.ToString());
 						lv4.SubItems.Add("------------");
@@ -963,6 +1072,38 @@ namespace titan007
 				string vcbet_6 = "";
 				string vcbet_7 = "";
 				string vcbet_8 = "";
+
+				//利记
+				string Sbobet = "";
+				string Sbobet_2 = "";
+				string Sbobet_3 = "";
+				string Sbobet_4 = "";
+				string Sbobet_5 = "";
+				string Sbobet_6 = "";
+				string Sbobet_7 = "";
+				string Sbobet_8 = "";
+
+				//金宝博
+				string bet188 = "";
+				string bet188_2 = "";
+				string bet188_3 = "";
+				string bet188_4 = "";
+				string bet188_5 = "";
+				string bet188_6 = "";
+				string bet188_7 = "";
+				string bet188_8 = "";
+
+
+				//盈和
+				string Wewbet = "";
+				string Wewbet_2 = "";
+				string Wewbet_3 = "";
+				string Wewbet_4 = "";
+				string Wewbet_5 = "";
+				string Wewbet_6 = "";
+				string Wewbet_7 = "";
+				string Wewbet_8 = "";
+
 				try
 				{
 
@@ -983,7 +1124,98 @@ namespace titan007
 
 						if (a.Count != 0)
 						{
-							
+
+
+							if (gongsi.Contains("18*"))
+							{
+								a18 = liansai;
+								a18_2 = team.Groups[1].Value.Trim();
+								a18_3 = team.Groups[2].Value.Trim();
+								a18_4 = date + " " + time;
+								a18_5 = gongsi.Replace("18*", "18bet");
+								a18_6 = a[0].Groups[2].Value;
+								a18_7 = a[1].Groups[2].Value;
+								a18_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("盈*"))
+							{
+								Wewbet = liansai;
+								Wewbet_2 = team.Groups[1].Value.Trim();
+								Wewbet_3 = team.Groups[2].Value.Trim();
+								Wewbet_4 = date + " " + time;
+								Wewbet_5 = gongsi.Replace("盈*", "盈和");
+								Wewbet_6 = a[0].Groups[2].Value;
+								Wewbet_7 = a[1].Groups[2].Value;
+								Wewbet_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("12*"))
+							{
+								a12 = liansai;
+								a12_2 = team.Groups[1].Value.Trim();
+								a12_3 = team.Groups[2].Value.Trim();
+								a12_4 = date + " " + time;
+								a12_5 = gongsi.Replace("12*", "12bet");
+								a12_6 = a[0].Groups[2].Value;
+								a12_7 = a[1].Groups[2].Value;
+								a12_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("36*"))
+							{
+								a365 = liansai;
+								a365_2 = team.Groups[1].Value.Trim();
+								a365_3 = team.Groups[2].Value.Trim();
+								a365_4 = date + " " + time;
+								a365_5 = gongsi.Replace("36*", "bet 365");
+								a365_6 = a[0].Groups[2].Value;
+								a365_7 = a[1].Groups[2].Value;
+								a365_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("Crow*"))
+							{
+								crown = liansai;
+								crown_2 = team.Groups[1].Value.Trim();
+								crown_3 = team.Groups[2].Value.Trim();
+								crown_4 = date + " " + time;
+								crown_5 = gongsi.Replace("Crow*", "Crown");
+								crown_6 = a[0].Groups[2].Value;
+								crown_7 = a[1].Groups[2].Value;
+								crown_8 = a[2].Groups[2].Value;
+							}
+
+							if (gongsi.Contains("金宝*"))
+							{
+								bet188 = liansai;
+								bet188_2 = team.Groups[1].Value.Trim();
+								bet188_3 = team.Groups[2].Value.Trim();
+								bet188_4 = date + " " + time;
+								bet188_5 = gongsi.Replace("金宝*", "金宝博");
+								bet188_6 = a[0].Groups[2].Value;
+								bet188_7 = a[1].Groups[2].Value;
+								bet188_8 = a[2].Groups[2].Value;
+							}
+							if (gongsi.Contains("利*"))
+							{
+								Sbobet = liansai;
+								Sbobet_2 = team.Groups[1].Value.Trim();
+								Sbobet_3 = team.Groups[2].Value.Trim();
+								Sbobet_4 = date + " " + time;
+								Sbobet_5 = gongsi.Replace("利*", "利记");
+								Sbobet_6 = a[0].Groups[2].Value;
+								Sbobet_7 = a[1].Groups[2].Value;
+								Sbobet_8 = a[2].Groups[2].Value;
+							}
+
+							//if (gongsi.Contains("伟*"))
+							//{
+							//	vcbet = liansai;
+							//	vcbet_2 = team.Groups[1].Value.Trim();
+							//	vcbet_3 = team.Groups[2].Value.Trim();
+							//	vcbet_4 = date + " " + time;
+							//	vcbet_5 = gongsi.Replace("伟*", "伟德");
+							//	vcbet_6 = a[0].Groups[2].Value;
+							//	vcbet_7 = a[1].Groups[2].Value;
+							//	vcbet_8 = a[2].Groups[2].Value;
+							//}
 
 							//if (gongsi.Contains("澳"))
 							//{
@@ -992,9 +1224,9 @@ namespace titan007
 							//	aomen_3 = team.Groups[2].Value.Trim();
 							//	aomen_4 = match.Groups[2].Value.Trim();
 							//	aomen_5 = gongsi.Replace("澳*", "澳门");
-							//	aomen_6 = a[0].Groups[1].Value;
-							//	aomen_7 = a[1].Groups[1].Value;
-							//	aomen_8 = a[2].Groups[1].Value;
+							//	aomen_6 = a[0].Groups[2].Value;
+							//	aomen_7 = a[1].Groups[2].Value;
+							//	aomen_8 = a[2].Groups[2].Value;
 							//}
 							//if (gongsi.Contains("易*"))
 							//{
@@ -1009,17 +1241,7 @@ namespace titan007
 							//}
 
 
-							//if (gongsi.Contains("12*"))
-							//{
-							//	a12 = liansai;
-							//	a12_2 = team.Groups[1].Value.Trim();
-							//	a12_3 = team.Groups[2].Value.Trim();
-							//	a12_4 = date + " " + time;
-							//	a12_5 = gongsi.Replace("12*", "12bet");
-							//	a12_6 = a[0].Groups[2].Value;
-							//	a12_7 = a[1].Groups[2].Value;
-							//	a12_8 = a[2].Groups[2].Value;
-							//}
+
 
 							//if (gongsi.Contains("利*"))
 							//{
@@ -1033,73 +1255,95 @@ namespace titan007
 							//	li_8 = a[2].Groups[2].Value;
 							//}
 
-							//if (gongsi.Contains("Crow*"))
-							//{
-							//	crown = liansai;
-							//	crown_2 = team.Groups[1].Value.Trim();
-							//	crown_3 = team.Groups[2].Value.Trim();
-							//	crown_4 = date + " " + time;
-							//	crown_5 = gongsi.Replace("Crow*", "Crown");
-							//	crown_6 = a[0].Groups[2].Value;
-							//	crown_7 = a[1].Groups[2].Value;
-							//	crown_8 = a[2].Groups[2].Value;
-							//}
-
-							if (gongsi.Contains("36*"))
-							{
-								a365 = liansai;
-								a365_2 = team.Groups[1].Value.Trim();
-								a365_3 = team.Groups[2].Value.Trim();
-								a365_4 = date + " " + time;
-								a365_5 = gongsi.Replace("36*", "bet 365");
-								a365_6 = a[0].Groups[2].Value;
-								a365_7 = a[1].Groups[2].Value;
-								a365_8 = a[2].Groups[2].Value;
-							}
-							if (gongsi.Contains("伟*"))
-							{
-								
-								vcbet = liansai;
-								vcbet_2 = team.Groups[1].Value.Trim();
-								vcbet_3 = team.Groups[2].Value.Trim();
-								vcbet_4 = date + " " + time;
-								vcbet_5 = gongsi.Replace("伟*", "伟德");
-								vcbet_6 = a[0].Groups[2].Value;
-								vcbet_7 = a[1].Groups[2].Value;
-								vcbet_8 = a[2].Groups[2].Value;
-							}
-
-							if (gongsi.Contains("18*"))
-							{
-								a18 = liansai;
-								a18_2 = team.Groups[1].Value.Trim();
-								a18_3 = team.Groups[2].Value.Trim();
-								a18_4 = date + " " + time;
-								a18_5 = gongsi.Replace("18*", "18bet");
-								a18_6 = a[0].Groups[2].Value;
-								a18_7 = a[1].Groups[2].Value;
-								a18_8 = a[2].Groups[2].Value;
-							}
-
-
 						}
 
 					}
+					if (a18 != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(a18);
+						lv3.SubItems.Add(a18_2);
+						lv3.SubItems.Add(a18_3);
+						lv3.SubItems.Add(a18_4);
+						lv3.SubItems.Add(a18_5);
+						lv3.SubItems.Add(a18_6);
+						lv3.SubItems.Add(a18_7);
+						lv3.SubItems.Add(a18_8);
+					}
+					if (Wewbet != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(Wewbet);
+						lv3.SubItems.Add(Wewbet_2);
+						lv3.SubItems.Add(Wewbet_3);
+						lv3.SubItems.Add(Wewbet_4);
+						lv3.SubItems.Add(Wewbet_5);
+						lv3.SubItems.Add(Wewbet_6);
+						lv3.SubItems.Add(Wewbet_7);
+						lv3.SubItems.Add(Wewbet_8);
+					}
+					if (a12 != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(a12);
+						lv3.SubItems.Add(a12_2);
+						lv3.SubItems.Add(a12_3);
+						lv3.SubItems.Add(a12_4);
+						lv3.SubItems.Add(a12_5);
+						lv3.SubItems.Add(a12_6);
+						lv3.SubItems.Add(a12_7);
+						lv3.SubItems.Add(a12_8);
+					}
+					if (a365 != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(a365);
+						lv3.SubItems.Add(a365_2);
+						lv3.SubItems.Add(a365_3);
+						lv3.SubItems.Add(a365_4);
+						lv3.SubItems.Add(a365_5);
+						lv3.SubItems.Add(a365_6);
+						lv3.SubItems.Add(a365_7);
+						lv3.SubItems.Add(a365_8);
+					}
+					if (crown != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(crown);
+						lv3.SubItems.Add(crown_2);
+						lv3.SubItems.Add(crown_3);
+						lv3.SubItems.Add(crown_4);
+						lv3.SubItems.Add(crown_5);
+						lv3.SubItems.Add(crown_6);
+						lv3.SubItems.Add(crown_7);
+						lv3.SubItems.Add(crown_8);
+					}
 
-					//if (crown != "")
-					//{
-					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-					//	lv3.SubItems.Add(crown);
-					//	lv3.SubItems.Add(crown_2);
-					//	lv3.SubItems.Add(crown_3);
-					//	lv3.SubItems.Add(crown_4);
-					//	lv3.SubItems.Add(crown_5);
-					//	lv3.SubItems.Add(crown_6);
-					//	lv3.SubItems.Add(crown_7);
-					//	lv3.SubItems.Add(crown_8);
-					//}
+					if (bet188 != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(bet188);
+						lv3.SubItems.Add(bet188_2);
+						lv3.SubItems.Add(bet188_3);
+						lv3.SubItems.Add(bet188_4);
+						lv3.SubItems.Add(bet188_5);
+						lv3.SubItems.Add(bet188_6);
+						lv3.SubItems.Add(bet188_7);
+						lv3.SubItems.Add(bet188_8);
+					}
 
-
+					if (Sbobet != "")
+					{
+						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+						lv3.SubItems.Add(Sbobet);
+						lv3.SubItems.Add(Sbobet_2);
+						lv3.SubItems.Add(Sbobet_3);
+						lv3.SubItems.Add(Sbobet_4);
+						lv3.SubItems.Add(Sbobet_5);
+						lv3.SubItems.Add(Sbobet_6);
+						lv3.SubItems.Add(Sbobet_7);
+						lv3.SubItems.Add(Sbobet_8);
+					}
 					//if (ysb != "")
 					//{
 					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
@@ -1113,18 +1357,7 @@ namespace titan007
 					//	lv3.SubItems.Add(ysb_8);
 					//}
 
-					//if (a12 != "")
-					//{
-					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-					//	lv3.SubItems.Add(a12);
-					//	lv3.SubItems.Add(a12_2);
-					//	lv3.SubItems.Add(a12_3);
-					//	lv3.SubItems.Add(a12_4);
-					//	lv3.SubItems.Add(a12_5);
-					//	lv3.SubItems.Add(a12_6);
-					//	lv3.SubItems.Add(a12_7);
-					//	lv3.SubItems.Add(a12_8);
-					//}
+
 
 					//if (aomen != "")
 					//{
@@ -1152,44 +1385,22 @@ namespace titan007
 					//	lv3.SubItems.Add(li_8);
 					//}
 
-					if (a365 != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(a365);
-						lv3.SubItems.Add(a365_2);
-						lv3.SubItems.Add(a365_3);
-						lv3.SubItems.Add(a365_4);
-						lv3.SubItems.Add(a365_5);
-						lv3.SubItems.Add(a365_6);
-						lv3.SubItems.Add(a365_7);
-						lv3.SubItems.Add(a365_8);
-					}
 
-					if (vcbet != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(vcbet);
-						lv3.SubItems.Add(vcbet_2);
-						lv3.SubItems.Add(vcbet_3);
-						lv3.SubItems.Add(vcbet_4);
-						lv3.SubItems.Add(vcbet_5);
-						lv3.SubItems.Add(vcbet_6);
-						lv3.SubItems.Add(vcbet_7);
-						lv3.SubItems.Add(vcbet_8);
-					}
 
-					if (a18 != "")
-					{
-						ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
-						lv3.SubItems.Add(a18);
-						lv3.SubItems.Add(a18_2);
-						lv3.SubItems.Add(a18_3);
-						lv3.SubItems.Add(a18_4);
-						lv3.SubItems.Add(a18_5);
-						lv3.SubItems.Add(a18_6);
-						lv3.SubItems.Add(a18_7);
-						lv3.SubItems.Add(a18_8);
-					}
+
+					//if (vcbet != "")
+					//{
+					//	ListViewItem lv3 = this.listView2.Items.Add(this.listView2.Items.Count.ToString());
+					//	lv3.SubItems.Add(vcbet);
+					//	lv3.SubItems.Add(vcbet_2);
+					//	lv3.SubItems.Add(vcbet_3);
+					//	lv3.SubItems.Add(vcbet_4);
+					//	lv3.SubItems.Add(vcbet_5);
+					//	lv3.SubItems.Add(vcbet_6);
+					//	lv3.SubItems.Add(vcbet_7);
+					//	lv3.SubItems.Add(vcbet_8);
+					//}
+
 
 
 
