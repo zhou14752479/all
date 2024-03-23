@@ -140,7 +140,7 @@ namespace win007
         {
             try
             {
-                string sql = "INSERT INTO datas(id,matchname,zhu,ke,time,gongsi,bifen,data1,data2,data3,data4,data5,data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu)VALUES('" + id + "','" + matchname + "'," +
+                string sql = "INSERT INTO datas(id,matchname,zhu,ke,time,gongsi,bifen,data1,data2,data3,data4,data5,data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiudaxiaoqiu)VALUES('" + id + "','" + matchname + "'," +
                     "'" + zhu + "'," +
                      "'" + ke + "'," +
                       "'" + time + "'," +
@@ -184,10 +184,10 @@ namespace win007
                 mycon.Close();
                 return false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-
+                //MessageBox.Show(ex.ToString());
                 return false;
             }
 

@@ -604,6 +604,7 @@ namespace win007
 
                     for (int i = 0; i < trs.Count; i++)
                     {
+                      
                         if (trs[i].Groups[1].Value.Contains("display: none"))
                         {
                            // label7.Text = "不显示，跳过..";
@@ -620,24 +621,25 @@ namespace win007
                         string bifen_ke = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)-<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
                         string datajsurl = "http://1x2d.titan007.com/" + id+ ".js?r=007132848760362108507";
                         string datajs = method.GetUrl(datajsurl, "gb2312");
+                      
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
-                      
-                        //获取成交比例
-                        string cjurl = "http://vip.titan007.com/betfa/single.aspx?id="+id+"&l=0";
-                        //string datacj = method.GetUrlwithIP(cjurl, "tps682.kdlapi.com:15818", "", "utf-8");
-                        string datacj = GetUrl(cjurl, "utf-8");
-                        
-                        MatchCollection cjs = Regex.Matches(datacj, @"<td class=""rb"">([\s\S]*?)</td>");
-                        MatchCollection yingkuizss = Regex.Matches(datacj, @"<td>([\s\S]*?)</td>");
-                        if (!datacj.Contains("暂无本场比赛的必发数据") && cjs.Count == 0 && datacj.Trim()!="")
-                        {
-                            datacj = GetUrl(cjurl, "gb2312");
-                            MessageBox.Show(datacj);
-                            Thread.Sleep(20000);
-                            i = i - 1;
-                            continue;
-                        }
+
+                        ////获取成交比例
+                        //string cjurl = "http://vip.titan007.com/betfa/single.aspx?id=" + id + "&l=0";
+                        ////string datacj = method.GetUrlwithIP(cjurl, "tps682.kdlapi.com:15818", "", "utf-8");
+                        //string datacj = GetUrl(cjurl, "utf-8");
+
+                        //MatchCollection cjs = Regex.Matches(datacj, @"<td class=""rb"">([\s\S]*?)</td>");
+                        //MatchCollection yingkuizss = Regex.Matches(datacj, @"<td>([\s\S]*?)</td>");
+                        //if (!datacj.Contains("暂无本场比赛的必发数据") && cjs.Count == 0 && datacj.Trim() != "")
+                        //{
+                        //    datacj = GetUrl(cjurl, "gb2312");
+                        //    MessageBox.Show(datacj);
+                        //    Thread.Sleep(20000);
+                        //    i = i - 1;
+                        //    continue;
+                        //}
                         // MessageBox.Show(cjs.Count.ToString());
                         string zhu_cj = "无";
                         string he_cj = "无";
@@ -651,19 +653,19 @@ namespace win007
                         string he_yingkuizs = "无";
                         string ke_yingkuizs = "无";
 
-                        if (cjs.Count > 17)
-                        {
-                            zhu_cj = cjs[3].Groups[1].Value;
-                            he_cj = cjs[9].Groups[1].Value;
-                            ke_cj = cjs[15].Groups[1].Value;
+                        //if (cjs.Count > 17)
+                        //{
+                        //    zhu_cj = cjs[3].Groups[1].Value;
+                        //    he_cj = cjs[9].Groups[1].Value;
+                        //    ke_cj = cjs[15].Groups[1].Value;
 
-                            zhu_yingkui = cjs[5].Groups[1].Value;
-                            he_yingkui = cjs[11].Groups[1].Value;
-                            ke_yingkui = cjs[17].Groups[1].Value;
-                            zhu_yingkuizs = yingkuizss[3].Groups[1].Value;
-                            he_yingkuizs = yingkuizss[10].Groups[1].Value;
-                            ke_yingkuizs = yingkuizss[17].Groups[1].Value;
-                        }
+                        //    zhu_yingkui = cjs[5].Groups[1].Value;
+                        //    he_yingkui = cjs[11].Groups[1].Value;
+                        //    ke_yingkui = cjs[17].Groups[1].Value;
+                        //    zhu_yingkuizs = yingkuizss[3].Groups[1].Value;
+                        //    he_yingkuizs = yingkuizss[10].Groups[1].Value;
+                        //    ke_yingkuizs = yingkuizss[17].Groups[1].Value;
+                        //}
                         string matchname_cn = Regex.Match(datajs, @"matchname_cn=""([\s\S]*?)""").Groups[1].Value;
                         string hometeam_cn = Regex.Match(datajs, @"hometeam_cn=""([\s\S]*?)""").Groups[1].Value;
                         string guestteam_cn = Regex.Match(datajs, @"guestteam_cn=""([\s\S]*?)""").Groups[1].Value;
@@ -680,38 +682,45 @@ namespace win007
                             {
                                 switch (cname)
                                 {
-                                    case "SNAI":
-                                        gongsi_dics.Add(cid, "SNAI");
-                                        break;
-                                    case "Titanbet":
-                                        gongsi_dics.Add(cid, "Titanbet");
-                                        break;
-                                    case "Bethard":
-                                        gongsi_dics.Add(cid, "Bethard");
-                                        break;
-                                    case "ComeOn":
-                                        gongsi_dics.Add(cid, "ComeOn");
-                                        break;
-                                    case "Intertops":
-                                        gongsi_dics.Add(cid, "Intertops");
-                                        break;
-                                    case "Bet3000":
-                                        gongsi_dics.Add(cid, "Bet3000");
-                                        break;
-                                    case "Crown":
-                                        gongsi_dics.Add(cid, "Crown");
-                                        break;
-                                    case "William Hill":
-                                        gongsi_dics.Add(cid, "William Hill");
-                                        break;
-                                    case "Bet-at-home":
-                                        gongsi_dics.Add(cid, "Bet-at-home");
-                                        break;
-                                    case "Lottery Official":
-                                        gongsi_dics.Add(cid, "Lottery Official");
+                                    //case "SNAI":
+                                    //    gongsi_dics.Add(cid, "SNAI");
+                                    //    break;
+                                    //case "Titanbet":
+                                    //    gongsi_dics.Add(cid, "Titanbet");
+                                    //    break;
+                                    //case "Bethard":
+                                    //    gongsi_dics.Add(cid, "Bethard");
+                                    //    break;
+                                    //case "ComeOn":
+                                    //    gongsi_dics.Add(cid, "ComeOn");
+                                    //    break;
+                                    //case "Intertops":
+                                    //    gongsi_dics.Add(cid, "Intertops");
+                                    //    break;
+                                    //case "Bet3000":
+                                    //    gongsi_dics.Add(cid, "Bet3000");
+                                    //    break;
+                                    //case "Crown":
+                                    //    gongsi_dics.Add(cid, "Crown");
+                                    //    break;
+                                    //case "William Hill":
+                                    //    gongsi_dics.Add(cid, "William Hill");
+                                    //    break;
+                                    //case "Bet-at-home":
+                                    //    gongsi_dics.Add(cid, "Bet-at-home");
+                                    //    break;
+                                    //case "Lottery Official":
+                                    //    gongsi_dics.Add(cid, "Lottery Official");
+                                    //    break;
+                                    //case "Vcbet":
+                                    //    gongsi_dics.Add(cid, "Vcbet");
+                                    //    break;
+
+                                    case "Betsson":
+                                        gongsi_dics.Add(cid, "Betsson");
                                         break;
                                     case "Vcbet":
-                                        gongsi_dics.Add(cid, "Vcbet");
+                                        gongsi_dics.Add(cid, "Dafabet");
                                         break;
 
                                 }
@@ -802,6 +811,8 @@ namespace win007
                                     //lv1.SubItems.Add(data9);
 
                                     string rangqiu_daxiaoqiu = rangqiu +" "+ daxiaoqiu;
+
+                                  
                                     fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu);
 
 
@@ -814,7 +825,7 @@ namespace win007
                                 }
                                 catch (Exception ex)
                                 {
-                                    //  MessageBox.Show(ex.ToString());
+                                   //  MessageBox.Show(ex.ToString());
                                     continue;
                                 }
                             }
@@ -879,7 +890,7 @@ namespace win007
         private void button4_Click(object sender, EventArgs e)
         {
             //startdate = Convert.ToDateTime("2018-07-01").ToString("yyyy-MM-dd");
-            startdate = Convert.ToDateTime("2021-02-28").ToString("yyyy-MM-dd");
+            startdate = Convert.ToDateTime("2021-02-01").ToString("yyyy-MM-dd");
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

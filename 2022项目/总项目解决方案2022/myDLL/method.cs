@@ -69,7 +69,7 @@ namespace myDLL
 				HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 				bool flag = response.Headers["Content-Encoding"] == "gzip";
 				string html;
-				if (true)
+				if (flag)
 				{
 					GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
 					StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));

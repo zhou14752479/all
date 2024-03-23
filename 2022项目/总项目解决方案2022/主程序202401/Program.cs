@@ -16,7 +16,7 @@ namespace 主程序202401
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 百度酒店());
+            Application.Run(new KKday());
         }
     }
 }
