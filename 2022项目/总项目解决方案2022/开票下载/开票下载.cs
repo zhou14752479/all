@@ -158,21 +158,86 @@ namespace 开票下载
             }
         }
 
+
+        /// <summary>
+        /// 模式2 只筛选正确金额  不开票
+        /// </summary>
+        public void run2()
+        {
+            try
+            {
+                string[] text1 = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                string[] text2 = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < text1.Length; i++)
+                {
+                    for (int j = 0; j < text2.Length; j++)
+                    {
+                        if (text1[i] == "")
+                        {
+                            continue;
+                        }
+                        if (text2[j] == "")
+                        {
+                            continue;
+                        }
+                        Thread.Sleep(500);
+                      
+                        string url = "http://dzfp.sdshsy.com:18086/FPGLXT_WX/bill/getBill.action?number=" + text1[i] + "&taxmoney=" + text2[j] + "&code=J3A2";
+                        string html = method.GetUrl(url, "utf-8");
+                        string downurl = Regex.Match(html, @"btn_primary"" href=""([\s\S]*?)""").Groups[1].Value;
+
+                        if (downurl != "" || html.Contains("申请开票"))
+                        {
+                            FileStream fs1 = new FileStream(path + "流水号.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+                            sw.WriteLine(text1[i]);
+                            sw.Close();
+                            fs1.Close();
+                            sw.Dispose();
+
+                            FileStream fs2= new FileStream(path + "金额.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+                            StreamWriter sw2 = new StreamWriter(fs2, Encoding.GetEncoding("UTF-8"));
+                            sw2.WriteLine(text2[i]);
+                            sw2.Close();
+                            fs2.Close();
+                            sw2.Dispose();
+
+
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(text1[i]);
+                            lv1.SubItems.Add(text2[j]);
+                            lv1.SubItems.Add("匹配");
+
+                        }
+                       else 
+                        {
+                            ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(text1[i]);
+                            lv1.SubItems.Add(text2[j]);
+                            lv1.SubItems.Add("不匹配");
+                        }
+                       
+
+                    }
+                    if (status == false)
+                        return;
+
+                }
+                MessageBox.Show("完成");
+                //http://dzfp.sdshsy.com:18086/FPGLXT_WX/bill/getBill.action?number=2022030625073096&taxmoney=3.3&code=J3A2
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         bool status = true;
         private void 开票下载_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"njWOs"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -213,6 +278,11 @@ namespace 开票下载
         Thread thread;
         private void button3_Click(object sender, EventArgs e)
         {
+            if (DateTime.Now > Convert.ToDateTime("2024-12-10"))
+            {
+                return;
+            }
+
             status = true;
             if(textBox1.Text=="" || textBox2.Text=="")
             {
@@ -301,6 +371,28 @@ namespace 开票下载
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             method.DataTableToExcel(method.listViewToDataTable(this.listView1), "Sheet1", true);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Now > Convert.ToDateTime("2024-12-10"))
+            {
+                return;
+            }
+
+            status = true;
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                MessageBox.Show("请导入文本");
+                return;
+            }
+
+            if (thread == null || !thread.IsAlive)
+            {
+                thread = new Thread(run2);
+                thread.Start();
+                Control.CheckForIllegalCrossThreadCalls = false;
+            }
         }
     }
 }

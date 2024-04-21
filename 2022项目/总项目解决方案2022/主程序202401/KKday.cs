@@ -23,8 +23,8 @@ namespace 主程序202401
             InitializeComponent();
         }
 
-       public string COOKIE = "KKUD=SCMWEBc08870d4df1e9ef962335e2061647632; lang_ui=zh-hk; _ga=GA1.3.128564545.1710585220; _ga=GA1.2.128564545.1710585220; _gid=GA1.3.1468289570.1711165888; _gid=GA1.2.1468289570.1711165888; _ga_7M6SQZX2NH=GS1.2.1711165888.3.1.1711166152.54.0.0; XSRF-TOKEN=eyJpdiI6IlhPa1V1VGU1dVBQNWdDemVzVGRCdlE9PSIsInZhbHVlIjoiL1NTS0plNDlqWXptd0F2MDlJanJxNlJHcC9lK3BZVE80NTd4ZXJCbFVJNDNOTDk1dWw2NGhVeE5LVUlveFpnTkg2UzhGc2VXSUpRa0dTcjlKSXFGTTRILzVwcnk5MkFXRkUyVDhoSTZSTFB2WDJyM3JaTnBkZVpVSHdBdVoySjEiLCJtYWMiOiIyNzExMWQ5NDIzOWY4NWQyMGVmMzFiOTE2MGVlMDNiNmI1N2M3ODU5OWRhODZkZDc1YzgyMGNkMDVjZmVhYjFlIiwidGFnIjoiIn0%3D; kkday_supplier_web_session=eyJpdiI6Ijk5dWFPTjNzQjY5VVhmcG5wYllFTmc9PSIsInZhbHVlIjoiK0lHQWFhakoxdnJMdnhjeDdwUHl6RUVDMjk5cWhjM1VMNE5BTUplVWlCSVZlMHRXUllFbnl2UlZOYlJVUHprMGhaNW1kZzExQTc1MS92bC9rY0FKQ1duSk5aci9UN2FreWNEb01rbzR0UVJrQXFadDlPSi9YQ3F0YWQwUUlnT1QiLCJtYWMiOiJhZTkzOGMyMWUzYzZkMzNhODdhZTFiMTQ0YmQyYmIxZjFiM2VjNzc0YWUwMTk5N2VhZTlhMzIxNDVhMWE5YWU3IiwidGFnIjoiIn0%3D; mp_c541d5678a900f15e53d17de65b43ec0_mixpanel=%7B%22distinct_id%22%3A%20%2224346ad5-8d03-495e-9835-141eae03e986%22%2C%22%24device_id%22%3A%20%2218e46d30d0ddd5-0264a0ba2488fa-26001b51-384000-18e46d30d0ddd6%22%2C%22DisplayLang%22%3A%20%22zh-hk%22%2C%22Platform%22%3A%20%22www%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpus%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpr%22%3A%20%5B%5D%2C%22__mpap%22%3A%20%5B%5D%2C%22%24user_id%22%3A%20%2224346ad5-8d03-495e-9835-141eae03e986%22%2C%22SupplierOid%22%3A%20%227579%22%7D; _ga_7M6SQZX2NH=GS1.3.1711165888.3.1.1711166293.22.0.0; s_ci_sessions=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%22acc76ab85f8a03bd2d676c48760f9485%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A15%3A%22121.226.185.102%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F123.0.0.0%20Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1711166292%3B%7D6aa895451239d939531237db44d96362";
-       
+        public string COOKIE = "KKUD=SCMWEBc08870d4df1e9ef962335e2061647632; lang_ui=zh-hk; _ga=GA1.3.128564545.1710585220; _ga=GA1.2.128564545.1710585220; _gid=GA1.3.1922370155.1711804319; XSRF-TOKEN=eyJpdiI6Ik5JOVJTdW80b0FpdDQyUTVTUCs2NUE9PSIsInZhbHVlIjoidXdYZG5zKzVwaktxb3UxSnRHalZUWm5EcHo3akpiMDhtTjByYjJLQU90ZGtKV1N3SVdFeUV3V1BHTUp4OXY4VHRHeTFQYzhocWJQRXV2R05XalFhemJ3ZlpYZDNmMFdiWTkvekVMdnZYR0w4dXkyamRHcVVxZ0xHQktmTW5NRy8iLCJtYWMiOiJlMWFmZWI2NTMyNWY3NTgxMzFmNzhlMTgxOGM5MGY1ODVmYTBhYWRhOTBkMTQyNzFlYzhlOGQzZGIzYzBjMTY0IiwidGFnIjoiIn0%3D; kkday_supplier_web_session=eyJpdiI6IlhPaTQ0YXY4RkN2Ujg1RjYwU2F0L3c9PSIsInZhbHVlIjoibmdFOUJjcHlYOEFPQkt1Sy9xalcrdVZrR25VTyt3OHRCUXdma0hnVEQxT3o2MzBUZEV1a05PUjRwWmJkZkw2bkFhL29ySWp2b0h4MTQyTEJsWm1oZTBhWjhyOXBVZVAyNWxRQU9wL1h3QStKMGNLSlFSNUJGR1FSRHRIK3doWUMiLCJtYWMiOiJhYTA3MDk3MzJhYTFjYzY5MWM0M2M5MTg4MTgzY2Q4NWJjY2UxNzBiMGVjZGJiNzc4NDk5OWE3NTA5OTRlYTAyIiwidGFnIjoiIn0%3D; _dc_gtm_UA-49763723-4=1; _ga_7M6SQZX2NH=GS1.3.1711890421.7.1.1711890557.60.0.0; mp_c541d5678a900f15e53d17de65b43ec0_mixpanel=%7B%22distinct_id%22%3A%20%2224346ad5-8d03-495e-9835-141eae03e986%22%2C%22%24device_id%22%3A%20%2218e46d30d0ddd5-0264a0ba2488fa-26001b51-384000-18e46d30d0ddd6%22%2C%22DisplayLang%22%3A%20%22zh-hk%22%2C%22Platform%22%3A%20%22www%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22__mps%22%3A%20%7B%7D%2C%22__mpso%22%3A%20%7B%7D%2C%22__mpus%22%3A%20%7B%7D%2C%22__mpa%22%3A%20%7B%7D%2C%22__mpu%22%3A%20%7B%7D%2C%22__mpr%22%3A%20%5B%5D%2C%22__mpap%22%3A%20%5B%5D%2C%22%24user_id%22%3A%20%2224346ad5-8d03-495e-9835-141eae03e986%22%2C%22SupplierOid%22%3A%20%227579%22%7D; s_ci_sessions=a%3A4%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%22f90e4dc6833046baf1b496f91fb31c72%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A15%3A%22121.226.183.163%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A111%3A%22Mozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F123.0.0.0%20Safari%2F537.36%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1711890574%3B%7D77495257a51f280aa261fa55fe4e6f59; _gid=GA1.2.1922370155.1711804319; _gat_UA-49763723-4=1;";
+        public string UA= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36";
         #region GET请求
         public string GetUrl(string Url, string charset)
         {
@@ -36,7 +36,7 @@ namespace 主程序202401
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
                 request.Proxy = null;
                 request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36";
+                request.UserAgent = UA;
                 //request.Referer = Url;
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("version:TYC-XCX-WX");
@@ -73,6 +73,9 @@ namespace 主程序202401
         #endregion
         private void button1_Click(object sender, EventArgs e)
         {
+            System.IO.File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt", textBox1.Text.Trim(), Encoding.UTF8);
+            COOKIE = textBox1.Text.Trim();
+
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -90,11 +93,11 @@ namespace 主程序202401
             try
             {
 
-                for (int i = 0; i < 100; i++)
+                for (int i = 1; i < 9999; i++)
                 {
 
                     string startdate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-                    string enddate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                    string enddate = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
                     string url = "https://scm.kkday.com/api/v1/zh-hk/report/get_orderok_list?orderMid=&orderStatus=ALL&begCrtDt="+startdate+"&endCrtDt="+enddate+"&begLstGoDt=&endLstGoDt=&begUseDate=&endUseDate=&begCancelDt=&endCancelDt=&currentPage="+i+"&pageSize=20";
 
@@ -104,10 +107,11 @@ namespace 主程序202401
 
                     MatchCollection uids = Regex.Matches(html, @"""orderMid"":""([\s\S]*?)""");
 
-                    MessageBox.Show(uids.Count.ToString());
+                   // MessageBox.Show(uids.Count.ToString());
                     if (uids.Count == 0)
                     {
-                        continue;
+                        MessageBox.Show("完成");
+                        return;
                     }
 
                     for (int a = 0; a < uids.Count; a++)
@@ -218,6 +222,29 @@ namespace 主程序202401
             {
                 e.Cancel = true;//点取消的代码 
             }
+        }
+
+
+        public void login()
+        {
+
+            string url = "";
+
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KKday_Load(object sender, EventArgs e)
+        {
+            StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "//cookie.txt"));
+            //一次性读取完 
+            string texts = sr.ReadToEnd();
+            textBox1.Text = texts;
+            sr.Close();  //只关闭流
+            sr.Dispose();   //销毁流内存
+
         }
     }
 }

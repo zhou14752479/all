@@ -392,18 +392,7 @@ namespace 主程序202206
 
         private void 代理IP提取_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            if (!GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"VuVb"))
-            {
-                TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-
-                return;
-            }
-
-            #endregion
+            
 
             Control.CheckForIllegalCrossThreadCalls = false;
             foreach (Control ctr in panel1.Controls)

@@ -320,6 +320,10 @@ namespace win007
                         case "TopSport":
                             gongsi_dics.Add("TopSport", cid);
                             break;
+                      
+                        case "Dafabet":
+                            gongsi_dics.Add("Dafabet", cid);
+                            break;
 
 
                     }

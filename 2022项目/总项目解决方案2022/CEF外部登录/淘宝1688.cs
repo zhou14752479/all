@@ -70,7 +70,7 @@ namespace CEF外部登录
         private void 淘宝1688_Load(object sender, EventArgs e)
         {
             //browser = new ChromiumWebBrowser("https://uuser.zjzwfw.gov.cn/uuuser/doLoginSuccess.do");
-            browser = new ChromiumWebBrowser("https://jms.jtexpress.com.cn/login");
+            browser = new ChromiumWebBrowser("https://scm.kkday.com/v1/zh-hk/auth/login");
             Control.CheckForIllegalCrossThreadCalls = false;
             panel1.Controls.Add(browser);
 
@@ -86,6 +86,12 @@ namespace CEF外部登录
             cookieManager.VisitAllCookies(visitor);
             
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            browser = new ChromiumWebBrowser("https://scm.kkday.com/v1/zh-hk/auth/login");
+            //browser.Refresh();
         }
     }
 }

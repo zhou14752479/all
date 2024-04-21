@@ -890,7 +890,7 @@ namespace win007
         private void button4_Click(object sender, EventArgs e)
         {
             //startdate = Convert.ToDateTime("2018-07-01").ToString("yyyy-MM-dd");
-            startdate = Convert.ToDateTime("2021-02-01").ToString("yyyy-MM-dd");
+            startdate = Convert.ToDateTime("2023-04-28").ToString("yyyy-MM-dd");
             enddate = DateTime.Now.ToString("yyyy-MM-dd");
             status = true;
             if (thread == null || !thread.IsAlive)

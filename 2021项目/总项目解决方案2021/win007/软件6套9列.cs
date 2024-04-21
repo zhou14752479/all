@@ -115,7 +115,7 @@ namespace win007
                
                 DataTable dt = fc.chaxundata(sql);
 
-
+                
                 //计算
 
                 for (int i = 0; i < dt.Rows.Count; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
@@ -336,9 +336,9 @@ namespace win007
 
                 label48.Text = "";
                 string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
-
+                //MessageBox.Show(id);
                 string data = function.getshishidata(id, company);
-                // MessageBox.Show(data);
+                 //MessageBox.Show(data);
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
                 if (text.Length > 6)
                 {
@@ -1129,7 +1129,7 @@ namespace win007
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            webBrowser1.Navigate("https://bf.titan007.com/football/Over_20231127.htm");
+            webBrowser1.Navigate("https://bf.titan007.com/football/Over_"+DateTime.Now.AddDays(-1).ToString("yyyyMMdd")+".htm");
         }
 
         private void button47_Click(object sender, EventArgs e)
@@ -1164,11 +1164,10 @@ namespace win007
             }
         }
 
-
-
-
-
-
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
+        }
     }
 
 }

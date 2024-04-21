@@ -343,18 +343,7 @@ namespace 主程序202206
 
         private void 号码网址信息分类_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            if (!GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"2piFF"))
-            {
-                //TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-
-                return;
-            }
-
-            #endregion
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

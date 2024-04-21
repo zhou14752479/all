@@ -62,9 +62,9 @@ namespace 孔夫子APP
 
 
                 headers.Add("uuid:51AF83E2DF004296B46750EE4142DE68");
-                headers.Add("accessToken:22af0dc1-c6e6-4ca2-9019-006b4f51ba7f");
-                headers.Add("access-token:22af0dc1-c6e6-4ca2-9019-006b4f51ba7f");
-                headers.Add("token:22af0dc1-c6e6-4ca2-9019-006b4f51ba7f");
+                headers.Add("accessToken:2878d6dc-9460-4cc5-ae30-cf15a66c127f");
+                headers.Add("access-token:2878d6dc-9460-4cc5-ae30-cf15a66c127f");
+                headers.Add("token:2878d6dc-9460-4cc5-ae30-cf15a66c127f");
                 headers.Add("ssid: 1689944873000198921");
 
 
@@ -224,24 +224,7 @@ namespace 孔夫子APP
 
         private void button6_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            //if (!html.Contains(@"r0LSU"))
-            //{
-            //    System.Diagnostics.Process.GetCurrentProcess().Kill();
-            //    return;
-            //}
-
-            if (!html.Contains(@"WPFko"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+            
 
             //cookie = method.GetCookies("https://search.kongfz.com/product_result/?key=9787101151824&status=0&_stpmt=eyJzZWFyY2hfdHlwZSI6ImFjdGl2ZSJ9&order=100&ajaxdata=4");
             //textBox1.Text = cookie;
@@ -308,26 +291,18 @@ namespace 孔夫子APP
 
         private void 孔夫子查询采集_Load(object sender, EventArgs e)
         {
+            
+            
             //method.SetFeatures(11000);
             //webBrowser1.ScriptErrorsSuppressed = true;
             //webBrowser1.Navigate("https://search.kongfz.com/product_result/?key=9787101151824&status=0&_stpmt=eyJzZWFyY2hfdHlwZSI6ImFjdGl2ZSJ9&order=100&ajaxdata=4");
             if(DateTime.Now> Convert.ToDateTime("2024-07-10"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
+                MessageBox.Show("服务到期，请连续技术员");
                 return;
             }
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"WPFko"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+            
         }
     }
 }

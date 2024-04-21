@@ -50,11 +50,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -113,7 +113,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 413;
-            this.comboBox1.Text = "图片添加到顶部";
+            this.comboBox1.Text = "图片添加到底部";
             // 
             // button3
             // 
@@ -275,6 +275,24 @@
             this.tabPage1.Text = "主界面";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(102, 99);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(350, 36);
+            this.textBox6.TabIndex = 418;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("宋体", 10F);
+            this.label4.Location = new System.Drawing.Point(14, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 14);
+            this.label4.TabIndex = 417;
+            this.label4.Text = "Cookie：";
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(174, 260);
@@ -304,24 +322,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(922, 627);
             this.tabControl1.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 10F);
-            this.label4.Location = new System.Drawing.Point(14, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 14);
-            this.label4.TabIndex = 417;
-            this.label4.Text = "Cookie：";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(102, 99);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(350, 36);
-            this.textBox6.TabIndex = 418;
             // 
             // 微博搬运5eplay
             // 

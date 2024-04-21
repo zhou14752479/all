@@ -48,6 +48,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.button5);
@@ -96,9 +98,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 481);
+            this.button5.Location = new System.Drawing.Point(97, 481);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(173, 32);
+            this.button5.Size = new System.Drawing.Size(97, 29);
             this.button5.TabIndex = 7;
             this.button5.Text = "下载申请中发票";
             this.button5.UseVisualStyleBackColor = true;
@@ -124,7 +126,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(109, 448);
+            this.button4.Location = new System.Drawing.Point(13, 481);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(76, 27);
             this.button4.TabIndex = 4;
@@ -136,7 +138,7 @@
             // 
             this.button3.Location = new System.Drawing.Point(13, 448);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 27);
+            this.button3.Size = new System.Drawing.Size(76, 27);
             this.button3.TabIndex = 3;
             this.button3.Text = "开始";
             this.button3.UseVisualStyleBackColor = true;
@@ -251,6 +253,16 @@
             this.columnHeader4.Text = "状态";
             this.columnHeader4.Width = 100;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(97, 448);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(97, 27);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "模式2开始";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // 开票下载
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -295,5 +307,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Button button6;
     }
 }

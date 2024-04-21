@@ -31,6 +31,10 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -45,8 +49,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,6 +80,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dateTimePicker2);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
@@ -97,17 +101,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(344, 29);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(343, 100);
+            this.textBox1.TabIndex = 399;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(342, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 398;
+            this.label3.Text = "COOKIE：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 397;
+            this.label2.Text = "结束时间：";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(103, 61);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(199, 21);
+            this.dateTimePicker2.TabIndex = 396;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(103, 34);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(139, 21);
+            this.dateTimePicker1.Size = new System.Drawing.Size(199, 21);
             this.dateTimePicker1.TabIndex = 395;
             this.dateTimePicker1.Value = new System.DateTime(2024, 3, 1, 12, 3, 0, 0);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(589, 65);
+            this.button3.Location = new System.Drawing.Point(738, 85);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 24;
@@ -117,7 +155,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(751, 65);
+            this.button5.Location = new System.Drawing.Point(900, 85);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 29);
             this.button5.TabIndex = 20;
@@ -127,7 +165,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(670, 65);
+            this.button4.Location = new System.Drawing.Point(819, 85);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 29);
             this.button4.TabIndex = 19;
@@ -137,7 +175,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(509, 65);
+            this.button2.Location = new System.Drawing.Point(817, 47);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 29);
             this.button2.TabIndex = 18;
@@ -147,7 +185,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(428, 65);
+            this.button1.Location = new System.Drawing.Point(736, 47);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 29);
             this.button1.TabIndex = 17;
@@ -227,22 +265,6 @@
             this.columnHeader6.Text = "购买人电话";
             this.columnHeader6.Width = 100;
             // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(103, 61);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(139, 21);
-            this.dateTimePicker2.TabIndex = 396;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 397;
-            this.label2.Text = "结束时间：";
-            // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "购买人Email";
@@ -272,6 +294,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KKday";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KKday_FormClosing);
+            this.Load += new System.EventHandler(this.KKday_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -307,5 +330,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
