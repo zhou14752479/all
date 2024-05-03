@@ -117,6 +117,8 @@ namespace 圆通网点管家
                                      //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("jwt-token:" + accesstoken);
+                headers.Add("accessToken:" + accesstoken);
+
                 request.Headers.Add("Cookie", COOKIE);
                 //request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
@@ -182,6 +184,16 @@ namespace 圆通网点管家
         Thread thread;
 
 
+
+        public string getfulladdr(string token,string addr,string encaddr,string waybillNo)
+        {
+            string url = "https://track.yto.net.cn/webapi/compre/decAddress?token="+token+"&terminal=PC";
+            string postdata = "{\"decAddress\":\""+addr+"\",\"encAddress\":\""+encaddr+"\",\"waybillNo\":\""+ waybillNo + "\",\"from\":\"receive\",\"terminal\":\"pc\"}";
+            string html = PostUrlDefault(url, postdata, "");
+            MessageBox.Show(html);
+            return "";
+        }
+
         public void run()
         {
             StreamReader sr2 = new StreamReader(@"D:\yto.txt", method.EncodingType.GetTxtType("D:\\yto.txt"));
@@ -221,7 +233,9 @@ namespace 圆通网点管家
                     
                     string html = PostUrlDefault(url,postdata,"");
                     //MatchCollection opOrgName = Regex.Matches(html, @"""opOrgName"":""([\s\S]*?)""");
-                    MessageBox.Show(html);
+                  
+                    
+                    //MessageBox.Show(html);
 
 
                     string biaoshi = "M";
@@ -233,6 +247,13 @@ namespace 圆通网点管家
                     MatchCollection opEmpName = Regex.Matches(html, @"""opEmpName"":""([\s\S]*?)""");
 
                     string receiverAdrress = Regex.Match(html, @"""receiverAdrress"":""([\s\S]*?)""").Groups[1].Value;
+                    string encReceiverAddress = Regex.Match(html, @"""encReceiverAddress"":""([\s\S]*?)""").Groups[1].Value;
+
+
+
+                    getfulladdr(token,receiverAdrress, encReceiverAddress, text[i]);
+
+
 
                     ListViewItem lv1 = listView1.Items.Add(listView1.Items.Count.ToString()); //使用Listview展示数据
 

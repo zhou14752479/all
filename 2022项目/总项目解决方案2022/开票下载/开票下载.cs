@@ -207,6 +207,7 @@ namespace 开票下载
                             lv1.SubItems.Add(text1[i]);
                             lv1.SubItems.Add(text2[j]);
                             lv1.SubItems.Add("匹配");
+                            break;
 
                         }
                        else 

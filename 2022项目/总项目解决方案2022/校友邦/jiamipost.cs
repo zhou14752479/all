@@ -11,6 +11,8 @@ namespace 校友邦
 		// Token: 0x0600000B RID: 11 RVA: 0x00002700 File Offset: 0x00000900
 		public static string PostUrl(string url, string postData, string COOKIE, string m, string t, string s)
 		{
+			
+
 			string result;
 			try
 			{

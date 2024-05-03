@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL">
-      <HintPath>..\..\..\..\DLL\myDLL.dll</HintPath>
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\..\..\..\DLL\NPOI.dll</HintPath>

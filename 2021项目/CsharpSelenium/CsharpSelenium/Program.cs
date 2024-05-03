@@ -16,7 +16,7 @@ namespace CsharpSelenium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 百度文库());
+            Application.Run(new 孔夫子旧书网());
         }
     }
 }

@@ -405,8 +405,15 @@ namespace 校友邦
 			{
 				MessageBox.Show("请勾选需要签到的数据行");
 			}
+
+
 			else
 			{
+
+				if (DateTime.Now > Convert.ToDateTime("2024-06-01"))
+				{
+					Process.GetCurrentProcess().Kill();
+				}
 				int i = 0;
 				while (i < this.listView1.CheckedItems.Count)
 				{

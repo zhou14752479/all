@@ -207,6 +207,8 @@ namespace 主程序202401
 
         private void button5_Click(object sender, EventArgs e)
         {
+
+            MessageBox.Show(myDLL.StupidOcr.OCR("http://222.187.200.202:8001/ValidateCode/ValidateCode?examid=13240226095949&r=2037362032", ""));
             listView1.Items.Clear();
         }
 

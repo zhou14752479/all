@@ -104,12 +104,7 @@ namespace 校友邦
 		// Token: 0x06000012 RID: 18 RVA: 0x00002BEC File Offset: 0x00000DEC
 		private void 校友邦_定时签到_Load(object sender, EventArgs e)
 		{
-			string url = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
-			bool flag = !url.Contains("QXTAe");
-			if (flag)
-			{
-				Process.GetCurrentProcess().Kill();
-			}
+		
 			this.webBrowser1.Navigate(this.path + "static/index.html");
 			method.SetFeatures(11000U);
 			this.webBrowser1.ScriptErrorsSuppressed = true;
@@ -120,6 +115,14 @@ namespace 校友邦
 		// Token: 0x06000013 RID: 19 RVA: 0x00002C6C File Offset: 0x00000E6C
 		public void run()
 		{
+
+		
+			if (DateTime.Now>Convert.ToDateTime("2024-06-01"))
+			{
+				Process.GetCurrentProcess().Kill();
+			}
+
+
 			this.getpics();
 			bool flag = DateTime.Now.Hour == 2 && this.refresh == 0;
 			if (flag)
@@ -321,12 +324,7 @@ namespace 校友邦
 		// Token: 0x06000014 RID: 20 RVA: 0x000035C4 File Offset: 0x000017C4
 		private void button1_Click(object sender, EventArgs e)
 		{
-			string url = method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8");
-			bool flag = !url.Contains("QXTAe");
-			if (flag)
-			{
-				Process.GetCurrentProcess().Kill();
-			}
+			
 			this.timer1.Interval = Convert.ToInt32(this.textBox1.Text) * 60 * 1000;
 			this.timer1.Start();
 			bool flag2 = this.thread == null || !this.thread.IsAlive;
