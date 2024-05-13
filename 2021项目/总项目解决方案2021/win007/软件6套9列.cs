@@ -336,6 +336,10 @@ namespace win007
 
                 label48.Text = "";
                 string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
+                if(id=="")
+                {
+                    id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
+                }
                 //MessageBox.Show(id);
                 string data = function.getshishidata(id, company);
                  //MessageBox.Show(data);

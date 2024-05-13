@@ -33,8 +33,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEF外部登录", "CEF外�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202206", "主程序202206\主程序202206.csproj", "{4897C27D-EB27-49C2-A794-A611A00E38B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "开票下载", "开票下载\开票下载.csproj", "{6F8C0967-09B8-444A-B553-CFC9A87D0A22}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序202104", "..\..\2021项目\总项目解决方案2021\主程序202104\主程序202104.csproj", "{2BEE2235-B78E-4120-B2CF-239394DDA667}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "圆通网点管家", "圆通网点管家\圆通网点管家.csproj", "{1007842B-D0BF-4E53-B163-FAB26985BDD2}"
@@ -231,18 +229,6 @@ Global
 		{4897C27D-EB27-49C2-A794-A611A00E38B5}.Release|x64.Build.0 = Release|Any CPU
 		{4897C27D-EB27-49C2-A794-A611A00E38B5}.Release|x86.ActiveCfg = Release|Any CPU
 		{4897C27D-EB27-49C2-A794-A611A00E38B5}.Release|x86.Build.0 = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|x64.Build.0 = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Debug|x86.Build.0 = Debug|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|x64.ActiveCfg = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|x64.Build.0 = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|x86.ActiveCfg = Release|Any CPU
-		{6F8C0967-09B8-444A-B553-CFC9A87D0A22}.Release|x86.Build.0 = Release|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BEE2235-B78E-4120-B2CF-239394DDA667}.Debug|x64.ActiveCfg = Debug|Any CPU

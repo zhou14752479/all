@@ -110,7 +110,7 @@ namespace 主程序1225
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            if(DateTime.Now>Convert.ToDateTime("2024-05-01"))
+            if(DateTime.Now>Convert.ToDateTime("2024-06-10"))
             {
                 return;
             }
@@ -160,7 +160,7 @@ namespace 主程序1225
                         string aurl = "https://etax.gansu.chinatax.gov.cn/login-web/api/auth/kqsyh/employees/get";
                         string postdata = "{\"xzqh\":\"" + code + "\",\"nsrsbh\":\"" + ens + "\"}";
                         string ahtml = PostUrl(aurl, postdata);
-                        MessageBox.Show(ahtml);
+                       // MessageBox.Show(ahtml);
                         label3.Text = "";
                         label1.Text = "正在读取：" + company;
                         if (ahtml.Contains("快"))

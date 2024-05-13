@@ -179,10 +179,11 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -2021,6 +2022,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox6);
             this.tabPage2.Controls.Add(this.linkLabel3);
             this.tabPage2.Controls.Add(this.linkLabel2);
             this.tabPage2.Controls.Add(this.linkLabel1);
@@ -2032,6 +2034,19 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "----浏览器-----";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.linkLabel3.LinkColor = System.Drawing.Color.OrangeRed;
+            this.linkLabel3.Location = new System.Drawing.Point(8, 240);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(75, 16);
+            this.linkLabel3.TabIndex = 4;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "即时比分";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
             // linkLabel2
             // 
@@ -2069,18 +2084,14 @@
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
-            // linkLabel3
+            // textBox6
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkLabel3.LinkColor = System.Drawing.Color.OrangeRed;
-            this.linkLabel3.Location = new System.Drawing.Point(8, 240);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(75, 16);
-            this.linkLabel3.TabIndex = 4;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "即时比分";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            this.textBox6.Location = new System.Drawing.Point(11, 312);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 171);
+            this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "输入比赛网址";
             // 
             // 软件6套9列
             // 
@@ -2272,5 +2283,6 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
