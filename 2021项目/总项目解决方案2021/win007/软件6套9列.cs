@@ -20,6 +20,9 @@ namespace win007
             InitializeComponent();
         }
 
+
+    
+
         private void 软件6套9列_Load(object sender, EventArgs e)
         {
            
@@ -42,7 +45,7 @@ namespace win007
 
 
         function fc = new function();
-        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, ComboBox comb1, TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
+        public string chaxun(string t1, string t2, string t3, string t4, string t5, ComboBox comb1, string t9, string t8, string t7, string t13, TextBox xianshi)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -61,40 +64,40 @@ namespace win007
                 string sql = "select * from datas where";
 
 
-                if (t1.Text != "")
+                if (t1 != "")
                 {
-                    sql = sql + (" data1 like '" + t1.Text.Trim() + "' and");
+                    sql = sql + (" data1 like '" + t1.Trim() + "' and");
                 }
-                if (t2.Text != "")
+                if (t2 != "")
                 {
-                    sql = sql + (" data2 like '" + t2.Text.Trim() + "' and");
+                    sql = sql + (" data2 like '" + t2.Trim() + "' and");
                 }
-                if (t3.Text != "")
+                if (t3 != "")
                 {
-                    sql = sql + (" data3 like '" + t3.Text.Trim() + "' and");
-                }
-
-
-
-
-                if (t9.Text != "")
-                {
-                    sql = sql + (" data4 like '" + t9.Text.Trim() + "' and");
-                }
-                if (t8.Text != "")
-                {
-                    sql = sql + (" data5 like '" + t8.Text.Trim() + "' and");
-                }
-                if (t7.Text != "")
-                {
-                    sql = sql + (" data6 like '" + t7.Text.Trim() + "' and");
+                    sql = sql + (" data3 like '" + t3.Trim() + "' and");
                 }
 
 
 
-                if (t5.Text != "")
+
+                if (t9 != "")
                 {
-                    sql = sql + (" rangqiudaxiaoqiu like '" + t5.Text.Trim() + "%' and");
+                    sql = sql + (" data4 like '" + t9.Trim() + "' and");
+                }
+                if (t8 != "")
+                {
+                    sql = sql + (" data5 like '" + t8.Trim() + "' and");
+                }
+                if (t7 != "")
+                {
+                    sql = sql + (" data6 like '" + t7.Trim() + "' and");
+                }
+
+
+
+                if (t5 != "")
+                {
+                    sql = sql + (" rangqiudaxiaoqiu like '" + t5.Trim() + "%' and");
                 }
                 //if (t6.Text != "")
                 //{
@@ -223,8 +226,8 @@ namespace win007
                         string sjp22= sjp4 + sjp5+ sjp6;
 
                      
-                        string sjpshaixuan1 = t4.Text;
-                        string sjpshaixuan2= t13.Text;
+                        string sjpshaixuan1 = t4.Trim();
+                        string sjpshaixuan2= t13.Trim();
                         if (sjp11.Contains(sjpshaixuan1)&& sjp22.Contains(sjpshaixuan2))
                         {
                             string[] bifens = bifen.Split(new string[] { "-" }, StringSplitOptions.None);
@@ -261,22 +264,25 @@ namespace win007
                 string l2 = Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "0.00").Replace("NaN", "0.00");
                 string l3 = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "0.00").Replace("NaN", "0.00");
 
-                xianshi.Text = xianshi.Text + l1 + " " + l2 + " " + l3 + "   ";
+                //  xianshi.Text = xianshi.Text + l1 + " " + l2 + " " + l3 + "   ";
 
-               
+                string value = l1 + " " + l2 + " " + l3 + "   ";
+                return value;
+
+
             }
             catch (Exception ex)
             {
                 // MessageBox.Show(ex.ToString());
 
-
+                return "";
             }
         }
 
         public string getminmaxvalue(int hang, int sort)
         {
-            double a = Convert.ToDouble(textBox1.Text);
-            double b = Convert.ToDouble(textBox3.Text);
+            double a = Convert.ToDouble(dic[1]);
+            double b = Convert.ToDouble(dic[3]);
 
             if (hang == 1)
             {
@@ -285,8 +291,8 @@ namespace win007
             }
             if (hang == 2)
             {
-                a = Convert.ToDouble(textBox9.Text);
-                b = Convert.ToDouble(textBox7.Text);
+                a = Convert.ToDouble(dic[9]);
+                b = Convert.ToDouble(dic[7]);
 
             }
 
@@ -324,8 +330,10 @@ namespace win007
             return "";
         }
 
-        public string getshishidata(string company)
+        public Dictionary<int, string> getshishidata(string company)
         {
+
+            Dictionary<int, string> dic = new Dictionary<int, string>();
             string vvv = "";
             try
             {
@@ -334,15 +342,17 @@ namespace win007
 
 
 
-                label48.Text = "";
+                //label48.Text = "";
                 string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
                 if(id=="")
                 {
                     id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
                 }
-                //MessageBox.Show(id);
+
+               
                 string data = function.getshishidata(id, company);
-                 //MessageBox.Show(data);
+               
+
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
                 if (text.Length > 6)
                 {
@@ -356,13 +366,21 @@ namespace win007
 
 
 
-                    textBox1.Text = text[1].Replace("\"", "");
-                    textBox2.Text = text[2].Replace("\"", "");
-                    textBox3.Text = text[3].Replace("\"", "");
-                    textBox9.Text = text[4].Replace("\"", "");
-                    textBox8.Text = text[5].Replace("\"", "");
-                    textBox7.Text = text[6].Replace("\"", "");
+                    //textBox1.Text = text[1].Replace("\"", "");
+                    //textBox2.Text = text[2].Replace("\"", "");
+                    //textBox3.Text = text[3].Replace("\"", "");
+                    //textBox9.Text = text[4].Replace("\"", "");
+                    //textBox8.Text = text[5].Replace("\"", "");
+                    //textBox7.Text = text[6].Replace("\"", "");
 
+                    dic.Add(1, text[1].Replace("\"", ""));
+                    dic.Add(2, text[2].Replace("\"", ""));
+                    dic.Add(3, text[3].Replace("\"", ""));
+                    dic.Add(9, text[4].Replace("\"", ""));
+                    dic.Add(8, text[5].Replace("\"", ""));
+                    dic.Add(7, text[6].Replace("\"", ""));
+
+                   
                     vvv = text[1].Replace("\"", "") + "|"+ text[2].Replace("\"", "") + "|" +text[3].Replace("\"", "");
 
                     s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) < 0 ? "降" : "升";
@@ -388,729 +406,713 @@ namespace win007
 
 
 
-                    if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                    //if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                    //{
+                    //    label48.Text = "特殊数据";
+
+                    //}
+
+                    dic.Add(4, s1 + j1 + p1);
+                    dic.Add(13, s2 + j2 + p2);
+                    //textBox4.Text = s1 + j1 + p1;
+                    //textBox13.Text = s2 + j2 + p2;
+
+                    if(company==comboBox1.Text.Trim())
                     {
-                        label48.Text = "特殊数据";
+                        label31.Text = vvv;
+                    }
+                    if (company == comboBox2.Text.Trim())
+                    {
+                        label32.Text = vvv;
+                    }
+                    if (company == comboBox3.Text.Trim())
+                    {
+                        label33.Text = vvv;
+                    }
+                    if (company == comboBox4.Text.Trim())
+                    {
+                        label34.Text = vvv;
+                    }
+                    if (company == comboBox5.Text.Trim())
+                    {
+                        label35.Text = vvv;
+                    }
+                }
+                return dic;
+            }
+            catch (Exception ex)
+            {
+                return dic;
+                 
+            }
+        }
+
+        Dictionary<int, string> dic1 = new Dictionary<int, string>();
+        Dictionary<int, string> dic2 = new Dictionary<int, string>();
+        Dictionary<int, string> dic3 = new Dictionary<int, string>();
+        Dictionary<int, string> dic4 = new Dictionary<int, string>();
+        Dictionary<int, string> dic5 = new Dictionary<int, string>();
+
+
+
+        Dictionary<int, string> dic = new Dictionary<int, string>();
+        ComboBox comb;
+        public void sancirun(string t1, string t2, string t3, string t4, string t5, string t9, string t8, string t7, string t13, TextBox xianshi)
+        {
+            try
+            {
+                string value = "0.00 0.00 0.00  ";
+            
+             
+                value = chaxun(t1, t2, t3, t4, t5, comb, t9, t8, t7, t13, xianshi);
+             
+              
+                
+                //label31.Text = getshishidata(comboBox1.Text.Trim());
+
+                
+                xianshi.Text =xianshi.Text+ value;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        string t = "";
+
+
+        bool status1 = true;
+        bool status2 = true;
+        bool status3 = true;
+        bool status4 = true;
+        bool status5 = true;
+        bool status6 = true;
+
+        public void run()
+        {
+            new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+
+                #region  //算法一开始
+
+                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                    if (getminmaxvalue(1, 1) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, t, t, rule1_txtbox);
+                    }
+                    else if (getminmaxvalue(1, 1) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, t, t, rule1_txtbox);
 
                     }
 
 
 
-                    textBox4.Text = s1 + j1 + p1;
-                    textBox13.Text = s2 + j2 + p2;
+                    if (getminmaxvalue(2, 1) == dic[9])
+                    {
+                        sancirun(t, t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule2_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7])
+                    {
+                        sancirun(t, t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule2_txtbox);
+                    }
+
+
+
+
+                    if (getminmaxvalue(2, 1) == dic[9])
+                    {
+                        sancirun(t, t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule3_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7])
+                    {
+                        sancirun(t, t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule3_txtbox);
+                    }
+
+
+
+                }).Start();
+
+                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
+                    }
+
+
+
+                    if (getminmaxvalue(2, 1) == dic[9])
+                    {
+                        sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7])
+                    {
+                        sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox);
+                    }
+
+
+
+                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
+                    }
+
+
+
+                }).Start();
+
+
+
+                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule7_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule7_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], t, textBox5.Text, dic[9], t, t, dic[13], rule7_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], t, textBox5.Text, t, t, dic[7], dic[13], rule7_txtbox);
+                    }
+
+
+
+                    if (getminmaxvalue(2, 1) == dic[9])
+                    {
+                        sancirun(t, dic[2], t, t, textBox5.Text, dic[9], t, t, dic[13], rule8_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7])
+                    {
+                        sancirun(t, dic[2], t, t, textBox5.Text, t, t, dic[7], dic[13], rule8_txtbox);
+                    }
+
+
+
+                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule9_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule9_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], t, textBox5.Text, dic[9], t, t, dic[13], rule9_txtbox);
+                    }
+                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], t, textBox5.Text, t, t, dic[7], dic[13], rule9_txtbox);
+                    }
+
+
+                }).Start();
+
+             
+                //算法一结束
+
+                #endregion
+
+                status1 = true;
+
+            }).Start();
+
+
+            
+
+            new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+              
+                #region    算法二开始
+
+
+
+             
+
+                sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, t, t, rule1_txtbox_2);
+
+              
+
+                sancirun(t, t, t, t, textBox5.Text, t, dic[8], t, dic[13], rule2_txtbox_2);
+
+             
+
+                sancirun(t, t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule3_txtbox_2);
+
+               
+
+                if (getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
                 }
-                return vvv;
-            }
-            catch (Exception ex)
-            {
-                return vvv;
-                // MessageBox.Show(ex.Message);
-            }
-        }
-     
-        public void sancirun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5,  TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
-        {
-            chaxun(t1, t2, t3, t4, t5, comboBox1, t9, t8, t7, t13, xianshi);
+                else if (getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
 
-          label32.Text=  getshishidata(comboBox2.Text.Trim());
-            chaxun(t1, t2, t3, t4, t5, comboBox2,  t9, t8, t7, t13, xianshi);
-
-            label33.Text = getshishidata(comboBox3.Text.Trim());
-            chaxun(t1, t2, t3, t4, t5, comboBox3,  t9, t8, t7, t13, xianshi);
-
-            label34.Text = getshishidata(comboBox4.Text.Trim());
-            chaxun(t1, t2, t3, t4, t5, comboBox4, t9, t8, t7, t13, xianshi);
-
-            label35.Text = getshishidata(comboBox5.Text.Trim());
-            chaxun(t1, t2, t3, t4, t5, comboBox5, t9, t8, t7, t13, xianshi);
-
-            label31.Text = getshishidata(comboBox1.Text.Trim());
-
-        }
-        TextBox t = new TextBox();
-        private void button1_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, t, t, rule1_txtbox);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, t, t, rule1_txtbox);
-
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t,t , textBox5, textBox9, t, t, textBox13, rule2_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, t, textBox5, t, t, textBox7, textBox13, rule2_txtbox);
-            }
-          
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule3_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule3_txtbox);
-            }
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule4_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule4_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, textBox9, t, t, textBox13, rule4_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, textBox7, textBox13, rule4_txtbox);
-            }
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, textBox9, t, t, textBox13, rule5_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, t, t, textBox7, textBox13, rule5_txtbox);
-            }
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule6_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule6_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1,3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, textBox9, t, t, textBox13, rule6_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, textBox7, textBox13, rule6_txtbox);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            rule7_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, textBox9, t, t, textBox13, rule7_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, t, textBox7, textBox13, rule7_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, textBox9, t, t, textBox13, rule7_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, t, textBox7, textBox13, rule7_txtbox);
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            rule8_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
-            {
-                sancirun(t, textBox2, t, t, textBox5, textBox9, t, t, textBox13, rule8_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
-            {
-                sancirun(t, textBox2, t, t, textBox5, t, t, textBox7, textBox13, rule8_txtbox);
-            }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            rule9_txtbox.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, textBox9, t, t, textBox13, rule9_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, t, textBox7, textBox13, rule9_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, textBox9, t, t, textBox13, rule9_txtbox);
-            }
-            if (getminmaxvalue(2, 1) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, t, textBox7, textBox13, rule9_txtbox);
-            }
-        }
+                }
 
 
+              
+
+                sancirun(t, dic[2], t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule5_txtbox_2);
+
+            
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
+
+                }
+
+              
+
+                if (getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, t, dic[8], t, dic[13], rule7_txtbox_2);
+                }
+                else if (getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, t, dic[8], t, dic[13], rule7_txtbox_2);
+
+                }
+
+                
+
+                sancirun(t, dic[2], t, t, textBox5.Text, t, dic[8], t, dic[13], rule8_txtbox_2);
+
+               
+
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, t, dic[8], t, dic[13], rule9_txtbox_2);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, t, dic[8], t, dic[13], rule9_txtbox_2);
+
+                }
+
+                #endregion 算法二结束
+
+                status2 = true;
+
+            }).Start();
+
+
+             new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                #region 算法三开始
+               
+
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, t, t, rule1_txtbox_3);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, t, t, rule1_txtbox_3);
+
+                }
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9])
+                {
+                    sancirun(t, t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule2_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7])
+                {
+                    sancirun(t, t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule2_txtbox_3);
+
+                }
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9])
+                {
+                    sancirun(t, t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule3_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7])
+                {
+                    sancirun(t, t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule3_txtbox_3);
+
+                }
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
+
+                }
+
+                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
+
+                }
+
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9])
+                {
+                    sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7])
+                {
+                    sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox_3);
+
+                }
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+
+                }
+
+                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+
+                }
+
+              
+
+                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule7_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule7_txtbox_3);
+
+                }
+
+                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, dic[9], t, t, dic[13], rule7_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, t, t, dic[7], dic[13], rule7_txtbox_3);
+
+                }
+
+                
+
+                if (getminmaxvalue(2, 3) == dic[9])
+                {
+                    sancirun(t, dic[2], t, t, textBox5.Text, dic[9], t, t, dic[13], rule8_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7])
+                {
+                    sancirun(t, dic[2], t, t, textBox5.Text, t, t, dic[7], dic[13], rule8_txtbox_3);
+
+                }
+
+               
+
+                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, dic[9], t, t, dic[13], rule9_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, t, textBox5.Text, t, t, dic[7], dic[13], rule9_txtbox_3);
+
+                }
+
+                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, dic[9], t, t, dic[13], rule9_txtbox_3);
+                }
+                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], t, textBox5.Text, t, t, dic[7], dic[13], rule9_txtbox_3);
+
+                }
+
+                 //算法三结束
+                 #endregion
+
+                 status3 = true;
+
+             }).Start();
+
+
+            new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                #region 算法四开始
+
+                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                    if (getminmaxvalue(2, 3) == dic[9])
+                    {
+                        sancirun(t, t, t, t, textBox5.Text, dic[9], t, t, t, rule1_txtbox_4);
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[7])
+                    {
+                        sancirun(t, t, t, t, textBox5.Text, t, t, dic[7], t, rule1_txtbox_4);
+
+                    }
 
 
 
+                    if (getminmaxvalue(2, 3) == dic[9])
+                    {
+                        sancirun(t, t, t, dic[4], textBox5.Text, dic[9], t, t, t, rule2_txtbox_4);
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[7])
+                    {
+                        sancirun(t, t, t, dic[4], textBox5.Text, t, t, dic[7], t, rule2_txtbox_4);
+
+                    }
 
 
 
+                    if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, t, rule3_txtbox_4);
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], t, rule3_txtbox_4);
+
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, t, rule3_txtbox_4);
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], t, rule3_txtbox_4);
+
+                    }
 
 
-        private void button16_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox_2.Text = "";
-            t.Text = "";
-            sancirun(t, textBox2, t, textBox4, textBox5, t, t, t, t, rule1_txtbox_2);
-        }
 
-        private void button15_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox_2.Text = "";
-            t.Text = "";
-            sancirun(t, t, t, t, textBox5, t, textBox8, t, textBox13, rule2_txtbox_2);
-        }
+                }).Start();
 
-        private void button14_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox_2.Text = "";
-            t.Text = "";
-            sancirun(t, t, t, textBox4, textBox5, t, textBox8, t, textBox13, rule3_txtbox_2);
-        }
 
-        private void button13_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox_2.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, textBox8, t, textBox13, rule4_txtbox_2);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, textBox8, t, textBox13, rule4_txtbox_2);
+                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
 
-            }
+                    if (getminmaxvalue(2, 3) == dic[9])
+                    {
+                        sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, t, rule4_txtbox_4);
+                    }
+                    else if (getminmaxvalue(2, 3) == dic[7])
+                    {
+                        sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], t, rule4_txtbox_4);
+
+                    }
+
+
+
+                    sancirun(t, t, t, dic[4], textBox5.Text, t, dic[8], t, t, rule5_txtbox_4);
+
+
+
+                    if (getminmaxvalue(1, 3) == dic[1])
+                    {
+                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, t, rule6_txtbox_4);
+
+                    }
+                    else if (getminmaxvalue(1, 3) == dic[3])
+                    {
+                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, t, rule6_txtbox_4);
+
+                    }
+
+
+                }).Start();
+
+
+
+               
+
+                //算法四结束
+
+                #endregion
+
+                status4 = true;
+
+            }).Start();
+
+            new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                #region 算法五开始
+              
+                if (getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, t, rule1_txtbox_5);
+                }
+                else if (getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, t, rule1_txtbox_5);
+
+                }
+
+               
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, t, rule2_txtbox_5);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, t, rule2_txtbox_5);
+
+                }
+
+               
+                sancirun(dic[1], t, dic[3], dic[4], textBox5.Text, t, t, t, t, rule3_txtbox_5);
+
+               
+
+                if (getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
+                }
+                else if (getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
+
+                }
+
+              
+
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
+
+                }
+
+             
+
+                sancirun(dic[1], t, dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule6_txtbox_5);
+
+                //算法五结束
+
+                #endregion
+
+                status5 = true;
+
+            }).Start();
+
+
+            new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                #region 算法六开始
+              
+                if (getminmaxvalue(1, 1) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, t, dic[13], rule1_txtbox_6);
+                }
+                else if (getminmaxvalue(1, 1) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule1_txtbox_6);
+
+                }
+
+             
+
+                sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule2_txtbox_6);
+
+             
+
+                if (getminmaxvalue(1, 3) == dic[1])
+                {
+                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, t, dic[13], rule3_txtbox_6);
+                }
+                else if (getminmaxvalue(1, 3) == dic[3])
+                {
+                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule3_txtbox_6);
+
+                }
+
+              
+
+                sancirun(t, t, t, dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_6);
+
+                
+
+                sancirun(dic[1], dic[2], dic[3], dic[4], textBox5.Text, t, t, t, t, rule5_txtbox_6);
+
+                
+
+                sancirun(dic[1], dic[2], dic[3], t, textBox5.Text, t, t, t, t, rule6_txtbox_6);
+
+                //算法六结束
+
+                #endregion
+                status6 = true;
+
+            }).Start();
+
+
             
         }
 
-        private void button12_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox_2.Text = "";
-            t.Text = "";
-            sancirun(t, textBox2, t, textBox4, textBox5, t, textBox8, t, textBox13, rule5_txtbox_2);
-        }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox_2.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, textBox8, t, textBox13, rule6_txtbox_2);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, textBox8, t, textBox13, rule6_txtbox_2);
-
-            }
-        }
-
-        private void button26_Click(object sender, EventArgs e)
-        {
-            rule7_txtbox_2.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, textBox8, t, textBox13, rule7_txtbox_2);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, textBox8, t, textBox13, rule7_txtbox_2);
-
-            }
-        }
-
-        private void button27_Click(object sender, EventArgs e)
-        {
-            rule8_txtbox_2.Text = "";
-            t.Text = "";
-            sancirun(t, textBox2, t, t, textBox5, t, textBox8, t, textBox13, rule8_txtbox_2);
-        }
-
-        private void button28_Click(object sender, EventArgs e)
-        {
-            rule9_txtbox_2.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, textBox8, t, textBox13, rule9_txtbox_2);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, textBox8, t, textBox13, rule9_txtbox_2);
-
-            }
-        }
-
-
-
-
-
-        private void button25_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, t, t, rule1_txtbox_3);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, t, t, rule1_txtbox_3);
-
-            }
-        }
-
-        private void button24_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t, t, textBox5, textBox9, t, t, textBox13, rule2_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, t, textBox5, t, t, textBox7, textBox13, rule2_txtbox_3);
-
-            }
-        }
-
-        private void button23_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule3_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule3_txtbox_3);
-
-            }
-        }
-
-        private void button22_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule4_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule4_txtbox_3);
-
-            }
-
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, textBox9, t, t, textBox13, rule4_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, textBox7, textBox13, rule4_txtbox_3);
-
-            }
-
-        }
-
-        private void button21_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, textBox9, t, t, textBox13, rule5_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, t, t, textBox7, textBox13, rule5_txtbox_3);
-
-            }
-        }
-
-        private void button20_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, textBox9, t, t, textBox13, rule6_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, textBox7, textBox13, rule6_txtbox_3);
-
-            }
-
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, textBox9, t, t, textBox13, rule6_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, textBox7, textBox13, rule6_txtbox_3);
-
-            }
-        }
-
-        private void button29_Click(object sender, EventArgs e)
-        {
-            rule7_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, textBox9, t, t, textBox13, rule7_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, t, textBox7, textBox13, rule7_txtbox_3);
-
-            }
-
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, textBox9, t, t, textBox13, rule7_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, t, textBox7, textBox13, rule7_txtbox_3);
-
-            }
-        }
-
-        private void button30_Click(object sender, EventArgs e)
-        {
-            rule8_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, textBox2, t, t, textBox5, textBox9, t, t, textBox13, rule8_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, textBox2, t, t, textBox5, t, t, textBox7, textBox13, rule8_txtbox_3);
-
-            }
-        }
-
-        private void button31_Click(object sender, EventArgs e)
-        {
-            rule9_txtbox_3.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, textBox9, t, t, textBox13, rule9_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, t, textBox5, t, t, textBox7, textBox13, rule9_txtbox_3);
-
-            }
-
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, textBox9, t, t, textBox13, rule9_txtbox_3);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, t, textBox5, t, t, textBox7, textBox13, rule9_txtbox_3);
-
-            }
-        }
-
-
-
-
-
-        private void button46_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox_4.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t, t, textBox5, textBox9, t, t, t, rule1_txtbox_4);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, t, textBox5, t, t, textBox7, t, rule1_txtbox_4);
-
-            }
-        }
-
-        private void button45_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox_4.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, textBox9, t, t, t, rule2_txtbox_4);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, t, t, textBox4, textBox5, t, t, textBox7, t, rule2_txtbox_4);
-
-            }
-        }
-
-        private void button44_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox_4.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, textBox9, t, t, t, rule3_txtbox_4);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, textBox7, t, rule3_txtbox_4);
-
-            }
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, textBox9, t, t, t, rule3_txtbox_4);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim() && getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, textBox7, t, rule3_txtbox_4);
-
-            }
-
-        }
-
-        private void button43_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox_4.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, textBox9, t, t, t, rule4_txtbox_4);
-            }
-            if (getminmaxvalue(2, 3) == textBox7.Text.Trim())
-            {
-                sancirun(t, textBox2, t, textBox4, textBox5, t, t, textBox7, t, rule4_txtbox_4);
-
-            }
-        }
-
-        private void button42_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox_4.Text = "";
-            t.Text = "";
-            sancirun(t, t, t, textBox4, textBox5, t, textBox8, t, t, rule5_txtbox_4);
-        }
-
-        private void button41_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox_4.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, textBox8, t, t, rule6_txtbox_4);
-
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, textBox8, t, t, rule6_txtbox_4);
-
-            }
-        }
-
-
-
-
-
-        private void button40_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox_5.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, textBox2, t, textBox4, textBox5, t, t, t, t, rule1_txtbox_5);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, textBox2, textBox3, textBox4, textBox5, t, t, t, t, rule1_txtbox_5);
-
-            }
-        }
-
-        private void button39_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox_5.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, textBox2, t, textBox4, textBox5, t, t, t, t, rule2_txtbox_5);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, textBox2, textBox3, textBox4, textBox5, t, t, t, t, rule2_txtbox_5);
-
-            }
-        }
-
-        private void button38_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox_5.Text = "";
-            t.Text = "";
-            sancirun(textBox1, t, textBox3, textBox4, textBox5, t, t, t, t, rule3_txtbox_5);
-        }
-
-        private void button37_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox_5.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, textBox2, t, textBox4, textBox5, t, t, t, textBox13, rule4_txtbox_5);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, textBox2, textBox3, textBox4, textBox5, t, t, t, textBox13, rule4_txtbox_5);
-
-            }
-        }
-
-        private void button36_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox_5.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, textBox2, t, textBox4, textBox5, t, t, t, textBox13, rule5_txtbox_5);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, textBox2, textBox3, textBox4, textBox5, t, t, t, textBox13, rule5_txtbox_5);
-
-            }
-        }
-
-        private void button35_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox_5.Text = "";
-            t.Text = "";
-            sancirun(textBox1, t, textBox3, textBox4, textBox5, t, t, t, textBox13, rule6_txtbox_5);
-        }
-
-
-
-
-        private void button34_Click(object sender, EventArgs e)
-        {
-            rule1_txtbox_6.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, t, textBox13, rule1_txtbox_6);
-            }
-            if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, t, textBox13, rule1_txtbox_6);
-
-            }
-        }
-
-        private void button33_Click(object sender, EventArgs e)
-        {
-            rule2_txtbox_6.Text = "";
-            t.Text = "";
-            sancirun(t, textBox2, t, textBox4, textBox5, t, t, t, textBox13, rule2_txtbox_6);
-        }
-
-        private void button32_Click(object sender, EventArgs e)
-        {
-            rule3_txtbox_6.Text = "";
-            t.Text = "";
-            if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
-            {
-                sancirun(textBox1, t, t, textBox4, textBox5, t, t, t, textBox13, rule3_txtbox_6);
-            }
-            if (getminmaxvalue(1, 3) == textBox3.Text.Trim())
-            {
-                sancirun(t, t, textBox3, textBox4, textBox5, t, t, t, textBox13, rule3_txtbox_6);
-
-            }
-        }
-
-        private void button19_Click(object sender, EventArgs e)
-        {
-            rule4_txtbox_6.Text = "";
-            t.Text = "";
-            sancirun(t, t, t, textBox4, textBox5, t, t, t, textBox13, rule4_txtbox_6);
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            rule5_txtbox_6.Text = "";
-            t.Text = "";
-            sancirun(textBox1, textBox2, textBox3, textBox4, textBox5, t, t, t, t, rule5_txtbox_6);
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            rule6_txtbox_6.Text = "";
-            t.Text = "";
-            sancirun(textBox1, textBox2, textBox3, t, textBox5, t, t, t, t, rule6_txtbox_6);
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1133,45 +1135,226 @@ namespace win007
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            webBrowser1.Navigate("https://bf.titan007.com/football/Over_"+DateTime.Now.AddDays(-1).ToString("yyyyMMdd")+".htm");
+            webBrowser1.Navigate("https://bf.titan007.com/football/Over_"+DateTime.Now.AddDays(-2).ToString("yyyyMMdd")+".htm");
         }
 
         private void button47_Click(object sender, EventArgs e)
         {
-            //Thread thread = new Thread(allbutton);
-            //thread.Start();
+            GetControls_value(groupBox1);
+            GetControls_value(groupBox3);
+            GetControls_value(groupBox4);
+            GetControls_value(groupBox5);
+            GetControls_value(groupBox6);
+            GetControls_value(groupBox18);
+
+          
+
+          Thread  thread = new Thread(allbutton);
+            thread.Start();
             Control.CheckForIllegalCrossThreadCalls = false;
-            allbutton();
+            
+
         }
 
         public void allbutton()
         {
-            foreach (Control item in groupBox2.Controls)
+            dic = getshishidata(comboBox1.Text.Trim());
+            if (dic.Count == 0)
             {
-                if (item is Button)
-                {
-                    if (item.Text != "全部运算")
-                    {
-                        new System.Threading.Thread((System.Threading.ThreadStart)delegate {
-
-                            Button button = (Button)item;
-                            button.PerformClick();
-
-
-
-                        }).Start();
-                       
-                    }
-
-                }
-
+                dic.Add(1, "0");
+                dic.Add(2, "0");
+                dic.Add(3, "0");
+                dic.Add(9, "0");
+                dic.Add(8, "0");
+                dic.Add(7, "0");
+                dic.Add(4, "0");
+                dic.Add(13, "0");
             }
+            comb = comboBox1;
+            status1 = false;
+            status2 = false;
+            status3 = false;
+            status4 = false;
+            status5 = false;
+            status6 = false;
+            run();
+
+//公司2
+            while(true)
+            {
+                if (status1 && status2 && status3 && status4  && status5 && status6 )
+                {
+                   
+                    dic = getshishidata(comboBox2.Text.Trim());
+                    if (dic.Count == 0)
+                    {
+                        dic.Add(1, "0");
+                        dic.Add(2, "0");
+                        dic.Add(3, "0");
+                        dic.Add(9, "0");
+                        dic.Add(8, "0");
+                        dic.Add(7, "0");
+                        dic.Add(4, "0");
+                        dic.Add(13, "0");
+                    }
+                    comb = comboBox2;
+                    status1 = false;
+                    status2 = false;
+                    status3 = false;
+                    status4 = false;
+                    status5 = false;
+                    status6 = false;
+                    run();
+                    break;
+                }
+            }
+
+            //公司3
+            while (true)
+            {
+                if (status1 && status2 && status3 && status4 && status5 && status6)
+                {
+
+                    dic = getshishidata(comboBox3.Text.Trim());
+                    if (dic.Count == 0)
+                    {
+                        dic.Add(1, "0");
+                        dic.Add(2, "0");
+                        dic.Add(3, "0");
+                        dic.Add(9, "0");
+                        dic.Add(8, "0");
+                        dic.Add(7, "0");
+                        dic.Add(4, "0");
+                        dic.Add(13, "0");
+                    }
+                    comb = comboBox3;
+                    status1 = false;
+                    status2 = false;
+                    status3 = false;
+                    status4 = false;
+                    status5 = false;
+                    status6 = false;
+                    run();
+                    break;
+                }
+            }
+            //公司4
+
+            while (true)
+            {
+                if (status1 && status2 && status3 && status4 && status5 && status6)
+                {
+
+                    dic = getshishidata(comboBox4.Text.Trim());
+                    if (dic.Count == 0)
+                    {
+                        dic.Add(1, "0");
+                        dic.Add(2, "0");
+                        dic.Add(3, "0");
+                        dic.Add(9, "0");
+                        dic.Add(8, "0");
+                        dic.Add(7, "0");
+                        dic.Add(4, "0");
+                        dic.Add(13, "0");
+                    }
+                    comb = comboBox4;
+                    status1 = false;
+                    status2 = false;
+                    status3 = false;
+                    status4 = false;
+                    status5 = false;
+                    status6 = false;
+                    run();
+                    break;
+                }
+            }
+
+            //公司5
+            while (true)
+            {
+                if (status1 && status2 && status3 && status4 && status5 && status6)
+                {
+
+                    dic = getshishidata(comboBox5.Text.Trim());
+                    if (dic.Count == 0)
+                    {
+                        dic.Add(1, "0");
+                        dic.Add(2, "0");
+                        dic.Add(3, "0");
+                        dic.Add(9, "0");
+                        dic.Add(8, "0");
+                        dic.Add(7, "0");
+                        dic.Add(4, "0");
+                        dic.Add(13, "0");
+                    }
+                    comb = comboBox5;
+                    status1 = false;
+                    status2 = false;
+                    status3 = false;
+                    status4 = false;
+                    status5 = false;
+                    status6 = false;
+                    run();
+                   
+                    break;
+                   
+                }
+            }
+
+          
         }
+
+
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             webBrowser1.Navigate("https://live.titan007.com/oldIndexall.aspx");
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            //rebutton();
+        }
+
+
+    
+
+
+
+
+
+
+
+
+
+        private void GetControls_value(Control fatherControl)
+        {
+            Control.ControlCollection sonControls = fatherControl.Controls;
+            //遍历所有控件
+            foreach (Control control in sonControls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "";
+                    
+
+                }
+
+                if (control.Controls != null)
+                {
+                    GetControls_value(control);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
     }
 
 }

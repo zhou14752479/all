@@ -110,11 +110,11 @@ namespace 客户美团
         string domail = "www.acaiji.com/shangxueba2";
         public void gettoken()
         {
-            string ahtml = method.GetUrl("http://" + domail + "/shangxueba.php?method=getcookie", "utf-8");
+            //string ahtml = method.GetUrl("http://" + domail + "/shangxueba.php?method=getcookie", "utf-8");
 
-            token = ahtml.Trim().Replace("\r", "").Replace("\n", "");
+            //token = ahtml.Trim().Replace("\r", "").Replace("\n", "");
 
-
+            token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODYyNzk4NjM4MyIsImlhdCI6MTcxNzUwMzQwMywiZXhwIjoxNzIwMDk1NDAzfQ.J4r92oGlGPc_u1CtTAh87nehkfJzT1DrlhjkGOt4mB4JFwM-wCvOGQItyfRhWyWG9qfiVdxfQ04UUtqJeG6qWQ";
         }
         /// <summary>
         /// 获取时间戳毫秒
@@ -508,20 +508,7 @@ namespace 客户美团
         #endregion
         private void 全国工商企业信息采集_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"useov"))
-            {
-               
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                TestForKillMyself();
-            }
-
-
-
-            #endregion
+            
             getAllfromJson();
             getprovincefromJson();
             ImageList imgList = new ImageList();
