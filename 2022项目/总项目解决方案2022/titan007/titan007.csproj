@@ -87,6 +87,12 @@
     <Compile Include="欧赔初陪初盘平均值.Designer.cs">
       <DependentUpon>欧赔初陪初盘平均值.cs</DependentUpon>
     </Compile>
+    <Compile Include="澳客直播.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="澳客直播.Designer.cs">
+      <DependentUpon>澳客直播.cs</DependentUpon>
+    </Compile>
     <Compile Include="进球数.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="欧赔初陪初盘平均值.resx">
       <DependentUpon>欧赔初陪初盘平均值.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="澳客直播.resx">
+      <DependentUpon>澳客直播.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="进球数.resx">
       <DependentUpon>进球数.cs</DependentUpon>

@@ -105,9 +105,10 @@ namespace 天猫店铺采集
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
             request.Timeout = 10000;
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-            request.AllowAutoRedirect = false;
-
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+            request.AllowAutoRedirect = true;
+            request.KeepAlive = true;   
+            request.Referer = url;
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
             string content = response.GetResponseHeader("Set-Cookie"); ;
@@ -126,7 +127,9 @@ namespace 天猫店铺采集
             request.Timeout = 10000;
             request.Headers.Add("Cookie", COOKIE);
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
-            request.AllowAutoRedirect = false;
+            request.AllowAutoRedirect = true;
+            request.KeepAlive = true;
+            request.Referer = url;
 
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
@@ -154,11 +157,11 @@ namespace 天猫店铺采集
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
              
                 //request.Proxy = null;//防止代理抓包
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.20(0x18001435) NetType/WIFI Language/zh_CN ";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 ";
                 //添加头部
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("sec-fetch-mode:navigate");
-                request.Referer = "https://h5.m.taobao.com/";
+                //request.Referer = "https://h5.m.taobao.com/";
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈

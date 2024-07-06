@@ -16,7 +16,7 @@ namespace 天猫店铺采集
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 天猫店铺采集());
+            Application.Run(new 淘宝店铺采集());
         }
     }
 }

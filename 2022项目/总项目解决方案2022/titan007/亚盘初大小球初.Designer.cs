@@ -34,6 +34,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -58,7 +59,6 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -136,6 +136,16 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(102, 48);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 29);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "开始2";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // splitContainer1
             // 
@@ -316,16 +326,6 @@
             // 
             this.columnHeader18.Text = "客_初";
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(102, 48);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 29);
-            this.button6.TabIndex = 25;
-            this.button6.Text = "开始2";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // 亚盘初大小球初
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -336,6 +336,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "亚盘初大小球初(仅供学习交流，如作他用所承受的法律责任一概与作者无关(使用即代表你同意上述观点))";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.亚盘初大小球初_FormClosing);
+            this.Load += new System.EventHandler(this.亚盘初大小球初_Load);
             this.groupBox1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

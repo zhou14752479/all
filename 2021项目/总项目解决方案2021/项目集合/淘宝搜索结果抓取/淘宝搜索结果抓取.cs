@@ -123,18 +123,7 @@ namespace 淘宝搜索结果抓取
         Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            string html = getHtml("http://acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"Wigbkff"))
-            {
-
-                return;
-            }
-
-            #endregion
+            
 
 
             cookie = webbrowser.COOKIE;

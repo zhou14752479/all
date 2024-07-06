@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL">
-      <HintPath>..\标签打印软件\bin\Debug\myDLL.dll</HintPath>
+    <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\myDLL\bin\Debug\myDLL.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\标签打印软件\bin\Debug\NPOI.dll</HintPath>
@@ -78,6 +79,18 @@
     <Compile Include="天猫店铺采集.Designer.cs">
       <DependentUpon>天猫店铺采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="批量举报.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="批量举报.Designer.cs">
+      <DependentUpon>批量举报.cs</DependentUpon>
+    </Compile>
+    <Compile Include="淘宝店铺采集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝店铺采集.Designer.cs">
+      <DependentUpon>淘宝店铺采集.cs</DependentUpon>
+    </Compile>
     <Compile Include="登录.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="天猫店铺采集.resx">
       <DependentUpon>天猫店铺采集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="批量举报.resx">
+      <DependentUpon>批量举报.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘宝店铺采集.resx">
+      <DependentUpon>淘宝店铺采集.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="登录.resx">
       <DependentUpon>登录.cs</DependentUpon>

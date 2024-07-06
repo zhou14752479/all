@@ -16,7 +16,7 @@ namespace 主程序202401
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KKday());
+            Application.Run(new 易优权益());
         }
     }
 }

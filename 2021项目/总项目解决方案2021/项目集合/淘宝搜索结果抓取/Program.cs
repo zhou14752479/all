@@ -16,7 +16,7 @@ namespace 淘宝搜索结果抓取
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 直通车抓取());
+            Application.Run(new 淘宝搜索结果抓取());
         }
     }
 }

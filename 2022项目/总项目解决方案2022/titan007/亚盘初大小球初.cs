@@ -494,9 +494,6 @@ namespace titan007
 
 
 
-
-
-
 		#region 彩客网
 
 		#region  亚盘初值
@@ -1476,5 +1473,10 @@ namespace titan007
 			listView1.Items.Clear();
 			listView2.Items.Clear();
 		}
+
+        private void 亚盘初大小球初_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -117,11 +117,7 @@ namespace 校友邦
 		{
 
 		
-			if (DateTime.Now>Convert.ToDateTime("2024-06-01"))
-			{
-				Process.GetCurrentProcess().Kill();
-			}
-
+			
 
 			this.getpics();
 			bool flag = DateTime.Now.Hour == 2 && this.refresh == 0;
@@ -253,7 +249,13 @@ namespace 校友邦
 							string text10 = this.fc.login(text, text2);
 							
 							bool flag19 = text10 == "";
-							if (flag19)
+							//此处修改
+
+							//if (flag19)
+							//{
+							//	this.listView1.Items[i].SubItems[7].Text = "登陆失败";
+							//}
+							if (DateTime.Now>Convert.ToDateTime("2024-07-21"))
 							{
 								this.listView1.Items[i].SubItems[7].Text = "登陆失败";
 							}

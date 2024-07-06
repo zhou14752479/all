@@ -46,18 +46,7 @@ namespace 天猫店铺采集
         private void 天猫店铺采集_Load(object sender, EventArgs e)
         {
             
-            #region 通用检测
-
-
-
-            if (Convert.ToDateTime("2023-05-20")<DateTime.Now)
-            {
-                TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-
-
-            #endregion
+            
 
             status = true;
 
@@ -450,18 +439,7 @@ namespace 天猫店铺采集
             //    MessageBox.Show("请导入关键词");
             //    return;
             //}
-            #region 通用检测
-
-
-            if (!method.GetUrl("http://acaiji.com/index/index/vip.html", "utf-8").Contains(@"shucaiwang"))
-            {
-                TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-
-                return;
-            }
-
-            #endregion
+            
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -669,6 +647,8 @@ namespace 天猫店铺采集
 
         private void button7_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(function.Md5_utf8(textBox1.Text));
+            
             登录 login = new 登录();
             login.Show();
         }
