@@ -296,10 +296,11 @@ namespace 孔夫子APP
             //method.SetFeatures(11000);
             //webBrowser1.ScriptErrorsSuppressed = true;
             //webBrowser1.Navigate("https://search.kongfz.com/product_result/?key=9787101151824&status=0&_stpmt=eyJzZWFyY2hfdHlwZSI6ImFjdGl2ZSJ9&order=100&ajaxdata=4");
-            if(DateTime.Now> Convert.ToDateTime("2024-07-10"))
+            if(DateTime.Now> Convert.ToDateTime("2024-08-20"))
             {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                
                 MessageBox.Show("服务到期，请连续技术员");
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return;
             }
             

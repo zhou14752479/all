@@ -27,7 +27,7 @@ namespace 主程序202401
           
           
             
-            pictureBox1.Image=  GetImage("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQE68DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAycUw2T1VmSVFjWWoxS1ByQTFDY0QAAgSzTn1mAwQAjScA");
+            pictureBox1.Image=  GetImage("http://wxpusher.zjiecode.com/api/qrcode/voD1HgXICEUzBMQQq6fhNY996iSiqKBCpml2CBqxshU0abAJJq5AVGerJUHT1H4u.jpg");
         }
         #region POST默认请求
         public static string PostUrlDefault(string url, string postData, string COOKIE)
@@ -39,7 +39,7 @@ namespace 主程序202401
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
-                request.Proxy = null;
+               // request.Proxy = null;
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("version:TYC-XCX-WX");
                 //request.ContentType = "application/x-www-form-urlencoded";
@@ -55,7 +55,7 @@ namespace 主程序202401
                 sw.Write(postData);
                 sw.Flush();
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                response.GetResponseHeader("Set-Cookie");
+                 response.GetResponseHeader("Set-Cookie");
                 bool flag = response.Headers["Content-Encoding"] == "gzip";
                 string html;
                 if (flag)
@@ -87,6 +87,8 @@ namespace 主程序202401
         }
         #endregion
 
+
+        
         string canshu;
 
         #region GET请求
@@ -174,7 +176,41 @@ namespace 主程序202401
             return TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1)).AddSeconds(Convert.ToDouble(timeStamp));
         }
         #endregion
-        string cookie = "sessionID=cf6266ee373834897eb625c32578b5e4; auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjAwOTIzOTEsImp0aSI6IjEiLCJUeXBlIjoiY29uc29sZSIsIlN1YnN0YXRpb25JRCI6MCwiSXNLaW5nIjp0cnVlLCJWZXJpZnkiOiIxMmZkM2JhZDlkZTdhMTkzNjIyMzZkMDcwZGJlNDhkNyJ9.cyg3zoH65iRZRflfBAk9btjN8eoZXihVwXz4FytUiig";
+       
+        string cookie = "";
+
+        public void login()
+        {
+            string postData = "{\"account\":\"wuxuedi\",\"password\":\"ad19991015\"}";
+          
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://"+textBox2.Text.Trim()+"/api/console/login/verify");
+            request.Method = "Post";
+            //request.Proxy = null;
+            //WebHeaderCollection headers = request.Headers;
+            //headers.Add("version:TYC-XCX-WX");
+            //request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentType = "application/json";
+            request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+            request.Headers.Add("Accept-Encoding", "gzip");
+            request.AllowAutoRedirect = false;
+            request.KeepAlive = true;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+    
+            StreamWriter sw = new StreamWriter(request.GetRequestStream());
+            sw.Write(postData);
+            sw.Flush();
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+           cookie= response.GetResponseHeader("Set-Cookie");
+            string token= Regex.Match(cookie, @"auth_token=([\s\S]*?);").Groups[1].Value;
+            cookie = "auth_token=" + token;
+            if(token!="")
+            {
+                label1.Text = "登录成功";
+            }
+            
+        }
+
         public void run()
         {
             try
@@ -182,11 +218,14 @@ namespace 主程序202401
                 listView1.Items.Clear();
               
                    
-                    string url = "http://gl.yy112.top/api/console/OrderManage/Paging";
+                    string url = "http://"+textBox2.Text.Trim()+"/api/console/OrderManage/Paging";
 
                     string html = PostUrlDefault(url, "{\"type\":0,\"page\":1,\"list_rows\":10,\"status\":0,\"goods_name\":\"\",\"docking_status\":0,\"id\":null,\"goods_id\":null,\"customer_id\":null,\"buy_params\":null,\"docking_site_id\":0,\"supplier_id\":null}",cookie);
 
-
+                if(html.Contains("登录"))
+                {
+                    login();
+                }
                     MatchCollection buy_numbers = Regex.Matches(html, @"""buy_number"":([\s\S]*?),");
                     MatchCollection amounts = Regex.Matches(html, @"""amount"":([\s\S]*?),");
                     MatchCollection goods_names = Regex.Matches(html, @"""goods_name"": ""([\s\S]*?)""");
@@ -221,10 +260,10 @@ namespace 主程序202401
 
                 if (parameters.Count > 0)
                 {
-                    if (canshu != parameters[0].Groups[1].Value)
+                    if (canshu != create_times[0].Groups[1].Value)
                     {
                         sendmsg(goods_names[0].Groups[1].Value, "下单参数：" + parameters[0].Groups[1].Value + " " + "下单数量：" + buy_numbers[0].Groups[1].Value + "实付金额：" + amounts[0].Groups[1].Value + "下单时间：" + ConvertStringToDateTime(create_times[0].Groups[1].Value).ToString());
-                        canshu = parameters[0].Groups[1].Value;
+                        canshu = create_times[0].Groups[1].Value;
                     }
 
                 }
@@ -277,6 +316,13 @@ namespace 主程序202401
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (DateTime.Now > Convert.ToDateTime("2024-09-01"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+
+            label1.Text = "正在登录....";
+            login();
             timer1.Start();
             if (thread == null || !thread.IsAlive)
             {
@@ -288,10 +334,7 @@ namespace 主程序202401
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2024-08-01"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+           
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);

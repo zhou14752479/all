@@ -88,6 +88,18 @@
     <Compile Include="孔夫子查询采集.Designer.cs">
       <DependentUpon>孔夫子查询采集.cs</DependentUpon>
     </Compile>
+    <Compile Include="孔网在售已售.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="孔网在售已售.Designer.cs">
+      <DependentUpon>孔网在售已售.cs</DependentUpon>
+    </Compile>
+    <Compile Include="孔网已售.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="孔网已售.Designer.cs">
+      <DependentUpon>孔网已售.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -105,6 +117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="孔夫子查询采集.resx">
       <DependentUpon>孔夫子查询采集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="孔网在售已售.resx">
+      <DependentUpon>孔网在售已售.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="孔网已售.resx">
+      <DependentUpon>孔网已售.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

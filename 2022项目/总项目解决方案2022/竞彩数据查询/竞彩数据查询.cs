@@ -605,17 +605,7 @@ namespace 竞彩数据查询
 
         private void 竞彩数据查询_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"tTtuL"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+            
         }
         string path = System.Environment.CurrentDirectory + "\\jingcaidata.db";
         private void button2_Click(object sender, EventArgs e)

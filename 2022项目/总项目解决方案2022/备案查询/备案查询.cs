@@ -208,13 +208,13 @@ namespace 备案查询
                     label1.Text = "累计已查询："+i.ToString();
                     string yuming = text[i].Trim();
 
-                    //string url = "https://beian.tianyancha.com/search/" + yuming;
-                    string url = "http://micp.chinaz.com/?query=" + yuming;
+                    string url = "https://beian.tianyancha.com/search/" + yuming;
+                    //string url = "http://micp.chinaz.com/" + yuming;
                     string html = GetUrl(url, "utf-8");
 
                     //html.Contains("<td class=\"ranking\">")
                     //主办单位名称
-                    if (html.Contains("主办单位"))
+                    if (html.Contains("主办单位名称"))
                     {
                         textBox2.Text += DateTime.Now.ToString() + yuming + "查询成功：已备案"+"\r\n";
                         FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\"+ filename + ".txt", FileMode.Append, FileAccess.Write);//创建写入文件 
@@ -251,7 +251,11 @@ namespace 备案查询
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text=="")
+            if (DateTime.Now > Convert.ToDateTime("2024-12-01"))
+            {
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            if (textBox1.Text=="")
             {
                 MessageBox.Show("请导入文本");
                 return;
@@ -302,18 +306,7 @@ namespace 备案查询
         #endregion
         private void 备案查询_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"cgYv"))
-            {
-                TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
-
-
-            #endregion
+            
         }
     }
 }

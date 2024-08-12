@@ -255,7 +255,7 @@ namespace 校友邦
 							//{
 							//	this.listView1.Items[i].SubItems[7].Text = "登陆失败";
 							//}
-							if (DateTime.Now>Convert.ToDateTime("2024-07-21"))
+							if (DateTime.Now>Convert.ToDateTime("2024-09-02"))
 							{
 								this.listView1.Items[i].SubItems[7].Text = "登陆失败";
 							}

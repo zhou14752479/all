@@ -97,6 +97,12 @@
     <Compile Include="登录.Designer.cs">
       <DependentUpon>登录.cs</DependentUpon>
     </Compile>
+    <Compile Include="虚拟娱乐.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="虚拟娱乐.Designer.cs">
+      <DependentUpon>虚拟娱乐.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="登录.resx">
       <DependentUpon>登录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="虚拟娱乐.resx">
+      <DependentUpon>虚拟娱乐.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

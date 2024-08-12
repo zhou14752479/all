@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using myDLL;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 
 namespace CsharpSelenium
 {
@@ -108,7 +109,7 @@ namespace CsharpSelenium
 
 
 
-        public void savetxt(string a,string b,string c,string d,string e ,string  f)
+        public void savetxt(string a,string b,string c,string d,string e,string f )
         {
 
 
@@ -119,7 +120,31 @@ namespace CsharpSelenium
             fs1.Close();
             sw.Dispose();
         }
+        public void login(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl("https://www.kongfz.com/");
 
+            Thread.Sleep(1000);
+
+            //登录开始
+            // 定位到包含文本的元素，例如通过xpath或其他选择器
+            IWebElement element = driver.FindElement(By.XPath("//span[contains(text(), '注册')]"));
+
+            // 创建一个操作Builders来模拟鼠标行为
+            Actions builder = new Actions(driver);
+
+            builder.MoveToElement(element).Build().Perform();
+            Thread.Sleep(1000);
+            driver.FindElement(By.ClassName("login-btn")).Click();
+            Thread.Sleep(1000);
+
+            driver.SwitchTo().Frame("iframe_login");
+
+            driver.FindElement(By.Name("username")).SendKeys(textBox2.Text);
+            driver.FindElement(By.Name("password")).SendKeys(textBox3.Text);
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath("//*[@id=\"login\"]/div[2]/input")).Click();
+        }
 
         #region 主程序
         public void run()
@@ -129,34 +154,32 @@ namespace CsharpSelenium
             {
                 ChromeOptions options = new ChromeOptions();
                 options.BinaryLocation = "Chrome/Application/chrome.exe";
-                // options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+               options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
                 options.AddArgument("--disable-gpu");
 
                 IWebDriver driver = new ChromeDriver(options);
                 //driver.Manage().Window.Maximize();
-                driver.Navigate().GoToUrl("https://www.kongfz.com/");
+             
+
+                login(driver);
 
 
 
-                //AddCookieByString(driver,  "kfz_uuid=930594df-dc42-49d3-933a-513c5aa7544f; Hm_lvt_33be6c04e0febc7531a1315c9594b136=1713963270; shoppingCartSessionId=bf96c8533a0bdd06e8e47556884cf211; kfz-tid=06cbe2cc29ee6077ad6979e021b9daba; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1713963270,1714048900; utm_source=101002001000; PHPSESSID=06a00eca1636e28ce4b7562ad52179da8e8475f3; kfz_trace=930594df-dc42-49d3-933a-513c5aa7544f|16134930|6758f7fba719d453|101002001000; reciever_area=1001000000; acw_tc=276077d717140523666123336e5b1ec3c32ab1bb45116dfd44d7e5365605ed");
-
-
-                //Thread.Sleep(1000);
-                //driver.Navigate().GoToUrl("https://www.kongfz.com/");
-                Thread.Sleep(60000);
-
-                //Cookie cookie = new Cookie("shoppingCartSessionId", "cac0103a18f12726671fb4ae1c87608f; leftMenuStatus", "", DateTime.Now.AddDays(9999));
-                //driver.Manage().Cookies.AddCookie(cookie);
-                //Thread.Sleep(1000);
-                // driver.Navigate().GoToUrl("https://www.kongfz.com/");
+                Thread.Sleep(2000);
+                //登录结束
 
                 StreamReader keysr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
                 string ReadTxt = keysr.ReadToEnd();
                 string[] text = ReadTxt.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-
+                int type = 0;
                 for (int i = 0; i < text.Length; i++)
                 {
+                    if (status == false)
+                    {
+                        return;
+                    }
+
                     if (text[i] != "")
                     {
 
@@ -169,27 +192,39 @@ namespace CsharpSelenium
                             MatchCollection prices = Regex.Matches(driver.PageSource, @"price-int"">([\s\S]*?)</div>");
                             MatchCollection fees = Regex.Matches(driver.PageSource, @"快递:([\s\S]*?)</span>");
 
-
-
-
-                            if (status == false)
+                            if(prices.Count==0)
                             {
-                                return;
+
+                                if(type==0)
+                                {
+                                    driver.Manage().Cookies.DeleteAllCookies();
+                                    type = 1;
+                                }
+                                else
+                                {
+                                    login(driver);
+                                    type = 0;   
+                                }
+                              
+                                driver.Navigate().GoToUrl("https://search.kongfz.com/product/?keyword=" + text[i] + "&dataType=0&sortType=7&page=1&actionPath=sortType");
+                                Thread.Sleep(1000);
+                                prices = Regex.Matches(driver.PageSource, @"price-int"">([\s\S]*?)</div>");
+                                fees = Regex.Matches(driver.PageSource, @"快递:([\s\S]*?)</span>");
+
                             }
 
+                          
+                          
 
 
-                            driver.Navigate().GoToUrl("https://search.kongfz.com/product/?dataType=1&keyword=" + text[i]);
-                            Thread.Sleep(1000);
-                            Match sale = Regex.Match(driver.PageSource, @"result-count__number"">([\s\S]*?)</span>");
 
-                            string sales = sale.Groups[1].Value;
+                            //driver.Navigate().GoToUrl("https://search.kongfz.com/product/?dataType=1&keyword=" + text[i]);
+                            //Thread.Sleep(1000);
+                            //Match sale = Regex.Match(driver.PageSource, @"result-count__number"">([\s\S]*?)</span>");
 
+                            //string sales = sale.Groups[1].Value;
 
-                            if (sales.Trim() == "")
-                            {
-                                sales = "无";
-                            }
+                            string sales = "";
 
                             if (prices.Count > 2)
                             {
@@ -204,7 +239,7 @@ namespace CsharpSelenium
                                 lv1.SubItems.Add(c);
                                 lv1.SubItems.Add(d);
                                 lv1.SubItems.Add(e);
-                                lv1.SubItems.Add(sales);
+                                //lv1.SubItems.Add(sales);
 
                                 savetxt(text[i], b, c, d, e, sales);
                             }
@@ -260,9 +295,13 @@ namespace CsharpSelenium
 
 
         }
+
+
         #endregion
 
+        private void 孔夫子旧书网_Load(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

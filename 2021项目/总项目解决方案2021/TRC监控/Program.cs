@@ -16,7 +16,7 @@ namespace TRC监控
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ERC监控());
+            Application.Run(new TRC监控());
         }
     }
 }

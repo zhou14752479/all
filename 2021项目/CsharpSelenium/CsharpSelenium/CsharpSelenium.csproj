@@ -99,6 +99,18 @@
     <Compile Include="孔夫子旧书网.Designer.cs">
       <DependentUpon>孔夫子旧书网.cs</DependentUpon>
     </Compile>
+    <Compile Include="孔网已售.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="孔网已售.Designer.cs">
+      <DependentUpon>孔网已售.cs</DependentUpon>
+    </Compile>
+    <Compile Include="孔网手机端.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="孔网手机端.Designer.cs">
+      <DependentUpon>孔网手机端.cs</DependentUpon>
+    </Compile>
     <Compile Include="弹窗处理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +128,12 @@
     </Compile>
     <Compile Include="文件筛选.Designer.cs">
       <DependentUpon>文件筛选.cs</DependentUpon>
+    </Compile>
+    <Compile Include="淘宝搜索.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="淘宝搜索.Designer.cs">
+      <DependentUpon>淘宝搜索.cs</DependentUpon>
     </Compile>
     <Compile Include="琴房预约查找.cs">
       <SubType>Form</SubType>
@@ -163,6 +181,12 @@
     <EmbeddedResource Include="孔夫子旧书网.resx">
       <DependentUpon>孔夫子旧书网.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="孔网已售.resx">
+      <DependentUpon>孔网已售.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="孔网手机端.resx">
+      <DependentUpon>孔网手机端.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="弹窗处理.resx">
       <DependentUpon>弹窗处理.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="文件筛选.resx">
       <DependentUpon>文件筛选.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="淘宝搜索.resx">
+      <DependentUpon>淘宝搜索.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="琴房预约查找.resx">
       <DependentUpon>琴房预约查找.cs</DependentUpon>

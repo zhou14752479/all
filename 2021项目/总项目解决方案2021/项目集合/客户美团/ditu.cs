@@ -24,7 +24,7 @@ namespace 客户美团
             InitializeComponent();
         }
 
-        string cookie = "";
+        string cookie = "HWWAFSESID=83d4d731f07be5b61e; HWWAFSESTIME=1720525848277";
         Dictionary<string, string> areadics = new Dictionary<string, string>();
 
 
@@ -58,7 +58,8 @@ namespace 客户美团
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.41";
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("token", token);
-                request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/350/page-frame.html";
+                //request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/350/page-frame.html";
+                request.Referer = "https://map.tianditu.gov.cn/";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
@@ -554,6 +555,122 @@ namespace 客户美团
         }
 
         #endregion
+
+        #region 天地图
+        public void tianditu()
+        {
+            ArrayList addrList = new ArrayList();
+
+            string[] keywords = textBox2.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None); ;
+            if (keywords.Length == 0)
+            {
+                MessageBox.Show("请添加关键字");
+                return;
+            }
+
+            int count = 0;
+            try
+            {
+
+
+
+
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int page = 0; page <5000; page=page+10)
+                    {
+
+                        string pro = "";
+                        string city = "";
+
+                        if (comboBox1.Text == "所有地区")
+                        {
+                            pro = "";
+                        }
+                        else
+                        {
+                            pro = comboBox1.Text;
+                        }
+                        if (comboBox2.Text == "所有地区")
+                        {
+                            city = "";
+                        }
+                        else
+                        {
+                            city = comboBox2.Text;
+                        }
+
+
+                        string url = "https://api.tianditu.gov.cn/v2/search?type=query&postStr=%7B%22specify%22:156320500,%22queryType%22:%221%22,%22start%22:"+page+",%22mapBound%22:%22117.92927823768889,30.70995380630498,124.25999566981824,32.176200184574355%22,%22yingjiType%22:0,%22queryTerminal%22:10000,%22level%22:8,%22keyWord%22:%22"+ System.Web.HttpUtility.UrlEncode(keyword) + "%22,%22count%22:10,%22sourceType%22:0%7D&tk=75f0434f240669f4a2df6359275146d2";
+                        string html = GetUrl(url);
+
+
+                        MatchCollection names = Regex.Matches(html, @"""name"":""([\s\S]*?)""");
+                        MatchCollection contact_address = Regex.Matches(html, @"""address"":""([\s\S]*?)""");
+                     
+                        MatchCollection tels = Regex.Matches(html, @"""phone"":""([\s\S]*?)""");
+
+                        if (names.Count == 0)
+                            break;
+
+                        for (int i = 0; i < names.Count; i++)
+                        {
+                            string tel = tels[i].Groups[1].Value;
+                            string tel1 = tel;
+                            string tel2 = tel;
+                            if (tel.Contains("-"))
+                            {
+                                tel1 = "";
+                            }
+                            else
+                            {
+                                tel2 = "";
+                            }
+
+
+
+
+
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                            lv1.SubItems.Add(names[i].Groups[1].Value);
+                            lv1.SubItems.Add(tel1);
+                            lv1.SubItems.Add(tel2);
+                            lv1.SubItems.Add(contact_address[i].Groups[1].Value);
+                            lv1.SubItems.Add(keyword);
+                            lv1.SubItems.Add(comboBox1.Text + comboBox2.Text);
+                            lv1.SubItems.Add("天地图");
+                            lv1.SubItems.Add(keyword);
+                            if (status == false)
+                                return;
+                            if (listView1.Items.Count > 2)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
+                            Thread.Sleep(100);
+                            count = count + 1;
+                            label4.Text = count.ToString();
+
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                }
+
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+            }
+
+        }
+
+        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
             ProvinceCity.ProvinceCity.BindProvince(comboBox1);
@@ -576,8 +693,33 @@ namespace 客户美团
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox1.Items.Add("所有地区");
             ProvinceCity.ProvinceCity.BindCity(comboBox1, comboBox2);
             comboBox2.Items.Add("所有地区");
+            if(comboBox1.Text.Contains("北京" ))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("北京市");
+                comboBox2.Text ="北京市";
+            }
+            if (comboBox1.Text.Contains("上海"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("上海市");
+                comboBox2.Text = "上海";
+            }
+            if (comboBox1.Text.Contains("天津"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("天津市");
+                comboBox2.Text = "天津";
+            }
+            if (comboBox1.Text.Contains("重庆"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("重庆市");
+                comboBox2.Text = "重庆市";
+            }
         }
 
 
@@ -658,7 +800,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(so360);
+                    thread = new Thread(tianditu);
                     thread.Start();
 
                 }

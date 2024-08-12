@@ -307,19 +307,7 @@ namespace TRC监控
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            #region 通用检测
-
-            string html = GetUrl("http://www.acaiji.com/index/index/vip.html");
-
-            if (!html.Contains(@"6WxcM"))
-            {
-
-                return;
-            }
-
-
-
-            #endregion
+            
 
             timer1.Start();
             timer1.Interval = Convert.ToInt32(textBox3.Text) * 1000;
