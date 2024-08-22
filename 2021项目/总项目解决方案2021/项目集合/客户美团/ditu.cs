@@ -800,7 +800,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(tianditu);
+                    thread = new Thread(so360);
                     thread.Start();
 
                 }

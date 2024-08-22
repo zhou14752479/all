@@ -356,10 +356,10 @@
             this.radioButton5.AutoSize = true;
             this.radioButton5.Location = new System.Drawing.Point(355, 511);
             this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(59, 16);
+            this.radioButton5.Size = new System.Drawing.Size(65, 16);
             this.radioButton5.TabIndex = 130;
             this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "天地图";
+            this.radioButton5.Text = "360地图";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton4
