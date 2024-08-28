@@ -25,7 +25,12 @@ namespace 孔夫子APP
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+            if (DateTime.Now > Convert.ToDateTime("2025-03-06"))
+            {
+                return;
+            }
+
+
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请输入店铺网址");
@@ -85,18 +90,7 @@ namespace 孔夫子APP
 
         private void 孔夫子APP带定价_Load(object sender, EventArgs e)
         {
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"r0LSU"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+            
         }
 
 

@@ -156,7 +156,7 @@ namespace 客户美团
                         }
                         else
                         {
-                            pro = comboBox1.Text;
+                            pro = Regex.Replace(comboBox1.Text, @"\(.*\)", "");
                         }
                         if (comboBox2.Text == "所有地区")
                         {
@@ -257,7 +257,7 @@ namespace 客户美团
                         }
                         else
                         {
-                            pro = comboBox1.Text;
+                            pro = Regex.Replace(comboBox1.Text, @"\(.*\)", ""); 
                         }
                         if (comboBox2.Text == "所有地区")
                         {
@@ -475,7 +475,7 @@ namespace 客户美团
                         }
                         else
                         {
-                            pro = comboBox1.Text;
+                            pro = Regex.Replace(comboBox1.Text, @"\(.*\)", "");
                         }
                         if (comboBox2.Text == "所有地区")
                         {
@@ -671,6 +671,7 @@ namespace 客户美团
         }
 
         #endregion
+
         private void Form1_Load(object sender, EventArgs e)
         {
             ProvinceCity.ProvinceCity.BindProvince(comboBox1);
@@ -730,7 +731,7 @@ namespace 客户美团
         string token = "";
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
             if(token=="")
             {
                token= gettoken();
