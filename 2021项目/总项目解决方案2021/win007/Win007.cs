@@ -556,18 +556,8 @@ namespace win007
             webBrowser1.Navigate("https://live.titan007.com/");
             
            // this.WindowState = FormWindowState.Maximized;
-            #region 通用检测
-
-            string html =  method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"hGRLg"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
-            dateTimePicker1.Value = DateTime.Now.AddDays(-1);
+            
+            dateTimePicker1.Value = Convert.ToDateTime("2018-01-01");
             dateTimePicker2.Value = DateTime.Now;
 
 
@@ -682,33 +672,33 @@ namespace win007
                             {
                                 switch (cname)
                                 {
-                                    //case "SNAI":
-                                    //    gongsi_dics.Add(cid, "SNAI");
-                                    //    break;
-                                    //case "Titanbet":
-                                    //    gongsi_dics.Add(cid, "Titanbet");
-                                    //    break;
-                                    //case "Bethard":
-                                    //    gongsi_dics.Add(cid, "Bethard");
-                                    //    break;
+                                    case "SNAI":
+                                        gongsi_dics.Add(cid, "SNAI");
+                                        break;
+                                    case "Titanbet":
+                                        gongsi_dics.Add(cid, "Titanbet");
+                                        break;
+                                    case "Bethard":
+                                        gongsi_dics.Add(cid, "Bethard");
+                                        break;
                                     //case "ComeOn":
                                     //    gongsi_dics.Add(cid, "ComeOn");
                                     //    break;
-                                    //case "Intertops":
-                                    //    gongsi_dics.Add(cid, "Intertops");
-                                    //    break;
-                                    //case "Bet3000":
-                                    //    gongsi_dics.Add(cid, "Bet3000");
-                                    //    break;
-                                    //case "Crown":
-                                    //    gongsi_dics.Add(cid, "Crown");
-                                    //    break;
-                                    //case "William Hill":
-                                    //    gongsi_dics.Add(cid, "William Hill");
-                                    //    break;
-                                    //case "Bet-at-home":
-                                    //    gongsi_dics.Add(cid, "Bet-at-home");
-                                    //    break;
+                                    case "Intertops":
+                                        gongsi_dics.Add(cid, "Intertops");
+                                        break;
+                                    case "Bet3000":
+                                        gongsi_dics.Add(cid, "Bet3000");
+                                        break;
+                                    case "Crown":
+                                        gongsi_dics.Add(cid, "Crown");
+                                        break;
+                                    case "William Hill":
+                                        gongsi_dics.Add(cid, "William Hill");
+                                        break;
+                                    case "Bet-at-home":
+                                        gongsi_dics.Add(cid, "Bet-at-home");
+                                        break;
                                     //case "Lottery Official":
                                     //    gongsi_dics.Add(cid, "Lottery Official");
                                     //    break;
@@ -721,6 +711,14 @@ namespace win007
                                         break;
                                     case "Vcbet":
                                         gongsi_dics.Add(cid, "Dafabet");
+                                        break;
+
+                                    case "Dafabet":
+                                        gongsi_dics.Add(cid, "Dafabet");
+                                        break;
+
+                                    case "TopSport":
+                                        gongsi_dics.Add(cid, "TopSport");
                                         break;
 
                                 }
@@ -772,6 +770,9 @@ namespace win007
                                     string data7 = "";
                                     string data8 = "";
                                     string data9 = "";
+                                    string data10 = "";
+                                    string data11 = "";
+                                    string data12 = "";
                                     try
                                     {
                                         string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
@@ -790,6 +791,13 @@ namespace win007
                                         data7 = data_c[0];
                                         data8 = data_c[1];
                                         data9 = data_c[2];
+
+
+                                        string[] data_d = datasresult[3].Split(new string[] { "|" }, StringSplitOptions.None);
+                                        data10 = data_d[0];
+                                        data11 = data_d[1];
+                                        data12= data_d[2];
+
                                     }
                                     catch (Exception)
                                     {
@@ -813,7 +821,7 @@ namespace win007
                                     string rangqiu_daxiaoqiu = rangqiu +" "+ daxiaoqiu;
 
                                   
-                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9,zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu);
+                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9, data10, data11, data12, zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu);
 
 
 
