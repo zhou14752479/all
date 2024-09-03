@@ -145,93 +145,114 @@ namespace 抖音项目
         }
 
         public string COOKIE = "";
-       
-        public void run()
+
+		string max_cursor ="0";
+
+
+		public void run()
         {
 
 
-			ArrayList lists = function .getusers();
-
+			//ArrayList lists = function .getusers();
+			ArrayList lists=new ArrayList();
+			lists.Add("MS4wLjABAAAA4cMRZJWYin6Sgu4j1D8dMqFjBLDDJYSoMMm51fY_EXm8b7CvrNofA3ISkNpmbTFd");
 			try
             {
                 for (int a= 0; a < lists.Count; a++)
                 {
-					//string uid = "MS4wLjABAAAA4cMRZJWYin6Sgu4j1D8dMqFjBLDDJYSoMMm51fY_EXm8b7CvrNofA3ISkNpmbTFd";
-					string uid=lists[a].ToString();
-					textBox1.Text += DateTime.Now.ToString() +"正在读取："+uid + "\r\n";
-					int page = 0;
-
-					string data = "device_platform=webapp&aid=6383&sec_user_id=" + uid + "&max_cursor=0&offset=" + page + "&count=18";
-					string xbogus = getxbogus(data);
-					
-					string url = "https://www.douyin.com/aweme/v1/web/aweme/favorite/?"+data+"&X-Bogus="+xbogus;
-					
-					
-					
-					string html = GetUrl(url, "utf-8");
-
-					MatchCollection aweme_ids = Regex.Matches(html, @"""aweme_id"":""([\s\S]*?)""");
-					MatchCollection photo_urls = Regex.Matches(html, @"""cover""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
-					MatchCollection durations = Regex.Matches(html, @"""video_duration"":([\s\S]*?),");
-
-					MatchCollection authors = Regex.Matches(html, @"""author"":""([\s\S]*?)""");
-					MatchCollection comment_counts = Regex.Matches(html, @"""comment_count"":([\s\S]*?),");
-					MatchCollection share_counts = Regex.Matches(html, @"""share_count"":([\s\S]*?),");
-					MatchCollection collect_counts = Regex.Matches(html, @"""collect_count"":([\s\S]*?),");
-
-					MatchCollection digg_counts = Regex.Matches(html, @"""digg_count"":([\s\S]*?),");
-					MatchCollection create_times = Regex.Matches(html, @"""create_time"":([\s\S]*?),");
-					MatchCollection desc = Regex.Matches(html, @"""desc"":""([\s\S]*?)""");
-					MatchCollection play_addrs = Regex.Matches(html, @"""bit_rate_audio""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
-
-					if(aweme_ids.Count==0)
+                    for (int page = 0; page < 100; page++)
                     {
-						textBox1.Text += DateTime.Now.ToString() + uid+"喜欢列表加密" + "\r\n";
-					}
+						//string uid = "MS4wLjABAAAA4cMRZJWYin6Sgu4j1D8dMqFjBLDDJYSoMMm51fY_EXm8b7CvrNofA3ISkNpmbTFd";
+						string uid = lists[a].ToString();
+						textBox1.Text += DateTime.Now.ToString() + "正在读取：" + uid + "\r\n";
+						
+						string data = "device_platform=webapp&aid=6383&sec_user_id=" + uid + "&max_cursor="+ max_cursor + "&offset=0&count=18";
+						string xbogus = getxbogus(data);
 
-					for (int i = 0; i < aweme_ids.Count; i++)
-					{
-						try
+						string url = "https://www.douyin.com/aweme/v1/web/aweme/favorite/?" + data + "&X-Bogus=" + xbogus;
+
+
+
+						string html = GetUrl(url, "utf-8");
+
+
+
+
+						 max_cursor = Regex.Match(html, @"""max_cursor"":([\s\S]*?),").Groups[1].Value;
+						if (max_cursor == "")
+							break;
+
+						MatchCollection ahtmls = Regex.Matches(html, @"video_tag([\s\S]*?)danmaku_control");
+
+						MatchCollection aweme_ids = Regex.Matches(html, @"""aweme_id"":""([\s\S]*?)""");
+						MatchCollection photo_urls = Regex.Matches(html, @"""cover""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
+						MatchCollection durations = Regex.Matches(html, @"""video_duration"":([\s\S]*?),");
+
+						MatchCollection authors = Regex.Matches(html, @"""author"":""([\s\S]*?)""");
+						MatchCollection comment_counts = Regex.Matches(html, @"""comment_count"":([\s\S]*?),");
+						MatchCollection share_counts = Regex.Matches(html, @"""share_count"":([\s\S]*?),");
+						MatchCollection collect_counts = Regex.Matches(html, @"""collect_count"":([\s\S]*?),");
+
+						MatchCollection digg_counts = Regex.Matches(html, @"""digg_count"":([\s\S]*?),");
+						MatchCollection create_times = Regex.Matches(html, @"""create_time"":([\s\S]*?),");
+						MatchCollection desc = Regex.Matches(html, @"""desc"":""([\s\S]*?)""");
+						MatchCollection play_addrs = Regex.Matches(html, @"""bit_rate_audio""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
+
+						if (aweme_ids.Count == 0)
 						{
-							string aweme_url = "https://www.douyin.com/video/" + aweme_ids[i].Groups[1].Value.Trim();
-							string photo_url = function.Unicode2String(photo_urls[i].Groups[2].Value);
-							string duration = durations[i].Groups[1].Value;
-							string author_nickname = authors[i].Groups[1].Value;
-
-							string comment_count = comment_counts[i].Groups[1].Value.Replace("}", "");
-							string share_count = share_counts[i].Groups[1].Value.Replace("}", "");
-							string collect_count = collect_counts[i].Groups[1].Value.Replace("}", "");
-							string digg_count = digg_counts[i].Groups[1].Value.Replace("}", "");
-							string create_time = create_times[i].Groups[1].Value;
-							string descs = desc[i].Groups[1].Value;
-							string created_at = function.ConvertStringToDateTime(create_times[i].Groups[1].Value).ToString("yyyy-MM-dd");
-							string updated_at = created_at;
-							string whoslike = uid;
-							string author_sec_uid = "";
-							string author_douyin_id = "";
-							int dz_speed = 1;
-							string create_date_time = DateTime.Now.ToString("yyyy-MM-dd hh:MM:ss");
-							string unique_sign = "";
-							string play_addr1 = function.Unicode2String(play_addrs[i].Groups[2].Value);
-
-							string info = function.adddata(aweme_url, photo_url, duration, author_nickname, comment_count, share_count, collect_count, digg_count, create_time, descs, created_at, updated_at, whoslike, author_sec_uid, author_douyin_id, dz_speed, create_date_time, unique_sign, play_addr1);
-
-							textBox1.Text += DateTime.Now.ToString() + descs + info + "\r\n";
-							if(textBox1.Text.Length>1000)
-                            {
-								textBox1.Text = "";
-                            }
+							textBox1.Text += DateTime.Now.ToString() + uid + "喜欢列表加密" + "\r\n";
 						}
-						catch (Exception)
+
+						MessageBox.Show(ahtmls.Count+"  "+aweme_ids.Count+"  "+ photo_urls.Count+ "  " + authors.Count);
+						for (int i = 0; i < aweme_ids.Count; i++)
 						{
+							try
+							{
 
-							continue;
+								if(!ahtmls[i].Groups[1].Value.Contains("main_arch_common"))
+                                {
+									continue;
+                                }
+								string aweme_url = "https://www.douyin.com/video/" + aweme_ids[i].Groups[1].Value.Trim();
+								string photo_url = function.Unicode2String(photo_urls[i].Groups[2].Value);
+								string duration = durations[i].Groups[1].Value;
+								string author_nickname = authors[i].Groups[1].Value;
+
+								string comment_count = comment_counts[i].Groups[1].Value.Replace("}", "");
+								string share_count = share_counts[i].Groups[1].Value.Replace("}", "");
+								string collect_count = collect_counts[i].Groups[1].Value.Replace("}", "");
+								string digg_count = digg_counts[i].Groups[1].Value.Replace("}", "");
+								string create_time = create_times[i].Groups[1].Value;
+								string descs = desc[i].Groups[1].Value;
+								string created_at = function.ConvertStringToDateTime(create_times[i].Groups[1].Value).ToString("yyyy-MM-dd");
+								string updated_at = created_at;
+								string whoslike = uid;
+								string author_sec_uid = "";
+								string author_douyin_id = "";
+								int dz_speed = 1;
+								string create_date_time = DateTime.Now.ToString("yyyy-MM-dd hh:MM:ss");
+								string unique_sign = "";
+								string play_addr1 = function.Unicode2String(play_addrs[i].Groups[2].Value);
+
+								string info = function.adddata(aweme_url, photo_url, duration, author_nickname, comment_count, share_count, collect_count, digg_count, create_time, descs, created_at, updated_at, whoslike, author_sec_uid, author_douyin_id, dz_speed, create_date_time, unique_sign, play_addr1);
+
+								textBox1.Text += DateTime.Now.ToString() + descs + info + "\r\n";
+								if (textBox1.Text.Length > 1000)
+								{
+									textBox1.Text = "";
+								}
+							}
+							catch (Exception)
+							{
+
+								continue;
+							}
 						}
+
+
+
+						Thread.Sleep(2000);
 					}
-
-
-
-					Thread.Sleep(2000);
 				}
 
 			}
@@ -251,7 +272,7 @@ namespace 抖音项目
 		Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-			if (DateTime.Now > Convert.ToDateTime("2024-09-21"))
+			if (DateTime.Now > Convert.ToDateTime("2024-10-01"))
 			{
 				return;
 			}
