@@ -220,5 +220,10 @@ namespace titan007
 			thread.Start();
 			Control.CheckForIllegalCrossThreadCalls = false;
 		}
+
+        private void 澳客直播_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

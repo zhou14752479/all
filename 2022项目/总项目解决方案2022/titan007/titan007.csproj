@@ -57,6 +57,12 @@
     <Compile Include="titan007.Designer.cs">
       <DependentUpon>titan007.cs</DependentUpon>
     </Compile>
+    <Compile Include="中国足彩网亚盘初.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="中国足彩网亚盘初.Designer.cs">
+      <DependentUpon>中国足彩网亚盘初.cs</DependentUpon>
+    </Compile>
     <Compile Include="亚盘初大小球初.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,9 @@
     </Compile>
     <EmbeddedResource Include="titan007.resx">
       <DependentUpon>titan007.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="中国足彩网亚盘初.resx">
+      <DependentUpon>中国足彩网亚盘初.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="亚盘初大小球初.resx">
       <DependentUpon>亚盘初大小球初.cs</DependentUpon>

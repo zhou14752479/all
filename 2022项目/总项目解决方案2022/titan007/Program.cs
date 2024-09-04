@@ -16,7 +16,7 @@ namespace titan007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 澳客直播());
+            Application.Run(new 中国足彩网亚盘初());
         }
     }
 }

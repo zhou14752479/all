@@ -439,9 +439,13 @@ namespace titan007
 				}
 			}
 		}
-		#endregion
 
 
+        #endregion
 
-	}
+        private void 欧赔初盘_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
