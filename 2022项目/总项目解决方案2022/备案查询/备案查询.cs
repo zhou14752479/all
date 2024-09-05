@@ -232,7 +232,7 @@ namespace 备案查询
                     else
                     {
                         textBox2.Text += DateTime.Now.ToString() + yuming + "查询失败" + "\r\n";
-                        Thread.Sleep(3000);
+                       
                     }
 
                     if(textBox2.Text.Length>400)
@@ -251,10 +251,7 @@ namespace 备案查询
         Thread thread;
         private void button2_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2024-12-01"))
-            {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+           
             if (textBox1.Text=="")
             {
                 MessageBox.Show("请导入文本");
@@ -288,22 +285,7 @@ namespace 备案查询
             }
         }
 
-        #region  程序关闭删除自身
-        public static void TestForKillMyself()
-        {
-            string bat = @"@echo off
-                           :tryagain
-                           del %1
-                           if exist %1 goto tryagain
-                           del %0";
-            File.WriteAllText("killme.bat", bat);//写bat文件
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "killme.bat";
-            psi.Arguments = "\"" + Environment.GetCommandLineArgs()[0] + "\"";
-            psi.WindowStyle = ProcessWindowStyle.Hidden;
-            Process.Start(psi);
-        }
-        #endregion
+        
         private void 备案查询_Load(object sender, EventArgs e)
         {
             
