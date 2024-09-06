@@ -23,7 +23,9 @@ namespace 客户美团
         {
             InitializeComponent();
         }
+        string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODYyNzk4NjM4MyIsImlhdCI6MTcyNTU0MTgyNywiZXhwIjoxNzI4MTMzODI3fQ.Jac6TKG3ewNtqT3LrLMsnrJ_qpd9KqPvjJi-NtWPsdjRGQatJRi8XzV-uWps9kF7bg90JGxiU9efC9yNLcaRAQ";
 
+        string atoken = "0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1725608143363###2ed6a2ec3ab12c1623ccd098ee5711fd";
         #region POST默认请求
         /// <summary>
         /// POST请求
@@ -37,7 +39,7 @@ namespace 客户美团
         {
             try
             {
-                string TOKEN = "X-AUTH-TOKEN:" + token;
+           
                 string charset = "utf-8";
                 string html = "";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
@@ -53,9 +55,8 @@ namespace 客户美团
                 //添加头部
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("version:TYC-XCX-WX");
-                headers.Add("X-AUTH-TOKEN: " + token);
-                //  headers.Add("X-AUTH-TOKEN:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzMzMDc5NjE4NyIsImlhdCI6MTYzOTk5MDgwOSwiZXhwIjoxNjQyNTgyODA5fQ.b_79_YOoEI-gATwz6gYXVWPmZw8fuwtG6DavohbodPRd-Lxoua6CcqeWPrmMsAM-YHZEVj2raqRYdfnktOwfdg");
-                //添加头部
+                headers.Add("X-AUTH-TOKEN:" + token);
+                headers.Add("Authorization:" + atoken);
                 //request.ContentType = "application/x-www-form-urlencoded";
                 // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
                 request.ContentType = "application/json";
@@ -64,8 +65,8 @@ namespace 客户美团
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
-                request.Proxy = null;//禁止抓包
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4(0x1800042c) NetType/WIFI Language/zh_CN";
+               // request.Proxy = null;//禁止抓包
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.50(0x1800323b) NetType/WIFI Language/zh_CN";
                 request.Headers.Add("Cookie", COOKIE);
 
                 request.Referer = url;
@@ -108,14 +109,14 @@ namespace 客户美团
         Thread thread;
         bool status = true;
         string domail = "www.acaiji.com/shangxueba2";
-        public void gettoken()
-        {
-            //string ahtml = method.GetUrl("http://" + domail + "/shangxueba.php?method=getcookie", "utf-8");
+        //public void gettoken()
+        //{
+        //    //string ahtml = method.GetUrl("http://" + domail + "/shangxueba.php?method=getcookie", "utf-8");
 
-            //token = ahtml.Trim().Replace("\r", "").Replace("\n", "");
+        //    //token = ahtml.Trim().Replace("\r", "").Replace("\n", "");
 
-            token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODYyNzk4NjM4MyIsImlhdCI6MTcyMjg0MTEzMywiZXhwIjoxNzI1NDMzMTMzfQ.nQgyBQJQevb1zEoVh7lLtpKTuuO7lm5ube_NV7mxFzW7CvyvVjp2a7iQP5SkEdf3wmvBQSKRMBj-VQREYTbR3Q";
-        }
+        //    token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODYyNzk4NjM4MyIsImlhdCI6MTcyMjg0MTEzMywiZXhwIjoxNzI1NDMzMTMzfQ.nQgyBQJQevb1zEoVh7lLtpKTuuO7lm5ube_NV7mxFzW7CvyvVjp2a7iQP5SkEdf3wmvBQSKRMBj-VQREYTbR3Q";
+        //}
         /// <summary>
         /// 获取时间戳毫秒
         /// </summary>
@@ -139,7 +140,7 @@ namespace 客户美团
             return t.ToString();
         }
 
-        string token = "50cdedd4679ce52bb252bad277384d29";
+       
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -169,7 +170,7 @@ namespace 客户美团
             {
             int count = 0;
             status = true;
-                gettoken();
+                
 
                 StringBuilder sb = new StringBuilder();
 
@@ -275,13 +276,9 @@ namespace 客户美团
                             if (html2.Contains("登录后可查看更多公司的数据") || html2.Contains("开通VIP"))
                             {
                                 textBox1.Text = "正在重新获取token  请稍后";
-                                gettoken();
-                                Thread.Sleep(3000);
-                                if (i > 1)
-                                {
-                                    i = i - 1;
-                                }
-                                continue;
+                               
+                                Thread.Sleep(30000);
+                              
                             }
 
                             string html = Regex.Match(html2, @"companyList([\s\S]*?)brandAndAgencyList").Groups[1].Value;

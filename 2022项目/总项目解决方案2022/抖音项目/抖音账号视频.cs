@@ -203,7 +203,7 @@ namespace 抖音项目
 							textBox1.Text += DateTime.Now.ToString() + uid + "喜欢列表加密" + "\r\n";
 						}
 
-						MessageBox.Show(ahtmls.Count+"  "+aweme_ids.Count+"  "+ photo_urls.Count+ "  " + authors.Count);
+						//MessageBox.Show(ahtmls.Count+"  "+aweme_ids.Count+"  "+ photo_urls.Count+ "  " + authors.Count);
 						for (int i = 0; i < aweme_ids.Count; i++)
 						{
 							try
@@ -272,7 +272,7 @@ namespace 抖音项目
 		Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
-			if (DateTime.Now > Convert.ToDateTime("2024-10-01"))
+			if (DateTime.Now > Convert.ToDateTime("2024-11-11"))
 			{
 				return;
 			}

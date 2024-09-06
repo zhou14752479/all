@@ -316,7 +316,7 @@ namespace 主程序202401
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2024-09-01"))
+            if (DateTime.Now > Convert.ToDateTime("2024-12-01"))
             {
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
