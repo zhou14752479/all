@@ -552,8 +552,8 @@ namespace win007
         {
 
             method.SetFeatures(11000);
-           webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate("https://live.titan007.com/");
+           //webBrowser1.ScriptErrorsSuppressed = true;
+           // webBrowser1.Navigate("https://live.titan007.com/");
             
            // this.WindowState = FormWindowState.Maximized;
             
@@ -574,12 +574,12 @@ namespace win007
         Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
        
         
-        string startdate = "2021-01-01";
-        string enddate = "2022-01-06";
+     
         public void getdata()
         {
 
-
+            string startdate = "2018-09-30";
+            string enddate = "2024-08-01";
             for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate);dt=dt.AddDays(1))
             {
                 try
@@ -884,8 +884,7 @@ namespace win007
 
         private void button2_Click(object sender, EventArgs e)
         {
-            startdate = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            enddate = dateTimePicker2.Value.ToString("yyyy-MM-dd");
+          
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -897,9 +896,7 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //startdate = Convert.ToDateTime("2018-07-01").ToString("yyyy-MM-dd");
-            startdate = Convert.ToDateTime("2023-04-28").ToString("yyyy-MM-dd");
-            enddate = DateTime.Now.ToString("yyyy-MM-dd");
+           
             status = true;
             if (thread == null || !thread.IsAlive)
             {

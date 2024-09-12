@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,16 +155,14 @@ namespace 抖音项目
         {
 
 
-			//ArrayList lists = function .getusers();
-			ArrayList lists=new ArrayList();
-			lists.Add("MS4wLjABAAAA4cMRZJWYin6Sgu4j1D8dMqFjBLDDJYSoMMm51fY_EXm8b7CvrNofA3ISkNpmbTFd");
-			try
+            ArrayList lists = function .getusers();
+            //ArrayList lists = new ArrayList();
+            //lists.Add("MS4wLjABAAAA-1G1bXOz9qcLla3Bs4mBFo7cx8iHfQyIQhiAMfKhIbpKKy6NWtiULFYs7nzkN2bX");
+            try
             {
                 for (int a= 0; a < lists.Count; a++)
                 {
-                    for (int page = 0; page < 100; page++)
-                    {
-						//string uid = "MS4wLjABAAAA4cMRZJWYin6Sgu4j1D8dMqFjBLDDJYSoMMm51fY_EXm8b7CvrNofA3ISkNpmbTFd";
+					
 						string uid = lists[a].ToString();
 						textBox1.Text += DateTime.Now.ToString() + "正在读取：" + uid + "\r\n";
 						
@@ -176,15 +176,15 @@ namespace 抖音项目
 						string html = GetUrl(url, "utf-8");
 
 
+					
+
+					//max_cursor = Regex.Match(html, @"""max_cursor"":([\s\S]*?),").Groups[1].Value;
 
 
-						 max_cursor = Regex.Match(html, @"""max_cursor"":([\s\S]*?),").Groups[1].Value;
-						if (max_cursor == "")
-							break;
 
-						MatchCollection ahtmls = Regex.Matches(html, @"video_tag([\s\S]*?)danmaku_control");
+					MatchCollection ahtmls = Regex.Matches(html, @"video_tag([\s\S]*?)danmaku_control");
 
-						MatchCollection aweme_ids = Regex.Matches(html, @"""aweme_id"":""([\s\S]*?)""");
+						MatchCollection aweme_ids = Regex.Matches(html, @"""comment_gid"":([\s\S]*?),");
 						MatchCollection photo_urls = Regex.Matches(html, @"""cover""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
 						MatchCollection durations = Regex.Matches(html, @"""video_duration"":([\s\S]*?),");
 
@@ -195,25 +195,49 @@ namespace 抖音项目
 
 						MatchCollection digg_counts = Regex.Matches(html, @"""digg_count"":([\s\S]*?),");
 						MatchCollection create_times = Regex.Matches(html, @"""create_time"":([\s\S]*?),");
-						MatchCollection desc = Regex.Matches(html, @"""desc"":""([\s\S]*?)""");
+						MatchCollection desc = Regex.Matches(html, @",""desc"":""([\s\S]*?)""");
 						MatchCollection play_addrs = Regex.Matches(html, @"""bit_rate_audio""([\s\S]*?)url_list"":\[""([\s\S]*?)""");
 
 						if (aweme_ids.Count == 0)
 						{
 							textBox1.Text += DateTime.Now.ToString() + uid + "喜欢列表加密" + "\r\n";
+						continue;
 						}
 
-						//MessageBox.Show(ahtmls.Count+"  "+aweme_ids.Count+"  "+ photo_urls.Count+ "  " + authors.Count);
-						for (int i = 0; i < aweme_ids.Count; i++)
+
+					JObject jsonObject = JObject.Parse(html);
+					JArray people = (JArray)jsonObject["aweme_list"];
+					//MessageBox.Show(aweme_ids.Count+"  " + desc.Count);
+					for (int i = 0; i < aweme_ids.Count; i++)
 						{
 							try
 							{
+							//	string descs = desc[i-1].Groups[1].Value.Trim();
+							//string aweme_url = "https://www.douyin.com/video/" + aweme_ids[i].Groups[1].Value.Trim();
+							//!ahtmls[i].Groups[1].Value.Contains("main_arch_common") || 
 
-								if(!ahtmls[i].Groups[1].Value.Contains("main_arch_common"))
-                                {
+							JObject person = (JObject)people[i];
+							
+							string aweme_id = person["aweme_id"].ToString();
+							string descs = person["desc"].ToString();
+						
+
+							
+							string aweme_url = "https://www.douyin.com/video/" + aweme_id.Trim();
+
+
+							if (descs=="" || descs.Contains("#")|| descs.Length < 6)
+								{
+									textBox1.Text += DateTime.Now.ToString() + descs + "不是千川视频跳过...." + "\r\n";
 									continue;
                                 }
-								string aweme_url = "https://www.douyin.com/video/" + aweme_ids[i].Groups[1].Value.Trim();
+
+							
+
+
+
+
+								
 								string photo_url = function.Unicode2String(photo_urls[i].Groups[2].Value);
 								string duration = durations[i].Groups[1].Value;
 								string author_nickname = authors[i].Groups[1].Value;
@@ -223,7 +247,7 @@ namespace 抖音项目
 								string collect_count = collect_counts[i].Groups[1].Value.Replace("}", "");
 								string digg_count = digg_counts[i].Groups[1].Value.Replace("}", "");
 								string create_time = create_times[i].Groups[1].Value;
-								string descs = desc[i].Groups[1].Value;
+								
 								string created_at = function.ConvertStringToDateTime(create_times[i].Groups[1].Value).ToString("yyyy-MM-dd");
 								string updated_at = created_at;
 								string whoslike = uid;
@@ -251,8 +275,8 @@ namespace 抖音项目
 
 
 
-						Thread.Sleep(2000);
-					}
+						Thread.Sleep(1000);
+					
 				}
 
 			}
@@ -272,6 +296,8 @@ namespace 抖音项目
 		Thread thread;
         private void button1_Click(object sender, EventArgs e)
         {
+
+			
 			if (DateTime.Now > Convert.ToDateTime("2024-11-11"))
 			{
 				return;
