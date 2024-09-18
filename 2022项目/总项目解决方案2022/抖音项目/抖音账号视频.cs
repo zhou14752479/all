@@ -5,16 +5,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
+using Microsoft.VisualBasic;
 
 namespace 抖音项目
 {
@@ -137,9 +141,115 @@ namespace 抖音项目
 			string xbogus= Regex.Match(html, @"""x_bogus"":""([\s\S]*?)""").Groups[1].Value.Trim();
 			return xbogus;
 		}
-		private void 抖音账号视频_Load(object sender, EventArgs e)
+        private string inipath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+
+      
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+    
+        public void IniWriteValue(string Section, string Key, string Value)
         {
-            
+          WritePrivateProfileString(Section, Key, Value, this.inipath);
+        }
+
+        // Token: 0x06000021 RID: 33 RVA: 0x000048B0 File Offset: 0x00002AB0
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder stringBuilder = new StringBuilder(500);
+            int privateProfileString = GetPrivateProfileString(Section, Key, "", stringBuilder, 500, this.inipath);
+            return stringBuilder.ToString();
+        }
+
+        // Token: 0x06000022 RID: 34 RVA: 0x000048EC File Offset: 0x00002AEC
+        public bool ExistINIFile()
+        {
+            return File.Exists(this.inipath);
+        }
+        public void jiance()
+        {
+            bool flag = this.ExistINIFile();
+            if (flag)
+            {
+                string a = this.IniReadValue("values", "key");
+                string text = this.IniReadValue("values", "secret");
+                string[] array = text.Split(new string[]
+                {
+                    "asd147"
+                }, StringSplitOptions.None);
+                bool flag2 = Convert.ToInt32(array[1]) < Convert.ToInt32(method.GetTimeStamp());
+                if (flag2)
+                {
+                    MessageBox.Show("激活已过期");
+                    string text2 = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                    string[] array2 = text2.Split(new string[]
+                    {
+                        "asd"
+                    }, StringSplitOptions.None);
+                    bool flag3 = array2[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian");
+                    if (flag3)
+                    {
+                        this.IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                        this.IniWriteValue("values", "secret", text2);
+                        MessageBox.Show("激活成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("激活码错误");
+                        Process.GetCurrentProcess().Kill();
+                    }
+                }
+                else
+                {
+                    bool flag4 = array[0] != method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian") || a != method.GetMD5(method.GetMacAddress());
+                    if (flag4)
+                    {
+                        string text3 = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                        string[] array3 = text3.Split(new string[]
+                        {
+                            "asd147"
+                        }, StringSplitOptions.None);
+                        bool flag5 = array3[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian");
+                        if (flag5)
+                        {
+                            this.IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                            this.IniWriteValue("values", "secret", text3);
+                            MessageBox.Show("激活成功");
+                        }
+                        else
+                        {
+                            MessageBox.Show("激活码错误");
+                            Process.GetCurrentProcess().Kill();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                string text4 = Interaction.InputBox("您的机器码如下，请复制机器码提供到后台，输入激活码然后激活！", "激活软件", method.GetMD5(method.GetMacAddress()), -1, -1);
+                string[] array4 = text4.Split(new string[]
+                {
+                    "asd147"
+                }, StringSplitOptions.None);
+                bool flag6 = array4[0] == method.GetMD5(method.GetMD5(method.GetMacAddress()) + "siyiruanjian");
+                if (flag6)
+                {
+                    this.IniWriteValue("values", "key", method.GetMD5(method.GetMacAddress()));
+                    this.IniWriteValue("values", "secret", text4);
+                    MessageBox.Show("激活成功");
+                }
+                else
+                {
+                    MessageBox.Show("激活码错误");
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
+        }
+        private void 抖音账号视频_Load(object sender, EventArgs e)
+        {
+			jiance();
 			
 			StreamReader sr = new StreamReader(path+"cookie.txt", Encoding.UTF8);
             //一次性读取完 

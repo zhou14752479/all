@@ -27,11 +27,10 @@ namespace 校友邦
 		[DllImport("kernel32")]
 		private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
 
-		// Token: 0x0600001F RID: 31
+		
 		[DllImport("kernel32")]
 		private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
-		// Token: 0x06000020 RID: 32 RVA: 0x0000489B File Offset: 0x00002A9B
 		public void IniWriteValue(string Section, string Key, string Value)
 		{
 			校友邦.WritePrivateProfileString(Section, Key, Value, this.inipath);
@@ -191,7 +190,7 @@ namespace 校友邦
 			}
 		}
 
-		// Token: 0x06000026 RID: 38 RVA: 0x00004E40 File Offset: 0x00003040
+		
 		public string login(string username, string password)
 		{
 			password = method.GetMD5(password);
