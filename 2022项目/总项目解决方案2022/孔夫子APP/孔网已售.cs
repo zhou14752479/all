@@ -31,6 +31,8 @@ namespace 孔夫子APP
 
         private void button6_Click(object sender, EventArgs e)
         {
+
+            COOKIE = textBox2.Text.Trim();
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请输入ISBN");
@@ -75,7 +77,7 @@ namespace 孔夫子APP
         }
 
 
-        string COOKIE = "Hm_lvt_33be6c04e0febc7531a1315c9594b136=1713963270; shoppingCartSessionId=bf96c8533a0bdd06e8e47556884cf211; reciever_area=1001000000; _c_WBKFRo=U3qserpq0pualfM8Oe81fuT0H32buIxGel5Yg9Vm; Hm_lvt_bca7840de7b518b3c5e6c6d73ca2662c=1722939174,1723463095; acw_tc=1a0c660217261443094761967e01365625fb7ed75cb352bbe4aafeda0a115b; kfz_uuid=4b4174a1-ffe1-40b4-867b-f1a1220efbdf; PHPSESSID=48f588ffb721ab4e30f9dd39bd803769a02e199a; kfz_trace=4b4174a1-ffe1-40b4-867b-f1a1220efbdf|16134930|5ac1e115e633cb46|-";
+        string COOKIE = "utm_source=101002001000; kfz_uuid=442d0896-9a2d-4550-8ac7-fd00cbc7103f; shoppingCartSessionId=9198723fc22742330856d820d1767eac; acw_tc=2760828b17276002883477409ecfa9c6a9d8927550e08b215ca93753149bcd; PHPSESSID=f9b8be91b54ffc76697eb8564d3339f861164567; kfz_trace=442d0896-9a2d-4550-8ac7-fd00cbc7103f|16134930|f8badf00a20e8045|101002001000; reciever_area=1001000000";
         public void run()
         {
 

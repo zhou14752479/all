@@ -249,7 +249,7 @@ namespace 抖音项目
         }
         private void 抖音账号视频_Load(object sender, EventArgs e)
         {
-			jiance();
+			//jiance();
 			
 			StreamReader sr = new StreamReader(path+"cookie.txt", Encoding.UTF8);
             //一次性读取完 

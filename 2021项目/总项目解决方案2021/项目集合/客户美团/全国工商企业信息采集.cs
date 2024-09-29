@@ -23,9 +23,8 @@ namespace 客户美团
         {
             InitializeComponent();
         }
-        string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODYyNzk4NjM4MyIsImlhdCI6MTcyNTU0MTgyNywiZXhwIjoxNzI4MTMzODI3fQ.Jac6TKG3ewNtqT3LrLMsnrJ_qpd9KqPvjJi-NtWPsdjRGQatJRi8XzV-uWps9kF7bg90JGxiU9efC9yNLcaRAQ";
-
-        string atoken = "0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1725608143363###2ed6a2ec3ab12c1623ccd098ee5711fd";
+        string token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODY3MjkyODk1MyIsImlhdCI6MTcyNzU3ODE2MCwiZXhwIjoxNzMwMTcwMTYwfQ.bSe0JC5nXBpymA9Vrq2ZdaW9AJdzUPp23vbFKDTi64lRKJK42IIb0z7ywax7MY7Q9HSqoNfb6e81bn35rCEw_Q\r\n";
+        string atoken = "0###oo34J0YSWR0ucFrTbNJwK7MpAWiE###1727578115625###";
         #region POST默认请求
         /// <summary>
         /// POST请求
