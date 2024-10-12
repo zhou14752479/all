@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(孔网已售));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -100,7 +102,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(542, 21);
+            this.button2.Location = new System.Drawing.Point(379, 19);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 354;
@@ -114,7 +116,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(266, 73);
+            this.button3.Location = new System.Drawing.Point(203, 76);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(83, 29);
             this.button3.TabIndex = 351;
@@ -124,7 +126,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(440, 73);
+            this.button5.Location = new System.Drawing.Point(377, 76);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(83, 29);
             this.button5.TabIndex = 350;
@@ -134,7 +136,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(353, 73);
+            this.button4.Location = new System.Drawing.Point(290, 76);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(83, 29);
             this.button4.TabIndex = 349;
@@ -144,7 +146,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(179, 73);
+            this.button1.Location = new System.Drawing.Point(116, 76);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 348;
@@ -154,7 +156,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(92, 73);
+            this.button6.Location = new System.Drawing.Point(29, 76);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(83, 28);
             this.button6.TabIndex = 347;
@@ -186,14 +188,24 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(94, 19);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(442, 21);
+            this.textBox1.Size = new System.Drawing.Size(279, 21);
             this.textBox1.TabIndex = 346;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(497, 12);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(187, 101);
+            this.textBox2.TabIndex = 355;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // 孔网已售
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 582);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -233,5 +245,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

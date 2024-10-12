@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\..\DLL\myDLL.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\..\源码\DLL备份\MySql.Data.dll</HintPath>
     </Reference>

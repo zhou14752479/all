@@ -120,4 +120,7 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>utm_source=101002001000; kfz_uuid=442d0896-9a2d-4550-8ac7-fd00cbc7103f; shoppingCartSessionId=9198723fc22742330856d820d1767eac; acw_tc=2760828b17276002883477409ecfa9c6a9d8927550e08b215ca93753149bcd; PHPSESSID=f9b8be91b54ffc76697eb8564d3339f861164567; kfz_trace=442d0896-9a2d-4550-8ac7-fd00cbc7103f|16134930|f8badf00a20e8045|101002001000; reciever_area=1001000000</value>
+  </data>
 </root>
