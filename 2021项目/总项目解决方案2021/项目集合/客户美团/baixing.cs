@@ -65,7 +65,7 @@ namespace 客户美团
         /// <summary>
         /// 主程序
         /// </summary>
-        public void run()
+        public void run2()
         {
           
 
@@ -133,6 +133,23 @@ namespace 客户美团
 
 
 
+        #region 获取token
+        public static string gettoken()
+        {
+            string url = "http://api.yunmai.vip:686/?id=pc_user&action=api_login&username=18627986383&password=18627986383&sn=EE3116635693C0C4&version=4.1.8&shiyong=1 ";
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Timeout = 10000;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+            request.AllowAutoRedirect = false;
+            HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+            return response.GetResponseHeader("token");
+        }
+        #endregion
+        bool status = true;
+        string token = "";
+        Thread thread;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             ProvinceCity.ProvinceCity.BindProvince(comboBox1);
@@ -152,43 +169,155 @@ namespace 客户美团
             }
 
         }
+        string cookie = "";
+        #region GET请求
+        public string GetUrl(string Url)
+        {
+            try
+            {
 
-       
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+                string COOKIE = cookie;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.41";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("token", token);
+                //request.Referer = "https://servicewechat.com/wxde8ac0a21135c07d/350/page-frame.html";
+                request.Referer = "https://map.tianditu.gov.cn/";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+
+                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+
+                string content = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                return content;
+
+            }
+            catch (System.Exception ex)
+            {
+                ex.ToString();
 
 
 
-        bool status = true;
-        Thread thread;
+            }
+            return "";
+        }
+        #endregion
+
+
+        #region  美团
+        public void run()
+        {
+
+
+            string[] keywords = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None); ;
+            if (keywords.Length == 0)
+            {
+                MessageBox.Show("请添加关键字");
+                return;
+            }
+
+            int count = 0;
+            try
+            {
+                string pro =  Regex.Replace(comboBox1.Text, @"\([^)]*\)", "").Replace("所有", ""); 
+                string city= Regex.Replace(comboBox2.Text, @"\([^)]*\)", "").Replace("所有", "");
+
+                foreach (string keyword in keywords)
+                {
+
+
+                    for (int page = 1; page < 1000; page++)
+                    {
+                        
+
+
+                        string url = "http://139.129.17.82:6806/?action=api_mtdp&keyword="+keyword+"&page="+page+"&province="+pro.Trim()+"&city="+city.Trim();
+                        string html = GetUrl(url);
+
+                        MatchCollection coname = Regex.Matches(html, @"""coname"": ""([\s\S]*?)""");
+
+                        MatchCollection address = Regex.Matches(html, @"""address"": ""([\s\S]*?)""");
+                        MatchCollection tel = Regex.Matches(html, @"""tel"": ""([\s\S]*?)""");
+                        MatchCollection socpes = Regex.Matches(html, @"""scope"": ""([\s\S]*?)""");
+                        MatchCollection phone = Regex.Matches(html, @"""phone"": ""([\s\S]*?)""");
+                        MatchCollection score = Regex.Matches(html, @"""score"": ""([\s\S]*?)""");
+                        MatchCollection scorechanpin = Regex.Matches(html, @"""scorechanpin"": ""([\s\S]*?)""");
+                        MatchCollection scorehuanjing = Regex.Matches(html, @"""scorehuanjing"": ""([\s\S]*?)""");
+                        MatchCollection catbig = Regex.Matches(html, @"""catbig"": ""([\s\S]*?)""");
+
+                        if (coname.Count == 0)
+                            break;
+
+                        for (int i = 0; i < coname.Count; i++)
+                        {
+
+
+
+
+                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                            lv1.SubItems.Add(coname[i].Groups[1].Value);
+                            lv1.SubItems.Add(tel[i].Groups[1].Value);
+                            lv1.SubItems.Add(phone[i].Groups[1].Value);
+                         
+                            lv1.SubItems.Add(score[i].Groups[1].Value);
+                            lv1.SubItems.Add(scorechanpin[i].Groups[1].Value);
+                            lv1.SubItems.Add(scorehuanjing[i].Groups[1].Value);
+                            lv1.SubItems.Add(catbig[i].Groups[1].Value);
+                            lv1.SubItems.Add(socpes[i].Groups[1].Value);
+                            lv1.SubItems.Add(address[i].Groups[1].Value);
+
+
+                            lv1.SubItems.Add(keyword);
+                            if (status == false)
+                                return;
+                            if (listView1.Items.Count > 2)
+                            {
+                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                            }
+                            Thread.Sleep(100);
+                            count = count + 1;
+                            label4.Text = count.ToString();
+
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+                }
+
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.ToString());
+            }
+
+        }
+
+        #endregion
         private void button1_Click(object sender, EventArgs e)
         {
-            #region 通用检测
 
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html","utf-8");
-
-            if (!html.Contains(@"YVoWQ"))
+          
+            
+            if (token == "")
             {
-                MessageBox.Show("");
-                return;
+                token = gettoken();
             }
 
 
 
-            #endregion
-            #region 通用检测
 
-            //string ahtml = method.GetUrl("http://139.129.92.113/","utf-8");
-
-            //if (!ahtml.Contains(@"siyisoft"))
-            //{
-
-            //    return;
-            //}
-
-
-
-            #endregion
             status = true;
-           
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("行业为空");
+                return;
+            }
+
             if (thread == null || !thread.IsAlive)
             {
 
@@ -244,7 +373,7 @@ namespace 客户美团
                 MessageBox.Show(comboBox2.Text + "：请勿重复添加", "重复添加错误");
                 return;
             }
-            textBox1.Text += comboBox2.Text + "\r\n";
+        
         }
 
 
@@ -273,7 +402,33 @@ namespace 客户美团
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            comboBox1.Items.Add("所有");
             ProvinceCity.ProvinceCity.BindCity(comboBox1, comboBox2);
+            comboBox2.Items.Add("所有");
+            if (comboBox1.Text.Contains("北京"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("北京市");
+                comboBox2.Text = "北京市";
+            }
+            if (comboBox1.Text.Contains("上海"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("上海市");
+                comboBox2.Text = "上海";
+            }
+            if (comboBox1.Text.Contains("天津"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("天津市");
+                comboBox2.Text = "天津";
+            }
+            if (comboBox1.Text.Contains("重庆"))
+            {
+                comboBox2.Items.Clear();
+                comboBox2.Items.Add("重庆市");
+                comboBox2.Text = "重庆市";
+            }
         }
     }
 }

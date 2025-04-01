@@ -133,12 +133,8 @@ namespace myDLL
 			}
 			catch (WebException ex)
 			{
-				//result = ex.ToString();
-				//400错误也返回内容
-				using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-				{
-					result = reader.ReadToEnd();
-				}
+				result = ex.ToString();
+				
 			}
 			return result;
 		}

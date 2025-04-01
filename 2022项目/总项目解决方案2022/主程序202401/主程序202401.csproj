@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>主程序202401</RootNamespace>
     <AssemblyName>主程序202401</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="myDLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\myDLL\bin\Debug\myDLL.dll</HintPath>
@@ -51,6 +53,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +79,24 @@
     <Compile Include="易优权益.Designer.cs">
       <DependentUpon>易优权益.cs</DependentUpon>
     </Compile>
+    <Compile Include="易优权益监控拉黑.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="易优权益监控拉黑.Designer.cs">
+      <DependentUpon>易优权益监控拉黑.cs</DependentUpon>
+    </Compile>
+    <Compile Include="添加账号.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="添加账号.Designer.cs">
+      <DependentUpon>添加账号.cs</DependentUpon>
+    </Compile>
+    <Compile Include="电影评价.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="电影评价.Designer.cs">
+      <DependentUpon>电影评价.cs</DependentUpon>
+    </Compile>
     <Compile Include="百度酒店.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +114,19 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="易优权益.resx">
       <DependentUpon>易优权益.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="易优权益监控拉黑.resx">
+      <DependentUpon>易优权益监控拉黑.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="添加账号.resx">
+      <DependentUpon>添加账号.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="电影评价.resx">
+      <DependentUpon>电影评价.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="百度酒店.resx">
       <DependentUpon>百度酒店.cs</DependentUpon>

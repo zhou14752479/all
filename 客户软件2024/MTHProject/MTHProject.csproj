@@ -47,6 +47,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\BaiduNetdiskDownload\多温上位机 C#\MTHProject-2\MTHControlLib\bin\Debug\MTHControlLib.dll</HintPath>
     </Reference>
+    <Reference Include="myDLL">
+      <HintPath>..\..\..\源码\DLL备份\myDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\源码\DLL备份\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\源码\DLL备份\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\源码\DLL备份\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\源码\DLL备份\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="SeeSharpTools.JY.GUI, Version=1.4.4.533, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MTHControlLib\bin\Debug\SeeSharpTools.JY.GUI.dll</HintPath>

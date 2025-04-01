@@ -21,14 +21,7 @@ $(document).ready(function () {
 
     }
     else {
-        var pathurl = window.location.pathname;
-        if (pathurl == '/login.html' || pathurl == '/register.html' || pathurl.indexOf("articles") != -1) {
-
-        }
-        else {
-
-            location.href = 'login.html'
-        }
+       location.href = 'login.html'
 
     }
 })
@@ -68,11 +61,6 @@ function getCookie(c_name) {
 
 
 
-function setCookie(c_name, value, expireSeconds) {
-    date = new Date();
-    date.setTime(date.getTime() + expireSeconds * 1000); //设置date为当前时间+expireSeconds秒
-    document.cookie = c_name + "=" + value + "; expires=" + date.toGMTString(); //将date赋值给expires
-}
 
 function loginout() {
     var userid = getCookie("userid");
@@ -124,27 +112,7 @@ function user_add(username, password, shanghuname,usertype) {
     }, "json")
 }
 
-function login(username, password) {
-   
-    var url = `api.aspx?username=${username}&password=${password}&method=login`
-    $.post(url, function (data) {
-      
-        if (data.userid != "" && data.userid!=null) {
-          
-            setCookie('username', data.username, 3600 * 24 * 3)
-             setCookie('usertype', data.usertype, 3600 * 24 * 3)
-           
-            layer.msg("登录成功，即将跳转后台......")
-            setTimeout(" location.href='admin.html'", 2000);
 
-            document.querySelector("#nickname").innerHTML = data.username;
-        }
-        else {
-            layer.msg("用户名或密码错误")
-
-        }
-    }, "json")
-}
 
 
 

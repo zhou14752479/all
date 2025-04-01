@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using myDLL;
 using Microsoft.VisualBasic;
+using System.Security.Cryptography;
+using System.Web;
 
 namespace 抖音项目
 {
@@ -155,7 +157,7 @@ namespace 抖音项目
           WritePrivateProfileString(Section, Key, Value, this.inipath);
         }
 
-        // Token: 0x06000021 RID: 33 RVA: 0x000048B0 File Offset: 0x00002AB0
+        
         public string IniReadValue(string Section, string Key)
         {
             StringBuilder stringBuilder = new StringBuilder(500);
@@ -163,7 +165,7 @@ namespace 抖音项目
             return stringBuilder.ToString();
         }
 
-        // Token: 0x06000022 RID: 34 RVA: 0x000048EC File Offset: 0x00002AEC
+       
         public bool ExistINIFile()
         {
             return File.Exists(this.inipath);
@@ -260,24 +262,65 @@ namespace 抖音项目
 
 		string max_cursor ="0";
 
+		public static string GenerateXBogus(string url, string msToken)
+		{
+			// 解析URL参数
+			var uri = new Uri(url);
+			var queryParams = HttpUtility.ParseQueryString(uri.Query);
 
+			// 排序并构造参数字符串
+			var sortedParams = new StringBuilder();
+			foreach (var key in queryParams.AllKeys.OrderBy(k => k))
+			{
+				sortedParams.Append($"{key}={queryParams[key]}&");
+			}
+			if (sortedParams.Length > 0) sortedParams.Length--; // 移除末尾的&
+
+			// 构造基础字符串
+			var baseStr = new StringBuilder();
+			baseStr.Append(uri.AbsolutePath)
+				   .Append("?")
+				   .Append(sortedParams)
+				   .Append($"&msToken={msToken}");
+
+			// 添加时间戳和随机数
+			var timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+			var nonce = new Random().Next(1000, 10000); // 包含1000不包含10000
+			baseStr.Append($"&timestamp={timestamp}&nonce={nonce}");
+
+			// MD5哈希计算
+			var md5 = MD5.Create();
+			var hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(baseStr.ToString()));
+
+			// 转换为十六进制大写字符串
+			var hexString = new StringBuilder();
+			foreach (var b in hashBytes)
+			{
+				hexString.Append(b.ToString("X2"));
+			}
+
+			// 截取指定部分
+			return hexString.ToString();
+		}
 		public void run()
         {
 
 
-            ArrayList lists = function .getusers();
-            //ArrayList lists = new ArrayList();
-            //lists.Add("MS4wLjABAAAA-1G1bXOz9qcLla3Bs4mBFo7cx8iHfQyIQhiAMfKhIbpKKy6NWtiULFYs7nzkN2bX");
+            // ArrayList lists = function .getusers();
+            ArrayList lists = new ArrayList();
+            lists.Add("MS4wLjABAAAA-1G1bXOz9qcLla3Bs4mBFo7cx8iHfQyIQhiAMfKhIbpKKy6NWtiULFYs7nzkN2bX");
             try
             {
                 for (int a= 0; a < lists.Count; a++)
                 {
 					
 						string uid = lists[a].ToString();
+					
 						textBox1.Text += DateTime.Now.ToString() + "正在读取：" + uid + "\r\n";
 						
 						string data = "device_platform=webapp&aid=6383&sec_user_id=" + uid + "&max_cursor="+ max_cursor + "&offset=0&count=18";
-						string xbogus = getxbogus(data);
+					//getxbogus(data);
+					string xbogus = getxbogus(data);
 
 						string url = "https://www.douyin.com/aweme/v1/web/aweme/favorite/?" + data + "&X-Bogus=" + xbogus;
 
@@ -408,7 +451,7 @@ namespace 抖音项目
         {
 
 			
-			if (DateTime.Now > Convert.ToDateTime("2024-11-11"))
+			if (DateTime.Now > Convert.ToDateTime("2025-05-11"))
 			{
 				return;
 			}
@@ -422,7 +465,13 @@ namespace 抖音项目
 
         private void button2_Click(object sender, EventArgs e)
         {
-			thread.Abort();
+
+			string url = "https://www.douyin.com/aweme/v1/web/aweme/post/?device_platform=webapp";
+			string userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+
+			string xBogus = GenerateXBogus(url, userAgent);
+			MessageBox.Show($"生成的x-Bogus: {xBogus}");
+			//thread.Abort();
         }
     }
 }

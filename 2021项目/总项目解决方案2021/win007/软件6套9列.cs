@@ -25,7 +25,68 @@ namespace win007
 
         private void 软件6套9列_Load(object sender, EventArgs e)
         {
-           
+          
+            foreach (Control control in groupBox1.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.00 0.00 0.00  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02";
+
+
+                }
+
+            }
+
+            foreach (Control control in groupBox18.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.50 0.01 0.02  0.50 0.01 0.01  0.50 0.01 0.02  0.00 0.03 0.02  0.00 0.01 0.03";
+
+
+                }
+
+            }
+            foreach (Control control in groupBox3.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.01  0.00 0.01 0.02";
+
+
+                }
+
+            }
+            foreach (Control control in groupBox4.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02";
+
+
+                }
+
+            }
+            foreach (Control control in groupBox5.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.01  0.00 0.01 0.02  0.00 0.01 0.02";
+
+
+                }
+
+            }
+            foreach (Control control in groupBox6.Controls)
+            {
+                if (control is TextBox)
+                {
+                    control.Text = "0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02  0.00 0.01 0.02";
+
+
+                }
+
+            }
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
             webBrowser1.Navigate("https://live.titan007.com/");
@@ -107,7 +168,8 @@ namespace win007
 
                 if (comb1.Text != "")
                 {
-                    sql = sql + (" gongsi like '" + comb1.Text.Trim() + "' and");
+                    //sql = sql + (" gongsi like '" + comb1.Text.Trim() + "' and");
+                    sql = sql + (" gongsi == '" + comb1.Text.Trim() + "' and");
                 }
 
                 if (sql.Substring(sql.Length - 3, 3) == "and")
@@ -115,6 +177,8 @@ namespace win007
                     sql = sql.Substring(0, sql.Length - 3);
                 }
 
+
+                
                
                 DataTable dt = fc.chaxundata(sql);
 
@@ -338,23 +402,19 @@ namespace win007
             try
             {
 
-             
-
-
-
                 //label48.Text = "";
                 string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
-                if(id=="")
+                if (id == "")
                 {
                     id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
                 }
 
-               
+
                 string data = function.getshishidata(id, company);
-               
+
 
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
-                if (text.Length > 6)
+                if (text.Length > 3)
                 {
                     string s1 = "平";
                     string j1 = "平";
@@ -366,22 +426,16 @@ namespace win007
 
 
 
-                    //textBox1.Text = text[1].Replace("\"", "");
-                    //textBox2.Text = text[2].Replace("\"", "");
-                    //textBox3.Text = text[3].Replace("\"", "");
-                    //textBox9.Text = text[4].Replace("\"", "");
-                    //textBox8.Text = text[5].Replace("\"", "");
-                    //textBox7.Text = text[6].Replace("\"", "");
 
                     dic.Add(1, text[1].Replace("\"", ""));
                     dic.Add(2, text[2].Replace("\"", ""));
                     dic.Add(3, text[3].Replace("\"", ""));
+
                     dic.Add(9, text[4].Replace("\"", ""));
                     dic.Add(8, text[5].Replace("\"", ""));
                     dic.Add(7, text[6].Replace("\"", ""));
 
-                   
-                    vvv = text[1].Replace("\"", "") + "|"+ text[2].Replace("\"", "") + "|" +text[3].Replace("\"", "");
+                    vvv = text[1].Replace("\"", "") + "|" + text[2].Replace("\"", "") + "|" + text[3].Replace("\"", "");
 
                     s1 = Convert.ToDouble(text[1]) - Convert.ToDouble(text[4]) < 0 ? "降" : "升";
                     j1 = Convert.ToDouble(text[2]) - Convert.ToDouble(text[5]) < 0 ? "降" : "升";
@@ -417,7 +471,7 @@ namespace win007
                     //textBox4.Text = s1 + j1 + p1;
                     //textBox13.Text = s2 + j2 + p2;
 
-                    if(company==comboBox1.Text.Trim())
+                    if (company == comboBox1.Text.Trim())
                     {
                         label31.Text = vvv;
                     }
@@ -442,10 +496,13 @@ namespace win007
             }
             catch (Exception ex)
             {
+                //MessageBox.Show(ex.ToString());
                 return dic;
-                 
+
             }
         }
+
+
 
         Dictionary<int, string> dic1 = new Dictionary<int, string>();
         Dictionary<int, string> dic2 = new Dictionary<int, string>();
@@ -1117,6 +1174,7 @@ namespace win007
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             getshishidata(comboBox1.Text.Trim());
+           
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)
@@ -1347,14 +1405,216 @@ namespace win007
             }
         }
 
+        static string FindCommonDigits(string str1, string str2, string str3)
+        {
+          
+
+           StringBuilder sb = new StringBuilder();  
+            HashSet<char> uniqueDigits = new HashSet<char>();
+
+            // 遍历第一个数字的每个字符
+            foreach (char digit in str1)
+            {
+                if (!uniqueDigits.Contains(digit))
+                {
+                    uniqueDigits.Add(digit);
+                    if (str2.Contains(digit) && str3.Contains(digit))
+                    {
+                        sb.Append(digit);
+                    }
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        public void  sanhang_jisuan(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6, TextBox t7, TextBox t8, TextBox t9)
+        {
+            try
+            {
+
+
+                string[] text1 = t1.Text.Split(new string[] { "  " }, StringSplitOptions.None); //两个空格
+                string[] text2 = t2.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                string[] text3 = t3.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+              
+
+
+                int count = 5;
+            
+
+                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+              
+                for (int i = 0; i < count; i++)
+                {
+                    string tong = FindCommonDigits(function.Find3Max(text1[i]), function.Find3Max(text2[i]), function.Find3Max(text3[i]));
+                    if (tong!="")
+                    {
+                        lv1.SubItems.Add(tong);
+                    }
+                   else
+                    {
+                        lv1.SubItems.Add("-");
+                    }
+                   
+                }
+                if (t7 != null)
+                {
+                    string[] text4 = t4.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    string[] text5 = t5.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    string[] text6 = t6.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    string[] text7 = t7.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    string[] text8 = t8.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    string[] text9 = t9.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+
+
+                    ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    for (int i = 0; i < count; i++)
+                    {
+                        string tong = FindCommonDigits(function.Find3Max(text4[i]), function.Find3Max(text5[i]), function.Find3Max(text6[i]));
+                        if (tong != "")
+                        {
+                            lv2.SubItems.Add(tong);
+                        }
+                        else
+                        {
+                            lv2.SubItems.Add("-");
+                        }
+
+                    }
+
+                   
+                    ListViewItem lv3 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    for (int i = 0; i < count; i++)
+                    {
+                        string tong = FindCommonDigits(function.Find3Max(text7[i]), function.Find3Max(text8[i]), function.Find3Max(text9[i]));
+                        if (tong != "")
+                        {
+                            lv3.SubItems.Add(tong);
+                        }
+                        else
+                        {
+                            lv3.SubItems.Add("-");
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+              ex.ToString();
+            }
+        }
+        /// <summary>
+        /// 获取三行数据223值
+        /// </summary>
+        public void sanci()
+        {
+            listView1.Items.Clear();
+            sanhang_jisuan(rule1_txtbox,rule2_txtbox,rule3_txtbox,rule4_txtbox,rule5_txtbox,rule6_txtbox,rule7_txtbox,rule8_txtbox,rule9_txtbox);
+            sanhang_jisuan(rule1_txtbox_2, rule2_txtbox_2,rule3_txtbox_2,rule4_txtbox_2,rule5_txtbox_2,rule6_txtbox_2,rule7_txtbox_2,rule8_txtbox_2,rule9_txtbox_2);
+            sanhang_jisuan(rule1_txtbox_3, rule2_txtbox_3, rule3_txtbox_3, rule4_txtbox_3, rule5_txtbox_3, rule6_txtbox_3, rule7_txtbox_3, rule8_txtbox_3, rule9_txtbox_3);
+            sanhang_jisuan(rule1_txtbox_4, rule2_txtbox_4, rule3_txtbox_4, null, null, null, null,null,null);
+            sanhang_jisuan(rule1_txtbox_5, rule2_txtbox_5, rule3_txtbox_5, null, null, null, null, null, null);
+            sanhang_jisuan(rule1_txtbox_6, rule2_txtbox_6, rule3_txtbox_6, null, null, null, null, null, null);
+        }
+
+      
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            sanci();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
+            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            ListViewItem lv3 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            kailizhishu(lv1, lv2, lv3, comboBox1.Text) ;
+            kailizhishu(lv1, lv2, lv3, comboBox2.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox3.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox4.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox5.Text);
+           
+        }
+
+        public void kailizhishu(ListViewItem lv1, ListViewItem lv2, ListViewItem lv3,string com)
+        {
+            try
+            {
+                 
+                string matchid = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value.Trim();
+                if (matchid == "")
+                {
+                    matchid = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
+                }
+
+              
+
+                string com1data = function.getshishi_kailidata(matchid, com);
+
+               
+                
+                if(com1data!="")
+                {
+                    string[] text = com1data.Split(new string[] { "," }, StringSplitOptions.None);
+                    string hang1 = "";
+                    string hang2 = "";
+                    string hang3 = "";
+
+                    hang1=function.CompareAndLabel(Convert.ToDouble(text[0]), Convert.ToDouble(text[1]), Convert.ToDouble(text[2])).ToString();
+
+                    if (text[3].Trim() != "")
+                    {
+                        hang2 = function.CompareAndLabel(Convert.ToDouble(text[3]), Convert.ToDouble(text[4]), Convert.ToDouble(text[5])).ToString();
+                    }
+                    if (text[6].Trim() != "")
+                    {
+
+                        hang3 = function.CompareAndLabel(Convert.ToDouble(text[6]), Convert.ToDouble(text[7]), Convert.ToDouble(text[8])).ToString();
+                    }
+
+                    lv1.SubItems.Add(hang1);
+                    lv2.SubItems.Add(hang2);
+                    lv3.SubItems.Add(hang3);
+
+                }
+                else
+                {
+                    lv1.SubItems.Add("");
+                    lv2.SubItems.Add("");
+                    lv3.SubItems.Add("");
+
+
+                }
 
 
 
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
 
+        }
 
-
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string matchid = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value.Trim();
+            if (matchid == "")
+            {
+                matchid = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
+            }
+            chazhi_textB.Text=function.gongsi5chazhi(matchid,comboBox1.Text,comboBox2.Text,comboBox3.Text,comboBox4.Text,comboBox5.Text);
+        }
     }
 
 }

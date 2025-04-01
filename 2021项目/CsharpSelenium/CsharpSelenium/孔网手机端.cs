@@ -102,17 +102,17 @@ namespace CsharpSelenium
 
                             driver.Navigate().GoToUrl("https://m.kongfz.com/newsearch/result?keyword="+text[i]+"&type=goods&choosetext=%E6%8B%8D%E5%93%81%E6%A0%87%E9%A2%98");
 
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
 
                             // 定位到包含文本的元素，例如通过xpath或其他选择器
                             IWebElement element = driver.FindElement(By.XPath("//span[contains(text(), '价格')]"));
                             element.Click();    
                           
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
 
                             IWebElement element2 = driver.FindElement(By.XPath("//span[contains(text(), '总价从低到高（含运费）')]"));
                             element2.Click();
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
                             label1.Text = text[i];
 
                             MatchCollection prices = Regex.Matches(driver.PageSource, @"<div class=""price"">([\s\S]*?)</div>");
@@ -130,15 +130,15 @@ namespace CsharpSelenium
                             else if (prices.Count==1)
                             {
                                 p1 = prices[0].Groups[1].Value.Replace("<span>", "").Replace("</span>", "").Replace("￥", "").Trim();
-                                f1 = fees[0].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Trim();
+                                f1 = fees[0].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Replace("包邮","").Replace("普通包裹", "").Replace("包裹", "").Replace("无", "").Trim();
                               
                             }
                             else
                             {
                                 p1 = prices[0].Groups[1].Value.Replace("<span>", "").Replace("</span>", "").Replace("￥", "").Trim();
-                                f1 = fees[0].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Trim();
+                                f1 = fees[0].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Replace("包邮", "").Replace("普通包裹", "").Replace("包裹", "").Replace("无", "").Trim();
                                 p3 = prices[2].Groups[1].Value.Replace("<span>", "").Replace("</span>", "").Replace("￥", "").Trim();
-                                f3 = fees[2].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Trim();
+                                f3 = fees[2].Groups[1].Value.Replace("<span>", "").Replace("挂号印刷品", "").Replace("快递", "").Replace("包邮", "").Replace("普通包裹", "").Replace("包裹", "").Replace("无", "").Trim();
                             }
 
 
@@ -184,5 +184,10 @@ namespace CsharpSelenium
         Thread thread;
        
         bool status = true;
+
+        private void 孔网手机端_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

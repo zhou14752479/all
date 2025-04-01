@@ -223,6 +223,7 @@ namespace stockx网站价格
 				string postData = "{\"params\":\"query=" + this.textBox1.Text.Trim() + "&facets=*&filters=\"}";
 				string ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
 				string input = this.PostUrl(url, postData, ua);
+				
 				Match match = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"");
 				string url2 = "https://stockx.com/api/products/" + match.Groups[1].Value + "?includes=market,360&currency=USD&country=US";
 
@@ -281,43 +282,53 @@ namespace stockx网站价格
 				string postData = "{\"params\":\"query=" + this.textBox1.Text.Trim() + "&facets=*&filters=\"}";
 				string ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
 				string input = this.PostUrl(url, postData, ua);
+				
 				Match match = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"");
-			
+				//MessageBox.Show(match.Groups[1].Value);
 				string html = Request_new(match.Groups[1].Value) ;
-				//textBox3.Text = html;
-				html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
+				textBox3.Text = html;
+				//html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
 
 				
 				MatchCollection highestBidSize = Regex.Matches(html, "\"highestBidSize\":([\\s\\S]*?),");
-				MatchCollection highestBid = Regex.Matches(html, "\"highestBid\":([\\s\\S]*?),");
-				MatchCollection lowestAsk = Regex.Matches(html, "\"lowestAsk\":([\\s\\S]*?),");
 
-				for (int i = 0; i < highestBidSize.Count; i++)
+
+				MatchCollection aid = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
+				MatchCollection lowestAsk = Regex.Matches(html, @"""id"":""([\s\S]*?)lowestAsk"":([\s\S]*?),");
+				MatchCollection highestBid = Regex.Matches(html, @"""id"":""([\s\S]*?)highestBid"":([\s\S]*?),");
+			
+
+
+
+				for (int i = 0; i < aid.Count; i++)
                 {
-					if(highestBidSize[i].Groups[1].Value.Contains("null"))
-					{
-						continue;
-					}
+					//if(highestBidSize[i].Groups[1].Value.Contains("null"))
+					//{
+					//	continue;
+					//}
+
+					//MessageBox.Show(highestBid[i].Groups[1].Value);
 					double high = 0;
 					double low = 0;
-					if (highestBid[i].Groups[1].Value!= "null" && highestBid[i].Groups[1].Value!="")
+
+					string highaa = highestBid[i].Groups[2].Value.Replace("\"", "").Replace("amount", "").Replace("}", "").Replace(":", "").Replace("{", "");
+					string lowaa = highestBid[i].Groups[2].Value.Replace("\"", "").Replace("amount", "").Replace("}", "").Replace(":", "").Replace("{", "");
+
+					
+					if (highaa != "null" && highaa != "")
                     {
-						high =  Convert.ToDouble(highestBid[i].Groups[1].Value);
+						high =  Convert.ToDouble(highaa);
 					}
-					if(lowestAsk[i].Groups[1].Value!= "null" && lowestAsk[i].Groups[1].Value!="")
+					if(lowaa != "null" && lowaa != "")
                     {
-						low = Convert.ToDouble(lowestAsk[i].Groups[1].Value);
+						low = Convert.ToDouble(lowaa);
 					}
 
 					high = Convert.ToDouble(this.textBox2.Text) * (high + high * 0.08 + 14.95);
 					low = Convert.ToDouble(this.textBox2.Text) * (low + low * 0.08 + 14.95);
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> b5857d98f043be903ffd81905e26215b3a28b06e
-					ListViewItem listViewItem = this.listView1.Items.Add("US " + highestBidSize[i].Groups[1].Value.Replace("\"", ""));
+					ListViewItem listViewItem = this.listView1.Items.Add("US " + aid[i].Groups[1].Value.Replace("\"", ""));
 					listViewItem.SubItems.Add(low.ToString("F2"));
 					listViewItem.SubItems.Add(high.ToString("F2"));
 					
@@ -345,6 +356,11 @@ namespace stockx网站价格
 		// Token: 0x0600000A RID: 10 RVA: 0x00002A48 File Offset: 0x00000C48
 		private void button1_Click(object sender, EventArgs e)
 		{
+
+			if (DateTime.Now > Convert.ToDateTime("2025-10-11"))
+			{
+				return;
+			}
 			bool flag = this.thread == null || !this.thread.IsAlive;
 			if (flag)
 			{
@@ -382,13 +398,13 @@ namespace stockx网站价格
 				request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN");
 				request.Headers.Add("sec-ch-ua-mobile", @"?0");
 				request.Headers.Add("App-Platform", @"Iron");
-				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
+				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 				request.ContentType = "application/json";
 				request.Accept = "*/*";
 				request.Headers.Add("selected-country", @"US");
-				request.Headers.Add("x-stockx-device-id", @"ed25270a-c60a-42f0-99db-241176a6181e");
-				request.Headers.Add("apollographql-client-version", @"2023.10.01.01");
-				request.Headers.Add("x-stockx-session-id", @"deb83535-154b-4d2e-9001-2789037baec0");
+				request.Headers.Add("x-stockx-device-id", @"32b6dbed-3f70-4657-a8be-b272375d26bb");
+				request.Headers.Add("apollographql-client-version", @"2025.03.16.00");
+				request.Headers.Add("x-stockx-session-id", @"d6dae96c-64c4-498e-ada8-8b4112e15125");
 				request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
 				request.Headers.Add("Origin", @"https://stockx.com");
 				request.Headers.Add("Sec-Fetch-Site", @"same-origin");
@@ -396,12 +412,15 @@ namespace stockx网站价格
 				request.Headers.Add("Sec-Fetch-Dest", @"empty");
 				request.Referer = "https://stockx.com/zh-cn/nike-dunk-low-cacao-wow-womens";
 				//request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
-				request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=ed25270a-c60a-42f0-99db-241176a6181e; language_code=zh; __pxvid=e2088da8-958c-11ed-aa1a-0242ac120002; ajs_anonymous_id=4bbc3852-972c-4c84-9e8f-7ee67c19d434; tracker_device=75325615-5e5c-4faa-ae4d-867554ea118e; __ssid=615cf9804e32318265fe9dc2cdabe06; rskxRunCookie=0; rCookie=g0gyrk9rojkslo1m74m8hnlcyp2zu9; RoktRecogniser=a2d4579a-7b37-4efd-9bf3-563ba5514e3b; stockx_homepage=sneakers; _pxvid=e1e4c9e5-958c-11ed-8799-d0acddfc711b; _ga=GA1.1.1207394361.1692097924; _gcl_au=1.1.474060180.1692097924; OptanonAlertBoxClosed=2023-08-15T11:12:04.451Z; _ga_TYYSNQDG4W=GS1.1.1692097923.1.1.1692097927.0.0.0; _ga=GA1.1.1207394361.1692097924; OptanonConsent=isGpcEnabled=0&datestamp=Tue+Aug+15+2023+19%3A12%3A08+GMT%2B0800+(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)&version=202211.2.0&isIABGlobal=false&hosts=&consentId=816d683c-ae1c-4ce4-bae3-7e5d3ad86859&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0004%3A1%2CC0005%3A1%2CC0003%3A1&geolocation=CN%3BGD&AwaitingReconsent=false; _uetvid=903519503b5c11ee9ab8295f6a39bb6d; stockx_session_id=deb83535-154b-4d2e-9001-2789037baec0; stockx_session=3175e3d2-51ba-4355-9a02-6f6553a6fffd; __cf_bm=dZpIahNIR9rsP18qo3f0W01aOW2SFPswklcVfmbvyzI-1696585213-0-Af/3V8X6yo5kt+bBNtodYpJF2RRhLcKi+GtbIHri+TweswP9uylNRvGWUqptG0LjhCCu7oIQcZawwR9Wuu4e7W8=; stockx_selected_region=US; pxcts=59e50c05-642c-11ee-9762-4933eacc042a; display_location_selector=false; cf_clearance=LdxU1s24N58YKMHc1Qhb1xMhY1d17yBOlL8Bmz6XNMM-1696585215-0-1-1005a0c1.f77d388d.14d174ad-0.2.1696585215; ftr_blst_1h=1696585218173; forterToken=8b0950916dcd4429aec3d29023454fc6_1696585217483__UDF43-m4_13ck; stockx_preferred_market_activity=sales; stockx_product_visits=1; lastRskxRun=1696585222809; stockx_default_size=%7B%22sneakers%22%3A%225W%22%2C%22shoes%22%3A%225W%22%7D; _pxde=269beed9d7af28b44bd5380b3ffa00aea3299db19d2b81c867b1e090e405c037:eyJ0aW1lc3RhbXAiOjE2OTY1ODU2OTYzMDgsImZfa2IiOjB9; _dd_s=rum=0&expire=1696586635390&logs=1&id=a22af02e-f46a-4edf-a3ea-f4b85169d22e&created=1696585217149");
+				request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; stockx_session_id=d6dae96c-64c4-498e-ada8-8b4112e15125; stockx_session=7439c87d-6078-4de5-b13a-34dd2d0b6e9d; pxcts=2d49d892-08a4-11f0-9da4-7ea5f1a97390; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; language_code=zh; stockx_selected_locale=zh; stockx_selected_currency=USD; stockx_selected_region=CN; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; display_location_selector=false; cf_clearance=s5T9zJNyChDV3PZl8aUcT32aX2.Jew7bvTeOhjbpEgQ-1742816320-1.2.1.1-IDZXsBdvLiJMxQ7JzgC7GVGJDi2DTILLJUAQOpdefEDzQhPvW8iWNj9ZsTw6hHLcGL01caffD8ixagjngBAPYZCf3lci3kTvGFhpLixA9Qnu391D2iQbT25YEUKZpxueRgQ0.iR6UHZWxnB8XtkQDrZ_Gw2K2e94tmc1kH.8pDXHWis7bko69OgerXIiRJKc076E6i2Z1JaAH_RQ6tEWQ1SlXE9FnOmV0WWEKbrNzAssxntIcG.8zKVQAOnd.fH4Lm94YsaQ8IqPEXrbM3xRcPn_A8Tyr2BYgJv9cB3mWFd1c2uiMreD_2CUArDnJR2CFtVpmi90FYm7oMukHbZO9opobE86.V4cQfnqLi7fDviqjKFZwV40C5BEDLn6R02pspH8.Jby4lANRO.QOe4.I4DK.qMZYFJoBezoyKuQL4w; is_gdpr=false; stockx_ip_region=CN; _px3=11ee5c6eba171c0b6b07b9e1b34a18e0527fbd896e9f337702e88352c6251444:w8lCJOdwr9t5W/paMxTWem5cfk5RkJvXjLIAJsKhcQdrxTF4VswPjsg0fL5fSYiBau2ZlRTtZMLTrJGpVnxhZw==:1000:jmSRgCupoYyybr8PYoPVe59UddrEu8hnykykck9ujpnppeSQcIA7he6if9V1frUSfhDDkEk2RWvU9EfRJoDOD5XoV9bijd7ZeiGG9ez2IoSM/ZAdoj/EyBa2uPM7Lf2e2aPCz7uUoss1b+7h5V0UDdpx1mohyBqlHuNMbF5SuFYjhAceFyim36aIITWC0+Org8rHnLOBvfu+M0UI6ONRNimTQxW3xI/DeGwOhP7MXxw=; _pxde=e8f23c92726642ae39ecd1fe1d31bbcccfd0586feb158c8095a1f9909ab3178a:eyJ0aW1lc3RhbXAiOjE3NDI4MTYzNTEzMzEsImZfa2IiOjB9; _dd_s=rum=0&expire=1742817279174&logs=1&id=c3c400a0-5e5d-47fd-94a9-5d30446e3866&created=1742816193537; lastRskxRun=1742816379422");
 
 				request.Method = "POST";
 				request.ServicePoint.Expect100Continue = false;
 
-				string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String) {\n  product(id: $id) {\n    id\n    urlKey\n    title\n    uuid\n    contentGroup\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        bidAskData(country: $countryCode, market: $marketName) {\n          highestBid\n          highestBidSize\n          lowestAsk\n          lowestAskSize\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n      }\n    }\n    ...BidButtonFragment\n    ...BidButtonContentFragment\n    ...BuySellFragment\n    ...BuySellContentFragment\n    ...XpressAskPDPFragment\n    ...LastSaleFragment\n  }\n}\n\nfragment BidButtonFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BidButtonContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  minimumBid(currencyCode: $currencyCode)\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n      numberOfAsks\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n        numberOfAsks\n      }\n    }\n  }\n}\n\nfragment BuySellFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BuySellContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment XpressAskPDPFragment on Product {\n  market(currencyCode: $currencyCode) {\n    state(country: $countryCode) {\n      numberOfCustodialAsks\n    }\n  }\n  variants {\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode) {\n        numberOfCustodialAsks\n      }\n    }\n  }\n}\n\nfragment LastSaleFragment on Product {\n  id\n  market(currencyCode: $currencyCode) {\n    statistics(market: $marketName) {\n      ...LastSaleMarketStatistics\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      statistics(market: $marketName) {\n        ...LastSaleMarketStatistics\n      }\n    }\n  }\n}\n\nfragment LastSaleMarketStatistics on MarketStatistics {\n  lastSale {\n    amount\n    changePercentage\n    changeValue\n    sameFees\n  }\n}"",""variables"":{""id"":"""+aid+"\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":null},\"operationName\":\"GetMarketData\"}";
+				//string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String) {\n  product(id: $id) {\n    id\n    urlKey\n    title\n    uuid\n    contentGroup\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        bidAskData(country: $countryCode, market: $marketName) {\n          highestBid\n          highestBidSize\n          lowestAsk\n          lowestAskSize\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n      }\n    }\n    ...BidButtonFragment\n    ...BidButtonContentFragment\n    ...BuySellFragment\n    ...BuySellContentFragment\n    ...XpressAskPDPFragment\n    ...LastSaleFragment\n  }\n}\n\nfragment BidButtonFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BidButtonContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  minimumBid(currencyCode: $currencyCode)\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n      numberOfAsks\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n        numberOfAsks\n      }\n    }\n  }\n}\n\nfragment BuySellFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BuySellContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment XpressAskPDPFragment on Product {\n  market(currencyCode: $currencyCode) {\n    state(country: $countryCode) {\n      numberOfCustodialAsks\n    }\n  }\n  variants {\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode) {\n        numberOfCustodialAsks\n      }\n    }\n  }\n}\n\nfragment LastSaleFragment on Product {\n  id\n  market(currencyCode: $currencyCode) {\n    statistics(market: $marketName) {\n      ...LastSaleMarketStatistics\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      statistics(market: $marketName) {\n        ...LastSaleMarketStatistics\n      }\n    }\n  }\n}\n\nfragment LastSaleMarketStatistics on MarketStatistics {\n  lastSale {\n    amount\n    changePercentage\n    changeValue\n    sameFees\n  }\n}"",""variables"":{""id"":"""+aid+"\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":null},\"operationName\":\"GetMarketData\"}";
+				string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String, $viewerContext: MarketViewerContext) {\n product(id: $id) {\n id\n urlKey\n listingType\n title\n uuid\n contentGroup\n sizeDescriptor\n productCategory\n lockBuying\n lockSelling\n media {\n imageUrl\n    }\n minimumBid(currencyCode: $currencyCode)\n market(currencyCode: $currencyCode) {\n state(country: $countryCode, market: $marketName) {\n lowestAsk {\n amount\n chainId\n        }\n highestBid {\n amount\n        }\n askServiceLevels {\n expressExpedited {\n count\n lowest {\n amount\n chainId\n            }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n            }\n          }\n expressStandard {\n count\n lowest {\n amount\n            }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n            }\n          }\n standard {\n count\n lowest {\n amount\n chainId\n            }\n          }\n        }\n numberOfAsks\n numberOfBids\n      }\n salesInformation {\n lastSale\n salesLast72Hours\n      }\n statistics(market: $marketName, viewerContext: $viewerContext) {\n lastSale {\n amount\n changePercentage\n changeValue\n sameFees\n        }\n      }\n    }\n variants {\n id\n market(currencyCode: $currencyCode) {\n state(country: $countryCode, market: $marketName) {\n lowestAsk {\n amount\n chainId\n          }\n highestBid {\n amount\n          }\n askServiceLevels {\n expressExpedited {\n count\n lowest {\n amount\n chainId\n              }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n              }\n            }\n expressStandard {\n count\n lowest {\n amount\n chainId\n              }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n              }\n            }\n standard {\n count\n lowest {\n amount\n chainId\n              }\n            }\n          }\n numberOfAsks\n numberOfBids\n        }\n salesInformation {\n lastSale\n salesLast72Hours\n        }\n statistics(market: $marketName, viewerContext: $viewerContext) {\n lastSale {\n amount\n changePercentage\n changeValue\n sameFees\n          }\n        }\n      }\n    }\n  }\n}"",""variables"":{""id"":""" + aid + "\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":\"US\",\"viewerContext\":\"BUYER\"},\"operationName\":\"GetMarketData\"}";
+				
+				
 				byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
 				request.ContentLength = postBytes.Length;
 				Stream stream = request.GetRequestStream();

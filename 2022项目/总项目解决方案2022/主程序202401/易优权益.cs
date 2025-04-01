@@ -280,7 +280,7 @@ namespace 主程序202401
         Thread thread;
 
         #region wxpush消息UID
-        public string getuids()
+        public static string getuids()
         {
             StringBuilder sb = new StringBuilder();
             string url = "http://wxpusher.zjiecode.com/api/fun/wxuser/v2?appToken=AT_Zwbx5uVZTIpxJ2OPaCGXXOZNuiWHmTKQ&page=1";
@@ -296,7 +296,7 @@ namespace 主程序202401
         #endregion
 
         #region 发送wxpush消息
-        public void sendmsg(string title, string neirong)
+        public  void sendmsg(string title, string neirong)
         {
             bool flag = title.Trim() != "";
             if (flag)
@@ -316,9 +316,9 @@ namespace 主程序202401
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2024-12-01"))
+            if (DateTime.Now > Convert.ToDateTime("2025-03-26"))
             {
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                return;
             }
 
             label1.Text = "正在登录....";

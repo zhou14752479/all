@@ -16,7 +16,7 @@ namespace win007
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Win007());
+            Application.Run(new 软件6套9列());
         }
     }
 }

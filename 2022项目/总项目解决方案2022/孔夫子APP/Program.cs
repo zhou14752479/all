@@ -16,7 +16,7 @@ namespace 孔夫子APP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 孔网已售());
+            Application.Run(new 孔网导入isbn());
         }
     }
 }

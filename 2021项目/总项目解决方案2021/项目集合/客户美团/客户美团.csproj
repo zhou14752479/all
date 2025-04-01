@@ -95,6 +95,7 @@
     <Compile Include="ershouche.Designer.cs">
       <DependentUpon>ershouche.cs</DependentUpon>
     </Compile>
+    <Compile Include="function.cs" />
     <Compile Include="gongshang.cs">
       <SubType>Form</SubType>
     </Compile>

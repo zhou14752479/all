@@ -743,9 +743,9 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(gaode);
+                    thread = new Thread(baidu);
                     thread.Start();
-                   
+
                 }
                 else
                 {
@@ -756,11 +756,12 @@ namespace 客户美团
 
             if (radioButton2.Checked == true)
             {
+
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(tengxun);
+                    thread = new Thread(so360);
                     thread.Start();
-                    
+
                 }
                 else
                 {
@@ -787,7 +788,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(tengxun);
+                    thread = new Thread(baidu);
                     thread.Start();
 
                 }

@@ -16,7 +16,7 @@ namespace 客户美团
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 全国工商企业信息采集());
+            Application.Run(new ditu());
         }
     }
 }

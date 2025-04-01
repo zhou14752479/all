@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using myDLL;
 
 namespace MTHProject
 {
@@ -21,113 +22,55 @@ namespace MTHProject
         {
             InitializeComponent();
         }
-        #region POST默认请求
-        /// <summary>
-        /// POST请求
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="postData">发送的数据包</param>
-        /// <param name="COOKIE">cookie</param>
-        /// <param name="charset">编码格式</param>
-        /// <returns></returns>
-        public string PostUrlDefault(string url, string postData, string COOKIE)
+        #region GET请求
+        public  string GetUrl(string Url, string charset)
         {
+           
+            string result;
             try
             {
-
-                string charset = "utf-8";
-                string html = "";
-                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //获取不到加上这一条
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Method = "Post";
-                //   request.Proxy = null;//防止代理抓包
-               
-
-
-                //添加头部
-                WebHeaderCollection headers = request.Headers;
-                headers.Add("version:TYC-XCX-WX");
-              
-                //request.ContentType = "application/x-www-form-urlencoded";
-                // request.Accept = "application/json, text/javascript, */*; q=0.01"; //返回中文问号参考
-                request.ContentType = "application/json";
-                request.ContentLength = Encoding.UTF8.GetBytes(postData).Length;
-                // request.ContentLength = postData.Length;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+                request.Proxy = null;
+                request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36";
+                request.Referer = "https://www.aiqicha.com/s?q=%E8%A3%85%E9%A5%B0&t=0&p_type=2&p_tk=7953smCNriu4zn2kDf%2B76IgDAkPtg0%2F0EFkJl149Tec%2F7L3qkwMhPGD9vPLmzzoq0v33CHdc6AKQs0HEbTFZZ0gEZEgAWmcY4LpC4NX0nJ3WjcrkfcU24Pa8cXGBKVJnV2cHxgJMr5rz4tnbdu7m40CdgFjtEgMt6yGp0RcQqoBYUzI%3D&p_timestamp=1729301823&p_sign=06998284408c2b260fc66415f265c52d&p_signature=81fa7a69015b2f7e921d8a05305ee183&__pc2ps_ab=7953smCNriu4zn2kDf%2B76IgDAkPtg0%2F0EFkJl149Tec%2F7L3qkwMhPGD9vPLmzzoq0v33CHdc6AKQs0HEbTFZZ0gEZEgAWmcY4LpC4NX0nJ3WjcrkfcU24Pa8cXGBKVJnV2cHxgJMr5rz4tnbdu7m40CdgFjtEgMt6yGp0RcQqoBYUzI%3D|1729301823|81fa7a69015b2f7e921d8a05305ee183|06998284408c2b260fc66415f265c52d";
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("version:TYC-XCX-WX");
+                request.Headers.Add("Cookie", cookie);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                request.AllowAutoRedirect = false;
                 request.KeepAlive = true;
-                // request.Proxy = null;//禁止抓包
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.50(0x1800323b) NetType/WIFI Language/zh_CN";
-                request.Headers.Add("Cookie", COOKIE);
-
-                request.Referer = url;
-                StreamWriter sw = new StreamWriter(request.GetRequestStream());
-                sw.Write(postData);
-                sw.Flush();
-
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                response.GetResponseHeader("Set-Cookie");
-
-                if (response.Headers["Content-Encoding"] == "gzip")
+                request.Accept = "*/*";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
                 {
-
-                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
                     StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
                     html = reader.ReadToEnd();
                     reader.Close();
                 }
                 else
                 {
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
-                    html = reader.ReadToEnd();
-                    reader.Close();
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
                 }
-
-
                 response.Close();
-                return html;
+                result = html;
             }
-            catch (WebException ex)
+            catch (Exception ex)
             {
-
-                return ("企业大数据：异常");
+                result = ex.ToString();
             }
-
-
+            return result;
         }
-
         #endregion
 
-        /// <summary>
-        /// 时间转换 毫秒级别的时间戳
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-        public static string GetChinaTicks(DateTime dateTime)
-        {
-            //北京时间相差8小时
-            DateTime startTime = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1, 8, 0, 0, 0), TimeZoneInfo.Local);
-            long t = (dateTime.Ticks - startTime.Ticks) / 10000;   //除10000调整为13位   
-            return t.ToString();
-        }
-
-        /// <summary>
-        /// 获取时间戳毫秒
-        /// </summary>
-        /// <returns></returns>
-        public string GetTimeStamp()
-        {
-            TimeSpan tss = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            long a = Convert.ToInt64(tss.TotalMilliseconds);
-            return a.ToString();
-        }
-        /// <summary>
-        /// 时间转换 毫秒级别的时间戳
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-      
-        public void tyc()
+        string cookie = "log_guid=1d0c41d22a4c7efa5c0fc1fee3ae0c98; Hm_lvt_ad52b306e1ae4557f5d3534cce8f8bbf=1729301811; HMACCOUNT=B6526FFC7DC1CF5B; _j47_ka8_=57; ZX_UNIQ_UID=68933fee41aa2509207a12faa75a19c2; login_type=passport; BDUSS=UUtMFI1bVc2UGpaZHNNcklIVW9GVmZhYn4zbzB3Z1RWa0stOS1STlZ4VTNtenBuSVFBQUFBJCQAAAAAAAAAAAEAAACys-e7cTg1MjI2NjAxMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADcOE2c3DhNnT; BDPPN=e772eecabc7f809f088fc5995021e0d2; _t4z_qc8_=xlTM-TogKuTwQGQSrIRn1gIzlfrGMsHygwmd; ab172929960=64e22b236f39675adb46ca4fe76dab6f1729302074891; entry=1401; __jdg_yd=lTM-TogKuTwn0mXPcGT6ZW6nomllCXMeTlKdZ7eM-uvvLbbrU1HfScYuMObdvPdRA; ab172930320=66e22b236f39675adb46ca4fe76dab6f1729304006299; Hm_lpvt_ad52b306e1ae4557f5d3534cce8f8bbf=1729304006; ab_sr=1.0.1_M2RjZWI2YjZlODllMmE5YmQ5ODBjMGU2ZmFlMzdhZDUxY2Q2NDAwNWNmMTdmNjk0YzUzZDViZTFmOTVkMjM2ZjBlZjg5M2ZmYTRjNTNlYWJkMThhYTE5NWNlMjhiYTdjODU0MmYwN2FlMDI3YTlkNzg5YTZiMTdkOGViYTBjYzY5NDY3OTU5YmE3NjdhN2I5MzFhZDFiMTdlODgwNjc2Zg==; _s53_d91_=a54e017c2b1aedff3bc9cd0a953bbd6b45e989f0eb1350000ad775d0a8d52e6ff1eaf079f1c1ba26887413db7abb925a1d66926320a038052e88bbfaa5ea799cdc7d480a48f1b80b65b7b9391619f693128cf5d31fc58c8dfb177694bad8befa54805a54c4221af96539ea7400ff46919b9eeeff0c69c4543ed6495f004caa07776e22882087519107fa1116e3bf286c424882a05fe78ed87522bd2eee6635087e0a51acc73db684f03ba28057348b29a22ce7c6a9dcfa035e0be1906143be43665a03da02361b7bd9cec818ae142a4c919afdd2940fc5cc937fbc154e19d6c0; _y18_s21_=7808eb8e; RT=\"z=1&dm=aiqicha.com&si=bec3496b-9b00-41fc-b48c-19ddae353ab5&ss=m2fhnccw&sl=1b&tt=1n9r&bcn=https%3A%2F%2Ffclog.baidu.com%2Flog%2Fweirwood%3Ftype%3Dperf&ld=1bms5&nu=9y8m6cy&cl=1bz59\"";
+        public void run()
         {
             int count = 0;
             status = true;
@@ -164,30 +107,7 @@ namespace MTHProject
             }
 
 
-            if (comboBox4.Text != "不限")
-            {
-                switch (comboBox4.Text)
-                {
-                    case "0-1年":
-                        sb.Append(",\"estiblishTimeStart\":" + GetChinaTicks(DateTime.Now.AddDays(-365)) + ",\"estiblishTimeEnd\":" + GetTimeStamp() + "");
-                        break;
-                    case "1-2年":
-                        sb.Append(",\"estiblishTimeStart\":" + GetChinaTicks(DateTime.Now.AddDays(-730)) + ",\"estiblishTimeEnd\":" + GetChinaTicks(DateTime.Now.AddDays(-365)) + "");
-                        break;
-                    case "2-3年":
-                        sb.Append(",\"estiblishTimeStart\":" + GetChinaTicks(DateTime.Now.AddDays(-1095)) + ",\"estiblishTimeEnd\":" + GetChinaTicks(DateTime.Now.AddDays(-730)) + "");
-                        break;
-                    case "3-5年":
-                        sb.Append(",\"estiblishTimeStart\":" + GetChinaTicks(DateTime.Now.AddDays(-1825)) + ",\"estiblishTimeEnd\":" + GetChinaTicks(DateTime.Now.AddDays(-1095)) + "");
-                        break;
-                    case "5-10年":
-                        sb.Append(",\"estiblishTimeStart\":" + GetChinaTicks(DateTime.Now.AddDays(-3650)) + ",\"estiblishTimeEnd\":" + GetChinaTicks(DateTime.Now.AddDays(-1825)) + "");
-                        break;
-                    case "10年以上":
-                        sb.Append(",\"estiblishTimeStart\":-4669997486139,\"estiblishTimeEnd\":" + GetChinaTicks(DateTime.Now.AddDays(-3650)) + "");
-                        break;
-                }
-            }
+          
             string areacode = "";
             ////获取区域code
             //if (comboBox6.Text != "全部")
@@ -212,58 +132,49 @@ namespace MTHProject
 
             try
             {
-                for (int i = 1; i < 51; i++)
+                for (int p= 1; p < 999; p++)
                 {
                     try
                     {
 
 
-                        string url = "https://capi.tianyancha.com/cloud-tempest/app/searchCompany";
-                        string postdata = "{\"sortType\":0,\"pageSize\":100,\"pageNum\":" + i + ",\"word\":\"" + textBox1.Text.Trim() + "\",\"allowModifyQuery\":1" + sb.ToString() + "}";
-                        string html2 = PostUrlDefault(url, postdata, "");
-
-                   
-
-                        string html = Regex.Match(html2, @"companyList([\s\S]*?)brandAndAgencyList").Groups[1].Value;
-                        MatchCollection names = Regex.Matches(html, @"{""id"":([\s\S]*?),""name"":""([\s\S]*?)""");
-
-                        MatchCollection legalPerson = Regex.Matches(html, @"""legalPersonName"":""([\s\S]*?)""");
-                        MatchCollection regCap = Regex.Matches(html, @"""regCapital"":""([\s\S]*?)""");
-                        MatchCollection StartDate = Regex.Matches(html, @"""estiblishTime"":""([\s\S]*?)""");
-                        MatchCollection Address = Regex.Matches(html, @"""regLocation"":""([\s\S]*?)""");
-                        MatchCollection businessScope = Regex.Matches(html, @"""businessScope"":""([\s\S]*?)""");
-                        MatchCollection tel = Regex.Matches(html, @"phoneList([\s\S]*?)phoneInfoList");
+                        string url = "https://www.aiqicha.com/s/advanceFilterAjax?q=%E8%A3%85%E9%A5%B0&t=&p="+p+"&s=20&o=0&f=%7B%22regCap%22:[%7B%22start%22:10,%22end%22:50%7D],%22entType%22:[%221%22],%22provinceCode%22:[%22320100%22],%22startYear%22:[%7B%22start%22:%222022%22,%22end%22:%222023%22%7D]%7D";
+                       string html= GetUrl(url, "utf-8");
+                        // textBox1.Text= html;    
+                        html = method.Unicode2String(html);
+                        MatchCollection names = Regex.Matches(html, @"""titleName"":""([\s\S]*?)""");
+                        MatchCollection legalPerson = Regex.Matches(html, @"""titleLegal"":""([\s\S]*?)""");
+                        MatchCollection regCap = Regex.Matches(html, @"""regCap"":""([\s\S]*?)""");
+                        MatchCollection StartDate = Regex.Matches(html, @"""validityFrom"":""([\s\S]*?)""");
+                        MatchCollection Address = Regex.Matches(html, @"""titleDomicile"":""([\s\S]*?)""");
+                        MatchCollection businessScope = Regex.Matches(html, @"""scope"":""([\s\S]*?)""");
+                        MatchCollection tel = Regex.Matches(html, @"""telephone"":""([\s\S]*?)""");
                         if (names.Count == 0)
                         {
                             Thread.Sleep(1000);
                             continue;
                         }
-                        //listView1.Items.Add("");
+                     
                         for (int j = 0; j < names.Count; j++)
                         {
                             try
                             {
-                                Thread.Sleep(500);
+
                                 // textBox1.Text = DateTime.Now.ToLongTimeString() + "正在提取：" + names[j].Groups[2].Value.Replace("<em>", "").Replace("</em>", "");
 
+                                MessageBox.Show(names[j].Groups[1].Value);
+                                DataTable dt = (DataTable)dataGridView1.DataSource;
 
-                                //ListViewItem lv1 = new ListViewItem((listView1.Items.Count + 1).ToString());
-                                //lv1.SubItems.Add(names[j].Groups[2].Value.Replace("<em>", "").Replace("</em>", ""));
-                                //lv1.SubItems.Add(legalPerson[j].Groups[1].Value);
-                                //lv1.SubItems.Add(regCap[j].Groups[1].Value);
-                                //lv1.SubItems.Add(StartDate[j].Groups[1].Value.Replace("00:00:00.0", ""));
+                                // 创建新行并添加数据
+                                DataRow newRow = dt.NewRow();
+                                newRow[0]= names[j].Groups[1].Value; 
+                                newRow[1] = 3; // Column2
 
+                                // 将新行添加到DataTable
+                                dt.Rows.Add(newRow);
 
-                               
-                                string telall = tel[j].Groups[1].Value.Replace("[", "").Replace("]", "").Replace("\"", "").Replace(":", "");
-
-                                string tel1 = "";
-                                string tel2 = "";
-
-                                //MessageBox.Show(tel[j].Groups[1].Value);
-                                string[] text = tel[j].Groups[1].Value.Replace("[", "").Replace("]", "").Replace("\"", "").Replace(":", "").Split(new string[] { "," }, StringSplitOptions.None);
-                             
-
+                                // 更新DataGridView显示
+                                dataGridView1.Refresh();
 
                                 if (status == false)
                                     return;
@@ -317,7 +228,7 @@ namespace MTHProject
             if (thread == null || !thread.IsAlive)
             {
 
-                thread = new Thread(tyc);
+                thread = new Thread(run);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }

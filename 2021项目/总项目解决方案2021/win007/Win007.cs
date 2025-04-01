@@ -578,7 +578,7 @@ namespace win007
         public void getdata()
         {
 
-            string startdate = "2018-09-30";
+            string startdate = "2019-06-23";
             string enddate = "2024-08-01";
             for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate);dt=dt.AddDays(1))
             {
@@ -672,54 +672,63 @@ namespace win007
                             {
                                 switch (cname)
                                 {
-                                    case "SNAI":
-                                        gongsi_dics.Add(cid, "SNAI");
-                                        break;
-                                    case "Titanbet":
-                                        gongsi_dics.Add(cid, "Titanbet");
-                                        break;
-                                    case "Bethard":
-                                        gongsi_dics.Add(cid, "Bethard");
-                                        break;
+                                    //case "SNAI":
+                                    //    gongsi_dics.Add(cid, "SNAI");
+                                    //    break;
+                                    //case "Titanbet":
+                                    //    gongsi_dics.Add(cid, "Titanbet");
+                                    //    break;
+                                    //case "Bethard":
+                                    //    gongsi_dics.Add(cid, "Bethard");
+                                    //    break;
                                     //case "ComeOn":
                                     //    gongsi_dics.Add(cid, "ComeOn");
                                     //    break;
-                                    case "Intertops":
-                                        gongsi_dics.Add(cid, "Intertops");
-                                        break;
-                                    case "Bet3000":
-                                        gongsi_dics.Add(cid, "Bet3000");
-                                        break;
-                                    case "Crown":
-                                        gongsi_dics.Add(cid, "Crown");
-                                        break;
-                                    case "William Hill":
-                                        gongsi_dics.Add(cid, "William Hill");
-                                        break;
-                                    case "Bet-at-home":
-                                        gongsi_dics.Add(cid, "Bet-at-home");
-                                        break;
+                                    //case "Intertops":
+                                    //    gongsi_dics.Add(cid, "Intertops");
+                                    //    break;
+                                    //case "Bet3000":
+                                    //    gongsi_dics.Add(cid, "Bet3000");
+                                    //    break;
+                                    //case "Crown":
+                                    //    gongsi_dics.Add(cid, "Crown");
+                                    //    break;
+                                    //case "William Hill":
+                                    //    gongsi_dics.Add(cid, "William Hill");
+                                    //    break;
+                                    //case "Bet-at-home":
+                                    //    gongsi_dics.Add(cid, "Bet-at-home");
+                                    //    break;
                                     //case "Lottery Official":
                                     //    gongsi_dics.Add(cid, "Lottery Official");
                                     //    break;
-                                    //case "Vcbet":
-                                    //    gongsi_dics.Add(cid, "Vcbet");
-                                    //    break;
+                                 
 
-                                    case "Betsson":
-                                        gongsi_dics.Add(cid, "Betsson");
-                                        break;
+                                    //case "Betsson":
+                                    //    gongsi_dics.Add(cid, "Betsson");
+                                    //    break;
                                     case "Vcbet":
-                                        gongsi_dics.Add(cid, "Dafabet");
+                                        gongsi_dics.Add(cid, "Vcbet");
                                         break;
 
                                     case "Dafabet":
                                         gongsi_dics.Add(cid, "Dafabet");
                                         break;
 
-                                    case "TopSport":
-                                        gongsi_dics.Add(cid, "TopSport");
-                                        break;
+                                        //case "TopSport":
+                                        //    gongsi_dics.Add(cid, "TopSport");
+                                        //    break;
+
+                                        //case "Betfair Exchange":
+                                        //    gongsi_dics.Add(cid, "Betfair Exchange");
+                                        //    break;
+                                        //case "Betfair":
+                                        //    gongsi_dics.Add(cid, "Betfair");
+                                        //    break;  
+
+                                        //case "BetClic.fr":
+                                        //    gongsi_dics.Add(cid, "BetClic.fr");
+                                        //    break;
 
                                 }
                             }

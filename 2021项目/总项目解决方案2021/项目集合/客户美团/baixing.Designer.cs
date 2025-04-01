@@ -56,6 +56,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -64,7 +68,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(2)))), ((int)(((byte)(0)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(0)))));
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Controls.Add(this.linkLabel4);
@@ -84,9 +88,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(22, 20);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(269, 37);
+            this.label9.Size = new System.Drawing.Size(213, 37);
             this.label9.TabIndex = 7;
-            this.label9.Text = "个人房源网信息采集";
+            this.label9.Text = "美团点评网获客";
             // 
             // linkLabel3
             // 
@@ -137,7 +141,11 @@
             this.columnHeader3,
             this.columnHeader8,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader9,
+            this.columnHeader10});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
@@ -156,28 +164,26 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "信息标题";
+            this.columnHeader2.Text = "商家名称";
             this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "地区";
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Text = "手机";
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "联系人";
+            this.columnHeader8.Text = "电话";
             this.columnHeader8.Width = 120;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "联系电话";
-            this.columnHeader4.Width = 120;
+            this.columnHeader4.Text = "评分";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "网址";
-            this.columnHeader5.Width = 300;
+            this.columnHeader5.Text = "产品评分";
             // 
             // label1
             // 
@@ -186,31 +192,31 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 24);
+            this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 15;
-            this.label1.Text = "区域";
+            this.label1.Text = "关键字";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(257, 491);
+            this.textBox1.Location = new System.Drawing.Point(272, 491);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(135, 84);
+            this.textBox1.Size = new System.Drawing.Size(113, 84);
             this.textBox1.TabIndex = 16;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(2)))), ((int)(((byte)(0)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(0)))));
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(199, 491);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(58, 84);
+            this.panel2.Size = new System.Drawing.Size(75, 84);
             this.panel2.TabIndex = 17;
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(2)))), ((int)(((byte)(0)))));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(0)))));
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Location = new System.Drawing.Point(411, 518);
@@ -351,6 +357,24 @@
             this.toolStripStatusLabel1.Text = "软件版本：2.1                                                                         " +
     "      免责声明：本软件仅对网站上的公开信息进行复制和整理，严禁用于非法用途；";
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "环境评分";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "分类";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "主营";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "地址";
+            this.columnHeader10.Width = 100;
+            // 
             // baixing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -418,6 +442,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
 
