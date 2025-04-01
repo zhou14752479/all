@@ -99,9 +99,10 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.解除警报ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -660,6 +661,7 @@
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
+            this.columnHeader22,
             this.columnHeader20,
             this.columnHeader21});
             this.listView3.ContextMenuStrip = this.contextMenuStrip3;
@@ -681,12 +683,12 @@
             // columnHeader16
             // 
             this.columnHeader16.Text = "账号备注";
-            this.columnHeader16.Width = 150;
+            this.columnHeader16.Width = 100;
             // 
             // columnHeader17
             // 
-            this.columnHeader17.Text = "订单号";
-            this.columnHeader17.Width = 150;
+            this.columnHeader17.Text = "名称";
+            this.columnHeader17.Width = 180;
             // 
             // columnHeader18
             // 
@@ -699,7 +701,7 @@
             // columnHeader20
             // 
             this.columnHeader20.Text = "转化成本";
-            this.columnHeader20.Width = 80;
+            this.columnHeader20.Width = 65;
             // 
             // columnHeader21
             // 
@@ -711,14 +713,21 @@
             this.解除警报ToolStripMenuItem,
             this.删除此行ToolStripMenuItem});
             this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip3.Size = new System.Drawing.Size(125, 48);
             // 
             // 解除警报ToolStripMenuItem
             // 
             this.解除警报ToolStripMenuItem.Name = "解除警报ToolStripMenuItem";
-            this.解除警报ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.解除警报ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.解除警报ToolStripMenuItem.Text = "解除警报";
             this.解除警报ToolStripMenuItem.Click += new System.EventHandler(this.解除警报ToolStripMenuItem_Click);
+            // 
+            // 删除此行ToolStripMenuItem
+            // 
+            this.删除此行ToolStripMenuItem.Name = "删除此行ToolStripMenuItem";
+            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.删除此行ToolStripMenuItem.Text = "删除此行";
+            this.删除此行ToolStripMenuItem.Click += new System.EventHandler(this.删除此行ToolStripMenuItem_Click);
             // 
             // timer2
             // 
@@ -730,12 +739,10 @@
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // 删除此行ToolStripMenuItem
+            // columnHeader22
             // 
-            this.删除此行ToolStripMenuItem.Name = "删除此行ToolStripMenuItem";
-            this.删除此行ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.删除此行ToolStripMenuItem.Text = "删除此行";
-            this.删除此行ToolStripMenuItem.Click += new System.EventHandler(this.删除此行ToolStripMenuItem_Click);
+            this.columnHeader22.Text = "计算成本";
+            this.columnHeader22.Width = 65;
             // 
             // 易优权益监控拉黑
             // 
@@ -842,5 +849,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem 解除警报ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除此行ToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
     }
 }

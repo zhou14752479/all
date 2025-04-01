@@ -546,7 +546,7 @@ namespace 主程序202401
         public static string domain= "gl.yy114.top";
         private void 易优权益监控拉黑_Load(object sender, EventArgs e)
         {
-
+           
             pictureBox1.Image = GetImage("http://wxpusher.zjiecode.com/api/qrcode/voD1HgXICEUzBMQQq6fhNY996iSiqKBCpml2CBqxshU0abAJJq5AVGerJUHT1H4u.jpg");
         }
 
@@ -1124,10 +1124,13 @@ namespace 主程序202401
                     string FrameId = "7303877448767242291";
                     string Moduleid = "7301514013974741030";
                     string DataSetKey = "100073";
-                    string postdata = "{\"PageParams\":{\"Offset\":\"0\",\"Limit\":\"100\"},\"StartTime\":\"" + today + " 00:00:00\",\"EndTime\":\"" + today + " 23:59:59\",\"Filters\":{\"ConditionRelationshipType\":1,\"Conditions\":[{\"Field\":\"advertiser_id\",\"Values\":[\"" + ad_id + "\"],\"Operator\":7},{\"Field\":\"derivate_is_order\",\"Values\":[\"1\"],\"Operator\":7},{\"Field\":\"adlab_mode\",\"Values\":[\"1\"],\"Operator\":8}]},\"Dimensions\":[\"ad_relation_order_id\",\"stat_time_day\"],\"OrderBy\":[{\"Type\":2,\"Field\":\"stat_time_day\"},{\"Type\":2,\"Field\":\"stat_cost\"}],\"Metrics\":[\"stat_cost\",\"show_cnt\",\"click_cnt\",\"video_oto_pay_order_stat_amount\",\"dy_like\",\"dy_comment\",\"dy_share\",\"dy_collect\",\"conversion_cost\"],\"FrameId\":\"" + FrameId + "\",\"ModuleId\":\"" + Moduleid + "\",\"DataSetKey\":\"" + DataSetKey + "\"}";
+                   // string postdata = "{\"PageParams\":{\"Offset\":\"0\",\"Limit\":\"100\"},\"StartTime\":\"" + today + " 00:00:00\",\"EndTime\":\"" + today + " 23:59:59\",\"Filters\":{\"ConditionRelationshipType\":1,\"Conditions\":[{\"Field\":\"advertiser_id\",\"Values\":[\"" + ad_id + "\"],\"Operator\":7},{\"Field\":\"derivate_is_order\",\"Values\":[\"1\"],\"Operator\":7},{\"Field\":\"adlab_mode\",\"Values\":[\"1\"],\"Operator\":8}]},\"Dimensions\":[\"ad_relation_order_id\",\"stat_time_day\"],\"OrderBy\":[{\"Type\":2,\"Field\":\"stat_time_day\"},{\"Type\":2,\"Field\":\"stat_cost\"}],\"Metrics\":[\"stat_cost\",\"show_cnt\",\"click_cnt\",\"video_oto_pay_order_stat_amount\",\"dy_like\",\"dy_comment\",\"dy_share\",\"dy_collect\",\"conversion_cost\"],\"FrameId\":\"" + FrameId + "\",\"ModuleId\":\"" + Moduleid + "\",\"DataSetKey\":\"" + DataSetKey + "\"}";
+
+                    string postdata = "{\"PageParams\":{\"Limit\":\"100\",\"Offset\":\"0\"},\"StartTime\":\""+today+" 00:00:00\",\"EndTime\":\""+today+" 23:59:59\",\"Filters\":{\"ConditionRelationshipType\":1,\"Conditions\":[{\"Field\":\"advertiser_id\",\"Values\":[\""+ad_id+ "\"],\"Operator\":7},{\"Field\":\"derivate_is_order\",\"Values\":[\"1\"],\"Operator\":7},{\"Field\":\"adlab_mode\",\"Values\":[\"1\"],\"Operator\":8}]},\"Dimensions\":[\"creative_id\",\"stat_time_day\"],\"OrderBy\":[{\"Type\":2,\"Field\":\"stat_time_day\"},{\"Type\":2,\"Field\":\"stat_cost\"}],\"Metrics\":[\"stat_cost\",\"dy_like\",\"conversion_cost\",\"show_cnt\",\"click_cnt\",\"video_oto_pay_order_stat_amount\",\"dy_comment\",\"dy_share\",\"dy_collect\"],\"FrameId\":\"" + FrameId + "\",\"ModuleId\":\"" + Moduleid + "\",\"DataSetKey\":\"" + DataSetKey + "\"}";
+                   
                     string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "");
 
-                    MatchCollection ad_name = Regex.Matches(html, @"ad_name"":{""Value"":0,""ValueStr"":""([\s\S]*?),");
+                    MatchCollection creative_name = Regex.Matches(html, @"creative_name"":{""Value"":0,""ValueStr"":""([\s\S]*?),");
 
 
 
@@ -1143,7 +1146,7 @@ namespace 主程序202401
 
 
 
-                    for (int i = 0; i < ad_name.Count; i++)
+                    for (int i = 0; i < creative_name.Count; i++)
                     {
 
                         try
@@ -1161,15 +1164,17 @@ namespace 主程序202401
                             }
                             ListViewItem lv1 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(beizhu);
-                            //lv1.SubItems.Add(ad_name[i].Groups[1].Value);
-                            lv1.SubItems.Add(adid);
+                            lv1.SubItems.Add(creative_name[i].Groups[1].Value);
+                            //lv1.SubItems.Add(adid);
                             lv1.SubItems.Add(stat_cost[i].Groups[1].Value);
                             lv1.SubItems.Add(dy_like[i].Groups[1].Value);
+
+                            double jisuan_chengben=Convert.ToDouble(stat_cost[i].Groups[1].Value)/Convert.ToDouble(dy_like[i].Groups[1].Value);
+
+                            lv1.SubItems.Add(jisuan_chengben.ToString("F3"));
                             lv1.SubItems.Add(conversion_cost[i].Groups[1].Value);
                             lv1.SubItems.Add(show_cnt[i].Groups[1].Value);
-                            //lv1.SubItems.Add(click_cnt[i].Groups[1].Value);
-                            //lv1.SubItems.Add(pay[i].Groups[1].Value);
-
+                        
                           
 
                             if (a % 2 == 1)
