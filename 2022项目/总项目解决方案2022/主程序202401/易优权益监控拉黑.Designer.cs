@@ -95,6 +95,7 @@
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -102,7 +103,7 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -658,6 +659,7 @@
             this.listView3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader15,
             this.columnHeader16,
+            this.columnHeader23,
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
@@ -697,6 +699,11 @@
             // columnHeader19
             // 
             this.columnHeader19.Text = "点赞";
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "计算成本";
+            this.columnHeader22.Width = 65;
             // 
             // columnHeader20
             // 
@@ -739,10 +746,10 @@
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // columnHeader22
+            // columnHeader23
             // 
-            this.columnHeader22.Text = "计算成本";
-            this.columnHeader22.Width = 65;
+            this.columnHeader23.Text = "adid";
+            this.columnHeader23.Width = 1;
             // 
             // 易优权益监控拉黑
             // 
@@ -850,5 +857,6 @@
         private System.Windows.Forms.ToolStripMenuItem 解除警报ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除此行ToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
     }
 }
