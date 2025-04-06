@@ -1096,6 +1096,8 @@ namespace 主程序202401
         List<string> jingbao_list=new List<string>();   
         public void run_data()
         {
+
+            
          
             string delesttexts = readTxt("delest"); ;
 
@@ -1117,19 +1119,18 @@ namespace 主程序202401
                     string ad_id = aaa[1].Trim();
                     string cookie = aaa[2].Trim();
 
-                    string url = "https://localads.chengzijianzhan.cn/api/lamp/pc/v2/statistics/data/statQuery";
+                    string url = "https://localads.chengzijianzhan.cn/api/lamp/pc/v2/statistics/data/statQuery?advid="+ad_id;
                     string today = DateTime.Now.ToString("yyyy-MM-dd");
-                    //string ad_id = "1827112997806155";
-
+                   
                     string FrameId = "7303877448767242291";
                     string Moduleid = "7301514013974741030";
                     string DataSetKey = "100073";
-                   // string postdata = "{\"PageParams\":{\"Offset\":\"0\",\"Limit\":\"100\"},\"StartTime\":\"" + today + " 00:00:00\",\"EndTime\":\"" + today + " 23:59:59\",\"Filters\":{\"ConditionRelationshipType\":1,\"Conditions\":[{\"Field\":\"advertiser_id\",\"Values\":[\"" + ad_id + "\"],\"Operator\":7},{\"Field\":\"derivate_is_order\",\"Values\":[\"1\"],\"Operator\":7},{\"Field\":\"adlab_mode\",\"Values\":[\"1\"],\"Operator\":8}]},\"Dimensions\":[\"ad_relation_order_id\",\"stat_time_day\"],\"OrderBy\":[{\"Type\":2,\"Field\":\"stat_time_day\"},{\"Type\":2,\"Field\":\"stat_cost\"}],\"Metrics\":[\"stat_cost\",\"show_cnt\",\"click_cnt\",\"video_oto_pay_order_stat_amount\",\"dy_like\",\"dy_comment\",\"dy_share\",\"dy_collect\",\"conversion_cost\"],\"FrameId\":\"" + FrameId + "\",\"ModuleId\":\"" + Moduleid + "\",\"DataSetKey\":\"" + DataSetKey + "\"}";
 
                     string postdata = "{\"PageParams\":{\"Limit\":\"100\",\"Offset\":\"0\"},\"StartTime\":\""+today+" 00:00:00\",\"EndTime\":\""+today+" 23:59:59\",\"Filters\":{\"ConditionRelationshipType\":1,\"Conditions\":[{\"Field\":\"advertiser_id\",\"Values\":[\""+ad_id+ "\"],\"Operator\":7},{\"Field\":\"derivate_is_order\",\"Values\":[\"1\"],\"Operator\":7},{\"Field\":\"adlab_mode\",\"Values\":[\"1\"],\"Operator\":8}]},\"Dimensions\":[\"creative_id\",\"stat_time_day\"],\"OrderBy\":[{\"Type\":2,\"Field\":\"stat_time_day\"},{\"Type\":2,\"Field\":\"stat_cost\"}],\"Metrics\":[\"stat_cost\",\"dy_like\",\"conversion_cost\",\"show_cnt\",\"click_cnt\",\"video_oto_pay_order_stat_amount\",\"dy_comment\",\"dy_share\",\"dy_collect\"],\"FrameId\":\"" + FrameId + "\",\"ModuleId\":\"" + Moduleid + "\",\"DataSetKey\":\"" + DataSetKey + "\"}";
-                   
+                  
                     string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "");
-
+                   
+               
                     MatchCollection creative_name = Regex.Matches(html, @"creative_name"":{""Value"":0,""ValueStr"":""([\s\S]*?),");
 
 

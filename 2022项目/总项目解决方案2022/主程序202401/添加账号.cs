@@ -56,6 +56,7 @@ namespace 主程序202401
 
                 string html = method.PostUrl(url, postdata, cookie, "utf-8", "application/json", "");
 
+                
                 string advertiser_id = Regex.Match(html, @"""advertiser_id"":""([\s\S]*?)""").Groups[1].Value;
                 return advertiser_id;
 
@@ -68,6 +69,43 @@ namespace 主程序202401
 
 
         }
+
+
+
+        /// <summary>
+        /// 获取账号的广告ID
+        /// </summary>
+        /// <returns></returns>
+        public static string get_Moduleid(string cookie,string adid,string frameid)
+        {
+
+
+            try
+            {
+
+
+
+
+                string url = "https://localads.chengzijianzhan.cn/api/lamp/pc/v2/statistics/data/pageMetrics?advid="+adid+"&frameId="+frameid;
+             
+
+                string html = method.GetUrlWithCookie(url,cookie, "utf-8");
+
+
+                string ModuleId = Regex.Matches(html, @"""ModuleId"":""([\s\S]*?)""")[1].Groups[1].Value;
+                return ModuleId;
+
+
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+
+
+        }
+
+
 
         public void readTxt()
         {
@@ -137,6 +175,7 @@ namespace 主程序202401
             string cookie = textBox2.Text.Trim();
             string ad_id = getad_id(cookie);
 
+            
             if(ad_id=="")
             {
                 MessageBox.Show("cookie无效或不存在广告账户");

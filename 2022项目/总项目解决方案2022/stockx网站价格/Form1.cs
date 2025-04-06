@@ -296,11 +296,12 @@ namespace stockx网站价格
 				MatchCollection aid = Regex.Matches(html, @"""id"":""([\s\S]*?)""");
 				MatchCollection lowestAsk = Regex.Matches(html, @"""id"":""([\s\S]*?)lowestAsk"":([\s\S]*?),");
 				MatchCollection highestBid = Regex.Matches(html, @"""id"":""([\s\S]*?)highestBid"":([\s\S]*?),");
-			
 
 
+              
 
-				for (int i = 0; i < aid.Count; i++)
+
+                for (int i = 0; i < aid.Count; i++)
                 {
 					//if(highestBidSize[i].Groups[1].Value.Contains("null"))
 					//{
