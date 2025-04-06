@@ -1165,8 +1165,9 @@ namespace 主程序202401
                             }
                             ListViewItem lv1 = listView3.Items.Add((listView3.Items.Count + 1).ToString()); //使用Listview展示数据
                             lv1.SubItems.Add(beizhu);
+                            lv1.SubItems.Add(adid);
                             lv1.SubItems.Add(creative_name[i].Groups[1].Value);
-                            //lv1.SubItems.Add(adid);
+                            
                             lv1.SubItems.Add(stat_cost[i].Groups[1].Value);
                             lv1.SubItems.Add(dy_like[i].Groups[1].Value);
 
@@ -1175,15 +1176,15 @@ namespace 主程序202401
                             lv1.SubItems.Add(jisuan_chengben.ToString("F3"));
                             lv1.SubItems.Add(conversion_cost[i].Groups[1].Value);
                             lv1.SubItems.Add(show_cnt[i].Groups[1].Value);
-                        
-                          
+
+
 
                             if (a % 2 == 1)
                             {
                                 lv1.BackColor = Color.LightBlue;
                             }
 
-                            if (Convert.ToDouble(stat_cost[i].Groups[1].Value) > Convert.ToDouble(textBox9.Text.Trim()) && Convert.ToDouble(conversion_cost[i].Groups[1].Value) > Convert.ToDouble(textBox8.Text.Trim()))
+                            if (Convert.ToDouble(stat_cost[i].Groups[1].Value) > Convert.ToDouble(textBox9.Text.Trim()) && jisuan_chengben > Convert.ToDouble(textBox8.Text.Trim()))
                             {
                                 if (!jingbao_list.Contains(beizhu))
                                 {
@@ -1245,20 +1246,24 @@ namespace 主程序202401
         {
             if (listView3.SelectedItems.Count > 0)
             {
+
+                for (int i = 0; i < listView3.SelectedItems.Count; i++)
+                {
+                    string adid = listView3.SelectedItems[i].SubItems[2].Text;
+
+                    try
+                    {
+
+                        writeTxt(adid, "delest");
+
+
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        MessageBox.Show("错误：文件未找到！");
+                    }
+                }
                
-                string adid = listView3.SelectedItems[0].SubItems[2].Text;
-
-                try
-                {
-
-                    writeTxt(adid, "delest");
-
-
-                }
-                catch (FileNotFoundException)
-                {
-                    MessageBox.Show("错误：文件未找到！");
-                }
                 MessageBox.Show("删除成功");
 
             }
