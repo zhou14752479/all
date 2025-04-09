@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <title>思忆地图采集-客户资源|思忆地图采集|地图数据采集|美团商家采集|手机电话号码采集</title>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="地图采集,地图商户采集,商家采集,数据信息抓取,信息采集,手机电话号码采集">
+    <meta name="description" content="思忆地图商家采集是一款专门用于采集高德地图、百度地图、腾讯地图、360地图、搜狗地图、美团的商家企业信息的平台，采集电话手机号码，精准寻找客户资源。">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script src="./js/md5.min_1.js"></script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+</head>
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">数据管理</a>
+            <a>
+                <cite>数据列表</cite>
+            </a>
+        </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:30px">ဂ</i>
+        </a>
+    </div>
+    <div class="x-body">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 x-so">
+                <input type="text" name="username" placeholder="请输入任务名" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline">
+                    <select name="contrller">
+                        <option>任务ID</option>
+                        <option>已支付</option>
+                        <option>未支付</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select name="contrller">
+                        <option>地区</option>
+                        <option>支付宝</option>
+                        <option>微信</option>
+                        <option>货到付款</option>
+                    </select>
+                </div>
+
+
+                <button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            </form>
+        </div>
+        <xblock>
+            <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>清空数据</button>
+            <button class="layui-btn layui-btn-danger" id="btn-exportExcel"><i class="layui-icon">&#xe62d;</i>导出EXCEL</button>
+            
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;" href="javascript:location.replace(location.href);" title="刷新">
+                <i class="layui-icon" style="line-height:30px">ဂ</i>
+            </a>
+
+
+            <span class="x-right" style="line-height:40px">共有数据：999+ 条</span>
+        </xblock>
+        <table id="datatable" class="layui-table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                    </th>
+                    <th>序号</th>
+                    <th>商家名称</th>                
+                    <th>地址</th>
+                    <th>联系方式</th>
+                    <th>地区</th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+
+
+
+        <div id="page" style="text-align: center;"></div>
+
+    </div>
+
+    <script>
+
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+
+            laypage.render({
+                elem: 'page' //分页容器的id
+                , count: 1000//数据总数
+                , skin: '#1E9FFF' //自定义选中色值
+                //,skip: true //开启跳页
+                , jump: function (obj, first) {
+                    if (!first) {
+                        //layer.msg('第'+ obj.curr +'页', {offset: 'b'});
+                        var taskid = getQueryString("taskid"); //取得value参数值
+                        if (taskid != null) {
+                            getdata(obj.curr, taskid);
+                        }
+                        else {
+                            getdata(obj.curr, "");
+                        }
+
+                    }
+                }
+            });
+
+
+        });
+    </script>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            var taskid = getQueryString("taskid"); //取得value参数值
+            if (taskid != null) {
+                getdata(1, taskid);
+            }
+            else {
+                getdata(1, "");
+            }
+
+
+        })
+
+
+
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('确认要删除吗？', function (index) {
+                //发异步删除数据
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', { icon: 1, time: 1000 });
+            });
+        }
+
+
+
+        $("#btn-exportExcel").click(function () {
+
+            var taskid = getQueryString("taskid");
+            var taskname = getQueryString("taskname");
+
+            if (taskid != null && taskname != null) {
+                exportExcel(taskid);
+
+
+            }
+            else {
+
+                layer.msg("请选择一个任务数据导出")
+                setTimeout(" location.href='task-list.html'", 2000);
+            }
+        })
+
+        $("#btn-downloadExcel").click(function () {
+            var username = getCookie("username");
+            var password = getCookie("password");
+            var isvip = getisvip(username, password);
+            if (isvip == true) {
+                x_admin_show('下载列表', './download-list.html', 600, 500);
+            }
+            else {
+
+                layer.msg("只有本站会员才可以导出表格数据")
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>
