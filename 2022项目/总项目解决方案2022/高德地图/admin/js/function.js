@@ -89,9 +89,9 @@ function timestampToTime(timestamp) {
 }
 
 
-function register(username, passwordMd5) {
-    var sign = getsign();
-    var url = `http://${domainhost}:8080/api/register.html?username=${username}&password=${passwordMd5}&sign=${sign}`
+function register(username, password,yzm) {
+    
+    var url = `http://${domainhost}/main.aspx?method=register&username=${username}&password=${password}&yzm=${yzm}`;
     $.get(url, function (data) {
 
         if (data.status == "1") {
@@ -99,6 +99,24 @@ function register(username, passwordMd5) {
             setTimeout("location.href='login.html'", 2000);
 
 
+
+        }
+        else {
+            layer.msg("注册失败请联系客服")
+
+        }
+    })
+}
+
+
+
+function sendyzm(mobile) {
+    
+    var url = `http://${domainhost}/main.aspx?method=sendyzm&mobile=${mobile}`;
+    $.get(url, function (data) {
+
+        if (data.status == "1") {
+          
 
         }
         else {

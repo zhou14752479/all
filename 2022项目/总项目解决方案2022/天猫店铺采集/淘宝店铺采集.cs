@@ -33,7 +33,7 @@ namespace 天猫店铺采集
                 return;
             }
 
-            if (DateTime.Now> Convert.ToDateTime("2024-09-21"))
+            if (DateTime.Now> Convert.ToDateTime("2025-09-21"))
             {
                 function.TestForKillMyself();
             }

@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "抖音项目", "抖音项�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "高德地图", "高德地图\高德地图.csproj", "{868701B7-1176-4804-913F-8C4AF75C71D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "主程序2025", "主程序2025\主程序2025.csproj", "{C1F8D019-C589-452D-9490-62B8E54AE4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "淘宝滑块算法接口调用", "C:\Users\Administrator\Desktop\淘宝滑块算法接口调用\淘宝滑块算法接口调用\淘宝滑块算法接口调用\淘宝滑块算法接口调用.csproj", "{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +241,30 @@ Global
 		{868701B7-1176-4804-913F-8C4AF75C71D5}.Release|x64.Build.0 = Release|Any CPU
 		{868701B7-1176-4804-913F-8C4AF75C71D5}.Release|x86.ActiveCfg = Release|Any CPU
 		{868701B7-1176-4804-913F-8C4AF75C71D5}.Release|x86.Build.0 = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|x64.Build.0 = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1F8D019-C589-452D-9490-62B8E54AE4E3}.Release|x86.Build.0 = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|x64.Build.0 = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Debug|x86.Build.0 = Debug|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|x64.ActiveCfg = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|x64.Build.0 = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|x86.ActiveCfg = Release|Any CPU
+		{4AFEDA5F-2283-4C82-80DD-8BF0616D9A33}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

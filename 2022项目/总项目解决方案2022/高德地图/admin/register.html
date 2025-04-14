@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+     <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/function.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>短信验证码注册</title>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4 text-center">短信验证码注册</h2>
+            <form id="registrationForm">
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 font-bold mb-2">手机号码</label>
+                    <input type="tel" id="phone" class="w-full border border-gray-300 p-2 rounded" placeholder="请输入手机号码">
+                </div>
+                <div class="flex mb-4">
+                    <input type="text" id="verificationCode" class="w-3/4 border border-gray-300 p-2 rounded" placeholder="请输入验证码">
+                    <button type="button" id="sendCodeButton" class="w-1/4 ml-2 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">发送验证码</button>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700 font-bold mb-2">密码</label>
+                    <input type="tel" id="password" class="w-full border border-gray-300 p-2 rounded" placeholder="请输入密码">
+                </div>
+                <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">注册</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('sendCodeButton').addEventListener('click', function () {
+            const phone = document.getElementById('phone').value;
+            if (phone) {
+                // 这里应添加发送验证码的实际逻辑
+                sendyzm(phone);
+                alert('验证码已发送到 ' + phone);
+                this.disabled = true;
+                let timeLeft = 60;
+                const intervalId = setInterval(() => {
+                    if (timeLeft > 0) {
+                        this.textContent = `${timeLeft}s 后重试`;
+                        timeLeft--;
+                    } else {
+                        clearInterval(intervalId);
+                        this.disabled = false;
+                        this.textContent = '发送验证码';
+                    }
+                }, 1000);
+            } else {
+                alert('请先输入手机号码');
+            }
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+            const verificationCode = document.getElementById('verificationCode').value;
+            const password22 = document.getElementById('password').value;
+            if (phone && verificationCode && password22) {
+                // 这里应添加注册的实际逻辑
+                register(phone,password22,verificationCode);
+            } else {
+                alert('请填写完整信息');
+            }
+        });
+    </script>
+</body>
+
+</html>
+    

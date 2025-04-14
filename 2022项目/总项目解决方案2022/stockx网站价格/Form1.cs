@@ -25,8 +25,7 @@ namespace stockx网站价格
 		}
 
 
-		string sizejson = "[{\"id\":\"afbbed9d-9cdf-4a02-92eb-a9b83ebe2d0b\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"3.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209891\"}],\"sizeChart\":{\"baseSize\":\"3.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 3.5\",\"type\":\"us m\"},{\"size\":\"UK 3\",\"type\":\"uk\"},{\"size\":\"CM 22.5\",\"type\":\"cm\"},{\"size\":\"KR 225\",\"type\":\"kr\"},{\"size\":\"EU 35.5\",\"type\":\"eu\"},{\"size\":\"US W 5\",\"type\":\"us w\"}]}},{\"id\":\"58997ba9-7efe-4680-82a6-2e42e6b11c81\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"4\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209907\"}],\"sizeChart\":{\"baseSize\":\"4\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 4\",\"type\":\"us m\"},{\"size\":\"UK 3.5\",\"type\":\"uk\"},{\"size\":\"CM 23\",\"type\":\"cm\"},{\"size\":\"KR 230\",\"type\":\"kr\"},{\"size\":\"EU 36\",\"type\":\"eu\"},{\"size\":\"US W 5.5\",\"type\":\"us w\"}]}},{\"id\":\"fd2d887f-b6c9-4151-aedb-41ef306aaa03\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"4.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209914\"}],\"sizeChart\":{\"baseSize\":\"4.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 4.5\",\"type\":\"us m\"},{\"size\":\"UK 4\",\"type\":\"uk\"},{\"size\":\"CM 23.5 (US M 4.5)\",\"type\":\"cm\"},{\"size\":\"KR 235 (US M 4.5)\",\"type\":\"kr\"},{\"size\":\"EU 36.5\",\"type\":\"eu\"},{\"size\":\"US W 6\",\"type\":\"us w\"}]}},{\"id\":\"15dcd718-49ac-464c-adea-ba7c4d4bea4f\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209921\"}],\"sizeChart\":{\"baseSize\":\"5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 5\",\"type\":\"us m\"},{\"size\":\"UK 4.5\",\"type\":\"uk\"},{\"size\":\"CM 23.5 (US M 5)\",\"type\":\"cm\"},{\"size\":\"KR 235 (US M 5)\",\"type\":\"kr\"},{\"size\":\"EU 37.5\",\"type\":\"eu\"},{\"size\":\"US W 6.5\",\"type\":\"us w\"}]}},{\"id\":\"9e881723-37ac-4c8c-91ff-48366e61c38a\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"5.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209938\"}],\"sizeChart\":{\"baseSize\":\"5.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 5.5\",\"type\":\"us m\"},{\"size\":\"UK 5\",\"type\":\"uk\"},{\"size\":\"CM 24 (US M 5.5)\",\"type\":\"cm\"},{\"size\":\"KR 240 (US M 5.5)\",\"type\":\"kr\"},{\"size\":\"EU 38\",\"type\":\"eu\"},{\"size\":\"US W 7\",\"type\":\"us w\"}]}},{\"id\":\"3026dbb7-242f-4776-83ea-8a1469aed245\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"6\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209945\"}],\"sizeChart\":{\"baseSize\":\"6\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 6\",\"type\":\"us m\"},{\"size\":\"UK 5.5\",\"type\":\"uk\"},{\"size\":\"CM 24 (US M 6)\",\"type\":\"cm\"},{\"size\":\"KR 240 (US M 6)\",\"type\":\"kr\"},{\"size\":\"EU 38.5\",\"type\":\"eu\"},{\"size\":\"US W 7.5\",\"type\":\"us w\"}]}},{\"id\":\"71fcf464-c464-4fcb-8438-b4fc48fe2577\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"6.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209952\"}],\"sizeChart\":{\"baseSize\":\"6.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 6.5\",\"type\":\"us m\"},{\"size\":\"UK 6 (EU 39)\",\"type\":\"uk\"},{\"size\":\"CM 24.5\",\"type\":\"cm\"},{\"size\":\"KR 245\",\"type\":\"kr\"},{\"size\":\"EU 39\",\"type\":\"eu\"},{\"size\":\"US W 8\",\"type\":\"us w\"}]}},{\"id\":\"1acc3a68-0068-41db-94fa-f3f21a0e739b\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"7\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209969\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154209969\"}],\"sizeChart\":{\"baseSize\":\"7\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 7\",\"type\":\"us m\"},{\"size\":\"UK 6 (EU 40)\",\"type\":\"uk\"},{\"size\":\"CM 25\",\"type\":\"cm\"},{\"size\":\"KR 250\",\"type\":\"kr\"},{\"size\":\"EU 40\",\"type\":\"eu\"},{\"size\":\"US W 8.5\",\"type\":\"us w\"}]}},{\"id\":\"785d8eda-ccce-4664-af81-83aa9ba64073\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"7.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209976\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154209976\"}],\"sizeChart\":{\"baseSize\":\"7.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 7.5\",\"type\":\"us m\"},{\"size\":\"UK 6.5\",\"type\":\"uk\"},{\"size\":\"CM 25.5\",\"type\":\"cm\"},{\"size\":\"KR 255\",\"type\":\"kr\"},{\"size\":\"EU 40.5\",\"type\":\"eu\"},{\"size\":\"US W 9\",\"type\":\"us w\"}]}},{\"id\":\"ce19c0c8-f835-4863-9738-e85fe875d1ad\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"8\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209983\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154209983\"}],\"sizeChart\":{\"baseSize\":\"8\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 8\",\"type\":\"us m\"},{\"size\":\"UK 7\",\"type\":\"uk\"},{\"size\":\"CM 26\",\"type\":\"cm\"},{\"size\":\"KR 260\",\"type\":\"kr\"},{\"size\":\"EU 41\",\"type\":\"eu\"},{\"size\":\"US W 9.5\",\"type\":\"us w\"}]}},{\"id\":\"c1754395-9f7e-41cc-85fa-243c930423b0\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"8.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154209990\"}],\"sizeChart\":{\"baseSize\":\"8.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 8.5\",\"type\":\"us m\"},{\"size\":\"UK 7.5\",\"type\":\"uk\"},{\"size\":\"CM 26.5\",\"type\":\"cm\"},{\"size\":\"KR 265\",\"type\":\"kr\"},{\"size\":\"EU 42\",\"type\":\"eu\"},{\"size\":\"US W 10\",\"type\":\"us w\"}]}},{\"id\":\"a8d03706-4ea2-46b0-a2aa-9878bbacdd81\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"9\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210002\"}],\"sizeChart\":{\"baseSize\":\"9\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 9\",\"type\":\"us m\"},{\"size\":\"UK 8\",\"type\":\"uk\"},{\"size\":\"CM 27\",\"type\":\"cm\"},{\"size\":\"KR 270\",\"type\":\"kr\"},{\"size\":\"EU 42.5\",\"type\":\"eu\"},{\"size\":\"US W 10.5\",\"type\":\"us w\"}]}},{\"id\":\"7bd9ab2c-5c00-4a22-9be0-964416996fe3\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"9.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210019\"}],\"sizeChart\":{\"baseSize\":\"9.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 9.5\",\"type\":\"us m\"},{\"size\":\"UK 8.5\",\"type\":\"uk\"},{\"size\":\"CM 27.5\",\"type\":\"cm\"},{\"size\":\"KR 275\",\"type\":\"kr\"},{\"size\":\"EU 43\",\"type\":\"eu\"},{\"size\":\"US W 11\",\"type\":\"us w\"}]}},{\"id\":\"6942017a-5c4a-4819-8f61-944639d38165\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"10\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210026\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210026\"}],\"sizeChart\":{\"baseSize\":\"10\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 10\",\"type\":\"us m\"},{\"size\":\"UK 9\",\"type\":\"uk\"},{\"size\":\"CM 28\",\"type\":\"cm\"},{\"size\":\"KR 280\",\"type\":\"kr\"},{\"size\":\"EU 44\",\"type\":\"eu\"},{\"size\":\"US W 11.5\",\"type\":\"us w\"}]}},{\"id\":\"3d6163aa-d99a-419d-b3cc-bfa87ab1ad43\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"10.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210033\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210033\"}],\"sizeChart\":{\"baseSize\":\"10.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 10.5\",\"type\":\"us m\"},{\"size\":\"UK 9.5\",\"type\":\"uk\"},{\"size\":\"CM 28.5\",\"type\":\"cm\"},{\"size\":\"KR 285\",\"type\":\"kr\"},{\"size\":\"EU 44.5\",\"type\":\"eu\"},{\"size\":\"US W 12\",\"type\":\"us w\"}]}},{\"id\":\"cda5a18d-7d54-44c8-b33a-3dd3d1f8903d\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"11\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210040\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210040\"}],\"sizeChart\":{\"baseSize\":\"11\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 11\",\"type\":\"us m\"},{\"size\":\"UK 10\",\"type\":\"uk\"},{\"size\":\"CM 29\",\"type\":\"cm\"},{\"size\":\"KR 290\",\"type\":\"kr\"},{\"size\":\"EU 45\",\"type\":\"eu\"},{\"size\":\"US W 12.5\",\"type\":\"us w\"}]}},{\"id\":\"5974017f-7f32-4822-bbf5-aba0866d1b5d\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"11.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210057\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210057\"}],\"sizeChart\":{\"baseSize\":\"11.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 11.5\",\"type\":\"us m\"},{\"size\":\"UK 10.5\",\"type\":\"uk\"},{\"size\":\"CM 29.5\",\"type\":\"cm\"},{\"size\":\"KR 295\",\"type\":\"kr\"},{\"size\":\"EU 45.5\",\"type\":\"eu\"},{\"size\":\"US W 13\",\"type\":\"us w\"}]}},{\"id\":\"d9b632be-755a-4537-88f7-e3fda7619aaa\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"12\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210064\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210064\"}],\"sizeChart\":{\"baseSize\":\"12\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 12\",\"type\":\"us m\"},{\"size\":\"UK 11\",\"type\":\"uk\"},{\"size\":\"CM 30\",\"type\":\"cm\"},{\"size\":\"KR 300\",\"type\":\"kr\"},{\"size\":\"EU 46\",\"type\":\"eu\"},{\"size\":\"US W 13.5\",\"type\":\"us w\"}]}},{\"id\":\"2d778072-d95e-46fc-b280-6cab80dcdd76\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"12.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210071\"}],\"sizeChart\":{\"baseSize\":\"12.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 12.5\",\"type\":\"us m\"},{\"size\":\"UK 11.5\",\"type\":\"uk\"},{\"size\":\"CM 30.5\",\"type\":\"cm\"},{\"size\":\"KR 305\",\"type\":\"kr\"},{\"size\":\"EU 47\",\"type\":\"eu\"},{\"size\":\"US W 14\",\"type\":\"us w\"}]}},{\"id\":\"4305b01d-7f80-46d1-8e3b-649d9a0e562b\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"13\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210088\"}],\"sizeChart\":{\"baseSize\":\"13\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 13\",\"type\":\"us m\"},{\"size\":\"UK 12\",\"type\":\"uk\"},{\"size\":\"CM 31\",\"type\":\"cm\"},{\"size\":\"KR 310\",\"type\":\"kr\"},{\"size\":\"EU 47.5\",\"type\":\"eu\"},{\"size\":\"US W 14.5\",\"type\":\"us w\"}]}},{\"id\":\"a4ff3bf2-751b-4e90-9481-08ef46b6e4e2\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"13.5\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210095\"}],\"sizeChart\":{\"baseSize\":\"13.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 13.5\",\"type\":\"us m\"},{\"size\":\"UK 12.5\",\"type\":\"uk\"},{\"size\":\"CM 31.5\",\"type\":\"cm\"},{\"size\":\"KR 315\",\"type\":\"kr\"},{\"size\":\"EU 48\",\"type\":\"eu\"},{\"size\":\"US W 15\",\"type\":\"us w\"}]}},{\"id\":\"52fee513-fa70-47ff-9dec-0f8bc189d60f\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"14\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210101\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210101\"}],\"sizeChart\":{\"baseSize\":\"14\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 14\",\"type\":\"us m\"},{\"size\":\"UK 13\",\"type\":\"uk\"},{\"size\":\"CM 32\",\"type\":\"cm\"},{\"size\":\"KR 320\",\"type\":\"kr\"},{\"size\":\"EU 48.5\",\"type\":\"eu\"},{\"size\":\"US W 15.5\",\"type\":\"us w\"}]}},{\"id\":\"8697f64f-f4a1-4d74-8ebc-eacd20c84e8f\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"14.5\"},\"gtins\":[],\"sizeChart\":{\"baseSize\":\"14.5\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 14.5\",\"type\":\"us m\"},{\"size\":\"UK 13.5\",\"type\":\"uk\"},{\"size\":\"CM 32.5\",\"type\":\"cm\"},{\"size\":\"KR 325\",\"type\":\"kr\"},{\"size\":\"EU 49\",\"type\":\"eu\"},{\"size\":\"US W 16\",\"type\":\"us w\"}]}},{\"id\":\"4f080485-2fd4-46e6-a03f-b3294ea2b77b\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"15\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210118\"}],\"sizeChart\":{\"baseSize\":\"15\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 15\",\"type\":\"us m\"},{\"size\":\"UK 14\",\"type\":\"uk\"},{\"size\":\"CM 33\",\"type\":\"cm\"},{\"size\":\"KR 330\",\"type\":\"kr\"},{\"size\":\"EU 49.5\",\"type\":\"eu\"},{\"size\":\"US W 16.5\",\"type\":\"us w\"}]}},{\"id\":\"8cb3a01e-6328-4ce8-87c8-565960f62b2a\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"16\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210125\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210125\"}],\"sizeChart\":{\"baseSize\":\"16\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 16\",\"type\":\"us m\"},{\"size\":\"UK 15\",\"type\":\"uk\"},{\"size\":\"CM 34\",\"type\":\"cm\"},{\"size\":\"KR 340\",\"type\":\"kr\"},{\"size\":\"EU 50.5\",\"type\":\"eu\"},{\"size\":\"US W 17.5\",\"type\":\"us w\"}]}},{\"id\":\"079ecc18-6779-464d-bbce-75a415113e24\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"17\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210132\"},{\"type\":\"EAN-13\",\"identifier\":\"0193154210132\"}],\"sizeChart\":{\"baseSize\":\"17\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 17\",\"type\":\"us m\"},{\"size\":\"UK 16\",\"type\":\"uk\"},{\"size\":\"CM 35\",\"type\":\"cm\"},{\"size\":\"KR 350\",\"type\":\"kr\"},{\"size\":\"EU 51.5\",\"type\":\"eu\"},{\"size\":\"US W 18.5\",\"type\":\"us w\"}]}},{\"id\":\"53a604eb-fced-4510-8767-e964ff7bd0a1\",\"hidden\":false,\"group\":null,\"traits\":{\"size\":\"18\"},\"gtins\":[{\"type\":\"UPC\",\"identifier\":\"193154210149\"}],\"sizeChart\":{\"baseSize\":\"18\",\"baseType\":\"us m\",\"displayOptions\":[{\"size\":\"US M 18\",\"type\":\"us m\"},{\"size\":\"UK 17\",\"type\":\"uk\"},{\"size\":\"CM 36\",\"type\":\"cm\"},{\"size\":\"KR 360\",\"type\":\"kr\"},{\"size\":\"EU 52.5\",\"type\":\"eu\"},{\"size\":\"US W 19.5\",\"type\":\"us w\"}]}}]";
-
+		string sizejson = "";
 
 
 
@@ -286,6 +285,7 @@ namespace stockx网站价格
 
 		public string getsize(string sizeid)
 		{
+
             MatchCollection sizeId = Regex.Matches(sizejson, @"""id"":""([\s\S]*?)""");
             MatchCollection size = Regex.Matches(sizejson, @"""size"":""US M([\s\S]*?)""");
 			for (int i = 0; i <sizeId.Count; i++)
@@ -299,6 +299,63 @@ namespace stockx网站价格
 			return "";
 
         }
+
+        #region GET请求带COOKIE
+        public static string GetUrlWithCookie(string Url, string COOKIE, string charset)
+        {
+            string result;
+            try
+            {
+               ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+               // request.AllowAutoRedirect = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+                //request.Referer = Url;
+             
+                request.Headers.Add("Cookie", COOKIE);
+               request.Headers.Add("Accept-Encoding", "gzip");
+           
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                result = ex.ToString();
+
+            }
+            return result;
+        }
+        #endregion
+
+        public void getsizeHtml(string huohao)
+		{
+			string url = "https://stockx.com/zh-cn/"+huohao;
+
+			string ck = "display_location_selector=false; stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; language_code=zh; _gcl_au=1.1.1370229539.1742820353; stockx_session_id=112a033f-36f5-4edf-ac43-efce53d483ca; stockx_session=adcff755-21e9-4088-be7e-e1007c8c6a20; stockx_selected_region=CN; pxcts=a7f3728f-15fa-11f0-a42b-55e376709a13; stockx_preferred_market_activity=sales; is_gdpr=false; stockx_ip_region=CN; _px3=bd4926937b2a0b8e212fad36a73a23becdf222779b9fcb22bfa4b6b500679a1c:CM2MuY7nBWmAnkEVp09rkN0uHgQOT0JaqgaSR9gPZXtghz3MXJ8cEY+PWvpfw8LvMbBqycDAhUkdd9tNSkIWQg==:1000:emM/TXH7pYeI/fYhaKiCx4Thr+hwltZRyjZJ0Ig6Gi4WfCLhVRFoldZiOpCYvQr1w3NL8T/jveLZKpUZpxwoy/P0UQaTm40WW71Lx4ny5mXzvpABQybkarhh8Wrg7foMhJ/7KKZ/QLckE7+O2e1NWQJKgV0Xf59MDzjv0QRFoNpPRTdy8+ux/hjySnfF8tabYh4hLU1mNFpDk96KukimFaoW5foBSzBzdy6+kpgbbOI=; cto_bundle=M7XTE19DRXFkWW5JS09nV21hZUs5ZDlOTWIwJTJCQjlKejc0MkNPNktZeHpXQkJuYVBSQUFtMiUyRkFhc2lPOFcyNXpZT2h2SnBmUjJhVFQ5SVpXZ0R1VzRLbkQzN1JqNnE1ZW43VXRJYmdhelp6am90TUJuVEN2ZzN0dnZUZU9KQ3JPTEtoTTFPMlJlUW14TzRKUjR1cGU5dXBoSURnJTNEJTNE; cf_clearance=CQsXFByhOOMK0wAV4YVTRBonDsjREN1CxEMrRBK3WoI-1744283113-1.2.1.1-rESJwjHlHyC8qtOYnshzqyJDDz2cwdoO.53TDunvbBdsqG6M3AGp5M_1GMsCZzxw8ymKn9wzcRvLAw5.39jIjNcN.RlMCbFaP9mCzE9n_pejDsXKh.y5uP4ZC6Hfg6d1CsxdF6o5zLich2GJX6q5MAJaO6U98msBimwiTc0xPpcqn_ytAxSJVvKArYXEUORCy_wZ1TfR61VVj91PXyBXyrxwS2oMGLjJWnp3yXTPScs3WxpMNBa1rrkMweBhR8B.bpA6mP4wWDeiH5lNHwzMH10qJMvwl5KR.E2Yan_G_H12P9oz9zfAIBSmbwhXKqMHL32uUPgO2mSft_IwvBXj31o2WyELD15HAIR.7FILh7f_4jCeDf1F6V_VuAtJwtFy; stockx_product_visits=29; lastRskxRun=1744283120114; _pxde=0fc2388f4400d5ffa4333b6b275039325fd081c7faf33f979d2b3e3e96047ece:eyJ0aW1lc3RhbXAiOjE3NDQyODMxMjUyOTEsImZfa2IiOjB9; _pxhd=7-hlkAgbGDdY-eVaBoE/-kAHQH2I06lxOoKKGXAr4V2JUtfBpu8aRDZ9Fq1t8AlAQ6uTddzS/6quCo1SXRV1SA==:ojDdnm17F5qjMaB82j/WjHWjzYnNP6OUtgMrNCb7vcm0VkT2ox7fTrO2shwatkUx4L6Irmf74rdtumu6RKReLYmOMB3DVzcaEZ-7zJqJFSM=; _dd_s=rum=0&expire=1744284019876&logs=1&id=f22c5c69-5575-4bdc-9a1f-14ad988afe08&created=1744282680072";
+			string html =GetUrlWithCookie(url,ck,"utf-8");
+          
+            html = Regex.Match(html, @"""variants""([\s\S]*?)\}\]\}\}\]").Groups[1].Value;
+		
+			
+			sizejson = html;
+
+        }
 		public void run_new()
 		{
 			try
@@ -308,9 +365,10 @@ namespace stockx网站价格
 				string ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
 				string input = this.PostUrl(url, postData, ua);
 				
-				Match match = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"");
+				string xiezi = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"").Groups[1].Value;
 				//MessageBox.Show(match.Groups[1].Value);
-				string html = Request_new(match.Groups[1].Value) ;
+				getsizeHtml(xiezi);
+				string html = Request_new(xiezi) ;
 				
 				//html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
 
@@ -384,8 +442,8 @@ namespace stockx网站价格
 		// Token: 0x0600000A RID: 10 RVA: 0x00002A48 File Offset: 0x00000C48
 		private void button1_Click(object sender, EventArgs e)
 		{
-
-			if (DateTime.Now > Convert.ToDateTime("2025-09-11"))
+			
+            if (DateTime.Now > Convert.ToDateTime("2025-09-11"))
 			{
 				return;
 			}
@@ -403,7 +461,8 @@ namespace stockx网站价格
 		
 		private void Button2_Click(object sender, EventArgs e)
 		{
-			this.button1.Enabled = true;
+          
+            this.button1.Enabled = true;
 			this.listView1.Items.Clear();
 		}
 
@@ -509,11 +568,7 @@ namespace stockx网站价格
 			webBrowser1.Navigate("https://stockx.com/zh-cn/nike-kobe-5-protro-chaos");
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-			cookie = method.GetCookies("https://stockx.com/zh-cn/adidas-yeezy-slide-black-onyx");
-			MessageBox.Show(cookie);
-        }
+      
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

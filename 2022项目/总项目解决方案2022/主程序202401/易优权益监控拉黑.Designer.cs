@@ -92,6 +92,7 @@
             this.listView3 = new System.Windows.Forms.ListView();
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -103,7 +104,6 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -252,9 +252,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 447);
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.Location = new System.Drawing.Point(14, 428);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 35;
             this.label1.Text = "未开始";
             // 
@@ -687,6 +688,11 @@
             this.columnHeader16.Text = "账号备注";
             this.columnHeader16.Width = 100;
             // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Text = "adid";
+            this.columnHeader23.Width = 1;
+            // 
             // columnHeader17
             // 
             this.columnHeader17.Text = "名称";
@@ -738,18 +744,13 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 30000;
+            this.timer2.Interval = 100000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // timer3
             // 
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // columnHeader23
-            // 
-            this.columnHeader23.Text = "adid";
-            this.columnHeader23.Width = 1;
             // 
             // 易优权益监控拉黑
             // 

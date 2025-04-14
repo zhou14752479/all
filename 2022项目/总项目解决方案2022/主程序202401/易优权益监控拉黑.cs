@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using myDLL;
+using static System.Windows.Forms.LinkLabel;
 
 namespace 主程序202401
 {
@@ -48,12 +49,25 @@ namespace 主程序202401
             }
         }
 
+        static List<List<string>> GroupData(List<string> data, int groupSize)
+        {
+            List<List<string>> result = new List<List<string>>();
+            for (int i = 0; i < data.Count; i += groupSize)
+            {
+                int endIndex = Math.Min(i + groupSize, data.Count);
+                result.Add(data.GetRange(i, endIndex - i));
+            }
+            return result;
+        }
+
 
         public  string Getlikecount(string link)
         {
 
             try
             {
+
+
                 string url = "https://api.itfaba.com/dyVideo/detail?apiKey=f00619b4f4014601f27ce91468089827";
                 string postdata = "shorturl="+link;
                 string html =PostUrlDefault2(url,postdata, "");
@@ -70,6 +84,83 @@ namespace 主程序202401
         }
 
 
+        Dictionary<string,string> likedic=new Dictionary<string,string>(); 
+
+        public void Getlikecount_piliang(string text)
+        {
+
+            try
+            {
+
+
+                //string[] texts = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                //List<string> result = new List<string>();
+
+                //foreach (string item in texts)
+                //{
+                //    string[] v = item.Split(new string[] { "#" }, StringSplitOptions.None);
+                //    string id = GetDouyinVideoId(v[1]);
+                //    textBox10.Text+= item+"#"+ id + "\r\n";
+                //}
+
+
+
+
+
+
+
+
+                string[] texts = text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+                List<string> result = new List<string>();
+
+                foreach (string item in texts)
+                {
+                    if (item.Trim() != "")
+                    {
+                        string[] v = item.Split(new string[] { "#" }, StringSplitOptions.None);
+                        result.Add(v[4]);
+                    }
+                }
+
+                // 调用分组方法
+                List<List<string>> groupedData = GroupData(result, 10);
+
+                // 输出分组结果
+                for (int i = 0; i < groupedData.Count; i++)
+                {
+
+
+                    string url = "https://api.itfaba.com/batchDyVideo?apiKey=b211d5977c750fb6712dd06ac43ee58d";
+                    string postdata = "ids=" + $"{string.Join(", ", groupedData[i])}";
+
+                    label1.Text = "正在获取第" + (i + 1) + "组数据...";
+                    string html = PostUrlDefault2(url, postdata, "");
+
+                    MatchCollection id = Regex.Matches(html, @"""group_id_str"":""([\s\S]*?)""");
+                    MatchCollection like = Regex.Matches(html, @"""digg_count"":([\s\S]*?),");
+
+                    for (int j = 0; j < id.Count; j++)
+                    {
+                        likedic.Add(id[j].Groups[1].Value, like[j].Groups[1].Value);
+                    }
+
+
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+        }
+
         public 易优权益监控拉黑()
         {
             InitializeComponent();
@@ -77,7 +168,7 @@ namespace 主程序202401
 
 
         #region POST默认请求
-        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        public  string PostUrlDefault(string url, string postData, string COOKIE)
         {
             string result;
             try
@@ -123,19 +214,15 @@ namespace 主程序202401
             }
             catch (WebException ex)
             {
-                //result = ex.ToString();
-                //400错误也返回内容
-                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                {
-                    result = reader.ReadToEnd();
-                }
+                result = ex.ToString();
+                
             }
             return result;
         }
         #endregion
 
         #region POST默认请求
-        public static string PostUrlDefault2(string url, string postData, string COOKIE)
+        public  string PostUrlDefault2(string url, string postData, string COOKIE)
         {
             string result;
             try
@@ -181,12 +268,8 @@ namespace 主程序202401
             }
             catch (WebException ex)
             {
-                //result = ex.ToString();
-                //400错误也返回内容
-                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
-                {
-                    result = reader.ReadToEnd();
-                }
+                result = ex.ToString();
+               
             }
             return result;
         }
@@ -496,7 +579,7 @@ namespace 主程序202401
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
             }
 
 
@@ -507,7 +590,7 @@ namespace 主程序202401
             {
                 // 设置语音参数
                 synth.Volume = 100;  // 音量 0-100
-                synth.Rate = 0;     // 语速 -10到10
+                synth.Rate = 5;     // 语速 -10到10
 
                 // 选择语音（需系统已安装对应语音包）
                 foreach (var voice in synth.GetInstalledVoices())
@@ -625,7 +708,7 @@ namespace 主程序202401
                 sw.Close();
                 fs1.Close();
                 sw.Dispose();
-                MessageBox.Show("添加成功");
+                label1.Text="添加成功";
             }
         }
 
@@ -685,7 +768,7 @@ namespace 主程序202401
                 // 写回原文件（覆盖）
                 File.WriteAllLines(AppDomain.CurrentDomain.BaseDirectory + "\\data.txt", filteredLines);
 
-               MessageBox.Show("已成功删除包含关键字的所有行！");
+                label1.Text = "已成功删除包含关键字的所有行！";
             }
             catch (FileNotFoundException)
             {
@@ -750,6 +833,9 @@ namespace 主程序202401
 
         Dictionary<string, string>  likecountDic = new Dictionary<string, string>();
 
+
+        string yuyin = "";
+
         public void run_tongbu()
         {
 
@@ -760,17 +846,15 @@ namespace 主程序202401
             sr.Dispose();   //销毁流内存
 
 
-          
+           
 
             listView2.Items.Clear();
             try
             {
 
-               
-
                 string url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/Paging";
 
-                string html = 易优权益监控拉黑.PostUrlDefault(url, "{\"page\":1,\"list_rows\":50,\"status\":1,\"id\":null,\"goods_id\":null,\"buy_params\":\"\"}", cookie);
+                string html = PostUrlDefault(url, "{\"page\":1,\"list_rows\":50,\"status\":1,\"id\":null,\"goods_id\":null,\"buy_params\":\"\"}", cookie);
 
 
                 //MessageBox.Show(html);
@@ -780,8 +864,8 @@ namespace 主程序202401
 
                 MatchCollection buy_number = Regex.Matches(html, @"""buy_number"":([\s\S]*?),");
                 MatchCollection start_num = Regex.Matches(html, @"""start_num"":([\s\S]*?),");
-             
-                if(links.Count==0)
+
+                if (links.Count == 0)
                 {
                     label1.Text = "无符合订单";
                 }
@@ -791,8 +875,8 @@ namespace 主程序202401
                     string uid = ids[2 * i].Groups[1].Value.Trim();
                     string link = links[i].Groups[2].Value.Trim();
                     string buy = buy_number[i].Groups[1].Value.Trim();
-                  
-                    
+
+
 
                     if (delist_list.Contains(link))
                     {
@@ -802,8 +886,8 @@ namespace 主程序202401
                     if (!tongbu_texts.Contains(link))
                     {
                         string startnum = Getlikecount(link).Trim();
-                     
-                        writeTxt(uid + "#" + link + "#" + buy + "#" + startnum, "tongbu");
+                        string id = GetDouyinVideoId(link);
+                        writeTxt(uid + "#" + link + "#" + buy + "#" + startnum+"#"+id, "tongbu");
                     }
 
                 }
@@ -820,68 +904,104 @@ namespace 主程序202401
 
                     try
                     {
-                       
+
                         string[] v = text2[i].Split(new string[] { "#" }, StringSplitOptions.None);
-                     
+
                         string linkk = v[1];
-                       
+
                         string start = v[3];
-                      
+                        string id = v[4];
+
                         if (delist_list.Contains(linkk))
                         {
                             continue;
                         }
 
 
+                       
 
-                        string currentnum = Getlikecount(linkk);
+                        new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+
+                            string currentnum = Getlikecount(linkk);
+                            while (currentnum.Trim() == "")
+                            {
+                                currentnum = Getlikecount(linkk);
+                                if (currentnum != "")
+                                {
+                                    break;
+                                }
+
+                            }
+
+
+
+
+
+                            string[] ss = getstatus(linkk.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
+                            string aid = ss[0];
+                            string buys = ss[1];
+                            string status = ss[2];
+                            tongbu(aid, start, currentnum);
+                            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(aid);
+                            lv1.SubItems.Add(linkk);
+                            lv1.SubItems.Add(buys);
+                            lv1.SubItems.Add(start);
+                            lv1.SubItems.Add(currentnum);
+
+
+                            int cha = 0;
+
+                            if(currentnum!="" && start!="")
+                            {
+                                 cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
+                            }
+                           
+
+                            lv1.SubItems.Add(cha.ToString());
+                            lv1.SubItems.Add(status);
+
+                            if (buys.Trim() != "")
+                            {
+                                if (cha >= Convert.ToInt32(buys.Trim()))
+                                {
+                                    lv1.ForeColor = Color.Blue;
+                                    yuyin = yuyin = v[0] + "  ,";
+                                    易优权益监控拉黑.Speak(aid + "提醒");
+
+                                }
+                            }
+
+                        }).Start();
+
+
+
+                       
+
                       
+
                       
 
-                        string[] ss = getstatus(linkk.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
-                        string aid = ss[0];
-                        string buys = ss[1];
-                        string status = ss[2];
-                        //MessageBox.Show(aid+"  "+buys+"  "+status);
-                        tongbu(aid, start, currentnum);
 
-                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(aid);
-                        lv1.SubItems.Add(linkk);
-                        lv1.SubItems.Add(buys);
-                        lv1.SubItems.Add(start);
-                        lv1.SubItems.Add(currentnum);
 
 
                       
-                      
-
-                        int cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
-                      
-                        lv1.SubItems.Add(cha.ToString());
-                        lv1.SubItems.Add(status);
-
-
-                        if (cha >= Convert.ToInt32(buys.Trim()))
-                        {
-
-                            易优权益监控拉黑.Speak(v[0]+ "：点赞任务完成");
-                        }
-
-
-                        Thread.Sleep(100);
                     }
                     catch (Exception ex)
                     {
-                        label1.Text=ex.Message;
+                        label1.Text = ex.Message;
                         //MessageBox.Show(ex.ToString());
                         continue;
                     }
                 }
+                //if (yuyin != "")
+                //{
+                //    易优权益监控拉黑.Speak(yuyin + "：点赞任务完成");
 
+                //    label1.Text = yuyin + "：点赞任务完成";
+                //    yuyin = "";
+                //}
 
-
-              
             }
             catch (Exception ex)
             {
@@ -898,16 +1018,24 @@ namespace 主程序202401
 
         public void tongbu(string id, string start_num, string current_num)
         {
-           
-            string url = "http://" + 易优权益监控拉黑.domain + "/api/supplier/Order/ScheduleHandle";
-            string postdata = "{\"id\":" + id + ",\"start_num\":" + start_num + ",\"current_num\":" + current_num + "}";
 
-            string html = 易优权益监控拉黑.PostUrlDefault(url, postdata, cookie);
-           
-            if (html.Contains("商品不存在"))
+            try
             {
-                url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/ScheduleHandle";
-                html = 易优权益监控拉黑.PostUrlDefault(url, postdata, cookie);
+                string url = "http://" + 易优权益监控拉黑.domain + "/api/supplier/Order/ScheduleHandle";
+                string postdata = "{\"id\":" + id + ",\"start_num\":" + start_num + ",\"current_num\":" + current_num + "}";
+
+                string html = PostUrlDefault(url, postdata, cookie);
+
+                if (html.Contains("商品不存在"))
+                {
+                    url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/ScheduleHandle";
+                    html = PostUrlDefault(url, postdata, cookie);
+                }
+            }
+            catch (Exception)
+            {
+
+                
             }
            
         }
@@ -915,17 +1043,26 @@ namespace 主程序202401
         public string getstatus(string link)
         {
 
-            string url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/Paging";
-            string postdata = "{\"type\":0,\"page\":1,\"list_rows\":10,\"status\":0,\"goods_name\":\"\",\"docking_status\":0,\"id\":null,\"goods_id\":null,\"customer_id\":null,\"buy_params\":\"" + link + "\",\"docking_site_id\":0,\"supplier_id\":null}";
+            try
+            {
+                string url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/Paging";
+                string postdata = "{\"type\":0,\"page\":1,\"list_rows\":10,\"status\":0,\"goods_name\":\"\",\"docking_status\":0,\"id\":null,\"goods_id\":null,\"customer_id\":null,\"buy_params\":\"" + link + "\",\"docking_site_id\":0,\"supplier_id\":null}";
 
-            string html = 易优权益监控拉黑.PostUrlDefault(url, postdata, cookie);
+                string html = PostUrlDefault(url, postdata, cookie);
 
-            string status=  Regex.Match(html, @"""status"":([\s\S]*?),").Groups[1].Value.Trim().Replace("1","已付款").Replace("2", "待处理").Replace("3", "处理中").Replace("4", "补单中").Replace("5", "退单中").Replace("6", "已完成").Replace("7", "已退单").Replace("8", "已退款");
-            string buy = Regex.Match(html, @"""buy_number"":([\s\S]*?),").Groups[1].Value.Trim();
-            string id = Regex.Match(html, @"""id"":([\s\S]*?),").Groups[1].Value.Trim();
+                string status = Regex.Match(html, @"""status"":([\s\S]*?),").Groups[1].Value.Trim().Replace("1", "已付款").Replace("2", "待处理").Replace("3", "处理中").Replace("4", "补单中").Replace("5", "退单中").Replace("6", "已完成").Replace("7", "已退单").Replace("8", "已退款");
+                string buy = Regex.Match(html, @"""buy_number"":([\s\S]*?),").Groups[1].Value.Trim();
+                string id = Regex.Match(html, @"""id"":([\s\S]*?),").Groups[1].Value.Trim();
 
 
-            return   id+"#"+buy+"#"+status;
+                return id + "#" + buy + "#" + status;
+
+            }
+            catch (Exception)
+            {
+
+                return "";
+            }
         }
 
         private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -975,7 +1112,7 @@ namespace 主程序202401
                 {
                     MessageBox.Show("错误：文件未找到！");
                 }
-                MessageBox.Show("删除成功");
+                label1.Text = "删除成功";
 
             }
             else
@@ -1012,7 +1149,7 @@ namespace 主程序202401
 
 
 
-                MessageBox.Show("修改成功");
+                label1.Text = "修改成功";
             }
             else
             {
@@ -1028,6 +1165,7 @@ namespace 主程序202401
 
         private void button5_Click(object sender, EventArgs e)
         {
+          
             timer2.Stop();
         }
 
@@ -1264,7 +1402,7 @@ namespace 主程序202401
                     }
                 }
                
-                MessageBox.Show("删除成功");
+                label1.Text = "删除成功";
 
             }
             else
