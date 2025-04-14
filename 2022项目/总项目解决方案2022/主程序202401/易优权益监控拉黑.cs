@@ -1411,5 +1411,43 @@ namespace 主程序202401
             }
            
         }
+
+        private void 添加初始ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
+                string startnum = Interaction.InputBox("提示信息", "请输入初始值", "0", -1, -1);
+                string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt";
+                string[] lines = File.ReadAllLines(filePath);
+
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].Contains(listView2.SelectedItems[0].SubItems[1].Text))
+                    {
+                        lines[i] = lines[i].Replace("##", "#"+ startnum + "#");
+                       
+                    }
+                }
+
+                File.WriteAllLines(filePath, lines);
+            }
+            else
+            {
+                MessageBox.Show("请选中一行");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
