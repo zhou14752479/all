@@ -899,6 +899,8 @@ namespace 主程序202401
 
                 string[] text2 = tongbu_texts2.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
+                List<string> chongfu = new List<string>();
+
                 for (int i = 0; i < text2.Length; i++)
                 {
 
@@ -942,33 +944,38 @@ namespace 主程序202401
                             string buys = ss[1];
                             string status = ss[2];
                             tongbu(aid, start, currentnum);
-                            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                            lv1.SubItems.Add(aid);
-                            lv1.SubItems.Add(linkk);
-                            lv1.SubItems.Add(buys);
-                            lv1.SubItems.Add(start);
-                            lv1.SubItems.Add(currentnum);
 
-
-                            int cha = 0;
-
-                            if(currentnum!="" && start!="")
+                            if (!chongfu.Contains(linkk))
                             {
-                                 cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
-                            }
-                           
+                                chongfu.Add(linkk);  
+                                ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                                lv1.SubItems.Add(aid);
+                                lv1.SubItems.Add(linkk);
+                                lv1.SubItems.Add(buys);
+                                lv1.SubItems.Add(start);
+                                lv1.SubItems.Add(currentnum);
 
-                            lv1.SubItems.Add(cha.ToString());
-                            lv1.SubItems.Add(status);
 
-                            if (buys.Trim() != "")
-                            {
-                                if (cha >= Convert.ToInt32(buys.Trim()))
+                                int cha = 0;
+
+                                if (currentnum != "" && start != "")
                                 {
-                                    lv1.ForeColor = Color.Blue;
-                                    yuyin = yuyin = v[0] + "  ,";
-                                    易优权益监控拉黑.Speak(aid + "提醒");
+                                    cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
+                                }
 
+
+                                lv1.SubItems.Add(cha.ToString());
+                                lv1.SubItems.Add(status);
+
+                                if (buys.Trim() != "")
+                                {
+                                    if (cha >= Convert.ToInt32(buys.Trim()))
+                                    {
+                                        lv1.ForeColor = Color.Blue;
+                                        yuyin = yuyin = v[0] + "  ,";
+                                        易优权益监控拉黑.Speak(aid + "提醒");
+
+                                    }
                                 }
                             }
 

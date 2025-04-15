@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,16 +46,18 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label3);
@@ -71,16 +72,6 @@
             this.panel1.Size = new System.Drawing.Size(912, 119);
             this.panel1.TabIndex = 226;
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(817, 34);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 43;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -93,11 +84,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(455, 32);
+            this.button2.Location = new System.Drawing.Point(621, 31);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 26);
+            this.button2.Size = new System.Drawing.Size(56, 26);
             this.button2.TabIndex = 41;
-            this.button2.Text = "开始采集";
+            this.button2.Text = "开始";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -112,30 +103,30 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(532, 31);
+            this.button3.Location = new System.Drawing.Point(683, 30);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 26);
+            this.button3.Size = new System.Drawing.Size(56, 26);
             this.button3.TabIndex = 34;
-            this.button3.Text = "停止采集";
+            this.button3.Text = "停止";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(688, 31);
+            this.button5.Location = new System.Drawing.Point(807, 30);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 26);
+            this.button5.Size = new System.Drawing.Size(56, 26);
             this.button5.TabIndex = 33;
             this.button5.Text = "清空";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(610, 31);
+            this.button4.Location = new System.Drawing.Point(745, 30);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 26);
+            this.button4.Size = new System.Drawing.Size(56, 26);
             this.button4.TabIndex = 32;
-            this.button4.Text = "导出数据";
+            this.button4.Text = "导出";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -155,7 +146,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "C:\\Users\\Administrator\\Desktop\\导入.txt";
             // 
             // openFileDialog1
             // 
@@ -171,7 +161,6 @@
             this.columnHeader5,
             this.columnHeader8,
             this.columnHeader9,
-            this.columnHeader6,
             this.columnHeader7,
             this.columnHeader10});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -193,21 +182,22 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "商品网址";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Text = "网址";
+            this.columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "销量";
+            this.columnHeader3.Text = "履约率";
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "揽收率";
+            this.columnHeader4.Text = "回头率";
             this.columnHeader4.Width = 80;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "履约率";
+            this.columnHeader5.Text = "响应率";
             this.columnHeader5.Width = 80;
             // 
             // columnHeader8
@@ -217,11 +207,7 @@
             // columnHeader9
             // 
             this.columnHeader9.Text = "关键词";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "标题";
-            this.columnHeader6.Width = 100;
+            this.columnHeader9.Width = 100;
             // 
             // columnHeader7
             // 
@@ -241,6 +227,23 @@
             this.textBox2.Size = new System.Drawing.Size(153, 97);
             this.textBox2.TabIndex = 230;
             this.textBox2.Text = "C:\\Users\\Administrator\\Desktop\\导入.txt";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(429, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 12);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "筛选小于履约率";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(524, 30);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(53, 21);
+            this.textBox3.TabIndex = 45;
+            this.textBox3.Text = "0.9";
             // 
             // _1688
             // 
@@ -280,11 +283,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label2;
     }
 }
