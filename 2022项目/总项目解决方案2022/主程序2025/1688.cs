@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using myDLL;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace 主程序2025
 {
@@ -89,8 +90,10 @@ namespace 主程序2025
             }
         }
 
-        string cookie = "\r\ncna=oRKCIBIeazUCAXLv8NxDPZ2A; xlly_s=1; _csrf_token=1744512163538; leftMenuModeTip=shown; isg=BMTEs4dUf0wZCMsAqvXdsZdilUK23ehHJXYHkt5lUA9SCWTTBu241_qqSaHRESCf; tfstk=gfaoEXi9juo7Cmy9e-u5jx2upsjYNQgI9JLKp2HF0xkXp7Fp2Jq3QxhyYe8Umv24nYz-v_Gh-5MjevC79Wu3QRDzwWBB-Bk0Uen8-WTnTWyCNvC5D7NSR2WOBJbTN7OOBG7NH25Ug2hH4k3xR7NSRI6OBNQTNpAzRIer8Juq0XGZ8XkULqJqhXGeUX8PiSkj3HJrLXu20bh942uULS5mOxlrZEtrByrautGZdD7rVOXiw0DaaxY3Nrcrq3Nrne8UoomoQpDD8ezmZSKb0a8GvArsecHa3ZLo-Sl3exeN7E0qjlNKt8bkz4E4czg8kOvKqJDrbrmDU3lirYmazm7CNSoUmr08z9t_MSDrjqEAcTnKr8qsC0SfhJVmeJzo0LXxplFYzm2NHE2IxlNKt8bkzRSPbn-w2w8BFaFMAHirGjDt9Pq2wznv1x5cihFI4jGsBsfDAHirGjDOisxTV0lj1AC..; _user_vitals_session_data_={\"user_line_track\":true,\"ul_session_id\":\"y3sloim32xh\",\"last_page_id\":\"shop06532883t1350.1688.com%2Ftawwz3ekctf\"}; mtop_partitioned_detect=1; _m_h5_tk=db31e9f9e2ce7df308c93b148bf00238_1744528826404; _m_h5_tk_enc=9cd1b5b69f1d6966fa39064cd3444101";
-        
+
+        string x5sec = "";
+        string tk = "_m_h5_tk=2a5c26761171f14e313e414f7f7c6ef7_1744645665900; _m_h5_tk_enc=633e3be064aea1de169049d9c39e41be;";
+        string cookie = "";
         public string chuli(string shuzhi)
         {
             try
@@ -105,7 +108,7 @@ namespace 主程序2025
         return shuzhi;  
         }
 
-
+       
 
         List<string> list = new List<string>();
 
@@ -115,7 +118,7 @@ namespace 主程序2025
         public void run()
         {
 
-
+          
             try
             {
 
@@ -131,7 +134,8 @@ namespace 主程序2025
 
                    for (int page= 1; page < 101; page++)
                     {
-
+                        cookie = tk + x5sec;
+                        Thread.Sleep(1000); 
                         string keyword = text[i].Trim();
                         if (keyword.Trim() == "")
                             continue;
@@ -150,26 +154,50 @@ namespace 主程序2025
 
                         // https://h5api.m.1688.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.7.2&appKey=12574478&t=1744443681882&sign=07ed661318bc1001527daa513339aaa0&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&jsonpIncPrefix=reqTppId_32517_getOfferList&type=jsonp&dataType=jsonp&callback=mtopjsonpreqTppId_32517_getOfferList6&data=
                         string html = function.GetUrlWithCookie(url, cookie, "utf-8");
-                      
 
-                        //if (html.Contains("令牌过期"))
-                        //{
+                        if(html.Contains("被挤爆啦"))
+                        {
+                            string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+                           
+                            string caphtml = function.GetUrlWithCookie(capurl, cookie, "utf-8");
+                            string action = Regex.Match(caphtml, @"""action"": ""([\s\S]*?)""").Groups[1].Value;
+                          
+                         
+                          
+                            if (action != "")
+                            {
+                                x5sec = function.getx5(action, capurl);
+                                continue;
+                            }
 
-                        //    string cookiestr = function.getSetCookie(url);
-                        //    string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                        //    string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                        //   cookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-                        //    token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+                        }
 
-                        //    continue;
-                        //}
-                        //textBox2.Text = html;
+
+
+
+                       // textBox2.Text = html;
+                     
+                        
+                        if (html.Contains("令牌过期"))
+                        {
+
+                            string cookiestr = function.getSetCookie(url);
+                            string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                            string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                            cookie = _m_h5_tk + ";" + _m_h5_tk_enc + ";"+x5sec;
+                           
+                            Thread.Sleep(5000);
+                            continue;
+                          
+                        }
+                       
 
                         MatchCollection ahtmls = Regex.Matches(html, @"""isSearchShow"":""([\s\S]*?)""sub_object_type""");
                      
 
                         for (int j = 0; j < ahtmls.Count; j++)
                         {
+                            cookie = tk + x5sec;
                             Thread.Sleep(1000);
                             try
                             {
@@ -189,6 +217,10 @@ namespace 主程序2025
 
                                 string ratehtml = getrate(memberId);
 
+
+                              
+
+
                                 string shop_nps_pay_ord_cnt_1m_001 = Regex.Match(ratehtml, @"""shop_nps_pay_ord_cnt_1m_001"":""([\s\S]*?)""").Groups[1].Value;
                                 string shop_nps_lgt_48h_got_rate_30d = Regex.Match(ratehtml, @"""shop_nps_lgt_48h_got_rate_30d"":""([\s\S]*?)""").Groups[1].Value; //揽收率
                                 string shop_lgt_fulfill_got_rate_30d = Regex.Match(ratehtml, @"""shop_lgt_fulfill_got_rate_30d"":""([\s\S]*?)""").Groups[1].Value;  //履约率
@@ -205,6 +237,10 @@ namespace 主程序2025
                                 //}
 
                                 string fahuohtml = getfahuo(memberId);
+
+
+                             
+
                                 string fahuoTime = Regex.Match(fahuohtml, @"""fahuoTime"":([\s\S]*?),").Groups[1].Value.Replace("\"", "");
                                 string offer_id = Regex.Match(fahuohtml, @"""id"":""([\s\S]*?)""").Groups[1].Value;
                                 string title = Regex.Match(fahuohtml, @"""intelligentTitle"":""([\s\S]*?)""").Groups[1].Value;
@@ -261,7 +297,9 @@ namespace 主程序2025
         #endregion
 
 
-
+        string x5sec_rate = "";
+        
+        string cookie_rate = "cna=D9B/IPCPU0kCAXLv8NwMVmh0; lid=zkg852266010; taklid=e35b74a058804607a46ae69c8452d218; ali_apache_track=c_mid=b2b-1052347548|c_lid=zkg852266010|c_ms=1; keywordsHistory=%E5%AE%B6%E5%B1%85%E6%8B%96%E9%9E%8B%3B%E5%84%BF%E7%AB%A5%E5%86%85%E8%A3%A4%E7%94%B7; callClientScheme=ali1688im%3Asendmsg; cookie1=Vvj8uMJubtxirKFtxaDmWPxYCP5sb7EKtrFe1w68JDk%3D; cookie2=1f1bc657bdf4de77633620c567866696; cookie17=UoH62EAv27BqSg%3D%3D; sgcookie=E100enwrW4RIFIXK5AJBg4NNxiWaePQ1znFgbH5HQTvQL%2Ftfs4trd3i8lGId99kWp6Hm9TN687DZmQbTHayRT7Jq1cGxTvFp5GZaJXHVjWagTT3caZSempvxnrExPRhcS%2B1g; t=d5978997e68e6bcbcdae638e8120847f; _tb_token_=e3618305b5a7b; sg=080; csg=fd042ca7; unb=1052347548; uc4=nk4=0%40GwrkntVPltPB9cR46GndxAcxTpGRO8I%3D&id4=0%40UOnlZ%2FcoxCrIUsehKuDBPTW9BRob; _nk_=zkg852266010; __cn_logon__=true; __cn_logon_id__=zkg852266010; is_identity=buyer; inquiry_preference=webIM; leftMenuLastMode=EXPEND; mtop_partitioned_detect=1; _m_h5_tk=2a5c26761171f14e313e414f7f7c6ef7_1744645665900; _m_h5_tk_enc=633e3be064aea1de169049d9c39e41be; xlly_s=1; leftMenuModeTip=shown; _user_vitals_session_data_={\"user_line_track\":true,\"ul_session_id\":\"2ay2lukxzjt\",\"last_page_id\":\"s.1688.com%2Fyz1mi8u4mj\"}; isg=BJqaND7BqWjSsiXBNpOsPxl360C8yx6lCM8cIaQTRi34FzpRjFtutWBl5-OLx5Y9; tfstk=gSXi3sA-Z1RsDtb-WwJ_Z3RuXUPKfc9X-ZHvkKL4Te8IBIRw0Doe-ZT96d8tnobCRsCYfIQhoabR6ne6WxvcmZ_vgtLAnc6hrxHT55sqnKp4yze8eGZ6hKz8hLmk2FtfYErp_wch7DJ4yzeK9DR_WK7T9IjgKX-W8h-q_ErH8htD3V8NueRe433w3K74xe-WVj-wbEkeYet23E723kvENrGwyt5PLyT3WcVMuUWHjCYPx7MqnOHJsUSw-xzPKh2XzG8n3x8tncthxGUiFMp1EaxRWJkGrg6C-H7znyvfRs72mwySkd1R5TOhW7kFYdYeasR3bRSHIFAkfQmm_dfV5tA1smZ5Yd7CNUOaOythBTdDPB0U7MIH7QfcWyM2W_jF-QBKJYpfRs72mwuG4BlEafeqhHrALjGX_HtHyU4loOOTL1Q8xkcRcC-BVUE3xjGX_HtHykqnw1OwA3TR.";
 
         public string getrate(string memberid)
         {
@@ -277,6 +315,30 @@ namespace 主程序2025
             string url = "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.pc.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.alibaba.alisite.cbu.server.pc.ModuleAsyncService&v=1.0&type=jsonp&dataType=jsonp&callback=mtopjsonp18&data=" + System.Web.HttpUtility.UrlEncode(data);
 
             string html = function.GetUrlWithCookie(url, cookie, "utf-8");
+
+            textBox2.Text = html;   
+           // MessageBox.Show(html);  
+            if (html.Contains("被挤爆啦"))
+            {
+                string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
+                string caphtml = function.GetUrlWithCookie(capurl, cookie, "utf-8");
+                string action = Regex.Match(caphtml, @"""action"": ""([\s\S]*?)""").Groups[1].Value;
+
+
+
+                if (action != "")
+                {
+                    x5sec_rate = function.getx5(action, capurl);
+                 
+                    
+                    cookie_rate = token + x5sec_rate;
+
+
+                    html = function.GetUrlWithCookie(url, cookie_rate, "utf-8");
+                }
+
+            }
             return html;    
 
         }
@@ -309,6 +371,11 @@ namespace 主程序2025
         {
             cookie = method.getSetCookie("https://h5api.m.1688.com/");
             MessageBox.Show(cookie);
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+           
         }
     }
 }

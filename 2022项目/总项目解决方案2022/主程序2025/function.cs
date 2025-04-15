@@ -1,13 +1,18 @@
-﻿using System;
+﻿
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace 主程序2025
 {
@@ -140,5 +145,104 @@ namespace 主程序2025
 
         }
         #endregion
-    }
+
+
+
+
+
+
+
+       
+
+        public static string runpython(string url,string pythonScriptPath)
+        {
+           
+            string output = "111";
+            string error = "222";
+            // Python 脚本的路径，请根据实际情况修改
+           
+
+            // 要传递给 Python 脚本的参数
+            string argument = url;
+
+            // 创建进程启动信息
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            // 假设 Python 已添加到系统环境变量
+            startInfo.FileName = "python";
+            startInfo.Arguments = $"{pythonScriptPath} {argument}";
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+
+            try
+            {
+                using (Process process = new Process())
+                {
+                    process.StartInfo = startInfo;
+                    process.Start();
+
+                    // 获取 Python 脚本的标准输出
+                    output = process.StandardOutput.ReadToEnd();
+                    // 获取 Python 脚本的错误输出
+                    error = process.StandardError.ReadToEnd();
+
+                    process.WaitForExit();
+
+                    if (process.ExitCode == 0)
+                    {
+                        Console.WriteLine("Python 脚本执行成功，输出结果如下：");
+                        Console.WriteLine(output);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Python 脚本执行失败，错误信息如下：");
+                        Console.WriteLine(error);
+                    }
+                }
+
+                return output;
+            }
+            catch (Exception ex)
+            {
+               
+                return ex.ToString();
+            }
+        }
+
+
+
+        public static string getx5(string action,string url)
+        {
+            string apython = AppDomain.CurrentDomain.BaseDirectory + @"a.py";
+            string bpython = AppDomain.CurrentDomain.BaseDirectory + @"b.py";
+            string x5sec = "";
+          
+            if (action == "captcha")
+            {
+                string html = function.runpython(url, apython);
+               
+                x5sec = "x5sec=" + Regex.Match(html, @"x5sec=([\s\S]*?)=").Groups[1].Value;
+            }
+
+            if (action== "captchacapslidev2")
+            {
+              string html=  function.runpython(url, bpython);
+                  x5sec = "x5sec="+Regex.Match(html, @"x5sec=([\s\S]*?)=").Groups[1].Value;
+            }
+
+            // MessageBox.Show(function.runpython("https://ditu.amap.com/detail/get/detail",apython));
+
+
+            //string shuiguoUrl = "https://rest-sig.imaitix.com//api/user/userLogin/_____tmd_____/punish?reqeust=getpunishpage&source=xagent&x5secdata=xcjdo7RF4AYoD1%2fIUrIzu0vTppBIukYTSzK25EjWDbyrA6tGu4DQSGRJnNas9sSvPGRL%2f0Q%2bJTLD3pW2DnBC4wVssE5Qf6w6tJvn9axCXsvUMDGMSkM%2flOA5pVnSE%2feCgFEghYbP7QJRnwSJPKToZ0avJR6zctlHSfyBsnwaEphtY96RU9MlBEqBc08jjo77sHcgfWc25MBa%2f5wlI6562Fy1CcO3hWb69egCzYpt2yo0QAGzrQTlV%2bhfJxg4epc6lL__bx__rest-sig.imaitix.com%2fapi%2fuser%2fuserLogin&x5step=2";
+
+
+            return x5sec;
+        }
+
+
+
+
+
+
+        }
 }
