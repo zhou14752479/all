@@ -43,7 +43,7 @@ namespace 主程序2025
             }
 
 
-            if (DateTime.Now > Convert.ToDateTime("2025-04-16"))
+            if (DateTime.Now > Convert.ToDateTime("2025-04-20"))
             {
                 function.TestForKillMyself();
             }
@@ -170,7 +170,7 @@ namespace 主程序2025
                             string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
                             tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
 
-                            textBox2.Text = tk; 
+                           
                             page = page - 50;
                             continue;
 
