@@ -148,11 +148,67 @@ namespace 主程序2025
 
 
 
+        #region POST默认请求
+        public static string PostUrlDefault(string url, string postData, string COOKIE)
+        {
+            string result;
+            try
+            {
+                string charset = "utf-8";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
+                request.Proxy = null;
+                //WebHeaderCollection headers = request.Headers;
+                //headers.Add("version:TYC-XCX-WX");
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.ContentType = "application/json";
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = true;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                //result = ex.ToString();
+                //400错误也返回内容
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            return result;
+        }
+        #endregion
 
 
 
 
-       
 
         public static string runpython(string url,string pythonScriptPath)
         {
