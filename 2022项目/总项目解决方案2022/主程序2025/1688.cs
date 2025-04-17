@@ -15,6 +15,7 @@ using myDLL;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.Security.Policy;
+using System.Web.UI;
 
 namespace 主程序2025
 {
@@ -52,7 +53,7 @@ namespace 主程序2025
                 {
                     thread = new Thread(run);
                     thread.Start();
-                    Control.CheckForIllegalCrossThreadCalls = false;
+                    System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
                 }
             }
 
@@ -137,7 +138,7 @@ namespace 主程序2025
 
                    for (int page= 0; page < 3000; page=page+50)
                     {
-                        if (DateTime.Now > Convert.ToDateTime("2025-04-20"))
+                        if (DateTime.Now > Convert.ToDateTime("2025-04-21"))
                         {
                             function.TestForKillMyself();
                             return;
@@ -322,7 +323,8 @@ namespace 主程序2025
             string postdata = System.Web.HttpUtility.UrlEncode(data);
             string html = function.PostUrlDefault(url, "data=" + postdata, cookie);
 
-            
+            //textBox2.Text = html;
+          
             MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
             MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
 
@@ -354,8 +356,8 @@ namespace 主程序2025
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //cookie = "_m_h5_tk=44d2231e261cd9de3a6ceff41624e5e1_1744803563138; _m_h5_tk_enc=917481807b73c230b6b4796f8679a1d9;";
-            //getfahuo("b2b-220748602880961213");
+          
+            MessageBox.Show(getfahuo("b2b-220748602880961213"));
             listView1.Items.Clear();
            
         }
