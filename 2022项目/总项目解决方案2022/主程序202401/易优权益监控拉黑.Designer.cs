@@ -80,6 +80,7 @@
             this.复制链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改同步ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.添加初始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -104,7 +105,6 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.添加初始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -540,28 +540,35 @@
             this.修改同步ToolStripMenuItem,
             this.添加初始ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 92);
             // 
             // 复制链接ToolStripMenuItem
             // 
             this.复制链接ToolStripMenuItem.Name = "复制链接ToolStripMenuItem";
-            this.复制链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.复制链接ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.复制链接ToolStripMenuItem.Text = "复制链接";
             this.复制链接ToolStripMenuItem.Click += new System.EventHandler(this.复制链接ToolStripMenuItem_Click);
             // 
             // 删除链接ToolStripMenuItem
             // 
             this.删除链接ToolStripMenuItem.Name = "删除链接ToolStripMenuItem";
-            this.删除链接ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除链接ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.删除链接ToolStripMenuItem.Text = "删除链接";
             this.删除链接ToolStripMenuItem.Click += new System.EventHandler(this.删除链接ToolStripMenuItem_Click);
             // 
             // 修改同步ToolStripMenuItem
             // 
             this.修改同步ToolStripMenuItem.Name = "修改同步ToolStripMenuItem";
-            this.修改同步ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.修改同步ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.修改同步ToolStripMenuItem.Text = "修改同步";
             this.修改同步ToolStripMenuItem.Click += new System.EventHandler(this.修改同步ToolStripMenuItem_Click);
+            // 
+            // 添加初始ToolStripMenuItem
+            // 
+            this.添加初始ToolStripMenuItem.Name = "添加初始ToolStripMenuItem";
+            this.添加初始ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.添加初始ToolStripMenuItem.Text = "添加初始";
+            this.添加初始ToolStripMenuItem.Click += new System.EventHandler(this.添加初始ToolStripMenuItem_Click);
             // 
             // tabPage3
             // 
@@ -753,13 +760,6 @@
             // 
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // 添加初始ToolStripMenuItem
-            // 
-            this.添加初始ToolStripMenuItem.Name = "添加初始ToolStripMenuItem";
-            this.添加初始ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.添加初始ToolStripMenuItem.Text = "添加初始";
-            this.添加初始ToolStripMenuItem.Click += new System.EventHandler(this.添加初始ToolStripMenuItem_Click);
             // 
             // 易优权益监控拉黑
             // 

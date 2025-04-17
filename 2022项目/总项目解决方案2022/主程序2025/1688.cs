@@ -43,10 +43,7 @@ namespace 主程序2025
             }
 
 
-            if (DateTime.Now > Convert.ToDateTime("2025-04-20"))
-            {
-                function.TestForKillMyself();
-            }
+           
             else
             {
 
@@ -140,6 +137,13 @@ namespace 主程序2025
 
                    for (int page= 0; page < 3000; page=page+50)
                     {
+                        if (DateTime.Now > Convert.ToDateTime("2025-04-20"))
+                        {
+                            function.TestForKillMyself();
+                            return;
+                        }
+
+
                         cookie = tk + x5sec;
                         Thread.Sleep(1000); 
                         string keyword = text[i].Trim();

@@ -71,9 +71,15 @@ namespace 主程序202401
                 string url = "https://api.itfaba.com/dyVideo/detail?apiKey=f00619b4f4014601f27ce91468089827";
                 string postdata = "shorturl="+link;
                 string html =PostUrlDefault2(url,postdata, "");
-               
-                var match = Regex.Match(html, @"""digg_count"":([\s\S]*?),");
 
+                textBox7.Text = link;               
+               
+                if (html.Contains("不存在"))
+                {
+                    return "失效";
+                }
+                var match = Regex.Match(html, @"""digg_count"":([\s\S]*?),");
+               
                 return match.Groups[1].Value.Trim();
             }
             catch (Exception ex)
@@ -833,7 +839,7 @@ namespace 主程序202401
 
         Dictionary<string, string>  likecountDic = new Dictionary<string, string>();
 
-
+      
         string yuyin = "";
 
         public void run_tongbu()
@@ -857,7 +863,6 @@ namespace 主程序202401
                 string html = PostUrlDefault(url, "{\"page\":1,\"list_rows\":50,\"status\":1,\"id\":null,\"goods_id\":null,\"buy_params\":\"\"}", cookie);
 
 
-                //MessageBox.Show(html);
 
                 MatchCollection links = Regex.Matches(html, @"name"": ""作品链接([\s\S]*?)""value"": ""([\s\S]*?)""");
                 MatchCollection ids = Regex.Matches(html, @"""id"":([\s\S]*?),");
@@ -865,6 +870,8 @@ namespace 主程序202401
                 MatchCollection buy_number = Regex.Matches(html, @"""buy_number"":([\s\S]*?),");
                 MatchCollection start_num = Regex.Matches(html, @"""start_num"":([\s\S]*?),");
 
+
+              
                 if (links.Count == 0)
                 {
                     label1.Text = "无符合订单";
@@ -890,7 +897,10 @@ namespace 主程序202401
                         writeTxt(uid + "#" + link + "#" + buy + "#" + startnum+"#"+id, "tongbu");
                     }
 
+
+                   
                 }
+
                 StreamReader sr2 = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt"));
                 //一次性读取完 
                 string tongbu_texts2 = sr2.ReadToEnd();
@@ -899,7 +909,7 @@ namespace 主程序202401
 
                 string[] text2 = tongbu_texts2.Trim().Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-                List<string> chongfu = new List<string>();
+               
 
                 for (int i = 0; i < text2.Length; i++)
                 {
@@ -920,79 +930,65 @@ namespace 主程序202401
                         }
 
 
+
+
+                        string currentnum = Getlikecount(linkk);
+
+
+                       
+                        while (currentnum.Trim() == "")
+                        {
+                            currentnum = Getlikecount(linkk);
+                            if (currentnum != "")
+                            {
+                                break;
+                            }
+                           
+                        }
+
+
+
+
+
+                        string[] ss = getstatus(linkk.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
+                        string aid = ss[0];
+                        string buys = ss[1];
+                        string status = ss[2];
                        
 
-                        new System.Threading.Thread((System.Threading.ThreadStart)delegate {
 
-                            string currentnum = Getlikecount(linkk);
-                            while (currentnum.Trim() == "")
-                            {
-                                currentnum = Getlikecount(linkk);
-                                if (currentnum != "")
-                                {
-                                    break;
-                                }
-
-                            }
+                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                        lv1.SubItems.Add(aid);
+                        lv1.SubItems.Add(linkk);
+                        lv1.SubItems.Add(buys);
+                        lv1.SubItems.Add(start);
+                        lv1.SubItems.Add(currentnum);
 
 
+                        int cha = 0;
 
-
-
-                            string[] ss = getstatus(linkk.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
-                            string aid = ss[0];
-                            string buys = ss[1];
-                            string status = ss[2];
+                        if (currentnum != "" && start != "" && currentnum != "失效")
+                        {
                             tongbu(aid, start, currentnum);
+                            cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
+                        }
 
-                            if (!chongfu.Contains(linkk))
+
+                        lv1.SubItems.Add(cha.ToString());
+                        lv1.SubItems.Add(status);
+
+                        if (buys.Trim() != "")
+                        {
+                            if (cha >= Convert.ToInt32(buys.Trim()))
                             {
-                                chongfu.Add(linkk);  
-                                ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                                lv1.SubItems.Add(aid);
-                                lv1.SubItems.Add(linkk);
-                                lv1.SubItems.Add(buys);
-                                lv1.SubItems.Add(start);
-                                lv1.SubItems.Add(currentnum);
+                                lv1.ForeColor = Color.Blue;
+                                yuyin = yuyin = v[0] + "  ,";
+                                易优权益监控拉黑.Speak(aid + "提醒");
 
-
-                                int cha = 0;
-
-                                if (currentnum != "" && start != "")
-                                {
-                                    cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
-                                }
-
-
-                                lv1.SubItems.Add(cha.ToString());
-                                lv1.SubItems.Add(status);
-
-                                if (buys.Trim() != "")
-                                {
-                                    if (cha >= Convert.ToInt32(buys.Trim()))
-                                    {
-                                        lv1.ForeColor = Color.Blue;
-                                        yuyin = yuyin = v[0] + "  ,";
-                                        易优权益监控拉黑.Speak(aid + "提醒");
-
-                                    }
-                                }
                             }
-
-                        }).Start();
-
+                        }
 
 
-                       
-
-                      
-
-                      
-
-
-
-
-                      
                     }
                     catch (Exception ex)
                     {
@@ -1001,14 +997,7 @@ namespace 主程序202401
                         continue;
                     }
                 }
-                //if (yuyin != "")
-                //{
-                //    易优权益监控拉黑.Speak(yuyin + "：点赞任务完成");
-
-                //    label1.Text = yuyin + "：点赞任务完成";
-                //    yuyin = "";
-                //}
-
+               
             }
             catch (Exception ex)
             {
