@@ -254,18 +254,18 @@ namespace 主程序2025
                                 lv1.SubItems.Add(keyword);
                                 lv1.SubItems.Add(facName[j].Groups[1].Value);
                                 lv1.SubItems.Add(wangwang[j].Groups[1].Value);
-                                try
-                                {
-                                    string item24 = getfahuo(userId[j].Groups[1].Value);
-                                    lv1.SubItems.Add(item24);
-                                }
-                                catch (Exception)
-                                {
-                                    lv1.SubItems.Add("");
+                                //try
+                                //{
+                                //    string item24 = getfahuo(userId[j].Groups[1].Value);
+                                //    lv1.SubItems.Add(item24);
+                                //}
+                                //catch (Exception)
+                                //{
+                                //    lv1.SubItems.Add("");
 
 
-                                }
-
+                                //}
+                                lv1.SubItems.Add("");
 
                                 Thread.Sleep(100);
                                 if (status == false)
@@ -309,6 +309,7 @@ namespace 主程序2025
 
         public string getfahuo(string memberid)
         {
+
             string time = function.GetTimeStamp();
 
             string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
@@ -321,17 +322,29 @@ namespace 主程序2025
             string url = "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.alibaba.alisite.cbu.server.ModuleAsyncService&v=1.0&type=json&valueType=string&dataType=jsonp&timeout=10000";
 
             string postdata = System.Web.HttpUtility.UrlEncode(data);
-            string html = function.PostUrlDefault(url, "data=" + postdata, cookie);
-
+            string html = function.PostUrl_daili(url, "data=" + postdata, cookie,textBox5.Text.Trim(),textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
             //textBox2.Text = html;
+            if (html.Contains("令牌过期") || html.Contains("令牌为空"))
+            {
+
+                string cookiestr = function.getSetCookie(url);
+                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+                cookie = tk + x5sec;
+
+            }
+
           
+
             MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
             MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
-
+            string fahuotime = "";
             for (int i = 0; i < agentInfo.Count; i++)
             {
 
-                string fahuotime = Regex.Match(agentInfo[i].Groups[1].Value, @"""fahuoTime"":""([\s\S]*?)""").Groups[1].Value;
+               fahuotime = Regex.Match(agentInfo[i].Groups[1].Value, @"""fahuoTime"":""([\s\S]*?)""").Groups[1].Value;
+               
                 if(fahuotime=="24")
                 {
                     return "https://detail.1688.com/offer/" + id[i].Groups[1].Value +".html";
@@ -339,7 +352,7 @@ namespace 主程序2025
 
             }
 
-            return "";
+            return fahuotime;
 
         }
 
@@ -357,7 +370,7 @@ namespace 主程序2025
         private void button5_Click(object sender, EventArgs e)
         {
           
-            MessageBox.Show(getfahuo("b2b-220748602880961213"));
+            //MessageBox.Show(getfahuo("b2b-220748602880961213"));
             listView1.Items.Clear();
            
         }
@@ -377,6 +390,122 @@ namespace 主程序2025
                
             }
            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Now > Convert.ToDateTime("2025-04-21"))
+            {
+                function.TestForKillMyself();
+                return;
+            }
+
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("请导入表格");
+                return;
+            }
+
+
+
+            else
+            {
+
+                status = true;
+                if (thread == null || !thread.IsAlive)
+                {
+                    thread = new Thread(shaixuan);
+                    thread.Start();
+                    System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
+                }
+            }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "打开excel文件";
+            openFileDialog1.Filter = "excel03文件(*.xls)|*.xls|excel07文件(*.xlsx)|*.xlsx";
+            openFileDialog1.Filter = "excel07文件(*.xlsx)|*.xlsx";
+            openFileDialog1.InitialDirectory = @"C:\Users\Administrator\Desktop";
+            openFileDialog1.RestoreDirectory = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //打开文件对话框选择的文件
+                textBox4.Text = openFileDialog1.FileName;
+              
+
+            }
+        }
+
+
+
+
+        public void shaixuan()
+        {
+            try
+            {
+                DataTable dt =function.ExcelToDataTable(textBox4.Text,true);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    try
+                    {
+
+                        string userid = Regex.Match(dt.Rows[i][1].ToString(), @"memberId=.*").Groups[0].Value.Replace("memberId=", "");
+
+                        string item24 = getfahuo(userid);
+
+                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据 
+
+                        label5.Text = "正在筛选：" + dt.Rows[i][6].ToString();
+                        lv1.SubItems.Add(dt.Rows[i][1].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][2].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][3].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][4].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][5].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][6].ToString());
+                        lv1.SubItems.Add(dt.Rows[i][7].ToString());
+
+                        lv1.SubItems.Add(item24);
+                        if (status == false)
+                            return;
+                        if (listView2.Items.Count > 2)
+                        {
+                            this.listView2.Items[this.listView2.Items.Count - 1].EnsureVisible();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+
+
+                    // Thread.Sleep(100);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+               MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            status = false;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            method.DataTableToExcel(method.listViewToDataTable(this.listView2), "Sheet1", true);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            listView2.Items.Clear();
         }
     }
 }

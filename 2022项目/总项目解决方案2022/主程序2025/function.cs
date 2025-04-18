@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -13,6 +15,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using NPOI.SS.UserModel;
+using NPOI.SS.Formula.Eval;
+using NPOI.XSSF.UserModel;
+using NPOI.HSSF.UserModel;
 
 namespace 主程序2025
 {
@@ -166,7 +173,7 @@ namespace 主程序2025
                 request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
                 request.Headers.Add("Accept-Encoding", "gzip");
                 request.AllowAutoRedirect = false;
-                request.KeepAlive = true;
+                request.KeepAlive = false;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
                 request.Referer = url;
@@ -209,7 +216,64 @@ namespace 主程序2025
 
 
 
+        #region POST代理
+        public static string PostUrl_daili(string url, string postData, string COOKIE,string ip,string port,string username,string password)
+        {
+            string result;
+            try
+            {
+                string charset = "utf-8";
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "Post";
 
+                // 设置代理 <用户名密码>
+                WebProxy proxy = new WebProxy();
+                proxy.Address = new Uri(String.Format("http://{0}:{1}", ip, port));
+                proxy.Credentials = new NetworkCredential(username, password);
+                request.Proxy = proxy;
+
+
+                request.ContentType = "application/x-www-form-urlencoded";
+                // request.ContentType = "application/json";
+                request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
+                request.Headers.Add("Accept-Encoding", "gzip");
+                request.AllowAutoRedirect = false;
+                request.KeepAlive = false;
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
+                request.Headers.Add("Cookie", COOKIE);
+                request.Referer = url;
+                StreamWriter sw = new StreamWriter(request.GetRequestStream());
+                sw.Write(postData);
+                sw.Flush();
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.GetResponseHeader("Set-Cookie");
+                bool flag = response.Headers["Content-Encoding"] == "gzip";
+                string html;
+                if (flag)
+                {
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
+                    html = reader2.ReadToEnd();
+                    reader2.Close();
+                }
+                response.Close();
+                result = html;
+            }
+            catch (WebException ex)
+            {
+                result = ex.ToString();
+               
+            }
+            return result;
+        }
+        #endregion
         public static string runpython(string url,string pythonScriptPath)
         {
            
@@ -297,8 +361,147 @@ namespace 主程序2025
 
 
 
+        #region Excel转datatable
+       
 
 
 
+        public static DataTable ExcelToDataTable(string filePath, bool hasHeader = true)
+        {
+            IWorkbook workbook;
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                if (filePath.EndsWith(".xlsx"))
+                {
+                    workbook = new XSSFWorkbook(fileStream);
+                }
+                else if (filePath.EndsWith(".xls"))
+                {
+                    workbook = new HSSFWorkbook(fileStream);
+                }
+                else
+                {
+                    throw new Exception("不支持的文件格式");
+                }
+            }
+
+            ISheet sheet = workbook.GetSheetAt(0); // 假设读取第一个工作表
+
+            DataTable dataTable = new DataTable();
+            IRow headerRow = sheet.GetRow(0);
+            int cellCount = headerRow.LastCellNum;
+
+            if (hasHeader)
+            {
+                for (int i = headerRow.FirstCellNum; i < cellCount; i++)
+                {
+                    DataColumn column = new DataColumn(headerRow.GetCell(i)?.ToString());
+                    dataTable.Columns.Add(column);
+                }
+
+                for (int i = (hasHeader ? 1 : 0); i <= sheet.LastRowNum; i++)
+                {
+                    IRow row = sheet.GetRow(i);
+                    DataRow dataRow = dataTable.NewRow();
+
+                    for (int j = row.FirstCellNum; j < cellCount; j++)
+                    {
+                        if (row.GetCell(j) != null)
+                        {
+                            switch (row.GetCell(j).CellType)
+                            {
+                                case CellType.String:
+                                    dataRow[j] = row.GetCell(j).StringCellValue;
+                                    break;
+                                case CellType.Numeric:
+                                    if (DateUtil.IsCellDateFormatted(row.GetCell(j)))
+                                    {
+                                        dataRow[j] = row.GetCell(j).DateCellValue;
+                                    }
+                                    else
+                                    {
+                                        dataRow[j] = row.GetCell(j).NumericCellValue;
+                                    }
+                                    break;
+                                case CellType.Boolean:
+                                    dataRow[j] = row.GetCell(j).BooleanCellValue;
+                                    break;
+                                case CellType.Formula:
+                                    dataRow[j] = row.GetCell(j).CellFormula;
+                                    break;
+                                case CellType.Blank:
+                                    dataRow[j] = "";
+                                    break;
+                                default:
+                                    dataRow[j] = "未知类型";
+                                    break;
+                            }
+                        }
+                    }
+
+                    dataTable.Rows.Add(dataRow);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < cellCount; i++)
+                {
+                    DataColumn column = new DataColumn($"Column_{i}");
+                    dataTable.Columns.Add(column);
+                }
+
+                for (int i = 0; i <= sheet.LastRowNum; i++)
+                {
+                    IRow row = sheet.GetRow(i);
+                    DataRow dataRow = dataTable.NewRow();
+
+                    for (int j = row.FirstCellNum; j < cellCount; j++)
+                    {
+                        if (row.GetCell(j) != null)
+                        {
+                            switch (row.GetCell(j).CellType)
+                            {
+                                case CellType.String:
+                                    dataRow[j] = row.GetCell(j).StringCellValue;
+                                    break;
+                                case CellType.Numeric:
+                                    if (DateUtil.IsCellDateFormatted(row.GetCell(j)))
+                                    {
+                                        dataRow[j] = row.GetCell(j).DateCellValue;
+                                    }
+                                    else
+                                    {
+                                        dataRow[j] = row.GetCell(j).NumericCellValue;
+                                    }
+                                    break;
+                                case CellType.Boolean:
+                                    dataRow[j] = row.GetCell(j).BooleanCellValue;
+                                    break;
+                                case CellType.Formula:
+                                    dataRow[j] = row.GetCell(j).CellFormula;
+                                    break;
+                                case CellType.Blank:
+                                    dataRow[j] = "";
+                                    break;
+                                default:
+                                    dataRow[j] = "未知类型";
+                                    break;
+                            }
+                        }
+                    }
+
+                    dataTable.Rows.Add(dataRow);
+                }
+            }
+
+            return dataTable;
         }
+    
+        #endregion
+
+
+
+
+
+    }
 }
