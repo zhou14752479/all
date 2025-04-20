@@ -26,6 +26,8 @@ namespace 主程序2025
     internal class function
     {
 
+        public static string date = "2025-05-20";
+
         #region  程序关闭删除自身
         public static void TestForKillMyself()
         {

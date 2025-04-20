@@ -286,8 +286,8 @@ namespace stockx网站价格
 		public string getsize(string sizeid)
 		{
 
-            MatchCollection sizeId = Regex.Matches(sizejson, @"""id"":""([\s\S]*?)""");
-            MatchCollection size = Regex.Matches(sizejson, @"""size"":""US M([\s\S]*?)""");
+            MatchCollection sizeId = Regex.Matches(sizejson, @"\\""id\\"":\\""([\s\S]*?)\\""");
+            MatchCollection size = Regex.Matches(sizejson, @"\\""size\\"":\\""US M([\s\S]*?)\\""");
 			for (int i = 0; i <sizeId.Count; i++)
 			{
 				if (sizeid.Trim() == sizeId[i].Groups[1].Value.Trim())
@@ -343,32 +343,47 @@ namespace stockx网站价格
         }
         #endregion
 
-        public void getsizeHtml(string huohao)
-		{
-			string url = "https://stockx.com/zh-cn/"+huohao;
+  //      public void getsizeHtml(string huohao)
+		//{
+		//	string url = "https://stockx.com/zh-cn/"+huohao;
 
-			string ck = "display_location_selector=false; stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; language_code=zh; _gcl_au=1.1.1370229539.1742820353; stockx_session_id=112a033f-36f5-4edf-ac43-efce53d483ca; stockx_session=adcff755-21e9-4088-be7e-e1007c8c6a20; stockx_selected_region=CN; pxcts=a7f3728f-15fa-11f0-a42b-55e376709a13; stockx_preferred_market_activity=sales; is_gdpr=false; stockx_ip_region=CN; _px3=bd4926937b2a0b8e212fad36a73a23becdf222779b9fcb22bfa4b6b500679a1c:CM2MuY7nBWmAnkEVp09rkN0uHgQOT0JaqgaSR9gPZXtghz3MXJ8cEY+PWvpfw8LvMbBqycDAhUkdd9tNSkIWQg==:1000:emM/TXH7pYeI/fYhaKiCx4Thr+hwltZRyjZJ0Ig6Gi4WfCLhVRFoldZiOpCYvQr1w3NL8T/jveLZKpUZpxwoy/P0UQaTm40WW71Lx4ny5mXzvpABQybkarhh8Wrg7foMhJ/7KKZ/QLckE7+O2e1NWQJKgV0Xf59MDzjv0QRFoNpPRTdy8+ux/hjySnfF8tabYh4hLU1mNFpDk96KukimFaoW5foBSzBzdy6+kpgbbOI=; cto_bundle=M7XTE19DRXFkWW5JS09nV21hZUs5ZDlOTWIwJTJCQjlKejc0MkNPNktZeHpXQkJuYVBSQUFtMiUyRkFhc2lPOFcyNXpZT2h2SnBmUjJhVFQ5SVpXZ0R1VzRLbkQzN1JqNnE1ZW43VXRJYmdhelp6am90TUJuVEN2ZzN0dnZUZU9KQ3JPTEtoTTFPMlJlUW14TzRKUjR1cGU5dXBoSURnJTNEJTNE; cf_clearance=CQsXFByhOOMK0wAV4YVTRBonDsjREN1CxEMrRBK3WoI-1744283113-1.2.1.1-rESJwjHlHyC8qtOYnshzqyJDDz2cwdoO.53TDunvbBdsqG6M3AGp5M_1GMsCZzxw8ymKn9wzcRvLAw5.39jIjNcN.RlMCbFaP9mCzE9n_pejDsXKh.y5uP4ZC6Hfg6d1CsxdF6o5zLich2GJX6q5MAJaO6U98msBimwiTc0xPpcqn_ytAxSJVvKArYXEUORCy_wZ1TfR61VVj91PXyBXyrxwS2oMGLjJWnp3yXTPScs3WxpMNBa1rrkMweBhR8B.bpA6mP4wWDeiH5lNHwzMH10qJMvwl5KR.E2Yan_G_H12P9oz9zfAIBSmbwhXKqMHL32uUPgO2mSft_IwvBXj31o2WyELD15HAIR.7FILh7f_4jCeDf1F6V_VuAtJwtFy; stockx_product_visits=29; lastRskxRun=1744283120114; _pxde=0fc2388f4400d5ffa4333b6b275039325fd081c7faf33f979d2b3e3e96047ece:eyJ0aW1lc3RhbXAiOjE3NDQyODMxMjUyOTEsImZfa2IiOjB9; _pxhd=7-hlkAgbGDdY-eVaBoE/-kAHQH2I06lxOoKKGXAr4V2JUtfBpu8aRDZ9Fq1t8AlAQ6uTddzS/6quCo1SXRV1SA==:ojDdnm17F5qjMaB82j/WjHWjzYnNP6OUtgMrNCb7vcm0VkT2ox7fTrO2shwatkUx4L6Irmf74rdtumu6RKReLYmOMB3DVzcaEZ-7zJqJFSM=; _dd_s=rum=0&expire=1744284019876&logs=1&id=f22c5c69-5575-4bdc-9a1f-14ad988afe08&created=1744282680072";
-			string html =GetUrlWithCookie(url,ck,"utf-8");
+		//	string ck = "display_location_selector=false; stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; language_code=zh; _gcl_au=1.1.1370229539.1742820353; stockx_session_id=112a033f-36f5-4edf-ac43-efce53d483ca; stockx_session=adcff755-21e9-4088-be7e-e1007c8c6a20; stockx_selected_region=CN; pxcts=a7f3728f-15fa-11f0-a42b-55e376709a13; stockx_preferred_market_activity=sales; is_gdpr=false; stockx_ip_region=CN; _px3=bd4926937b2a0b8e212fad36a73a23becdf222779b9fcb22bfa4b6b500679a1c:CM2MuY7nBWmAnkEVp09rkN0uHgQOT0JaqgaSR9gPZXtghz3MXJ8cEY+PWvpfw8LvMbBqycDAhUkdd9tNSkIWQg==:1000:emM/TXH7pYeI/fYhaKiCx4Thr+hwltZRyjZJ0Ig6Gi4WfCLhVRFoldZiOpCYvQr1w3NL8T/jveLZKpUZpxwoy/P0UQaTm40WW71Lx4ny5mXzvpABQybkarhh8Wrg7foMhJ/7KKZ/QLckE7+O2e1NWQJKgV0Xf59MDzjv0QRFoNpPRTdy8+ux/hjySnfF8tabYh4hLU1mNFpDk96KukimFaoW5foBSzBzdy6+kpgbbOI=; cto_bundle=M7XTE19DRXFkWW5JS09nV21hZUs5ZDlOTWIwJTJCQjlKejc0MkNPNktZeHpXQkJuYVBSQUFtMiUyRkFhc2lPOFcyNXpZT2h2SnBmUjJhVFQ5SVpXZ0R1VzRLbkQzN1JqNnE1ZW43VXRJYmdhelp6am90TUJuVEN2ZzN0dnZUZU9KQ3JPTEtoTTFPMlJlUW14TzRKUjR1cGU5dXBoSURnJTNEJTNE; cf_clearance=CQsXFByhOOMK0wAV4YVTRBonDsjREN1CxEMrRBK3WoI-1744283113-1.2.1.1-rESJwjHlHyC8qtOYnshzqyJDDz2cwdoO.53TDunvbBdsqG6M3AGp5M_1GMsCZzxw8ymKn9wzcRvLAw5.39jIjNcN.RlMCbFaP9mCzE9n_pejDsXKh.y5uP4ZC6Hfg6d1CsxdF6o5zLich2GJX6q5MAJaO6U98msBimwiTc0xPpcqn_ytAxSJVvKArYXEUORCy_wZ1TfR61VVj91PXyBXyrxwS2oMGLjJWnp3yXTPScs3WxpMNBa1rrkMweBhR8B.bpA6mP4wWDeiH5lNHwzMH10qJMvwl5KR.E2Yan_G_H12P9oz9zfAIBSmbwhXKqMHL32uUPgO2mSft_IwvBXj31o2WyELD15HAIR.7FILh7f_4jCeDf1F6V_VuAtJwtFy; stockx_product_visits=29; lastRskxRun=1744283120114; _pxde=0fc2388f4400d5ffa4333b6b275039325fd081c7faf33f979d2b3e3e96047ece:eyJ0aW1lc3RhbXAiOjE3NDQyODMxMjUyOTEsImZfa2IiOjB9; _pxhd=7-hlkAgbGDdY-eVaBoE/-kAHQH2I06lxOoKKGXAr4V2JUtfBpu8aRDZ9Fq1t8AlAQ6uTddzS/6quCo1SXRV1SA==:ojDdnm17F5qjMaB82j/WjHWjzYnNP6OUtgMrNCb7vcm0VkT2ox7fTrO2shwatkUx4L6Irmf74rdtumu6RKReLYmOMB3DVzcaEZ-7zJqJFSM=; _dd_s=rum=0&expire=1744284019876&logs=1&id=f22c5c69-5575-4bdc-9a1f-14ad988afe08&created=1744282680072";
+		//	string html =GetUrlWithCookie(url,ck,"utf-8");
           
-            html = Regex.Match(html, @"""variants""([\s\S]*?)\}\]\}\}\]").Groups[1].Value;
+  //          html = Regex.Match(html, @"""variants""([\s\S]*?)\}\]\}\}\]").Groups[1].Value;
 		
 			
-			sizejson = html;
+		//	sizejson = html;
+
+  //      }
+
+		string xiezi = "";
+
+		public void getxie()
+		{
+
+            string url = "https://xw7sbct9v6-2.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.4)%3B%20Browser";
+            string postData = "{\"params\":\"query=" + this.textBox1.Text.Trim() + "&facets=*&filters=\"}";
+            string ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
+            string input = this.PostUrl(url, postData, ua);
+
+           xiezi = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"").Groups[1].Value;
+
 
         }
 		public void run_new()
 		{
 			try
 			{
-				string url = "https://xw7sbct9v6-2.algolianet.com/1/indexes/products/query?x-algolia-agent=Algolia%20for%20JavaScript%20(4.8.4)%3B%20Browser";
-				string postData = "{\"params\":\"query=" + this.textBox1.Text.Trim() + "&facets=*&filters=\"}";
-				string ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
-				string input = this.PostUrl(url, postData, ua);
+				//getxie();
+
+			
 				
-				string xiezi = Regex.Match(input, "\"url\":\"([\\s\\S]*?)\"").Groups[1].Value;
-				//MessageBox.Show(match.Groups[1].Value);
-				getsizeHtml(xiezi);
-				string html = Request_new(xiezi) ;
+                sizejson = Regex.Match(sizejson, @"\\""variants\\""([\s\S]*?)\}\]\}\}\]").Groups[1].Value;
+
+                textBox3.Text = sizejson;
+
+                string html = Request_new(xiezi) ;
 				
 				//html =Regex.Match(html, @"variants([\s\S]*?)minimumBid").Groups[1].Value;
 
@@ -432,15 +447,27 @@ namespace stockx网站价格
 		// Token: 0x06000009 RID: 9 RVA: 0x00002A3C File Offset: 0x00000C3C
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			
-			method.SetFeatures(11000);
-			//webBrowser1.ScriptErrorsSuppressed = true;
-			
-			this.gethuilv();
+            webView21.NavigationCompleted += WebView2_DocumentLoaded;
+
+
+            this.gethuilv();
 		}
 
-		// Token: 0x0600000A RID: 10 RVA: 0x00002A48 File Offset: 0x00000C48
-		private void button1_Click(object sender, EventArgs e)
+        private async void WebView2_DocumentLoaded(object sender, EventArgs e)
+        {
+            try
+            {
+                string sourceCode = await webView21.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML");
+				sizejson = sourceCode;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"获取网页源码时出错: {ex.Message}");
+            }
+        }
+
+        // Token: 0x0600000A RID: 10 RVA: 0x00002A48 File Offset: 0x00000C48
+        private void button1_Click(object sender, EventArgs e)
 		{
 			
             if (DateTime.Now > Convert.ToDateTime("2025-09-11"))
@@ -564,8 +591,13 @@ namespace stockx网站价格
 
         private void button3_Click(object sender, EventArgs e)
         {
+            getxie();
 
-			webBrowser1.Navigate("https://stockx.com/zh-cn/nike-kobe-5-protro-chaos");
+
+            webView21.Source = new Uri("https://stockx.com/zh-cn/"+xiezi);
+           
+			
+			
         }
 
       

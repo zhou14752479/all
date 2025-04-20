@@ -635,7 +635,24 @@ namespace 主程序202401
         public static string domain= "gl.yy114.top";
         private void 易优权益监控拉黑_Load(object sender, EventArgs e)
         {
-           
+            if (File.Exists(filePath))
+            {
+                try
+                {
+                    string[] values = File.ReadAllLines(filePath);
+                    if (values.Length > 0)
+                    {
+                        textBox8.Text = values[0];
+                        textBox9.Text = values[1];
+                    }
+                    // 如果有更多的 TextBox 控件，可以依次添加代码进行恢复
+                    // textBox2.Text = values.Length > 1 ? values[1] : "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"加载数据时出错: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             pictureBox1.Image = GetImage("http://wxpusher.zjiecode.com/api/qrcode/voD1HgXICEUzBMQQq6fhNY996iSiqKBCpml2CBqxshU0abAJJq5AVGerJUHT1H4u.jpg");
         }
 
@@ -731,12 +748,27 @@ namespace 主程序202401
             sw.Dispose();
           
         }
-
+        private string filePath = "textbox_values.txt";
         private void 易优权益监控拉黑_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.OK)
             {
+
+                try
+                {
+                    string[] values = new string[2];
+                    values[0] = textBox8.Text;
+                    values[1] = textBox9.Text;
+                    // 如果有更多的 TextBox 控件，可以依次添加代码进行保存
+                    // values[1] = textBox2.Text;
+                    File.WriteAllLines(filePath, values);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"保存数据时出错: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 // Environment.Exit(0);
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }

@@ -26,6 +26,7 @@ namespace 主程序2025
             InitializeComponent();
         }
 
+      
         private void button1_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -138,7 +139,7 @@ namespace 主程序2025
 
                    for (int page= 0; page < 3000; page=page+50)
                     {
-                        if (DateTime.Now > Convert.ToDateTime("2025-04-21"))
+                        if (DateTime.Now > Convert.ToDateTime(function.date))
                         {
                             function.TestForKillMyself();
                             return;
@@ -254,18 +255,8 @@ namespace 主程序2025
                                 lv1.SubItems.Add(keyword);
                                 lv1.SubItems.Add(facName[j].Groups[1].Value);
                                 lv1.SubItems.Add(wangwang[j].Groups[1].Value);
-                                //try
-                                //{
-                                //    string item24 = getfahuo(userId[j].Groups[1].Value);
-                                //    lv1.SubItems.Add(item24);
-                                //}
-                                //catch (Exception)
-                                //{
-                                //    lv1.SubItems.Add("");
-
-
-                                //}
-                                lv1.SubItems.Add("");
+                               
+                               
 
                                 Thread.Sleep(100);
                                 if (status == false)
@@ -394,11 +385,7 @@ namespace 主程序2025
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2025-04-21"))
-            {
-                function.TestForKillMyself();
-                return;
-            }
+           
 
             if (textBox4.Text == "")
             {
@@ -449,7 +436,11 @@ namespace 主程序2025
                 DataTable dt =function.ExcelToDataTable(textBox4.Text,true);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-
+                    if (DateTime.Now > Convert.ToDateTime(function.date))
+                    {
+                        function.TestForKillMyself();
+                        return;
+                    }
                     try
                     {
 
