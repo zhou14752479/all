@@ -196,6 +196,45 @@ namespace win007
 
         }
 
+        /// <summary>
+        /// 插入数据库
+        /// </summary>
+        public bool insertdata_yarang(string id, string data1, string data2, string data3, string data4, string data5, string data6)
+        {
+            try
+            {
+                string sql = "INSERT INTO data_yarang(id,data1,data2,data3,data4,data5,data6)VALUES('" + id + "','" + data1 + "'," +
+                    "'" + data2+ "'," +
+                     "'" + data3+ "'," +
+                      "'" + data4 + "'," +
+                       "'" + data5 + "'," +
+
+                    "'" + data6 + "')";
+
+                SQLiteConnection mycon = new SQLiteConnection("Data Source=" + path);
+                mycon.Open();
+
+                SQLiteCommand cmd = new SQLiteCommand(sql, mycon);
+
+                int status = cmd.ExecuteNonQuery();  //执行sql语句
+                if (status > 0)
+                {
+                    return true;
+
+                }
+
+                mycon.Close();
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                //MessageBox.Show(ex.ToString());
+                return false;
+            }
+
+        }
+
 
         /// <summary>
         /// 执行SQL

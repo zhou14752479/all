@@ -578,8 +578,8 @@ namespace win007
         public void getdata()
         {
 
-            string startdate = "2019-06-23";
-            string enddate = "2024-08-01";
+            string startdate = "2018-01-01";
+            string enddate = "2025-01-01";
             for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate);dt=dt.AddDays(1))
             {
                 try
@@ -862,9 +862,127 @@ namespace win007
             MessageBox.Show("完成");
         }
         Thread thread;
-       
 
-        
+
+
+        public void getdata_yarang()
+        {
+
+            string startdate = "2018-01-01";
+            string enddate = "2025-01-01";
+            for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate); dt = dt.AddDays(1))
+            {
+                try
+                {
+                    string url = "http://bf.titan007.com/football/Over_" + dt.ToString("yyyyMMdd") + ".htm";
+                    label7.Text = dt.ToString("yyyyMMdd");
+
+                    string html = method.GetUrl(url, "gb2312");
+                    MatchCollection trs = Regex.Matches(html, @"<tr height=18([\s\S]*?)</tr>");
+
+
+                    //循环比赛
+                    for (int i = 0; i < trs.Count; i++)
+                    {
+
+                        if (trs[i].Groups[1].Value.Contains("display: none"))
+                        {
+                            // label7.Text = "不显示，跳过..";
+                            continue;
+                        }
+                        string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
+                       
+                        if (id.Trim() == "")
+                        {
+                            continue;
+                        }
+
+                        string aurl = "https://vip.titan007.com/changeDetail/handicap.aspx?id="+id+"&companyID=3&l=0";
+                        string ahtml = method.GetUrl(aurl, "gb2312");
+
+                        
+                        MatchCollection trss= Regex.Matches(ahtml, @"<TR align=center([\s\S]*?)</TR>");
+
+
+                        List<string>  gun_list = new List<string>();
+                        List<string> ji_list = new List<string>();
+                        List<string> zao_list = new List<string>();
+
+                       
+                        for (int j = 0; j < trss.Count; j++)
+                        {
+                            string data = "";
+                            string trhtml = trss[j].Groups[1].Value;
+                          
+                            MatchCollection a = Regex.Matches(trhtml, @"<B>([\s\S]*?)</B>");
+                         string  rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
+                            string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;
+                            if (a.Count==2)
+                            {
+                                data = a[0].Groups[1].Value + ","+rang+ ","+a[1].Groups[1].Value+ ","+time;
+                            }
+
+                           
+                            if (trhtml.Contains("早"))
+                            {
+                                zao_list.Add(data); 
+                            }
+
+                            if (trhtml.Contains("即"))
+                            {
+                                ji_list.Add(data);
+                            }
+
+                            if (trhtml.Contains("滚") && !trhtml.Contains("封"))
+                            {
+                                gun_list.Add(data);
+                            }
+                        }
+
+
+                        string data1 = "";
+                        string data2 = "";
+                        string data3 = "";
+                        string data4 = "";
+                        string data5 = "";
+                        string data6 = "";
+
+                        if(zao_list.Count>1)
+                        {
+                            data2= zao_list[0];
+                            data1 = zao_list[zao_list.Count - 1];
+                        }
+                         
+                        if(ji_list.Count>1)
+                        {
+                            data4 = ji_list[0];
+                            data3= ji_list[ji_list.Count - 1];
+                        }
+
+                        if (gun_list.Count > 1)
+                        {
+                            data6= gun_list[0];
+                             data5= gun_list[gun_list.Count - 1];
+                        }
+
+                        fc.insertdata_yarang(id, data1, data2, data3, data4, data5, data6);
+
+
+
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    //MessageBox.Show(ex.ToString());
+                }
+            }
+
+            MessageBox.Show("完成");
+        }
+
 
         private void 清空查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -909,7 +1027,7 @@ namespace win007
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(getdata);
+                thread = new Thread(getdata_yarang);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
