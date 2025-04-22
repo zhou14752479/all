@@ -16,5 +16,10 @@ namespace 旺旺发消息
         {
             InitializeComponent();
         }
+
+        private void 旺旺发消息_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

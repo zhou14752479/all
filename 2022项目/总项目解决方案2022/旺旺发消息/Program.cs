@@ -16,7 +16,7 @@ namespace 旺旺发消息
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new 旺旺发消息());
         }
     }
 }

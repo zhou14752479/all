@@ -592,58 +592,58 @@ namespace win007
 
                 }).Start();
 
-                new System.Threading.Thread((System.Threading.ThreadStart)delegate {
+                //new System.Threading.Thread((System.Threading.ThreadStart)delegate {
 
-                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[1])
-                    {
-                        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[1])
-                    {
-                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[3])
-                    {
-                        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[3])
-                    {
-                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
-                    }
-
-
-
-                    if (getminmaxvalue(2, 1) == dic[9])
-                    {
-                        sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[7])
-                    {
-                        sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox);
-                    }
+                //    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                //    {
+                //        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                //    {
+                //        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                //    {
+                //        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                //    {
+                //        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox);
+                //    }
 
 
 
-                    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[1])
-                    {
-                        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[1])
-                    {
-                        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[3])
-                    {
-                        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
-                    }
-                    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[3])
-                    {
-                        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
-                    }
+                //    if (getminmaxvalue(2, 1) == dic[9])
+                //    {
+                //        sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[7])
+                //    {
+                //        sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox);
+                //    }
 
 
 
-                }).Start();
+                //    if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                //    {
+                //        sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                //    {
+                //        sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                //    {
+                //        sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox);
+                //    }
+                //    else if (getminmaxvalue(2, 1) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                //    {
+                //        sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox);
+                //    }
+
+
+
+                //}).Start();
 
 
 
@@ -732,31 +732,31 @@ namespace win007
 
                
 
-                if (getminmaxvalue(1, 1) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
-                }
-                else if (getminmaxvalue(1, 1) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
+                //if (getminmaxvalue(1, 1) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
+                //}
+                //else if (getminmaxvalue(1, 1) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule4_txtbox_2);
 
-                }
+                //}
 
 
               
 
-                sancirun(t, dic[2], t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule5_txtbox_2);
+                //sancirun(t, dic[2], t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule5_txtbox_2);
 
             
-                if (getminmaxvalue(1, 3) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
-                }
-                else if (getminmaxvalue(1, 3) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
+                //if (getminmaxvalue(1, 3) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
+                //}
+                //else if (getminmaxvalue(1, 3) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, dic[8], t, dic[13], rule6_txtbox_2);
 
-                }
+                //}
 
               
 
@@ -834,60 +834,60 @@ namespace win007
 
                
 
-                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
-                }
-                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
+                //if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
+                //}
+                //else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
 
-                }
+                //}
 
-                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
-                }
-                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
+                //else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 1) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule4_txtbox_3);
+                //}
+                //else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 1) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule4_txtbox_3);
 
-                }
+                //}
 
-
-               
-
-                if (getminmaxvalue(2, 3) == dic[9])
-                {
-                    sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox_3);
-                }
-                else if (getminmaxvalue(2, 3) == dic[7])
-                {
-                    sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox_3);
-
-                }
 
                
 
-                if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
-                }
-                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[1])
-                {
-                    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+                //if (getminmaxvalue(2, 3) == dic[9])
+                //{
+                //    sancirun(t, dic[2], t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule5_txtbox_3);
+                //}
+                //else if (getminmaxvalue(2, 3) == dic[7])
+                //{
+                //    sancirun(t, dic[2], t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule5_txtbox_3);
 
-                }
+                //}
 
-                else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
-                }
-                else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[3])
-                {
-                    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+               
 
-                }
+                //if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
+                //}
+                //else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[1])
+                //{
+                //    sancirun(dic[1], t, t, dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+
+                //}
+
+                //else if (getminmaxvalue(2, 3) == dic[9] && getminmaxvalue(1, 3) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, dic[9], t, t, dic[13], rule6_txtbox_3);
+                //}
+                //else if (getminmaxvalue(2, 3) == dic[7] && getminmaxvalue(1, 3) == dic[3])
+                //{
+                //    sancirun(t, t, dic[3], dic[4], textBox5.Text, t, t, dic[7], dic[13], rule6_txtbox_3);
+
+                //}
 
               
 
@@ -1081,31 +1081,31 @@ namespace win007
 
                
 
-                if (getminmaxvalue(1, 1) == dic[1])
-                {
-                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
-                }
-                else if (getminmaxvalue(1, 1) == dic[3])
-                {
-                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
+                //if (getminmaxvalue(1, 1) == dic[1])
+                //{
+                //    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
+                //}
+                //else if (getminmaxvalue(1, 1) == dic[3])
+                //{
+                //    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule4_txtbox_5);
 
-                }
+                //}
 
               
 
-                if (getminmaxvalue(1, 3) == dic[1])
-                {
-                    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
-                }
-                else if (getminmaxvalue(1, 3) == dic[3])
-                {
-                    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
+                //if (getminmaxvalue(1, 3) == dic[1])
+                //{
+                //    sancirun(dic[1], dic[2], t, dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
+                //}
+                //else if (getminmaxvalue(1, 3) == dic[3])
+                //{
+                //    sancirun(t, dic[2], dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule5_txtbox_5);
 
-                }
+                //}
 
              
 
-                sancirun(dic[1], t, dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule6_txtbox_5);
+                //sancirun(dic[1], t, dic[3], dic[4], textBox5.Text, t, t, t, dic[13], rule6_txtbox_5);
 
                 //算法五结束
 
@@ -1460,28 +1460,28 @@ namespace win007
                 }
                 if (t7 != null)
                 {
-                    string[] text4 = t4.Text.Split(new string[] { "  " }, StringSplitOptions.None);
-                    string[] text5 = t5.Text.Split(new string[] { "  " }, StringSplitOptions.None);
-                    string[] text6 = t6.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    //string[] text4 = t4.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    //string[] text5 = t5.Text.Split(new string[] { "  " }, StringSplitOptions.None);
+                    //string[] text6 = t6.Text.Split(new string[] { "  " }, StringSplitOptions.None);
                     string[] text7 = t7.Text.Split(new string[] { "  " }, StringSplitOptions.None);
                     string[] text8 = t8.Text.Split(new string[] { "  " }, StringSplitOptions.None);
                     string[] text9 = t9.Text.Split(new string[] { "  " }, StringSplitOptions.None);
 
 
-                    ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-                    for (int i = 0; i < count; i++)
-                    {
-                        string tong = FindCommonDigits(function.Find3Max(text4[i]), function.Find3Max(text5[i]), function.Find3Max(text6[i]));
-                        if (tong != "")
-                        {
-                            lv2.SubItems.Add(tong);
-                        }
-                        else
-                        {
-                            lv2.SubItems.Add("-");
-                        }
+                    //ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+                    //for (int i = 0; i < count; i++)
+                    //{
+                    //    string tong = FindCommonDigits(function.Find3Max(text4[i]), function.Find3Max(text5[i]), function.Find3Max(text6[i]));
+                    //    if (tong != "")
+                    //    {
+                    //        lv2.SubItems.Add(tong);
+                    //    }
+                    //    else
+                    //    {
+                    //        lv2.SubItems.Add("-");
+                    //    }
 
-                    }
+                    //}
 
                    
                     ListViewItem lv3 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
@@ -1512,9 +1512,9 @@ namespace win007
         public void sanci()
         {
             listView1.Items.Clear();
-            sanhang_jisuan(rule1_txtbox,rule2_txtbox,rule3_txtbox,rule4_txtbox,rule5_txtbox,rule6_txtbox,rule7_txtbox,rule8_txtbox,rule9_txtbox);
-            sanhang_jisuan(rule1_txtbox_2, rule2_txtbox_2,rule3_txtbox_2,rule4_txtbox_2,rule5_txtbox_2,rule6_txtbox_2,rule7_txtbox_2,rule8_txtbox_2,rule9_txtbox_2);
-            sanhang_jisuan(rule1_txtbox_3, rule2_txtbox_3, rule3_txtbox_3, rule4_txtbox_3, rule5_txtbox_3, rule6_txtbox_3, rule7_txtbox_3, rule8_txtbox_3, rule9_txtbox_3);
+            sanhang_jisuan(rule1_txtbox,rule2_txtbox,rule3_txtbox, null, null, null, rule7_txtbox,rule8_txtbox,rule9_txtbox);
+            sanhang_jisuan(rule1_txtbox_2, rule2_txtbox_2,rule3_txtbox_2,null, null, null ,rule7_txtbox_2,rule8_txtbox_2,rule9_txtbox_2);
+            sanhang_jisuan(rule1_txtbox_3, rule2_txtbox_3, rule3_txtbox_3, null, null, null, rule7_txtbox_3, rule8_txtbox_3, rule9_txtbox_3);
             sanhang_jisuan(rule1_txtbox_4, rule2_txtbox_4, rule3_txtbox_4, null, null, null, null,null,null);
             sanhang_jisuan(rule1_txtbox_5, rule2_txtbox_5, rule3_txtbox_5, null, null, null, null, null, null);
             sanhang_jisuan(rule1_txtbox_6, rule2_txtbox_6, rule3_txtbox_6, null, null, null, null, null, null);
