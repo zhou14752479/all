@@ -95,16 +95,23 @@ namespace 主程序2025
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                 // request.Proxy = null;//防止代理抓包
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36";
-               
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 AliApp(1688/11.56.1) WindVane/8.7.2 A2U/x 1170x2532 x-i18n/zh-CN WK";
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("f-pTraceId: WVNet_WV_6-6-124");
+                headers.Add("bx-v: 2.5.11, 2.5.11");
+                headers.Add("f-refer: wv_h5");
+                headers.Add("Sec-Fetch-Site: same-origin");
+                headers.Add("Sec-Fetch-Dest: empty");
+
                 request.Headers.Add("Cookie", COOKIE);
                 request.Headers.Add("Accept-Encoding", "gzip");
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
-                request.AllowAutoRedirect = true;
+               
+                //request.AllowAutoRedirect = true;
                 request.KeepAlive = true;
                 request.Accept = "*/*";
+                request.Referer = "https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E5%A5%B3%E8%A3%85&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input";
                 request.Timeout = 5000;
-
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
                 if (response.Headers["Content-Encoding"] == "gzip")
                 {
 
@@ -137,11 +144,12 @@ namespace 主程序2025
         #endregion
 
         #region GET请求获取Set-cookie
-        public static string getSetCookie(string url)
+        public static string getSetCookie(string url,string COOKIE)
         {
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);  //创建一个链接
             request.Timeout = 10000;
+            request.Headers.Add("Cookie", COOKIE);
             request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
             request.AllowAutoRedirect = true;
             request.KeepAlive = true;
@@ -276,6 +284,8 @@ namespace 主程序2025
             return result;
         }
         #endregion
+
+
         public static string runpython(string url,string pythonScriptPath)
         {
            

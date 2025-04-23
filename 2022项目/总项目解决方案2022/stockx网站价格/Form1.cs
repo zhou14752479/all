@@ -591,11 +591,9 @@ namespace stockx网站价格
 
         private void button3_Click(object sender, EventArgs e)
         {
-            getxie();
-
-
-            webView21.Source = new Uri("https://stockx.com/zh-cn/"+xiezi);
-           
+           // getxie();
+			//  webView21.Source = new Uri("https://stockx.com/zh-cn/"+xiezi);
+			webView21.Source = new Uri("https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E8%8A%AD%E8%95%BE%E9%9E%8B&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input");
 			
 			
         }

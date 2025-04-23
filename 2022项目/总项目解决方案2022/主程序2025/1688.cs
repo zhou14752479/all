@@ -91,9 +91,11 @@ namespace 主程序2025
         }
 
 
-        string x5sec = "";
-        string tk = "_m_h5_tk=6c93e38ede6a50619ecf3b7910cd09c7_1744691106050; _m_h5_tk_enc=2000b9cdebd836e8a9b3e5b35e6d2cbe; ";
+      
+        string tk = "_m_h5_tk=eac79a56db26690bdfeb63d3f0d94c10_1745413584476; _m_h5_tk_enc=8713b1a1e4cc949a575b11173f54b2a8;";
+        string x5 = "";
         string cookie = "";
+        
         public string chuli(string shuzhi)
         {
             try
@@ -139,6 +141,8 @@ namespace 主程序2025
 
                    for (int page= 0; page < 3000; page=page+50)
                     {
+
+                        cookie = tk + x5;
                         if (DateTime.Now > Convert.ToDateTime(function.date))
                         {
                             function.TestForKillMyself();
@@ -146,7 +150,7 @@ namespace 主程序2025
                         }
 
 
-                        cookie = tk + x5sec;
+                       
                         Thread.Sleep(1000); 
                         string keyword = text[i].Trim();
                         if (keyword.Trim() == "")
@@ -156,7 +160,7 @@ namespace 主程序2025
                         string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
 
-                        string data = "{\"appId\":32517,\"params\":\"{\\\"appName\\\":\\\"findFactoryWap\\\",\\\"pageName\\\":\\\"findFactory\\\",\\\"searchScene\\\":\\\"factoryMTopSearch\\\",\\\"method\\\":\\\"getFactories\\\",\\\"keywords\\\":\\\""+keyword+"\\\",\\\"startIndex\\\":"+page+",\\\"asyncCount\\\":50,\\\"_wvUseWKWebView\\\":\\\"true\\\",\\\"tabCode\\\":\\\"findFactoryTab\\\",\\\"verticalProductFlag\\\":\\\"wapfactory\\\",\\\"_layoutMode_\\\":\\\"noSort\\\",\\\"source\\\":\\\"search_input\\\",\\\"searchBy\\\":\\\"input\\\",\\\"sessionId\\\":\\\"3366512100ee47288cf652b08e0ad0cd\\\"}\"}";
+                        string data = "{\"appId\":32517,\"params\":\"{\\\"appName\\\":\\\"findFactoryWap\\\",\\\"pageName\\\":\\\"findFactory\\\",\\\"searchScene\\\":\\\"factoryMTopSearch\\\",\\\"method\\\":\\\"getFactories\\\",\\\"keywords\\\":\\\""+keyword+"\\\",\\\"startIndex\\\":"+page+ ",\\\"asyncCount\\\":50,\\\"_wvUseWKWebView\\\":\\\"true\\\",\\\"tabCode\\\":\\\"findFactoryTab\\\",\\\"verticalProductFlag\\\":\\\"wapfactory\\\",\\\"_layoutMode_\\\":\\\"noSort\\\",\\\"source\\\":\\\"search_input\\\",\\\"searchBy\\\":\\\"input\\\",\\\"sessionId\\\":\\\"e3e6c641267b479bb8adef265c9df2c2\\\"}\"}";
 
                         string str = token + "&" + time + "&12574478&" + data;
                         string sign = function.Md5_utf8(str);
@@ -167,15 +171,16 @@ namespace 主程序2025
                         label1.Text = "正在查询："+page;
 
                         string html = function.GetUrlWithCookie(url, cookie, "utf-8");
-                       // textBox2.Text = html;
+                      
                         if (html.Contains("令牌过期"))
                         {
 
-                            string cookiestr = function.getSetCookie(url);
+                            string cookiestr = function.getSetCookie(url,cookie);
+                          
                             string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
                             string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
                             tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-
+                           
                            
                             page = page - 50;
                             continue;
@@ -185,24 +190,16 @@ namespace 主程序2025
 
 
 
-                       
-
-                        if (html.Contains("被挤爆啦"))
+                        if (html.Contains("挤爆啦"))
                         {
                             string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
-                           
-                            string caphtml = function.GetUrlWithCookie(capurl, cookie, "utf-8");
-                            string action = Regex.Match(caphtml, @"""action"": ""([\s\S]*?)""").Groups[1].Value;
-                          
-                         
-                          
-                            if (action != "")
-                            {
-                                x5sec = function.getx5(action, capurl);
-                                continue;
-                            }
 
+                            label1.Text = "被挤爆啦";
+                             x5 = function.getx5("captcha", capurl);
+                           
+                            continue;
                         }
+                       
 
 
                         MatchCollection facName = Regex.Matches(html, @"\\""facName\\"":\\""([\s\S]*?)\\""");
@@ -318,14 +315,15 @@ namespace 主程序2025
             if (html.Contains("令牌过期") || html.Contains("令牌为空"))
             {
 
-                string cookiestr = function.getSetCookie(url);
+                string cookiestr = function.getSetCookie(url,cookie);
                 string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
                 string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
                 tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-                cookie = tk + x5sec;
+                cookie = tk;
 
             }
 
+           
           
 
             MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
