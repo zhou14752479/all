@@ -195,8 +195,8 @@ namespace 主程序2025
                             string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
 
                             label1.Text = "被挤爆啦";
-                             x5 = function.getx5("captcha", capurl);
-                           
+                             //x5 = function.getx5("captcha", capurl);
+                            x5 = yzm.getx5(capurl);
                             continue;
                         }
                        
@@ -358,7 +358,8 @@ namespace 主程序2025
 
         private void button5_Click(object sender, EventArgs e)
         {
-          
+          //string x5=  yzm.getx5("https://ditu.amap.com/detail/get/detail");
+          //  MessageBox.Show(x5);
             //MessageBox.Show(getfahuo("b2b-220748602880961213"));
             listView1.Items.Clear();
            

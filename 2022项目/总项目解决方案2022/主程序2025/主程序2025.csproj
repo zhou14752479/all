@@ -79,6 +79,7 @@
     <Compile Include="function.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="yzm.cs" />
     <EmbeddedResource Include="1688.resx">
       <DependentUpon>1688.cs</DependentUpon>
     </EmbeddedResource>
