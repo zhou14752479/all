@@ -105,6 +105,8 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -403,6 +405,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox10);
+            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.textBox7);
             this.tabPage2.Controls.Add(this.button5);
@@ -761,6 +765,23 @@
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(125, 47);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(61, 23);
+            this.textBox10.TabIndex = 68;
+            this.textBox10.Text = "20";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 14);
+            this.label12.TabIndex = 67;
+            this.label12.Text = "运行间隔（秒）";
+            // 
             // 易优权益监控拉黑
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -869,5 +890,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader22;
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.ToolStripMenuItem 添加初始ToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label12;
     }
 }

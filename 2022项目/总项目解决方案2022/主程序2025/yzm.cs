@@ -49,7 +49,7 @@ namespace 主程序2025
                 var config = GetCaptchaConfig(url);
 
                 // 调用外部验证服务
-                var postUrl = "http://39.98.67.180:5555/Getali?id=ceshitoken123";
+                var postUrl = "http://39.98.67.180:5555/Getali?id=468e981f23aed45611ea5ce75c45e50e";
                 var content = new StringContent(config.ToString(), Encoding.UTF8, "application/json");
 
                 var response = httpClient.PostAsync(postUrl, content).Result;
@@ -101,12 +101,12 @@ namespace 主程序2025
                 }
 
                 sbcs++;
-                MessageBox.Show("获取x5sec失败");
+               // MessageBox.Show("获取x5sec失败");
                 return string.Empty;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"发生异常: {ex.Message}");
+                //MessageBox.Show($"发生异常: {ex.Message}");
                 sbcs++;
                 return string.Empty;
             }

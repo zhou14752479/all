@@ -861,6 +861,7 @@ namespace 主程序202401
             }
             
             timer2.Start();
+            timer2.Interval = Convert.ToInt32(textBox10.Text);
             if (thread2 == null || !thread2.IsAlive)
             {
                 thread2 = new Thread(run_tongbu);
@@ -1104,7 +1105,7 @@ namespace 主程序202401
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-          
+            timer2.Interval = Convert.ToInt32(textBox10.Text);
 
             if (thread2== null || !thread2.IsAlive)
             {

@@ -89,23 +89,30 @@ function timestampToTime(timestamp) {
 }
 
 
+
+
+
 function register(username, password,yzm) {
-    
-    var url = `http://${domainhost}/main.aspx?method=register&username=${username}&password=${password}&yzm=${yzm}`;
-    $.get(url, function (data) {
-
-        if (data.status == "1") {
-            layer.msg("注册成功，即将跳转登录页面......")
+   
+    $.ajax({
+    url: `http://${domainhost}/main.aspx?method=register&username=${username}&password=${password}&yzm=${yzm}`,
+    method: 'POST',
+    dataType: 'json', // 明确指定返回数据类型为JSON
+    success: function (data) {
+       if (data.status == "1") {
+          
+            layer.msg("注册成功，即将跳转登录......")
             setTimeout("location.href='login.html'", 2000);
-
-
-
         }
         else {
-            layer.msg("注册失败请联系客服")
+            layer.msg("验证码错误")
 
         }
-    })
+    },
+    error: function (error) {
+        console.error('请求出错:', error);
+    }
+});
 }
 
 
@@ -120,7 +127,7 @@ function sendyzm(mobile) {
 
         }
         else {
-            layer.msg("注册失败请联系客服")
+            
 
         }
     })
