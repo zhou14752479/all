@@ -406,7 +406,16 @@ namespace 主程序2025
 
                             label1.Text = "正在查询：" + page;
 
-                            string html = function.GetUrlWithCookie(url, cookie, "utf-8");
+                            string html = "";
+                            if(checkBox1.Checked==true)
+                            {
+                                html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+                            }
+                            else
+                            {
+                                html = function.GetUrlWithCookie(url, cookie, "utf-8");
+                            }
+                           
 
 
                             if (html.Contains("令牌过期"))
@@ -539,8 +548,6 @@ namespace 主程序2025
         }
 
         #endregion
-
-
 
 
         #region 手机端分类
@@ -739,6 +746,7 @@ namespace 主程序2025
         }
 
         #endregion
+
         public string getfahuo(string memberid)
         {
 

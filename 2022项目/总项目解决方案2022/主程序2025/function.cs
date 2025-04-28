@@ -225,6 +225,76 @@ namespace 主程序2025
 
 
 
+        #region GET请求带COOKIE
+        /// <summary>
+        /// GET请求带COOKIE
+        /// </summary>
+        /// <param name="Url">网址</param>
+        /// <returns></returns>
+        public static string GetUrlWithCookie_ip(string Url, string COOKIE, string ip, string port, string username, string password)
+        {
+            string html = "";
+
+            try
+            {
+
+                string charset = "utf-8";
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
+
+                // request.Proxy = null;//防止代理抓包
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 AliApp(1688/11.56.1) WindVane/8.7.2 A2U/x 1170x2532 x-i18n/zh-CN WK";
+                WebHeaderCollection headers = request.Headers;
+                headers.Add("f-pTraceId: WVNet_WV_6-6-124");
+                headers.Add("bx-v: 2.5.11, 2.5.11");
+                headers.Add("f-refer: wv_h5");
+                headers.Add("Sec-Fetch-Site: same-origin");
+                headers.Add("Sec-Fetch-Dest: empty");
+                // 设置代理 <用户名密码>
+                WebProxy proxy = new WebProxy();
+                proxy.Address = new Uri(String.Format("http://{0}:{1}", ip, port));
+                proxy.Credentials = new NetworkCredential(username, password);
+                request.Proxy = proxy;
+                request.Headers.Add("Cookie", COOKIE);
+                request.Headers.Add("Accept-Encoding", "gzip");
+
+                //request.AllowAutoRedirect = true;
+                request.KeepAlive = true;
+                request.Accept = "*/*";
+                request.Referer = "https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E5%A5%B3%E8%A3%85&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input";
+                request.Timeout = 5000;
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;  //获取反馈
+                if (response.Headers["Content-Encoding"] == "gzip")
+                {
+
+                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);//解压缩
+                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset)); //reader.ReadToEnd() 表示取得网页的源码流 需要引用 using  IO
+                    html = reader.ReadToEnd();
+                    reader.Close();
+                }
+
+                response.Close();
+                return html;
+
+
+
+            }
+            catch (System.Exception ex)
+            {
+
+                return ex.ToString();
+
+            }
+
+        }
+        #endregion
+
 
         #region POST代理
         public static string PostUrl_daili(string url, string postData, string COOKIE,string ip,string port,string username,string password)
