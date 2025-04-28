@@ -119,10 +119,10 @@ namespace 主程序2025
 
         List<string> list = new List<string>();
 
-        #region 手机端主程序
+        #region 手机端搜索
 
 
-        public void run_mobile()
+        public void run_mobile_sou()
         {
 
           
@@ -305,29 +305,47 @@ namespace 主程序2025
         #endregion
 
 
-        // List<string> catelist= new List<string>();  
+        List<string> catelist = new List<string>();
 
-        string cate = "";
+
         public void getcate(string keyword)
         {
+            catelist.Clear();
             string url = "https://search.1688.com/service/fengxiangbiaoSmartQueryService?appName=findFactoryWap&sessionId=&pageName=findFactory&key="+keyword;
             string html = function.GetUrlWithCookie(url, cookie, "utf-8");
-            //MatchCollection cates = Regex.Matches(html, @"""isPmFac""([\s\S]*?)hasOwner");
-            //for (int i = 0; i < cates.Count; i++)
+            MatchCollection cates1 = Regex.Matches(html, @"""firstNode"":""([\s\S]*?)""");
+            MatchCollection cates2 = Regex.Matches(html, @"""secondNode"":""([\s\S]*?)""");
+            MatchCollection cates3 = Regex.Matches(html, @"""leafNode"":""([\s\S]*?)""");
+
+            for (int i = 0; i < cates1.Count; i++)
+            {
+                if (!catelist.Contains(cates1[i].Groups[1].Value))
+                {
+                    catelist.Add(cates1[i].Groups[1].Value);
+                }
+            }
+
+            //for (int i = 0; i < cates2.Count; i++)
             //{
-            //    if (!catelist.Contains(cates[i].Groups[1].Value))
+            //    if (!catelist.Contains(cates2[i].Groups[1].Value))
             //    {
-            //        catelist.Add(cates[i].Groups[1].Value);   
+            //        catelist.Add(cates2[i].Groups[1].Value);
             //    }
             //}
 
-            cate = Regex.Match(html, @"""firstNode"":""([\s\S]*?)""").Groups[1].Value;
+            for (int i = 0; i < cates3.Count; i++)
+            {
+                if (!catelist.Contains(cates3[i].Groups[1].Value))
+                {
+                    catelist.Add(cates3[i].Groups[1].Value);
+                }
+            }
         }
 
 
 
 
-        #region 电脑端主程序
+        #region 电脑端分类
 
 
         public void run_pc()
@@ -351,149 +369,159 @@ namespace 主程序2025
                     string keyword = text[i].Trim();
                     getcate(keyword);
 
-                    for (int page = 1; page < 51; page++)
+                  
+                    for (int a = 0; a < catelist.Count; a++)
                     {
-
-                        cookie = tk + x5;
-                        if (DateTime.Now > Convert.ToDateTime(function.date))
-                        {
-                            function.TestForKillMyself();
-                            return;
-                        }
-
-
-                        
+                         string cate=catelist[a].ToString();
                       
-                       
-                        if (keyword.Trim() == "")
-                            continue;
-                        string time = function.GetTimeStamp();
 
-                        string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-                      
-                        string data = "{\"fcGroup\":\"cbu-seller-fc\",\"fcName\":\"factory-recommend-service-fn\",\"serviceName\":\"tpFacRecommendService\",\"params\":\"{\\\"pageNo\\\":"+page+ ",\\\"pageSize\\\":100,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate="+cate+"\\\",\\\"params\\\":{\\\"pageNo\\\":" + page+ ",\\\"pageSize\\\":100,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate="+cate+"\\\"}}\"}";
-                        
-                        string str = token + "&" + time + "&12574478&" + data;
-                        string sign = function.Md5_utf8(str);
-
-                        string url = "https://h5api.m.1688.com/h5/mtop.mbox.fc.common.gateway/2.0/?jsv=2.7.2&appKey=12574478&t="+time+"&sign="+sign+"&v=2.0&type=jsonp&dataType=jsonp&timeout=5000&api=mtop.mbox.fc.common.gateway&callback=mtopjsonp17&data=" + System.Web.HttpUtility.UrlEncode(data);
-
-
-                        label1.Text = "正在查询：" + page;
-
-                        string html = function.GetUrlWithCookie(url, cookie, "utf-8");
-
-                      
-                        if (html.Contains("令牌过期"))
+                        for (int page = 1; page < 51; page++)
                         {
 
-                            string cookiestr = function.getSetCookie(url, "");
-
-                            string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                            string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                            tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-
-
-                            page = page - 1;
-                            continue;
-
-
-                        }
+                         
+                            cookie = tk + x5;
+                            if (DateTime.Now > Convert.ToDateTime(function.date))
+                            {
+                                function.TestForKillMyself();
+                                return;
+                            }
 
 
 
-                        if (html.Contains("挤爆啦"))
-                        {
-                           
-                            label1.Text = "被挤爆啦";
-                           
-                            continue;
-                        }
-
-                    
-  
-
-                        MatchCollection ahtmls = Regex.Matches(html, @"uiLabel([\s\S]*?)hasOwner");
-
-                        if (ahtmls.Count == 0)
-                            break;
-                        for (int j = 0; j < ahtmls.Count; j++)
-                        {
 
 
-                            try
+                            if (keyword.Trim() == "")
+                                continue;
+                            string time = function.GetTimeStamp();
+
+                            string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+
+                            string data = "{\"fcGroup\":\"cbu-seller-fc\",\"fcName\":\"factory-recommend-service-fn\",\"serviceName\":\"tpFacRecommendService\",\"params\":\"{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":50,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\",\\\"params\\\":{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":100,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\"}}\"}";
+
+                            string str = token + "&" + time + "&12574478&" + data;
+                            string sign = function.Md5_utf8(str);
+
+                            string url = "https://h5api.m.1688.com/h5/mtop.mbox.fc.common.gateway/2.0/?jsv=2.7.2&appKey=12574478&t=" + time + "&sign=" + sign + "&v=2.0&type=jsonp&dataType=jsonp&timeout=5000&api=mtop.mbox.fc.common.gateway&callback=mtopjsonp17&data=" + System.Web.HttpUtility.UrlEncode(data);
+
+
+                            label1.Text = "正在查询：" + page;
+
+                            string html = function.GetUrlWithCookie(url, cookie, "utf-8");
+
+
+                            if (html.Contains("令牌过期"))
                             {
 
+                                string cookiestr = function.getSetCookie(url, "");
 
-                                //if (list.Contains(facName[j].Groups[1].Value))
-                                //{
-                                //    label1.Text = "重复，跳过：" + facName[j].Groups[1].Value;
-                                //    continue;
-                                //}
-                                //list.Add(facName[j].Groups[1].Value);
+                                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                                tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
 
 
-
-                                string facName = Regex.Match(ahtmls[j].Groups[1].Value, @"""facName"":""([\s\S]*?)""").Groups[1].Value;
-                                string wangwang = Regex.Match(ahtmls[j].Groups[1].Value, @"""imNick"":""([\s\S]*?)""").Groups[1].Value;
-                                string userId = Regex.Match(ahtmls[j].Groups[1].Value, @"wirelessUrlWithItems([\s\S]*?)memberId=([\s\S]*?)&").Groups[2].Value;
-                                string protectionRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""protectionRate"":""([\s\S]*?)""").Groups[1].Value;//履约率
-                                string repeatRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""repeatRate"":""([\s\S]*?)""").Groups[1].Value;//回头率
-                                string wwResponseRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""wwResp30dRate"":""([\s\S]*?)""").Groups[1].Value;//响应率
-
-
-
-                                if (protectionRate != "")
-                                {
-
-                                   
-                                    double arate = Convert.ToDouble(protectionRate.Replace("%", ""))/100;
-                                    if (arate > Convert.ToDouble(textBox3.Text))
-                                    {
-                                        label1.Text = "履约率大于，跳过：" + facName + "履约率：" + protectionRate;
-                                        continue;
-                                    }
-
-                                }
-
-                                if(protectionRate=="")
-                                {
-                                    protectionRate = "-1";
-                                }
-
-                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
-
-                                lv1.SubItems.Add("https://sale.1688.com/factory/card.html?__existtitle__=1&__removesafearea__=1&memberId=" + userId);
-                                lv1.SubItems.Add(protectionRate);
-                                lv1.SubItems.Add(repeatRate+"%");
-                                lv1.SubItems.Add(wwResponseRate+"%");
-                                lv1.SubItems.Add(keyword);
-                                lv1.SubItems.Add(facName);
-                                lv1.SubItems.Add(wangwang);
-
-
-
-                                Thread.Sleep(500);
-                                if (status == false)
-                                    return;
-                                if (listView1.Items.Count > 2)
-                                {
-                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                                }
+                                page = page - 1;
+                                continue;
 
 
                             }
-                            catch (Exception ex)
+
+
+
+                            if (html.Contains("挤爆啦"))
                             {
-                                MessageBox.Show(ex.ToString());
+
+                                label1.Text = "被挤爆啦";
+
                                 continue;
                             }
+
+
+
+
+                            MatchCollection ahtmls = Regex.Matches(html, @"uiLabel([\s\S]*?)hasOwner");
+                            MatchCollection facNames = Regex.Matches(html, @"""facName"":""([\s\S]*?)""");
+                            MatchCollection imNicks = Regex.Matches(html, @"""imNick"":""([\s\S]*?)""");
+                            if (ahtmls.Count == 0)
+                                break;
+                            for (int j = 0; j < ahtmls.Count; j++)
+                            {
+
+
+                                try
+                                {
+
+
+
+
+
+
+                                    //string facName = Regex.Match(ahtmls[j].Groups[1].Value, @"""facName"":""([\s\S]*?)""").Groups[1].Value;
+                                    //string wangwang = Regex.Match(ahtmls[j].Groups[1].Value, @"""imNick"":""([\s\S]*?)""").Groups[1].Value;
+
+
+                                    string userId = Regex.Match(ahtmls[j].Groups[1].Value, @"wirelessUrlWithItems([\s\S]*?)memberId=([\s\S]*?)&").Groups[2].Value;
+                                    string protectionRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""protectionRate"":""([\s\S]*?)""").Groups[1].Value;//履约率
+                                    string repeatRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""repeatRate"":""([\s\S]*?)""").Groups[1].Value;//回头率
+                                    string wwResponseRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""wwResp30dRate"":""([\s\S]*?)""").Groups[1].Value;//响应率
+
+                                    if (list.Contains(userId))
+                                    {
+                                        label1.Text = DateTime.Now.ToString() + "：重复，跳过：" + userId;
+                                        continue;
+                                    }
+                                    list.Add(userId);
+
+                                    if (protectionRate != "")
+                                    {
+
+
+                                        double arate = Convert.ToDouble(protectionRate.Replace("%", "")) / 100;
+                                        if (arate > Convert.ToDouble(textBox3.Text))
+                                        {
+                                            label1.Text = "履约率大于，跳过：" + "履约率：" + protectionRate;
+                                            continue;
+                                        }
+
+                                    }
+
+                                    if (protectionRate == "")
+                                    {
+                                        protectionRate = "-1";
+                                    }
+
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
+
+                                    lv1.SubItems.Add("https://sale.1688.com/factory/card.html?__existtitle__=1&__removesafearea__=1&memberId=" + userId);
+                                    lv1.SubItems.Add(protectionRate);
+                                    lv1.SubItems.Add(repeatRate + "%");
+                                    lv1.SubItems.Add(wwResponseRate + "%");
+                                    lv1.SubItems.Add(keyword);
+                                    lv1.SubItems.Add(facNames[j].Groups[1].Value);
+                                    lv1.SubItems.Add(imNicks[j].Groups[1].Value);
+
+
+
+                                    Thread.Sleep(500);
+                                    if (status == false)
+                                        return;
+                                    if (listView1.Items.Count > 2)
+                                    {
+                                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                    }
+
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    // MessageBox.Show(ex.ToString());
+                                    continue;
+                                }
+                            }
+
+
+                            Thread.Sleep(2000);
                         }
-
-
-                        Thread.Sleep(2000);
                     }
-
 
 
 
@@ -513,6 +541,204 @@ namespace 主程序2025
         #endregion
 
 
+
+
+        #region 手机端分类
+
+
+        public void run_mobile_cate()
+        {
+
+
+            try
+            {
+
+
+
+                StreamReader sr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
+                //一次性读取完 
+                string texts = sr.ReadToEnd();
+                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+
+
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    string keyword = text[i].Trim();
+                    getcate(keyword);
+
+
+                    for (int a = 0; a < catelist.Count; a++)
+                    {
+                        string cate = catelist[a].ToString();
+
+
+                        for (int page = 1; page < 51; page++)
+                        {
+
+
+                            cookie = tk + x5;
+                            if (DateTime.Now > Convert.ToDateTime(function.date))
+                            {
+                                function.TestForKillMyself();
+                                return;
+                            }
+
+
+
+
+
+                            if (keyword.Trim() == "")
+                                continue;
+                            string time = function.GetTimeStamp();
+
+                            string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+
+                            string data = "{\"cid\":\"TpFacRecommendService:TpFacRecommendService\",\"methodName\":\"execute\",\"params\":\"{\\\"trafficSource\\\":\\\"wireless_index_recommend\\\",\\\"pageNo\\\":"+page+",\\\"pageSize\\\":100,\\\"showType\\\":\\\"transverse\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"leafCate="+cate+"\\\"}\"}";
+                            string str = token + "&" + time + "&12574478&" + data;
+                            string sign = function.Md5_utf8(str);
+
+                            string url = "https://h5api.m.1688.com/h5/mtop.taobao.widgetservice.getjsoncomponent/1.0/?jsv=2.6.1&appKey=12574478&t="+time+"&sign="+sign+"&v=1.0&type=jsonp&isSec=0&timeout=5000&api=mtop.taobao.widgetService.getJsonComponent&dataType=jsonp&callback=mtopjsonp12&data=" + System.Web.HttpUtility.UrlEncode(data);
+
+
+                            label1.Text = "正在查询：" + page;
+
+                            string html = function.GetUrlWithCookie(url, cookie, "utf-8");
+
+
+                            if (html.Contains("令牌过期"))
+                            {
+
+                                string cookiestr = function.getSetCookie(url, "");
+
+                                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                                tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+
+
+                                page = page - 1;
+                                continue;
+
+
+                            }
+
+
+
+                            if (html.Contains("挤爆啦"))
+                            {
+
+                                label1.Text = "被挤爆啦";
+
+                                continue;
+                            }
+
+
+
+
+                            MatchCollection ahtmls = Regex.Matches(html, @"""isPmFac""([\s\S]*?)hasOwner");
+                            MatchCollection facNames = Regex.Matches(html, @"""facName"":""([\s\S]*?)""");
+                            MatchCollection imNicks = Regex.Matches(html, @"""imNick"":""([\s\S]*?)""");
+
+                           
+                            
+                            if (ahtmls.Count == 0)
+                                break;
+                            for (int j = 0; j < ahtmls.Count; j++)
+                            {
+
+
+                                try
+                                {
+
+
+
+
+
+
+                                    //string facName = Regex.Match(ahtmls[j].Groups[1].Value, @"""facName"":""([\s\S]*?)""").Groups[1].Value;
+                                    //string wangwang = Regex.Match(ahtmls[j].Groups[1].Value, @"""imNick"":""([\s\S]*?)""").Groups[1].Value;
+
+
+                                    string userId = Regex.Match(ahtmls[j].Groups[1].Value, @"wirelessUrlWithItems([\s\S]*?)memberId=([\s\S]*?)&").Groups[2].Value;
+                                    string protectionRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""protectionRate"":""([\s\S]*?)""").Groups[1].Value;//履约率
+                                    string repeatRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""repeatRate"":""([\s\S]*?)""").Groups[1].Value;//回头率
+                                    string wwResponseRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""wwResp30dRate"":""([\s\S]*?)""").Groups[1].Value;//响应率
+
+                                    if (list.Contains(userId))
+                                    {
+                                        label1.Text = DateTime.Now.ToString() + "：重复，跳过：" + userId;
+                                        continue;
+                                    }
+                                    list.Add(userId);
+
+                                    if (protectionRate != "")
+                                    {
+
+
+                                        double arate = Convert.ToDouble(protectionRate.Replace("%", "")) / 100;
+                                        if (arate > Convert.ToDouble(textBox3.Text))
+                                        {
+                                            label1.Text = "履约率大于，跳过：" + "履约率：" + protectionRate;
+                                            continue;
+                                        }
+
+                                    }
+
+                                    if (protectionRate == "")
+                                    {
+                                        protectionRate = "-1";
+                                    }
+
+                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
+
+                                    lv1.SubItems.Add("https://sale.1688.com/factory/card.html?__existtitle__=1&__removesafearea__=1&memberId=" + userId);
+                                    lv1.SubItems.Add(protectionRate);
+                                    lv1.SubItems.Add(repeatRate + "%");
+                                    lv1.SubItems.Add(wwResponseRate + "%");
+                                    lv1.SubItems.Add(keyword);
+                                    lv1.SubItems.Add(facNames[j].Groups[1].Value);
+                                    lv1.SubItems.Add(imNicks[j].Groups[1].Value);
+
+
+
+                                    Thread.Sleep(500);
+                                    if (status == false)
+                                        return;
+                                    if (listView1.Items.Count > 2)
+                                    {
+                                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                    }
+
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    // MessageBox.Show(ex.ToString());
+                                    continue;
+                                }
+                            }
+
+
+                            Thread.Sleep(2000);
+                        }
+                    }
+
+
+
+                }
+
+                MessageBox.Show("完成");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+
+            }
+
+        }
+
+        #endregion
         public string getfahuo(string memberid)
         {
 
