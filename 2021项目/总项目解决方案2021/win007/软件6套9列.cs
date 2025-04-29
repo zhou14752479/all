@@ -1174,7 +1174,13 @@ namespace win007
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             getshishidata(comboBox1.Text.Trim());
-           
+
+            string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
+            if (id == "")
+            {
+                id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
+            }
+           textBox1.Text= function.getdata_yarang(id);
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)

@@ -204,8 +204,8 @@ namespace win007
             try
             {
                 string sql = "INSERT INTO data_yarang(id,data1,data2,data3,data4,data5,data6)VALUES('" + id + "','" + data1 + "'," +
-                    "'" + data2+ "'," +
-                     "'" + data3+ "'," +
+                    "'" + data2 + "'," +
+                     "'" + data3 + "'," +
                       "'" + data4 + "'," +
                        "'" + data5 + "'," +
 
@@ -640,7 +640,7 @@ namespace win007
         #endregion
 
 
-        
+
 
 
         public static double FindDifference(double num1, double num2, double num3, double num4, double num5)
@@ -695,9 +695,9 @@ namespace win007
             // 判断三个值是否全部相等
             if (a == b && b == c)
                 return 333;
-            if (a == b && a> c)
+            if (a == b && a > c)
                 return 332;
-            if (b == c&& b > a)
+            if (b == c && b > a)
                 return 233;
             if (a == c && a > b)
                 return 323;
@@ -763,7 +763,7 @@ namespace win007
 
         public static string gongsi5chazhi(string id, string com1, string com2, string com3, string com4, string com5)
         {
-           
+
 
 
             string data1 = function.getshishidata(id, com1);
@@ -792,7 +792,7 @@ namespace win007
                 }
                 if (text2.Length > 1)
                 {
-                   b0 = Convert.ToDouble(text2[1]);
+                    b0 = Convert.ToDouble(text2[1]);
                     b1 = Convert.ToDouble(text2[2]);
                     b2 = Convert.ToDouble(text2[3]);
 
@@ -818,7 +818,7 @@ namespace win007
                     e2 = Convert.ToDouble(text5[3]);
 
                 }
-               
+
                 string value1 = function.FindDifference(a0, b0, c0, d0, e0).ToString("F2");
                 string value2 = function.FindDifference(a1, b1, c1, d1, e1).ToString("F2");
                 string value3 = function.FindDifference(a2, b2, c2, d2, e2).ToString("F2");
@@ -831,6 +831,113 @@ namespace win007
                 MessageBox.Show(ex.ToString());
                 return "";
             }
+        }
+
+
+
+
+
+        /// <summary>
+        /// 获取指定比赛，皇冠亚让数据
+        /// </summary>
+        /// <param name="matchid"></param>
+        public static string getdata_yarang(string matchid)
+        {
+
+
+            try
+            {
+
+                string aurl = "https://vip.titan007.com/changeDetail/handicap.aspx?id=" + matchid + "&companyID=3&l=0";
+                string ahtml = method.GetUrl(aurl, "gb2312");
+
+                MatchCollection trss = Regex.Matches(ahtml, @"<TR align=center([\s\S]*?)</TR>");
+
+
+                List<string> gun_list = new List<string>();
+                List<string> ji_list = new List<string>();
+                List<string> zao_list = new List<string>();
+
+
+                for (int j = 0; j < trss.Count; j++)
+                {
+                    string data = "";
+                    string trhtml = trss[j].Groups[1].Value;
+
+                    MatchCollection a = Regex.Matches(trhtml, @"<B>([\s\S]*?)</B>");
+                    string rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
+                   
+                    //客户不要时间
+                    //string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;
+                    if (a.Count == 2)
+                    {
+                        data = a[0].Groups[1].Value + "," + rang + "," + a[1].Groups[1].Value ;
+                    }
+
+
+                    if (trhtml.Contains("早"))
+                    {
+                        zao_list.Add(data);
+                    }
+
+                    if (trhtml.Contains("即"))
+                    {
+                        ji_list.Add(data);
+                    }
+
+                    if (trhtml.Contains("滚") && !trhtml.Contains("封"))
+                    {
+                        gun_list.Add(data);
+                    }
+                }
+
+
+                string data1 = "";
+                string data2 = "";
+                string data3 = "";
+                string data4 = "";
+                string data5 = "";
+                string data6 = "";
+
+                if (zao_list.Count > 1)
+                {
+                    data2 = zao_list[0];
+                    data1 = zao_list[zao_list.Count - 1];
+                }
+
+                if (ji_list.Count > 1)
+                {
+                    data4 = ji_list[0];
+                    data3 = ji_list[ji_list.Count - 1];
+                }
+
+                if (gun_list.Count > 1)
+                {
+                    data6 = gun_list[0];
+                    data5 = gun_list[gun_list.Count - 1];
+                }
+
+
+                StringBuilder sb = new StringBuilder();
+
+
+                sb.AppendLine(data4);//使用data4替换历史盘口
+                sb.AppendLine(data3);
+                sb.AppendLine(data1);
+                return sb.ToString();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                return "";
+                //MessageBox.Show(ex.ToString());
+            }
+
+
+
         }
 
 

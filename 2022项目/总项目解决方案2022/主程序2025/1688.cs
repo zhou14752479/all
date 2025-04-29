@@ -372,8 +372,8 @@ namespace 主程序2025
                   
                     for (int a = 0; a < catelist.Count; a++)
                     {
-                         string cate=catelist[a].ToString();
-                      
+                        string cate=catelist[a].ToString();
+                       
 
                         for (int page = 1; page < 51; page++)
                         {
@@ -447,7 +447,7 @@ namespace 主程序2025
 
 
 
-                            MatchCollection ahtmls = Regex.Matches(html, @"uiLabel([\s\S]*?)hasOwner");
+                            MatchCollection ahtmls = Regex.Matches(html, @"sellWellItemCnt([\s\S]*?)hasOwner");
                             MatchCollection facNames = Regex.Matches(html, @"""facName"":""([\s\S]*?)""");
                             MatchCollection imNicks = Regex.Matches(html, @"""imNick"":""([\s\S]*?)""");
                             if (ahtmls.Count == 0)
