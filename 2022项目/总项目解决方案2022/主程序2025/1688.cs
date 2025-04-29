@@ -369,6 +369,7 @@ namespace 主程序2025
                     string keyword = text[i].Trim();
                     getcate(keyword);
 
+                    function.log("执行第"+i+"关键字："+keyword);
                   
                     for (int a = 0; a < catelist.Count; a++)
                     {
@@ -378,7 +379,8 @@ namespace 主程序2025
                         for (int page = 1; page < 51; page++)
                         {
 
-                         
+                            function.log("执行第" + page + "页码：" + keyword);
+                            function.log("识别成功");
                             cookie = tk + x5;
                             if (DateTime.Now > Convert.ToDateTime(function.date))
                             {
@@ -409,6 +411,7 @@ namespace 主程序2025
                             string html = "";
                             if(checkBox1.Checked==true)
                             {
+                                function.log("使用代理："+ textBox5.Text+ textBox6.Text);
                                 html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
                             }
                             else
@@ -420,17 +423,15 @@ namespace 主程序2025
 
                             if (html.Contains("令牌过期"))
                             {
-
+                                function.log("令牌过期");
                                 string cookiestr = function.getSetCookie(url, "");
 
                                 string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
                                 string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
                                 tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
 
-
-                                page = page - 1;
                                 continue;
-
+                               
 
                             }
 
@@ -438,20 +439,25 @@ namespace 主程序2025
 
                             if (html.Contains("挤爆啦"))
                             {
-
+                                function.log("挤爆啦");
                                 label1.Text = "被挤爆啦";
 
                                 continue;
                             }
-
-
+                          
 
 
                             MatchCollection ahtmls = Regex.Matches(html, @"sellWellItemCnt([\s\S]*?)hasOwner");
                             MatchCollection facNames = Regex.Matches(html, @"""facName"":""([\s\S]*?)""");
                             MatchCollection imNicks = Regex.Matches(html, @"""imNick"":""([\s\S]*?)""");
+
+                           
                             if (ahtmls.Count == 0)
+                            {
+                                function.log("获取到0条数据,跳转下次执行");
                                 break;
+                            }
+                               
                             for (int j = 0; j < ahtmls.Count; j++)
                             {
 
@@ -475,6 +481,7 @@ namespace 主程序2025
 
                                     if (list.Contains(userId))
                                     {
+                                        function.log("数据重复"+userId);
                                         label1.Text = DateTime.Now.ToString() + "：重复，跳过：" + userId;
                                         continue;
                                     }
@@ -522,6 +529,7 @@ namespace 主程序2025
                                 }
                                 catch (Exception ex)
                                 {
+                                    function.log("异常"+ex.ToString());
                                     // MessageBox.Show(ex.ToString());
                                     continue;
                                 }
@@ -799,8 +807,13 @@ namespace 主程序2025
 
         private void _1688_Load(object sender, EventArgs e)
         {
-
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt"))
+            {
+                File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt");
+            }
         }
+
+
 
        
         private void button6_Click_1(object sender, EventArgs e)

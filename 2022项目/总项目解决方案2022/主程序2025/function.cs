@@ -296,6 +296,20 @@ namespace 主程序2025
         #endregion
 
 
+
+        public static void log(string data)
+        {
+            
+
+            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            sw.WriteLine(DateTime.Now.ToString()+"："+data);
+            sw.Close();
+            fs1.Close();
+            sw.Dispose();
+
+        }
+
         #region POST代理
         public static string PostUrl_daili(string url, string postData, string COOKIE,string ip,string port,string username,string password)
         {
