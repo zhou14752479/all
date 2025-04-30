@@ -51,6 +51,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -136,7 +137,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(53, 21);
             this.textBox3.TabIndex = 45;
-            this.textBox3.Text = "0.9";
+            this.textBox3.Text = "1";
             // 
             // label2
             // 
@@ -280,6 +281,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.listView2);
             this.tabPage2.Controls.Add(this.label5);
@@ -296,6 +298,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "       筛选           ";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(109, 224);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(528, 259);
+            this.textBox2.TabIndex = 243;
             // 
             // groupBox1
             // 
@@ -330,7 +340,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(126, 21);
             this.textBox7.TabIndex = 245;
-            this.textBox7.Text = "t14494368393045";
+            this.textBox7.Text = "t14592463900967";
             // 
             // label8
             // 
@@ -348,7 +358,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(84, 21);
             this.textBox8.TabIndex = 243;
-            this.textBox8.Text = "wfyfhhzu";
+            this.textBox8.Text = "9gq2gu3p";
             // 
             // label6
             // 
@@ -384,7 +394,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(126, 21);
             this.textBox5.TabIndex = 0;
-            this.textBox5.Text = "f327.kdltps.com";
+            this.textBox5.Text = "u848.kdltps.com";
             // 
             // listView2
             // 
@@ -594,5 +604,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

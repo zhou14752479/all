@@ -94,7 +94,7 @@ namespace 主程序2025
 
 
       
-        string tk = "_m_h5_tk=eac79a56db26690bdfeb63d3f0d94c10_1745413584476; _m_h5_tk_enc=8713b1a1e4cc949a575b11173f54b2a8;";
+        string tk = "_m_h5_tk=027ab8360e3c115042978d4dd68b5689_1745999827223; _m_h5_tk_enc=b58f5211e8fd2e61ac93fe8225759863;";
         string x5 = "";
         string cookie = "";
         
@@ -333,13 +333,13 @@ namespace 主程序2025
             //    }
             //}
 
-            for (int i = 0; i < cates3.Count; i++)
-            {
-                if (!catelist.Contains(cates3[i].Groups[1].Value))
-                {
-                    catelist.Add(cates3[i].Groups[1].Value);
-                }
-            }
+            //for (int i = 0; i < cates3.Count; i++)
+            //{
+            //    if (!catelist.Contains(cates3[i].Groups[1].Value))
+            //    {
+            //        catelist.Add(cates3[i].Groups[1].Value);
+            //    }
+            //}
         }
 
 
@@ -376,7 +376,7 @@ namespace 主程序2025
                         string cate=catelist[a].ToString();
                        
 
-                        for (int page = 1; page < 51; page++)
+                        for (int page = 0; page < 51; page++)
                         {
 
                             function.log("执行第" + page + "页码：" + keyword);
@@ -398,7 +398,7 @@ namespace 主程序2025
 
                             string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
-                            string data = "{\"fcGroup\":\"cbu-seller-fc\",\"fcName\":\"factory-recommend-service-fn\",\"serviceName\":\"tpFacRecommendService\",\"params\":\"{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":50,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\",\\\"params\\\":{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":100,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\"}}\"}";
+                            string data = "{\"fcGroup\":\"cbu-seller-fc\",\"fcName\":\"factory-recommend-service-fn\",\"serviceName\":\"tpFacRecommendService\",\"params\":\"{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":10,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\",\\\"params\\\":{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":10,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\"}}\"}";
 
                             string str = token + "&" + time + "&12574478&" + data;
                             string sign = function.Md5_utf8(str);
@@ -758,20 +758,20 @@ namespace 主程序2025
         public string getfahuo(string memberid)
         {
 
+            cookie = tk;
             string time = function.GetTimeStamp();
 
             string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
 
-            string data = "{\"componentKey\":\"Wp_pc_common_offerlist\",\"params\":\"{\\\"memberId\\\":\\\""+memberid+"\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"tradenumdown\\\",\\\"sellerRecommendFilter\\\":false,\\\"mixFilter\\\":false,\\\"tradenumFilter\\\":false,\\\"quantityBegin\\\":null,\\\"pageNum\\\":1,\\\"count\\\":50}}\"}";
+            string data = "{\"componentKey\":\"Wp_pc_common_offerlist\",\"params\":\"{\\\"memberId\\\":\\\""+memberid+"\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"wangpu_score\\\",\\\"sellerRecommendFilter\\\":false,\\\"mixFilter\\\":false,\\\"tradenumFilter\\\":false,\\\"quantityBegin\\\":null,\\\"pageNum\\\":1,\\\"count\\\":50}}\"}";
             string str = token + "&" + time + "&12574478&" + data;
             string sign = function.Md5_utf8(str);
 
             string url = "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.alibaba.alisite.cbu.server.ModuleAsyncService&v=1.0&type=json&valueType=string&dataType=jsonp&timeout=10000";
-
             string postdata = System.Web.HttpUtility.UrlEncode(data);
             string html = function.PostUrl_daili(url, "data=" + postdata, cookie,textBox5.Text.Trim(),textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
-            //textBox2.Text = html;
+            textBox2.Text = html;
             if (html.Contains("令牌过期") || html.Contains("令牌为空"))
             {
 
