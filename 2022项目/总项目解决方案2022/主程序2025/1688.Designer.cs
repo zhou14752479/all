@@ -51,7 +51,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -78,6 +77,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -237,7 +237,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "C:\\Users\\sqwxb\\Desktop\\导入.txt";
+            this.textBox1.Text = "C:\\Users\\Administrator\\Desktop\\导入.txt";
             // 
             // button1
             // 
@@ -281,7 +281,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.listView2);
             this.tabPage2.Controls.Add(this.label5);
@@ -298,14 +298,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "       筛选           ";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(109, 224);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(528, 259);
-            this.textBox2.TabIndex = 243;
             // 
             // groupBox1
             // 
@@ -491,6 +483,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(267, 21);
             this.textBox4.TabIndex = 232;
+            this.textBox4.Text = "C:\\Users\\Administrator\\Desktop\\111.xlsx";
             // 
             // button7
             // 
@@ -531,6 +524,17 @@
             this.button10.Text = "清空";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("宋体", 10F);
+            this.checkBox2.Location = new System.Drawing.Point(294, 71);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(82, 18);
+            this.checkBox2.TabIndex = 244;
+            this.checkBox2.Text = "使用代理";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // _1688
             // 
@@ -604,6 +608,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

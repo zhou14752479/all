@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CsharpHttpHelper;
 using Microsoft.Win32;
@@ -491,7 +492,10 @@ namespace stockx网站价格
           
             this.button1.Enabled = true;
 			this.listView1.Items.Clear();
-		}
+
+
+             ExecuteJavaScriptCommand("copy(Ee)");
+        }
 
 
 		
@@ -591,10 +595,14 @@ namespace stockx网站价格
 
         private void button3_Click(object sender, EventArgs e)
         {
-           // getxie();
+			// getxie();
 			//  webView21.Source = new Uri("https://stockx.com/zh-cn/"+xiezi);
-			webView21.Source = new Uri("https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E8%8A%AD%E8%95%BE%E9%9E%8B&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input");
-			
+
+
+
+
+			//webView21.Source = new Uri("https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E8%8A%AD%E8%95%BE%E9%9E%8B&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input");
+			webView21.Source = new Uri("https://ditu.amap.com/detail/get/detail");
 			
         }
 
@@ -613,5 +621,24 @@ namespace stockx网站价格
 				e.Cancel = true;//点取消的代码 
 			}
 		}
+
+
+
+        private void ExecuteJavaScriptCommand(string command)
+        {
+            try
+            {
+                // 执行 JavaScript 指令
+               webView21.CoreWebView2.ExecuteScriptAsync(command);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"执行 JavaScript 指令时出错: {ex.Message}");
+            }
+        }
+
+
+
+
     }
 }

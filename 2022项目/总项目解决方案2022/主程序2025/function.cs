@@ -26,7 +26,7 @@ namespace 主程序2025
     internal class function
     {
 
-        public static string date = "2025-05-20";
+        public static string date = "2025-05-30";
 
         #region  程序关闭删除自身
         public static void TestForKillMyself()
@@ -107,7 +107,7 @@ namespace 主程序2025
                 request.Headers.Add("Accept-Encoding", "gzip");
                
                 //request.AllowAutoRedirect = true;
-                request.KeepAlive = true;
+                //request.KeepAlive = true;
                 request.Accept = "*/*";
                 request.Referer = "https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E5%A5%B3%E8%A3%85&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input";
                 request.Timeout = 5000;
@@ -301,12 +301,12 @@ namespace 主程序2025
         {
             
 
-            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            sw.WriteLine(DateTime.Now.ToString()+"："+data);
-            sw.Close();
-            fs1.Close();
-            sw.Dispose();
+            //FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+            //StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            //sw.WriteLine(DateTime.Now.ToString()+"："+data);
+            //sw.Close();
+            //fs1.Close();
+            //sw.Dispose();
 
         }
 

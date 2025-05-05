@@ -70,6 +70,11 @@ namespace 高德地图
             {
                 sendyzm(mobile);
             }
+
+            if (method == "getusers")
+            {
+                getusers();
+            }
         }
 
         #region POST默认请求
@@ -605,6 +610,39 @@ namespace 高德地图
     }
         #endregion
 
+
+        #region 获取所有用户
+        public void getusers()
+        {
+            MySqlConnection mycon = new MySqlConnection(constr);
+            mycon.Open();
+          
+            string query = "SELECT * FROM users  ORDER BY time desc";
+
+
+            MySqlCommand command = new MySqlCommand(query, mycon);
+            MySqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                string json = JsonConvert.SerializeObject(dataTable);
+
+                Response.Write(json);
+                mycon.Close();
+                reader.Close();
+
+            }
+            else
+            {
+
+                mycon.Close();
+                reader.Close();
+
+            }
+
+        }
+        #endregion
 
     }
 }

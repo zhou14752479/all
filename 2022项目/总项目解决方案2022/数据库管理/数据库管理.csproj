@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C1F8D019-C589-452D-9490-62B8E54AE4E3}</ProjectGuid>
+    <ProjectGuid>{1A3AB000-DC5C-4B68-AB58-DEBAD31A261C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>主程序2025</RootNamespace>
-    <AssemblyName>主程序2025</AssemblyName>
+    <RootNamespace>数据库管理</RootNamespace>
+    <AssemblyName>数据库管理</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,32 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="myDLL">
-      <HintPath>..\..\..\..\源码\DLL备份\myDLL.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\源码\DLL备份\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\myDLL\bin\Debug\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\myDLL\bin\Debug\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\myDLL\bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,26 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1688.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="1688.Designer.cs">
-      <DependentUpon>1688.cs</DependentUpon>
-    </Compile>
-    <Compile Include="function.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="yzm.cs" />
-    <Compile Include="yzm_yuanma.cs" />
-    <Compile Include="轨迹反推.cs">
+    <Compile Include="用户管理.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="轨迹反推.Designer.cs">
-      <DependentUpon>轨迹反推.cs</DependentUpon>
+    <Compile Include="用户管理.Designer.cs">
+      <DependentUpon>用户管理.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="1688.resx">
-      <DependentUpon>1688.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -99,10 +63,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="轨迹反推.resx">
-      <DependentUpon>轨迹反推.cs</DependentUpon>
+    <EmbeddedResource Include="用户管理.resx">
+      <DependentUpon>用户管理.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
