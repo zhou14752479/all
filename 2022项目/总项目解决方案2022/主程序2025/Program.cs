@@ -16,7 +16,7 @@ namespace 主程序2025
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new _1688());
+            Application.Run(new 轨迹反推());
         }
     }
 }

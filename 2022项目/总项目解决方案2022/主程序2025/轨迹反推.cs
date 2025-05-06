@@ -23,51 +23,94 @@ namespace 主程序2025
 
         Thread thread;
 
-        public void run()
+
+
+        class MouseTrajectoryGenerator
         {
+            private Random random = new Random();
 
-            string xxxx = richTextBox1.Text.Trim(); // 把你的JSON字符串放在这里
-            JArray Qo = JArray.Parse(xxxx);
-
-            JArray trackList = (JArray)Qo[140];
-            List<object> li = new List<object>();
-            bool hhh = false;
-
-            foreach (JToken track in trackList)
+            public List<List<object>> GenerateTrajectory()
             {
-                int t4 = track[9].Value<int>();   // time
-                int t17 = track[10].Value<int>();  // x
-                int t5 = track[12].Value<int>();   // y
-                int t14 = track[7].Value<int>();  // down
+                List<List<object>> trajectory = new List<List<object>>();
+                int time = 0;
+                int x = random.Next(800, 2500);
+                int y = random.Next(300, 1200);
 
-                int ro = t4;
-                int ce = ro % 7;
-                int X = Qo[115][ce].Value<int>();
-                int pageX = t17 ^ X;
-                int pageY = t5 ^ X;
+                // 起始阶段，缓慢移动
+                for (int i = 0; i < random.Next(3, 6); i++)
+                {
+                    time += random.Next(20, 60);
+                    x += GetRandomDelta(5);
+                    y += GetRandomDelta(5);
+                    trajectory.Add(new List<object> { "mousemove", time, x, y, 0 });
+                }
 
-                if (t14 == 1)
+                // 中间阶段，加速移动
+                for (int i = 0; i < random.Next(8, 15); i++)
                 {
-                    if (hhh)
-                    {
-                        li.Add(new object[] { "mousemove", pageX, pageY, ro, 1 });
-                    }
-                    else
-                    {
-                        li.Add(new object[] { "mousemove", pageX, pageY, ro, 0 });
-                    }
+                    time += random.Next(10, 40);
+                    x += GetRandomDelta(15);
+                    y += GetRandomDelta(15);
+                    trajectory.Add(new List<object> { "mousemove", time, x, y, 0 });
                 }
-                else if (t14 == 4)
+
+                // 接近目标阶段，减速微调
+                for (int i = 0; i < random.Next(5, 8); i++)
                 {
-                    hhh = true;
-                    li.Add(new object[] { "mousedown", pageX, pageY, ro, 1 });
+                    time += random.Next(20, 50);
+                    x += GetRandomDelta(3);
+                    y += GetRandomDelta(3);
+                    trajectory.Add(new List<object> { "mousemove", time, x, y, 0 });
                 }
+
+                // 按下事件，添加停顿
+                time += random.Next(50, 120);
+                trajectory.Add(new List<object> { "mousedown", time, x, y, 1 });
+
+                // 拖动阶段，速度相对均匀，有小波动
+                int dragDirX = GetDragDirection();
+                int dragDirY = GetDragDirection();
+                for (int i = 0; i < random.Next(15, 25); i++)
+                {
+                    time += random.Next(15, 30);
+                    x += dragDirX + GetRandomDelta(2);
+                    y += dragDirY + GetRandomDelta(2);
+                    trajectory.Add(new List<object> { "mousemove", time, x, y, 1 });
+                }
+
+                // 释放事件，添加停顿
+                time += random.Next(30, 70);
+                trajectory.Add(new List<object> { "mouseup", time, x, y, 0 });
+
+                return trajectory;
             }
 
-            string json = JsonConvert.SerializeObject(li);
-            json = "["+json+"]";
-           richTextBox1.Text = json;
-            System.IO.File.WriteAllText("ptguiji231.js", json);
+            private int GetRandomDelta(int max)
+            {
+                return random.Next(-max, max + 1);
+            }
+
+            private int GetDragDirection()
+            {
+                int[] directions = { -5, -3, -1, 1, 3, 5 };
+                return directions[random.Next(directions.Length)];
+            }
+        }
+
+        //参照这个帮我生成一个模拟人工的轨迹
+        public void run()
+        {
+            MouseTrajectoryGenerator generator = new MouseTrajectoryGenerator();
+            List<List<object>> trajectory = generator.GenerateTrajectory();
+
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.None
+            };
+
+            string json = JsonConvert.SerializeObject(new List<List<List<object>>> { trajectory }, settings);
+            textBox1.Text = json;
+
         }
         private void button1_Click(object sender, EventArgs e)
         {
