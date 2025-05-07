@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static 主程序2025.guiji;
+using System.Text.Json;
 
 namespace 主程序2025
 {
@@ -25,92 +27,150 @@ namespace 主程序2025
 
 
 
-        class MouseMovement
-        {
-            private Random random;
-            private const int maxPixelOffset = 3;
-            private const double minSpeedFactor = 0.8;
-            private const double maxSpeedFactor = 1.2;
-            private const int minClickDuration = 50;
-            private const int maxClickDuration = 150;
 
-            public MouseMovement()
+        class TrajectoryGenerator
+        {
+            private static readonly Random random = new Random();
+
+            // 生成高斯噪声
+            private static double GenerateGaussianNoise(double mean, double stdDev)
             {
-                random = new Random();
+                double u1 = 1.0 - random.NextDouble();
+                double u2 = 1.0 - random.NextDouble();
+                double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
+                return mean + stdDev * randStdNormal;
             }
 
-            public List<List<object>> GenerateNewTrajectory(List<JArray> originalTrajectory)
+            // 生成泊松分布的时间间隔
+            private static int GeneratePoissonInterval(double lambda)
             {
-                List<List<object>> newTrajectory = new List<List<object>>();
-                int prevTime = 0;
-
-                foreach (var point in originalTrajectory)
+                double L = Math.Exp(-lambda);
+                int k = 0;
+                double p = 1.0;
+                do
                 {
-                    try
+                    k++;
+                    p *= random.NextDouble();
+                } while (p > L);
+                return k - 1;
+            }
+
+            // 贝塞尔曲线计算
+            private static (int x, int y) BezierPoint((int x, int y) p0, (int x, int y) p1, (int x, int y) p2, double t)
+            {
+                double u = 1 - t;
+                double tt = t * t;
+                double uu = u * u;
+                int x = (int)(uu * p0.x + 2 * u * t * p1.x + tt * p2.x);
+                int y = (int)(uu * p0.y + 2 * u * t * p1.y + tt * p2.y);
+                return (x, y);
+            }
+
+            public static List<List<object>> GenerateNewTrajectory(List<JsonElement> originalTrajectory)
+            {
+                var newTrajectory = new List<List<object>>();
+                int prevTimestamp = originalTrajectory[0].EnumerateArray().ElementAt(1).GetInt32();
+
+                for (int i = 0; i < originalTrajectory.Count - 2; i++)
+                {
+                    var currentPoint = originalTrajectory[i];
+                    var nextPoint = originalTrajectory[i + 1];
+                    var nextNextPoint = originalTrajectory[i + 2];
+
+                    int currentX = currentPoint.EnumerateArray().ElementAt(2).GetInt32();
+                    int currentY = currentPoint.EnumerateArray().ElementAt(3).GetInt32();
+                    int nextX = nextPoint.EnumerateArray().ElementAt(2).GetInt32();
+                    int nextY = nextPoint.EnumerateArray().ElementAt(3).GetInt32();
+                    int nextNextX = nextNextPoint.EnumerateArray().ElementAt(2).GetInt32();
+                    int nextNextY = nextNextPoint.EnumerateArray().ElementAt(3).GetInt32();
+
+                    int currentTimestamp = currentPoint.EnumerateArray().ElementAt(1).GetInt32();
+                    int nextTimestamp = nextPoint.EnumerateArray().ElementAt(1).GetInt32();
+                    int timeDifference = nextTimestamp - currentTimestamp;
+
+                    // 贝塞尔曲线控制点
+                    var p0 = (currentX, currentY);
+                    var p1 = ((currentX + nextX) / 2, (currentY + nextY) / 2);
+                    var p2 = (nextX, nextY);
+
+                    int steps = Math.Max(1, timeDifference / 10);
+                    for (int j = 0; j < steps; j++)
                     {
-                        string action = point[0].ToString();
-                        int time = Convert.ToInt32(point[1]);
-                        int x = Convert.ToInt32(point[2]);
-                        int y = Convert.ToInt32(point[3]);
-                        int buttonState = Convert.ToInt32(point[4]);
+                        double t = (double)j / steps;
+                        var bezierPoint = BezierPoint(p0, p1, p2, t);
 
-                        // 生成随机的像素偏移
-                        int offsetX = random.Next(-maxPixelOffset, maxPixelOffset + 1);
-                        int offsetY = random.Next(-maxPixelOffset, maxPixelOffset + 1);
+                        // 添加高斯噪声
+                        int noisyX = (int)(bezierPoint.x + GenerateGaussianNoise(0, 5));
+                        int noisyY = (int)(bezierPoint.y + GenerateGaussianNoise(0, 5));
 
-                        // 调整时间戳
-                        double speedFactor = minSpeedFactor + (maxSpeedFactor - minSpeedFactor) * random.NextDouble();
-                        int newTime = (int)(time * speedFactor);
-                        if (newTrajectory.Count > 0)
-                        {
-                            newTime += random.Next(-10, 11);
-                            if (newTime < prevTime)
-                            {
-                                newTime = prevTime;
-                            }
-                        }
-                        prevTime = newTime;
+                        // 泊松分布时间间隔
+                        int poissonInterval = GeneratePoissonInterval(1.0);
+                        prevTimestamp += poissonInterval;
 
-                        if (action == "mousemove")
-                        {
-                            newTrajectory.Add(new List<object> { action, newTime, x + offsetX, y + offsetY, buttonState });
-                        }
-                        else if (action == "mousedown")
-                        {
-                            newTrajectory.Add(new List<object> { action, newTime, x + offsetX, y + offsetY, buttonState });
-                        }
-                        else if (action == "mouseup")
-                        {
-                            int clickDuration = random.Next(minClickDuration, maxClickDuration + 1);
-                            newTrajectory.Add(new List<object> { action, newTime + clickDuration, x + offsetX, y + offsetY, buttonState });
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error processing point {point}: {ex.Message}");
+                        var newPoint = new List<object>
+                {
+                    currentPoint.EnumerateArray().ElementAt(0).GetString(),
+                    prevTimestamp,
+                    noisyX,
+                    noisyY,
+                    currentPoint.EnumerateArray().ElementAt(4).GetInt32()
+                };
+                        newTrajectory.Add(newPoint);
                     }
                 }
+
+                // 添加最后一个点
+                var lastPoint = originalTrajectory[1];
+                var lastNewPoint = new List<object>
+        {
+            lastPoint.EnumerateArray().ElementAt(0).GetString(),
+            lastPoint.EnumerateArray().ElementAt(1).GetInt32(),
+            lastPoint.EnumerateArray().ElementAt(2).GetInt32(),
+            lastPoint.EnumerateArray().ElementAt(3).GetInt32(),
+            lastPoint.EnumerateArray().ElementAt(4).GetInt32()
+        };
+                newTrajectory.Add(lastNewPoint);
 
                 return newTrajectory;
             }
         }
 
+
+
+
         //参照这个帮我生成一个模拟人工的轨迹
         public void run()
         {
-            string originalTrajectoryStr = @"[
-[[""mousemove"", 31, 1038, 337, 0], [""mousemove"", 60, 1062, 342, 0], [""mousemove"", 105, 1168, 358, 0], [""mousemove"", 140, 1272, 380, 0], [""mousemove"", 146, 1270, 394, 0], [""mousemove"", 180, 1363, 410, 0], [""mousemove"", 188, 1378, 575, 0], [""mousemove"", 220, 1388, 590, 0], [""mousemove"", 260, 1643, 689, 0], [""mousemove"", 310, 2078, 729, 0], [""mousemove"", 356, 2195, 884, 0], [""mousemove"", 363, 2202, 1058, 0], [""mousemove"", 368, 2225, 1076, 0], [""mousemove"", 411, 2423, 1143, 0], [""mousemove"", 430, 2465, 1154, 0], [""mousemove"", 438, 2478, 1173, 0], [""mousemove"", 1120, 2112, 5728, 0], [""mousemove"", 1160, 1102, 6758, 0], [""mousemove"", 1200, 1048, 6808, 0], [""mousemove"", 1230, 848, 6804, 0], [""mousemove"", 1236, 838, 6818, 0], [""mousemove"", 1250, 828, 6833, 0], [""mousemove"", 1260, 823, 6843, 0], [""mousemove"", 1270, 814, 6853, 0], [""mousemove"", 1280, 823, 7000, 0], [""mousemove"", 1320, 828, 7148, 0], [""mousemove"", 1330, 838, 7160, 0], [""mousemove"", 1340, 853, 7170, 0], [""mousemove"", 1350, 868, 7188, 0], [""mousemove"", 1395, 908, 7274, 0], [""mousemove"", 1410, 968, 7288, 0], [""mousemove"", 1450, 1072, 7319, 0], [""mousemove"", 1480, 1102, 7368, 0], [""mousemove"", 1500, 1118, 7428, 0], [""mousemove"", 1510, 1118, 7443, 0], [""mousemove"", 1520, 1118, 7453, 0], [""mousemove"", 1530, 1118, 7463, 0], [""mousemove"", 1540, 1118, 7473, 0], [""mousemove"", 1550, 1118, 7483, 0], [""mousemove"", 1560, 1118, 7503, 0], [""mousemove"", 1570, 1118, 7513, 0], [""mousemove"", 1580, 1118, 7528, 0], [""mousemove"", 1590, 1118, 7538, 0], [""mousemove"", 1600, 1118, 7563, 0], [""mousemove"", 1610, 1118, 7593, 0], [""mousemove"", 1620, 1118, 7628, 0], [""mousemove"", 1630, 1123, 7638, 0], [""mousemove"", 1670, 1128, 7748, 0], [""mousemove"", 1690, 1133, 7798, 0], [""mousemove"", 1700, 1133, 7823, 0], [""mousemove"", 1710, 1133, 7843, 0], [""mousemove"", 1720, 1133, 7853, 0], [""mousemove"", 1770, 1133, 8038, 0], [""mousemove"", 1780, 1138, 8043, 0], [""mousemove"", 1800, 1136, 8201, 0], [""mousedown"", 1825, 1136, 8201, 1], [""mousemove"", 1835, 1143, 8308, 1], [""mousemove"", 1845, 1148, 8313, 1], [""mousemove"", 1855, 1158, 8323, 1], [""mousemove"", 1865, 1173, 8333, 1], [""mousemove"", 1875, 1188, 8343, 1], [""mousemove"", 1885, 1203, 8348, 1], [""mousemove"", 1895, 1233, 8383, 1], [""mousemove"", 1905, 1288, 8393, 1], [""mousemove"", 1915, 1308, 8403, 1], [""mousemove"", 1925, 1323, 8413, 1], [""mousemove"", 1935, 1328, 8423, 1], [""mousemove"", 1945, 1338, 8433, 1], [""mousemove"", 1955, 1343, 8443, 1], [""mousemove"", 1965, 1348, 8548, 1], [""mousemove"", 1985, 1346, 8771, 1], [""mouseup"", 2015, 1346, 8771, 0]]
-]";
 
-            List<JArray> originalTrajectory = JsonConvert.DeserializeObject<List<JArray>>(originalTrajectoryStr);
+            string inputJson = @"[
+            [
+                [""mousemove"", 3, 1028, 325, 0],
+                [""mousemove"", 22, 1072, 347, 0],
+                [""mousemove"", 41, 1149, 361, 0],
+                [""mousemove"", 93, 1236, 393, 0],
+                [""mousemove"", 105, 1299, 406, 0],
+                [""mousemove"", 137, 1362, 422, 0],
+                [""mousemove"", 138, 1371, 588, 0],
+                [""mousemove"", 139, 1395, 607, 0],
+                [""mousemove"", 146, 1642, 708, 0],
+                [""mousemove"", 192, 2083, 740, 0],
+                [""mousemove"", 205, 2192, 906, 0],
+                [""mousemove"", 219, 2209, 1063, 0],
+                [""mousemove"", 228, 2229, 1088, 0],
+                [""mousemove"", 241, 2419, 1154, 0],
+                [""mousedown"", 785, 1145, 8211, 1],
+                [""mousemove"", 787, 1151, 8321, 1],
+                [""mousemove"", 789, 1177, 8335, 1],
+                [""mousemove"", 792, 1219, 8359, 1],
+                [""mouseup"", 796, 1356, 8780, 1]
+            ]
+        ]";
 
-            MouseMovement movement = new MouseMovement();
-            List<List<object>> newTrajectory = movement.GenerateNewTrajectory(originalTrajectory);
+            var originalTrajectory = System.Text.Json.JsonSerializer.Deserialize<List<JsonElement>>(inputJson);
+            var newTrajectory = TrajectoryGenerator.GenerateNewTrajectory(originalTrajectory);
+            string outputJson = System.Text.Json.JsonSerializer.Serialize(newTrajectory, new JsonSerializerOptions { WriteIndented = true });
+            textBox1.Text = outputJson;
 
-            foreach (var point in newTrajectory)
-            {
-                textBox1.Text+=($"[{string.Join(", ", point)}]");
-            }
         }
 
         
