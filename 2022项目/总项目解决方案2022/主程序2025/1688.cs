@@ -173,7 +173,7 @@ namespace 主程序2025
 
                         label1.Text = "正在查询："+page;
 
-
+                       
 
                         string html = function.GetUrlWithCookie(url, cookie, "utf-8");
 
@@ -205,13 +205,12 @@ namespace 主程序2025
                             if (capurl.Contains("&action=captcha"))
                             {
                                 label1.Text =DateTime.Now.ToString()+ "：被挤爆啦";
-                                //x5 = function.getx5("captcha", capurl);
-                                // x5 = yzm.getx5(capurl);
+                              
                                 yzm_yuanma.url = capurl;
                                 yzm_yuanma.run();
                                 x5 = yzm_yuanma.x5sec;
                               
-                                //MessageBox.Show(x5);
+                              
                             }
                             else
                             {
@@ -283,7 +282,7 @@ namespace 主程序2025
                                
                                
 
-                                //Thread.Sleep(100);
+                               
                                 if (status == false)
                                     return;
                                 if (listView1.Items.Count > 2)
@@ -349,218 +348,7 @@ namespace 主程序2025
 
 
 
-        #region 电脑端分类
-
-
-        public void run_pc_cate()
-        {
-
-
-            try
-            {
-
-
-
-                StreamReader sr = new StreamReader(textBox1.Text, method.EncodingType.GetTxtType(textBox1.Text));
-                //一次性读取完 
-                string texts = sr.ReadToEnd();
-                string[] text = texts.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-
-
-
-                for (int i = 0; i < text.Length; i++)
-                {
-                    List<string> chongfulist = new List<string>();
-                    string keyword = text[i].Trim();
-                    getcate(keyword);
-
-                    function.log("执行第"+i+"关键字："+keyword);
-                  
-                    for (int a = 0; a < catelist.Count; a++)
-                    {
-                        string cate=catelist[a].ToString();
-                       
-
-                        for (int page = 0; page < 51; page++)
-                        {
-
-                            function.log("执行第" + page + "页码：" + keyword);
-                            function.log("识别成功");
-                            cookie = tk + x5;
-                            if (DateTime.Now > Convert.ToDateTime(function.date))
-                            {
-                                function.TestForKillMyself();
-                                return;
-                            }
-
-
-
-
-
-                            if (keyword.Trim() == "")
-                                continue;
-                            string time = function.GetTimeStamp();
-
-                            string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-
-                            string data = "{\"fcGroup\":\"cbu-seller-fc\",\"fcName\":\"factory-recommend-service-fn\",\"serviceName\":\"tpFacRecommendService\",\"params\":\"{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":100,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\",\\\"params\\\":{\\\"pageNo\\\":" + page + ",\\\"pageSize\\\":10,\\\"from\\\":\\\"PC\\\",\\\"showType\\\":\\\"transverse\\\",\\\"trafficSource\\\":\\\"pc_index_recommend\\\",\\\"sort\\\":\\\"mix\\\",\\\"query\\\":\\\"mainCate=" + cate + "\\\"}}\"}";
-
-                            string str = token + "&" + time + "&12574478&" + data;
-                            string sign = function.Md5_utf8(str);
-
-                            string url = "https://h5api.m.1688.com/h5/mtop.mbox.fc.common.gateway/2.0/?jsv=2.7.2&appKey=12574478&t=" + time + "&sign=" + sign + "&v=2.0&type=jsonp&dataType=jsonp&timeout=5000&api=mtop.mbox.fc.common.gateway&callback=mtopjsonp17&data=" + System.Web.HttpUtility.UrlEncode(data);
-
-
-                            label1.Text = "正在查询：" + page;
-
-                            string html = "";
-                            if(checkBox1.Checked==true)
-                            {
-                                function.log("使用代理："+ textBox5.Text+ textBox6.Text);
-                                html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
-                            }
-                            else
-                            {
-                                html = function.GetUrlWithCookie(url, cookie, "utf-8");
-                            }
-                           
-                            //textBox9.Text = html;   
-
-                            if (html.Contains("令牌过期"))
-                            {
-                                function.log("令牌过期");
-                                string cookiestr = function.getSetCookie(url, "");
-
-                                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                                tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-
-                                continue;
-                               
-
-                            }
-
-
-
-                            if (html.Contains("挤爆啦"))
-                            {
-                                function.log("挤爆啦");
-                                label1.Text = "被挤爆啦";
-
-                                continue;
-                            }
-                          
-
-
-                            MatchCollection ahtmls = Regex.Matches(html, @"sellWellItemCnt([\s\S]*?)hasOwner");
-                            MatchCollection facNames = Regex.Matches(html, @"""facName"":""([\s\S]*?)""");
-                            MatchCollection imNicks = Regex.Matches(html, @"""imNick"":""([\s\S]*?)""");
-
-                           
-                            if (ahtmls.Count == 0)
-                            {
-                                function.log("获取到0条数据,跳转下次执行");
-                                break;
-                            }
-                               
-                            for (int j = 0; j < ahtmls.Count; j++)
-                            {
-
-
-                                try
-                                {
-
-
-
-
-
-
-                                    //string facName = Regex.Match(ahtmls[j].Groups[1].Value, @"""facName"":""([\s\S]*?)""").Groups[1].Value;
-                                    //string wangwang = Regex.Match(ahtmls[j].Groups[1].Value, @"""imNick"":""([\s\S]*?)""").Groups[1].Value;
-
-
-                                    string userId = Regex.Match(ahtmls[j].Groups[1].Value, @"wirelessUrlWithItems([\s\S]*?)memberId=([\s\S]*?)&").Groups[2].Value;
-                                    string protectionRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""protectionRate"":""([\s\S]*?)""").Groups[1].Value;//履约率
-                                    string repeatRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""repeatRate"":""([\s\S]*?)""").Groups[1].Value;//回头率
-                                    string wwResponseRate = Regex.Match(ahtmls[j].Groups[1].Value, @"""wwResp30dRate"":""([\s\S]*?)""").Groups[1].Value;//响应率
-
-                                    if (chongfulist.Contains(userId))
-                                    {
-                                        function.log("数据重复"+userId);
-                                        label1.Text = DateTime.Now.ToString() + "：重复，跳过：" + userId;
-                                        continue;
-                                    }
-                                    chongfulist.Add(userId);
-
-                                    if (protectionRate != "")
-                                    {
-
-
-                                        double arate = Convert.ToDouble(protectionRate.Replace("%", "")) / 100;
-                                        if (arate > Convert.ToDouble(textBox3.Text))
-                                        {
-                                            label1.Text = "履约率大于，跳过：" + "履约率：" + protectionRate;
-                                            continue;
-                                        }
-
-                                    }
-
-                                    if (protectionRate == "")
-                                    {
-                                        protectionRate = "-1";
-                                    }
-
-                                    ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count).ToString()); //使用Listview展示数据 
-
-                                    lv1.SubItems.Add("https://sale.1688.com/factory/card.html?__existtitle__=1&__removesafearea__=1&memberId=" + userId);
-                                    lv1.SubItems.Add(protectionRate);
-                                    lv1.SubItems.Add(repeatRate + "%");
-                                    lv1.SubItems.Add(wwResponseRate + "%");
-                                    lv1.SubItems.Add(keyword);
-                                    lv1.SubItems.Add(facNames[j].Groups[1].Value);
-                                    lv1.SubItems.Add(imNicks[j].Groups[1].Value);
-
-
-
-                                   // Thread.Sleep(500);
-                                    if (status == false)
-                                        return;
-                                    if (listView1.Items.Count > 2)
-                                    {
-                                        this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                                    }
-
-
-                                }
-                                catch (Exception ex)
-                                {
-                                    function.log("异常"+ex.ToString());
-                                    // MessageBox.Show(ex.ToString());
-                                    continue;
-                                }
-                            }
-
-
-                            Thread.Sleep(2000);
-                        }
-                    }
-
-
-
-                }
-
-                MessageBox.Show("完成");
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-
-            }
-
-        }
-
-        #endregion
+        
 
 
         
@@ -802,7 +590,7 @@ namespace 主程序2025
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                       
                         continue;
                     }
 
