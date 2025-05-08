@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Tea;
+
 
 namespace 高德地图
 {
@@ -383,30 +383,18 @@ namespace 高德地图
             try
             {
 
-                List<string>  keylist= new List<string>();  
-                keylist.Add("7b3a5ec27d0b2ff9a6333bd75711a091");
-                keylist.Add("0f23cb3ac24f5f809638313b5d23e6fa");
-                keylist.Add("f3ebc214cc87d707a79772d61f1855c0");
-                keylist.Add("3582c889a0f886d113336b20dd57da90");
-                keylist.Add("adabc1b5b1dd1ab353f6fcb716adb40e");
+              
 
                 Response.Write("{\"status\":\"1\"}");
-                for (int page = 1; page < 101; page++)
+                for (int page = 1; page < 10; page++)
                 {
                    
-                    string key = keylist[0];
+                    string key = "ba6fa5dc2b1e0b20176bdbf53e79720e";
 
                     string url = "https://restapi.amap.com/v5/place/text?keywords=" + System.Web.HttpUtility.UrlEncode(keyword) + "&region=" + System.Web.HttpUtility.UrlEncode(city) + "&show_fields=business&page_size=25&page_num=" + page + "&key="+key;
                    
                     string html = myDLL.method.GetUrl(url, "utf-8");
-                if(html.Contains("USER_DAILY_QUERY_OVER_LIMIT"))
-                    {
-                        key = keylist[1];
-                        url = "https://restapi.amap.com/v5/place/text?keywords=" + System.Web.HttpUtility.UrlEncode(keyword) + "&region=" + System.Web.HttpUtility.UrlEncode(city) + "&show_fields=business&page_size=25&page_num=" + page + "&key=" + key;
-
-                        html = myDLL.method.GetUrl(url, "utf-8");
-                    }
-
+               
 
                     MatchCollection parent = Regex.Matches(html, @"""parent""([\s\S]*?)location");
 
@@ -513,59 +501,7 @@ namespace 高德地图
 
 
 
-        #region  阿里云短信验证码
-
-        //public static AlibabaCloud.SDK.Dysmsapi20170525.Client CreateClient()
-        //{
-
-
-
-        //    // 工程代码泄露可能会导致 AccessKey 泄露，并威胁账号下所有资源的安全性。以下代码示例仅供参考。
-        //    // 建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378671.html。
-        //    AlibabaCloud.OpenApiClient.Models.Config config = new AlibabaCloud.OpenApiClient.Models.Config
-        //    {
-        //        AccessKeyId = Environment.GetEnvironmentVariable("ALIBABA_CLOUD_ACCESS_KEY_ID"),     //Environment.GetEnvironmentVariable("ALIBABA_CLOUD_ACCESS_KEY_ID"),
-        //                                                                                             // 必填，请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-        //        AccessKeySecret = Environment.GetEnvironmentVariable("ALIBABA_CLOUD_ACCESS_KEY_SECRET"),           //Environment.GetEnvironmentVariable("ALIBABA_CLOUD_ACCESS_KEY_SECRET"),
-
-
-        //    };
-        //    // Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi
-        //    config.Endpoint = "dysmsapi.aliyuncs.com";
-        //    return new AlibabaCloud.SDK.Dysmsapi20170525.Client(config);
-        //}
-
-
-        //public void sendyzm(string mobile)
-        //{
-        //    Random random = new Random();
-        //    int randomNumber = random.Next(1000, 10000);
-        //    AlibabaCloud.SDK.Dysmsapi20170525.Client client = CreateClient();
-        //    AlibabaCloud.SDK.Dysmsapi20170525.Models.SendSmsRequest sendSmsRequest = new AlibabaCloud.SDK.Dysmsapi20170525.Models.SendSmsRequest
-        //    {
-        //        SignName = "景澜软件",
-        //        PhoneNumbers = mobile,
-        //        TemplateCode = "SMS_278110432",
-
-        //        TemplateParam = "{\"code\":\""+ randomNumber + "\"}",
-        //    };
-        //    AlibabaCloud.TeaUtil.Models.RuntimeOptions runtime = new AlibabaCloud.TeaUtil.Models.RuntimeOptions();
-        //    try
-        //    {
-        //        // 复制代码运行请自行打印 API 的返回值
-        //        client.SendSmsWithOptions(sendSmsRequest, runtime);
-        //    }
-        //    catch (TeaException error)
-        //    {
-        //        // 此处仅做打印展示，请谨慎对待异常处理，在工程项目中切勿直接忽略异常。
-        //        // 错误 message
-        //        Response.Write(error.Message);
-        //        // 诊断地址
-        //        Response.Write(error.Data["Recommend"]);
-        //        AlibabaCloud.TeaUtil.Common.AssertAsString(error.Message);
-        //    }
-        //}
-        #endregion
+        
 
         #region  短信验证码
 
