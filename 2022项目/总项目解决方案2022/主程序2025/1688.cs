@@ -146,6 +146,7 @@ namespace 主程序2025
                     {
                         
                         cookie = tk + x5;
+                        
                         if (DateTime.Now > Convert.ToDateTime(function.date))
                         {
                             function.TestForKillMyself();
@@ -322,29 +323,7 @@ namespace 主程序2025
         #endregion
 
 
-        List<string> catelist = new List<string>();
-
-
-        public void getcate(string keyword)
-        {
-            catelist.Clear();
-            string url = "https://search.1688.com/service/fengxiangbiaoSmartQueryService?appName=findFactoryWap&sessionId=&pageName=findFactory&key="+keyword;
-            string html = function.GetUrlWithCookie(url, cookie, "utf-8");
-            MatchCollection cates1 = Regex.Matches(html, @"""firstNode"":""([\s\S]*?)""");
-            MatchCollection cates2 = Regex.Matches(html, @"""secondNode"":""([\s\S]*?)""");
-            MatchCollection cates3 = Regex.Matches(html, @"""leafNode"":""([\s\S]*?)""");
-
-            for (int i = 0; i < cates1.Count; i++)
-            {
-                if (!catelist.Contains(cates1[i].Groups[1].Value))
-                {
-                    catelist.Add(cates1[i].Groups[1].Value);
-                }
-            }
-
-         
-        }
-
+        
 
 
 
@@ -369,7 +348,7 @@ namespace 主程序2025
                 string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
 
 
-                string data = "{\"componentKey\":\"Wp_pc_common_offerlist\",\"params\":\"{\\\"memberId\\\":\\\"" + memberid + "\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"wangpu_score\\\",\\\"sellerRecommendFilter\\\":false,\\\"mixFilter\\\":false,\\\"tradenumFilter\\\":false,\\\"quantityBegin\\\":null,\\\"pageNum\\\":1,\\\"count\\\":50}}\"}";
+                string data = "{\"componentKey\":\"Wp_pc_common_offerlist\",\"params\":\"{\\\"memberId\\\":\\\"" + memberid + "\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"wangpu_score\\\",\\\"sellerRecommendFilter\\\":false,\\\"mixFilter\\\":false,\\\"tradenumFilter\\\":false,\\\"quantityBegin\\\":null,\\\"pageNum\\\":1,\\\"count\\\":30}}\"}";
                 string str = token + "&" + time + "&12574478&" + data;
                 string sign = function.Md5_utf8(str);
 
@@ -385,9 +364,9 @@ namespace 主程序2025
                     html = function.PostUrlDefault(url, "data=" + postdata, cookie);
                 }
 
-               // MessageBox.Show(html);
-               
-                if (html.Contains("令牌"))
+                // MessageBox.Show(html);
+
+                if (html.Contains("令牌过期"))
                 {
                     label1.Text = "令牌过期";
                     string cookiestr = function.getSetCookie(url, "");
@@ -400,6 +379,7 @@ namespace 主程序2025
 
                 }
 
+                MessageBox.Show(html);
 
                 if (html.Contains("挤爆啦"))
                 {
@@ -407,7 +387,7 @@ namespace 主程序2025
 
                     if (capurl.Contains("&action=captcha"))
                     {
-                        label1.Text = DateTime.Now.ToString() + "：被挤爆啦";
+                        label5.Text = DateTime.Now.ToString() + "：被挤爆啦";
 
                         yzm_yuanma.url = capurl;
                         yzm_yuanma.run();
@@ -428,11 +408,15 @@ namespace 主程序2025
 
                 }
 
+                MessageBox.Show(cookie);
 
+                textBox2.Text = url+"      "+cookie;
 
                 MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
                 MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
-                string fahuotime = "";
+                string fahuotime = "无";
+
+               
                 for (int i = 0; i < agentInfo.Count; i++)
                 {
 
@@ -440,7 +424,8 @@ namespace 主程序2025
 
                     if (fahuotime == "24")
                     {
-                        return "https://detail.1688.com/offer/" + id[i].Groups[1].Value + ".html";
+                        //return "https://detail.1688.com/offer/" + id[i].Groups[1].Value + ".html";
+                        return "24";
                     }
 
                 }
@@ -450,8 +435,8 @@ namespace 主程序2025
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
-                return "";
+               // MessageBox.Show(ex.ToString());
+                return "ex";
             }
 
         }
@@ -581,6 +566,9 @@ namespace 主程序2025
                         lv1.SubItems.Add(dt.Rows[i][7].ToString());
 
                         lv1.SubItems.Add(item24);
+
+
+
                         if (status == false)
                             return;
                         if (listView2.Items.Count > 2)
@@ -602,7 +590,7 @@ namespace 主程序2025
             catch (Exception ex)
             {
 
-               MessageBox.Show(ex.ToString());
+             //  MessageBox.Show(ex.ToString());
             }
         }
 

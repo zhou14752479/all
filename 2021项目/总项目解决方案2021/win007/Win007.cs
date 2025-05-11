@@ -44,7 +44,7 @@ namespace win007
             {
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
-               
+
                 request.AllowAutoRedirect = true;
                 request.UserAgent = "";
                 request.Referer = Url;
@@ -91,7 +91,7 @@ namespace win007
         #endregion
 
         function fc = new function();
-        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, ComboBox comb1,DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13,TextBox xianshi)
+        public void chaxun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, ComboBox comb1, DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
         {
             int zhusheng_bifen_count = 0;
             int heju_bifen_count = 0;
@@ -109,8 +109,8 @@ namespace win007
 
                 string sql = "select * from datas where";
 
-                
-                if(t1.Text!="")
+
+                if (t1.Text != "")
                 {
                     sql = sql + (" data1 like '" + t1.Text.Trim() + "' and");
                 }
@@ -188,9 +188,9 @@ namespace win007
                 dgv1.Columns["ke"].HeaderText = "客队";
                 dgv1.Columns["time"].HeaderText = "比赛时间";
                 dgv1.Columns["gongsi"].HeaderText = "公司名";
-               
+
                 dgv1.Columns["bifen"].HeaderText = "比分";
-          
+
                 dgv1.Columns["data1"].HeaderText = "数据1";
                 dgv1.Columns["data2"].HeaderText = "数据2";
                 dgv1.Columns["data3"].HeaderText = "数据3";
@@ -212,7 +212,7 @@ namespace win007
                 dgv1.Columns["he_yingkuizs"].HeaderText = "和赢亏指数";
                 dgv1.Columns["ke_yingkuizs"].HeaderText = "客队赢亏指数";
 
-              
+
                 dgv1.Columns["rangqiudaxiaoqiu"].HeaderText = "让球大小球";
                 dgv1.Columns[7].Width = 50;
                 dgv1.Columns[8].Width = 50;
@@ -246,7 +246,7 @@ namespace win007
                 //this.dgv1.Columns[15].Width = 0;
 
                 dgv1.Columns[16].Width = 100;
-                dgv1.Columns[17].Width =100;
+                dgv1.Columns[17].Width = 100;
                 dgv1.Columns[18].Width = 100;
 
                 dgv1.Columns[21].Width = 1;
@@ -289,7 +289,7 @@ namespace win007
 
 
 
-                        
+
                         string sjp1 = "平";
                         string sjp2 = "平";
                         string sjp3 = "平";
@@ -299,11 +299,11 @@ namespace win007
                         string sjp5 = "平";
                         string sjp6 = "平";
 
-                        if (cha1>0)
+                        if (cha1 > 0)
                         {
                             sjp1 = "升";
                         }
-                        if (cha1 <0)
+                        if (cha1 < 0)
                         {
                             sjp1 = "降";
                         }
@@ -316,7 +316,7 @@ namespace win007
                         {
                             sjp2 = "降";
                         }
-                        if (cha3> 0)
+                        if (cha3 > 0)
                         {
                             sjp3 = "升";
                         }
@@ -326,7 +326,7 @@ namespace win007
                         }
 
 
-                        if(cha4>0)
+                        if (cha4 > 0)
                         {
                             sjp4 = "升";
                             dgv1.Rows[i].Cells[10].Style.BackColor = Color.Red;
@@ -338,7 +338,7 @@ namespace win007
                         }
                         if (cha6 > 0)
                         {
-                            sjp6= "升";
+                            sjp6 = "升";
                             dgv1.Rows[i].Cells[12].Style.BackColor = Color.Red;
                         }
                         if (cha4 < 0)
@@ -348,12 +348,12 @@ namespace win007
                         }
                         if (cha5 < 0)
                         {
-                            sjp5= "降";
+                            sjp5 = "降";
                             dgv1.Rows[i].Cells[11].Style.BackColor = Color.Green;
                         }
                         if (cha6 < 0)
                         {
-                            sjp6= "降";
+                            sjp6 = "降";
                             dgv1.Rows[i].Cells[12].Style.BackColor = Color.Green;
                         }
 
@@ -368,8 +368,8 @@ namespace win007
                         //}
                         dgv1.Rows[i].Cells[16].Value = sjp1 + sjp2 + sjp3 + " " + dgv1.Rows[i].Cells[6].Value;
                         dgv1.Rows[i].Cells[27].Value = sjp4 + sjp5 + sjp6 + " " + dgv1.Rows[i].Cells[6].Value;
-                       
-                        
+
+
                         //差值红绿色
                         if (cha1 > 0)
                         {
@@ -402,26 +402,26 @@ namespace win007
                         {
                             dgv1.Rows[i].Cells[16].Style.BackColor = Color.Yellow;
                         }
-                        if (cha33 > 0.16&& cha33 <= 0.2) 
+                        if (cha33 > 0.16 && cha33 <= 0.2)
                         {
                             dgv1.Rows[i].Cells[16].Style.BackColor = Color.Orange;
                         }
                         if (cha33 > 0.21)
                         {
 
-                            
+
                             dgv1.Rows[i].Cells[16].Style.BackColor = Color.Red;
                         }
 
 
                         //成交比例
-                        string zhu_cj= dgv1.Rows[i].Cells[18].Value.ToString().Replace("%","");
+                        string zhu_cj = dgv1.Rows[i].Cells[18].Value.ToString().Replace("%", "");
                         string he_cj = dgv1.Rows[i].Cells[19].Value.ToString().Replace("%", "");
                         string ke_cj = dgv1.Rows[i].Cells[20].Value.ToString().Replace("%", "");
 
-                        if (zhu_cj!="无")
+                        if (zhu_cj != "无")
                         {
-                            if(Convert.ToDouble(zhu_cj)>=70 & Convert.ToDouble(zhu_cj)<80)
+                            if (Convert.ToDouble(zhu_cj) >= 70 & Convert.ToDouble(zhu_cj) < 80)
                             {
                                 dgv1.Rows[i].Cells[18].Style.BackColor = Color.Yellow;
                             }
@@ -429,7 +429,7 @@ namespace win007
                             {
                                 dgv1.Rows[i].Cells[18].Style.BackColor = Color.Orange;
                             }
-                            if (Convert.ToDouble(zhu_cj) >90)
+                            if (Convert.ToDouble(zhu_cj) > 90)
                             {
                                 dgv1.Rows[i].Cells[18].Style.BackColor = Color.Red;
                             }
@@ -457,7 +457,7 @@ namespace win007
                             {
                                 dgv1.Rows[i].Cells[20].Style.BackColor = Color.Yellow;
                             }
-                            if (Convert.ToDouble(ke_cj) >= 80 & Convert.ToDouble(ke_cj) <90)
+                            if (Convert.ToDouble(ke_cj) >= 80 & Convert.ToDouble(ke_cj) < 90)
                             {
                                 dgv1.Rows[i].Cells[20].Style.BackColor = Color.Orange;
                             }
@@ -469,7 +469,7 @@ namespace win007
 
 
 
-                       
+
 
                     }
                     catch (Exception)
@@ -479,34 +479,34 @@ namespace win007
                     }
 
                 }
-              
-              
 
-              
-                    for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+
+
+
+                for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
+                {
+                    try
                     {
-                        try
-                        {
-                            string sjp1 = dgv1.Rows[i].Cells[16].Value.ToString();
-                        string sjp2= dgv1.Rows[i].Cells[27].Value.ToString();
+                        string sjp1 = dgv1.Rows[i].Cells[16].Value.ToString();
+                        string sjp2 = dgv1.Rows[i].Cells[27].Value.ToString();
 
                         string sjpshaixuan1 = t4.Text;
                         string sjpshaixuan2 = t13.Text;
-                        if (!sjp1.Contains(sjpshaixuan1) || !sjp2.Contains(sjpshaixuan2)) 
-                            {
-                                DataGridViewRow row = dgv1.Rows[i];
-                                 dgv1.Rows.Remove(row);
-                                  i--; //这句是关键。。
-                            }
-                       
-                    }
-                        catch (Exception)
+                        if (!sjp1.Contains(sjpshaixuan1) || !sjp2.Contains(sjpshaixuan2))
                         {
-
-                            throw;
+                            DataGridViewRow row = dgv1.Rows[i];
+                            dgv1.Rows.Remove(row);
+                            i--; //这句是关键。。
                         }
+
                     }
-               
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+
                 //计算比分百分比
                 for (int i = 0; i < dgv1.Rows.Count - 1; i++)//如果DataGridView中有空的数据，则提示数据输入不完整并退出添加，不包括标题行
                 {
@@ -529,11 +529,11 @@ namespace win007
                         }
                     }
                 }
-                string l1 = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字","无");
-                string l2= Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
+                string l1 = Convert.ToDouble(Convert.ToDouble(zhusheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
+                string l2 = Convert.ToDouble(Convert.ToDouble(heju_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
                 string l3 = Convert.ToDouble(Convert.ToDouble(kesheng_bifen_count) / Convert.ToDouble((zhusheng_bifen_count + heju_bifen_count + kesheng_bifen_count))).ToString("F2").Replace("非数字", "无");
 
-                xianshi.Text = xianshi.Text+l1 + " " + l2 + " " + l3 + "   ";
+                xianshi.Text = xianshi.Text + l1 + " " + l2 + " " + l3 + "   ";
 
 
 
@@ -552,11 +552,11 @@ namespace win007
         {
 
             method.SetFeatures(11000);
-           //webBrowser1.ScriptErrorsSuppressed = true;
-           // webBrowser1.Navigate("https://live.titan007.com/");
-            
-           // this.WindowState = FormWindowState.Maximized;
-            
+            //webBrowser1.ScriptErrorsSuppressed = true;
+            // webBrowser1.Navigate("https://live.titan007.com/");
+
+            // this.WindowState = FormWindowState.Maximized;
+
             dateTimePicker1.Value = Convert.ToDateTime("2018-01-01");
             dateTimePicker2.Value = DateTime.Now;
 
@@ -572,15 +572,15 @@ namespace win007
 
 
         Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
-       
-        
-     
+
+
+
         public void getdata()
         {
 
             string startdate = "2018-01-01";
             string enddate = "2025-01-01";
-            for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate);dt=dt.AddDays(1))
+            for (DateTime dt = Convert.ToDateTime(startdate); dt < Convert.ToDateTime(enddate); dt = dt.AddDays(1))
             {
                 try
                 {
@@ -589,29 +589,29 @@ namespace win007
 
                     string html = method.GetUrl(url, "gb2312");
                     MatchCollection trs = Regex.Matches(html, @"<tr height=18([\s\S]*?)</tr>");
-                
-                   
+
+
 
                     for (int i = 0; i < trs.Count; i++)
                     {
-                      
+
                         if (trs[i].Groups[1].Value.Contains("display: none"))
                         {
-                           // label7.Text = "不显示，跳过..";
+                            // label7.Text = "不显示，跳过..";
                             continue;
                         }
-                      string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
+                        string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
                         string rangqiu = Regex.Match(trs[i].Groups[1].Value, @"<td id='hdp_([\s\S]*?)>([\s\S]*?)<").Groups[2].Value;
                         string daxiaoqiu = Regex.Match(trs[i].Groups[1].Value, @"<td id='ou_([\s\S]*?)>([\s\S]*?)<").Groups[2].Value;
-                        if (id.Trim()=="")
+                        if (id.Trim() == "")
                         {
                             continue;
                         }
-                        string bifen_zhu= Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
+                        string bifen_zhu = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
                         string bifen_ke = Regex.Match(trs[i].Groups[1].Value, @"showgoallist([\s\S]*?)-<font color=([\s\S]*?)>([\s\S]*?)</font>").Groups[3].Value;
-                        string datajsurl = "http://1x2d.titan007.com/" + id+ ".js?r=007132848760362108507";
+                        string datajsurl = "http://1x2d.titan007.com/" + id + ".js?r=007132848760362108507";
                         string datajs = method.GetUrl(datajsurl, "gb2312");
-                      
+
                         string datajsjs = Regex.Match(datajs, @"game=([\s\S]*?);").Groups[1].Value;
 
 
@@ -665,9 +665,9 @@ namespace win007
                         MatchCollection gongsis = Regex.Matches(datajs, @"\d{1,5}\|\d{8,10}\|([\s\S]*?)\|");
                         for (int a = 0; a < gongsis.Count; a++)
                         {
-                            string cid= Regex.Match(gongsis[a].ToString(), @"\d{8,10}").Groups[0].Value;
-                            string cname =gongsis[a].Groups[1].ToString();
-                          
+                            string cid = Regex.Match(gongsis[a].ToString(), @"\d{8,10}").Groups[0].Value;
+                            string cname = gongsis[a].Groups[1].ToString();
+
                             if (!gongsi_dics.ContainsKey(cid))
                             {
                                 switch (cname)
@@ -702,7 +702,7 @@ namespace win007
                                     //case "Lottery Official":
                                     //    gongsi_dics.Add(cid, "Lottery Official");
                                     //    break;
-                                 
+
 
                                     //case "Betsson":
                                     //    gongsi_dics.Add(cid, "Betsson");
@@ -732,26 +732,26 @@ namespace win007
 
                                 }
                             }
-                          
+
                         }
 
-                     
+
 
                         string datas = Regex.Match(datajs, @"gameDetail=Array\(([\s\S]*?)\)").Groups[1].Value;
-                       
+
                         string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
 
 
-                        
+
                         for (int j = 0; j < datastext.Length; j++)
                         {
 
-                            string cid= Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
-                           
+                            string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
+
                             if (gongsi_dics.ContainsKey(cid))
                             {
                                 string gongsi_name = gongsi_dics[cid];
-                              
+
                                 try
                                 {
 
@@ -761,11 +761,11 @@ namespace win007
                                     //lv1.SubItems.Add(guestteam_cn);
                                     //lv1.SubItems.Add(MatchTime);
                                     //lv1.SubItems.Add(gongsi_dics[cid]);
-                                 
 
 
-                                    string bifen = bifen_zhu+ "-"+ bifen_ke;
-                                  
+
+                                    string bifen = bifen_zhu + "-" + bifen_ke;
+
                                     //lv1.SubItems.Add(bifen);
 
                                     string[] datasresult = datastext[j].Split(new string[] { ";" }, StringSplitOptions.None);
@@ -785,7 +785,7 @@ namespace win007
                                     try
                                     {
                                         string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
-                                        data1 = data_a[0].Replace(cid,"").Replace("^", "");
+                                        data1 = data_a[0].Replace(cid, "").Replace("^", "");
                                         data2 = data_a[1];
                                         data3 = data_a[2];
 
@@ -805,13 +805,13 @@ namespace win007
                                         string[] data_d = datasresult[3].Split(new string[] { "|" }, StringSplitOptions.None);
                                         data10 = data_d[0];
                                         data11 = data_d[1];
-                                        data12= data_d[2];
+                                        data12 = data_d[2];
 
                                     }
                                     catch (Exception)
                                     {
 
-                                        
+
                                     }
 
 
@@ -827,22 +827,22 @@ namespace win007
                                     //    lv1.SubItems.Add(data8);
                                     //lv1.SubItems.Add(data9);
 
-                                    string rangqiu_daxiaoqiu = rangqiu +" "+ daxiaoqiu;
+                                    string rangqiu_daxiaoqiu = rangqiu + " " + daxiaoqiu;
 
-                                  
-                                    fc.insertdata(id,matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6,data7,data8,data9, data10, data11, data12, zhu_cj,he_cj,ke_cj,zhu_yingkui,he_yingkui,ke_yingkui,zhu_yingkuizs,he_yingkuizs,ke_yingkuizs,rangqiu_daxiaoqiu);
+
+                                    fc.insertdata(id, matchname_cn, hometeam_cn, guestteam_cn, MatchTime, gongsi_name, bifen, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, zhu_cj, he_cj, ke_cj, zhu_yingkui, he_yingkui, ke_yingkui, zhu_yingkuizs, he_yingkuizs, ke_yingkuizs, rangqiu_daxiaoqiu);
 
 
 
                                     if (status == false)
                                         return;
-                                   // Thread.Sleep(100);
+                                    // Thread.Sleep(100);
 
 
                                 }
                                 catch (Exception ex)
                                 {
-                                   //  MessageBox.Show(ex.ToString());
+                                    //  MessageBox.Show(ex.ToString());
                                     continue;
                                 }
                             }
@@ -850,7 +850,7 @@ namespace win007
 
 
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -891,41 +891,41 @@ namespace win007
                             continue;
                         }
                         string id = Regex.Match(trs[i].Groups[1].Value, @"showgoallist\(([\s\S]*?)\)").Groups[1].Value;
-                       
+
                         if (id.Trim() == "")
                         {
                             continue;
                         }
 
-                        string aurl = "https://vip.titan007.com/changeDetail/handicap.aspx?id="+id+"&companyID=3&l=0";
+                        string aurl = "https://vip.titan007.com/changeDetail/handicap.aspx?id=" + id + "&companyID=3&l=0";
                         string ahtml = method.GetUrl(aurl, "gb2312");
 
-                        
-                        MatchCollection trss= Regex.Matches(ahtml, @"<TR align=center([\s\S]*?)</TR>");
+
+                        MatchCollection trss = Regex.Matches(ahtml, @"<TR align=center([\s\S]*?)</TR>");
 
 
-                        List<string>  gun_list = new List<string>();
+                        List<string> gun_list = new List<string>();
                         List<string> ji_list = new List<string>();
                         List<string> zao_list = new List<string>();
 
-                       
+
                         for (int j = 0; j < trss.Count; j++)
                         {
                             string data = "";
                             string trhtml = trss[j].Groups[1].Value;
-                          
+
                             MatchCollection a = Regex.Matches(trhtml, @"<B>([\s\S]*?)</B>");
-                         string  rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
+                            string rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
                             string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;
-                            if (a.Count==2)
+                            if (a.Count == 2)
                             {
-                                data = a[0].Groups[1].Value + ","+rang+ ","+a[1].Groups[1].Value+ ","+time;
+                                data = a[0].Groups[1].Value + "," + rang + "," + a[1].Groups[1].Value + "," + time;
                             }
 
-                           
+
                             if (trhtml.Contains("早"))
                             {
-                                zao_list.Add(data); 
+                                zao_list.Add(data);
                             }
 
                             if (trhtml.Contains("即"))
@@ -947,22 +947,22 @@ namespace win007
                         string data5 = "";
                         string data6 = "";
 
-                        if(zao_list.Count>1)
+                        if (zao_list.Count > 1)
                         {
-                            data2= zao_list[0];
+                            data2 = zao_list[0];
                             data1 = zao_list[zao_list.Count - 1];
                         }
-                         
-                        if(ji_list.Count>1)
+
+                        if (ji_list.Count > 1)
                         {
                             data4 = ji_list[0];
-                            data3= ji_list[ji_list.Count - 1];
+                            data3 = ji_list[ji_list.Count - 1];
                         }
 
                         if (gun_list.Count > 1)
                         {
-                            data6= gun_list[0];
-                             data5= gun_list[gun_list.Count - 1];
+                            data6 = gun_list[0];
+                            data5 = gun_list[gun_list.Count - 1];
                         }
 
                         fc.insertdata_yarang(id, data1, data2, data3, data4, data5, data6);
@@ -983,6 +983,128 @@ namespace win007
             MessageBox.Show("完成");
         }
 
+        public static DataTable RemoveDuplicatesAllColumns(DataTable dt)
+        {
+            // 运用 Linq 查询获取不同的行
+            var distinctRows = dt.AsEnumerable()
+                .Distinct(DataRowComparer.Default);
+
+            // 把筛选出的不同行复制到新的 DataTable 中
+            DataTable dtDistinct = dt.Clone();
+            foreach (DataRow row in distinctRows)
+            {
+                dtDistinct.ImportRow(row);
+            }
+
+            return dtDistinct;
+        }
+
+        public void update_pankou()
+        {
+
+            string sql = "select id from datas;";
+            DataTable dt = fc.chaxundata(sql);
+            dt=RemoveDuplicatesAllColumns(dt);
+
+            int all = dt.Rows.Count;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                try
+                {
+
+                    label7.Text = "共："+ all+"当前："+i;
+                    string id = dt.Rows[i][0].ToString();
+                  
+
+                    string aurl = "https://vip.titan007.com/changeDetail/handicap.aspx?id=" + id + "&companyID=3&l=0";
+                    string ahtml = method.GetUrl(aurl, "gb2312");
+
+
+                    MatchCollection trss = Regex.Matches(ahtml, @"<TR align=center([\s\S]*?)</TR>");
+
+
+                    List<string> gun_list = new List<string>();
+                    List<string> ji_list = new List<string>();
+                    List<string> zao_list = new List<string>();
+
+
+                    for (int j = 0; j < trss.Count; j++)
+                    {
+                        string data = "";
+                        string trhtml = trss[j].Groups[1].Value;
+
+                        MatchCollection a = Regex.Matches(trhtml, @"<B>([\s\S]*?)</B>");
+                        string rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
+                        string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;
+                        if (a.Count == 2)
+                        {
+                            data = a[0].Groups[1].Value + "," + rang + "," + a[1].Groups[1].Value + "," + time;
+                        }
+
+
+                        if (trhtml.Contains("早"))
+                        {
+                            zao_list.Add(data);
+                        }
+
+                        if (trhtml.Contains("即"))
+                        {
+                            ji_list.Add(data);
+                        }
+
+                        if (trhtml.Contains("滚") && !trhtml.Contains("封"))
+                        {
+                            gun_list.Add(data);
+                        }
+                    }
+
+
+                    string data1 = "";
+                    string data2 = "";
+                    string data3 = "";
+                    string data4 = "";
+                    string data5 = "";
+                    string data6 = "";
+
+                    if (zao_list.Count > 1)
+                    {
+                        data2 = zao_list[0];
+                        data1 = zao_list[zao_list.Count - 1];
+                    }
+
+                    if (ji_list.Count > 1)
+                    {
+                        data4 = ji_list[0];
+                        data3 = ji_list[ji_list.Count - 1];
+                    }
+
+                    if (gun_list.Count > 1)
+                    {
+                        data6 = gun_list[0];
+                        data5 = gun_list[gun_list.Count - 1];
+                    }
+
+
+                    string[] text = data4.Split(new string[] { "," }, StringSplitOptions.None);
+                   
+
+                    fc.SQL("update datas set sjp2= '" + text[1] + "' where id='" + id + "' ");
+                    //fc.insertdata_yarang(id, data1, data2, data3, data4, data5, data6);
+
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    continue;
+                }
+
+            }
+
+            MessageBox.Show("完成");
+        }
+
 
         private void 清空查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -997,10 +1119,10 @@ namespace win007
             catch (Exception)
             {
 
-               
+
             }
 
-            
+
         }
 
         private void 导出查询数据ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1011,7 +1133,7 @@ namespace win007
 
         private void button2_Click(object sender, EventArgs e)
         {
-          
+
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -1023,15 +1145,15 @@ namespace win007
 
         private void button4_Click(object sender, EventArgs e)
         {
-           
+
             status = true;
             if (thread == null || !thread.IsAlive)
             {
-                thread = new Thread(getdata_yarang);
+                thread = new Thread(update_pankou);
                 thread.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
-           // MessageBox.Show("全年数据已抓取");
+
         }
 
         //private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1063,12 +1185,12 @@ namespace win007
             }
             else
             {
-               
+
             }
-           
+
         }
 
-       
+
 
         private void Win007_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1112,7 +1234,7 @@ namespace win007
         //    chaxun(textBox30, textBox29, textBox28, textBox27, textBox25, textBox26, label54, label53, label52, comboBox5, dataGridView5);
         //}
 
-      
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -1131,7 +1253,7 @@ namespace win007
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            textBox4.Text= "";
+            textBox4.Text = "";
         }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1156,7 +1278,7 @@ namespace win007
         }
 
 
-        public void sancirun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5,  DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
+        public void sancirun(TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, DataGridView dgv1, TextBox t9, TextBox t8, TextBox t7, TextBox t13, TextBox xianshi)
         {
             chaxun(t1, t2, t3, t4, t5, comboBox1, dgv1, t9, t8, t7, t13, xianshi);
 
@@ -1178,32 +1300,32 @@ namespace win007
         private void button1_Click(object sender, EventArgs e)
         {
             rule1_txtbox.Text = "";
-            
+
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 40;
-            TextBox t=new TextBox();
+            TextBox t = new TextBox();
             t.Text = "";
             if (getminmaxvalue(1, 1) == textBox1.Text.Trim())
             {
-                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox); 
+                sancirun(textBox1, t, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
             }
             if (getminmaxvalue(1, 1) == textBox2.Text.Trim())
             {
-                sancirun(t, textBox2, t, textBox4, textBox5,  dataGridView1, t, t, t, t, rule1_txtbox);
-               
+                sancirun(t, textBox2, t, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+
             }
             if (getminmaxvalue(1, 1) == textBox3.Text.Trim())
             {
-                sancirun(t, t, textBox3, textBox4, textBox5,  dataGridView1, t, t, t, t, rule1_txtbox);
-                
+                sancirun(t, t, textBox3, textBox4, textBox5, dataGridView1, t, t, t, t, rule1_txtbox);
+
             }
-  
+
 
         }
-       
 
-     
-     
+
+
+
         private void button3_Click(object sender, EventArgs e)
         {
             rule2_txtbox.Text = "";
@@ -1217,7 +1339,7 @@ namespace win007
 
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, t, textBox5,  dataGridView2, textBox9, t, t, textBox13,rule2_txtbox);
+                sancirun(t, t, t, t, textBox5, dataGridView2, textBox9, t, t, textBox13, rule2_txtbox);
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
@@ -1229,7 +1351,7 @@ namespace win007
             }
         }
 
-        
+
         private void button6_Click(object sender, EventArgs e)
         {
             rule3_txtbox.Text = "";
@@ -1241,13 +1363,13 @@ namespace win007
 
             if (getminmaxvalue(2, 1) == textBox9.Text.Trim())
             {
-                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13,rule3_txtbox);
-               
+                sancirun(t, t, t, textBox4, textBox5, dataGridView3, textBox9, t, t, textBox13, rule3_txtbox);
+
             }
             if (getminmaxvalue(2, 1) == textBox8.Text.Trim())
             {
                 sancirun(t, t, t, textBox4, textBox5, dataGridView3, t, textBox8, t, textBox13, rule3_txtbox);
-                
+
             }
             if (getminmaxvalue(2, 1) == textBox7.Text.Trim())
             {
@@ -1314,7 +1436,7 @@ namespace win007
         }
 
 
-        public  void getshishidata(string company)
+        public void getshishidata(string company)
         {
             try
             {
@@ -1336,7 +1458,7 @@ namespace win007
 
 
 
-                    textBox1.Text = text[1].Replace("\"","");
+                    textBox1.Text = text[1].Replace("\"", "");
                     textBox2.Text = text[2].Replace("\"", "");
                     textBox3.Text = text[3].Replace("\"", "");
                     textBox9.Text = text[4].Replace("\"", "");
@@ -1382,7 +1504,7 @@ namespace win007
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                // MessageBox.Show(ex.Message);
             }
         }
 
@@ -1391,7 +1513,7 @@ namespace win007
             string id = Regex.Match(比赛ToolStripMenuItem.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
             for (int i = 0; i < comboBox1.Items.Count; i++)
             {
-               
+
                 string data = function.getshishidata(id, comboBox1.Items[i].ToString());
 
                 string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
@@ -1406,10 +1528,10 @@ namespace win007
 
                     if (Convert.ToDouble(text[2]) - Convert.ToDouble(text[1]) == 0)
                     {
-                        label48.Text += comboBox1.Items[i].ToString()+",";
+                        label48.Text += comboBox1.Items[i].ToString() + ",";
 
                     }
-                   else if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                    else if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
                     {
                         label48.Text += comboBox1.Items[i].ToString() + ",";
 
@@ -1430,11 +1552,11 @@ namespace win007
 
 
 
-        public  string getminmaxvalue(int hang, int sort)
+        public string getminmaxvalue(int hang, int sort)
         {
             double a = Convert.ToDouble(textBox1.Text);
             double b = Convert.ToDouble(textBox3.Text);
-          
+
             if (hang == 1)
             {
 
@@ -1444,24 +1566,24 @@ namespace win007
             {
                 a = Convert.ToDouble(textBox9.Text);
                 b = Convert.ToDouble(textBox7.Text);
-               
+
             }
 
             double min, max;
 
 
-            if(a<b)
+            if (a < b)
             {
                 min = a;
                 max = b;
             }
 
-           else if (a > b)
+            else if (a > b)
             {
                 min = b;
                 max = a;
             }
-            else 
+            else
             {
                 min = a;
                 max = b;
@@ -1472,7 +1594,7 @@ namespace win007
             {
                 return min.ToString();
             }
-           
+
             if (sort == 3)
             {
                 return max.ToString();
@@ -1615,7 +1737,7 @@ namespace win007
 
             if (getminmaxvalue(2, 3) == textBox9.Text.Trim())
             {
-                if(getminmaxvalue(1, 3) == textBox1.Text.Trim())
+                if (getminmaxvalue(1, 3) == textBox1.Text.Trim())
                 {
                     sancirun(textBox1, t, t, textBox4, textBox5, dataGridView6, textBox9, t, t, t, rule6_txtbox_2);
                 }

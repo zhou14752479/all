@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\..\DLL\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\..\..\源码\DLL备份\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="myDLL">
       <HintPath>..\..\..\..\源码\DLL备份\myDLL.dll</HintPath>

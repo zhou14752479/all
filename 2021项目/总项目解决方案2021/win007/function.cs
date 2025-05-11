@@ -865,7 +865,7 @@ namespace win007
                     string trhtml = trss[j].Groups[1].Value;
 
                     MatchCollection a = Regex.Matches(trhtml, @"<B>([\s\S]*?)</B>");
-                    string rang = Regex.Match(trhtml, @"<TD><FONT color=>([\s\S]*?)</TD>").Groups[1].Value;
+                    string rang = Regex.Match(trhtml, @"<TD><FONT color=([\s\S]*?)>([\s\S]*?)</TD>").Groups[2].Value;
                    
                     //客户不要时间
                     //string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;

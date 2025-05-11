@@ -843,7 +843,7 @@ namespace 主程序202401
                 MessageBox.Show("请输入网址");
                 return;
             }
-            if (DateTime.Now > Convert.ToDateTime("2025-06-26"))
+            if (DateTime.Now > Convert.ToDateTime("2025-07-26"))
             {
                 return;
             }
@@ -872,6 +872,8 @@ namespace 主程序202401
 
         Dictionary<string, string>  likecountDic = new Dictionary<string, string>();
 
+
+        List<string> guanbi_shengyin_list = new List<string>();
       
         string yuyin = "";
 
@@ -1010,15 +1012,38 @@ namespace 主程序202401
                         lv1.SubItems.Add(cha.ToString());
                         lv1.SubItems.Add(status);
 
+                        //新增提前报警
+
+                       
+
                         if (buys.Trim() != "")
                         {
+                            int tiqian = Convert.ToInt32(buys.Trim()) - Convert.ToInt32(textBox11.Text);
+
                             if (cha >= Convert.ToInt32(buys.Trim()))
                             {
                                 lv1.ForeColor = Color.Blue;
                                 yuyin = yuyin = v[0] + "  ,";
-                                易优权益监控拉黑.Speak(aid + "提醒");
+
+                                if (!guanbi_shengyin_list.Contains(aid))
+                                {
+                                    易优权益监控拉黑.Speak(aid + "提醒");
+                                }
 
                             }
+
+                           else if (cha >= tiqian)
+                            {
+                                lv1.ForeColor = Color.Red;
+                                yuyin = yuyin = v[0] + "  ,";
+
+                                if (!guanbi_shengyin_list.Contains(aid))
+                                {
+                                    易优权益监控拉黑.Speak(aid + "提醒");
+                                }
+                            }
+
+                           
                         }
 
 
@@ -1467,16 +1492,21 @@ namespace 主程序202401
 
         }
 
+        private void 关闭声音ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
 
+                string aid = listView2.SelectedItems[0].SubItems[1].Text;
+                guanbi_shengyin_list.Add(aid);
 
-
-
-
-
-
-
-
-
-
+              
+            }
+            else
+            {
+                MessageBox.Show("请选中一行");
+            }
+          
+        }
     }
 }

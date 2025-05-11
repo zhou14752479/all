@@ -61,6 +61,10 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.复制链接ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -105,8 +109,7 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.关闭声音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -405,6 +408,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox11);
+            this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.textBox10);
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.button7);
@@ -423,9 +428,43 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(125, 76);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(61, 23);
+            this.textBox11.TabIndex = 70;
+            this.textBox11.Text = "10";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(28, 79);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 14);
+            this.label13.TabIndex = 69;
+            this.label13.Text = "提前报警数量";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(125, 47);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(61, 23);
+            this.textBox10.TabIndex = 68;
+            this.textBox10.Text = "20";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 14);
+            this.label12.TabIndex = 67;
+            this.label12.Text = "运行间隔（秒）";
+            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(552, 18);
+            this.button7.Location = new System.Drawing.Point(555, 18);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 66;
@@ -435,14 +474,14 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(386, 18);
+            this.textBox7.Location = new System.Drawing.Point(389, 18);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(160, 23);
             this.textBox7.TabIndex = 65;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(264, 18);
+            this.button5.Location = new System.Drawing.Point(281, 21);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(68, 23);
             this.button5.TabIndex = 63;
@@ -452,7 +491,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(192, 18);
+            this.button6.Location = new System.Drawing.Point(209, 21);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(66, 23);
             this.button6.TabIndex = 62;
@@ -493,9 +532,9 @@
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 101);
+            this.listView2.Location = new System.Drawing.Point(3, 105);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(645, 632);
+            this.listView2.Size = new System.Drawing.Size(645, 628);
             this.listView2.TabIndex = 59;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -542,9 +581,10 @@
             this.复制链接ToolStripMenuItem,
             this.删除链接ToolStripMenuItem,
             this.修改同步ToolStripMenuItem,
-            this.添加初始ToolStripMenuItem});
+            this.添加初始ToolStripMenuItem,
+            this.关闭声音ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // 复制链接ToolStripMenuItem
             // 
@@ -765,22 +805,12 @@
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // textBox10
+            // 关闭声音ToolStripMenuItem
             // 
-            this.textBox10.Location = new System.Drawing.Point(125, 47);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(61, 23);
-            this.textBox10.TabIndex = 68;
-            this.textBox10.Text = "20";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 50);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 14);
-            this.label12.TabIndex = 67;
-            this.label12.Text = "运行间隔（秒）";
+            this.关闭声音ToolStripMenuItem.Name = "关闭声音ToolStripMenuItem";
+            this.关闭声音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关闭声音ToolStripMenuItem.Text = "关闭声音";
+            this.关闭声音ToolStripMenuItem.Click += new System.EventHandler(this.关闭声音ToolStripMenuItem_Click);
             // 
             // 易优权益监控拉黑
             // 
@@ -892,5 +922,8 @@
         private System.Windows.Forms.ToolStripMenuItem 添加初始ToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ToolStripMenuItem 关闭声音ToolStripMenuItem;
     }
 }
