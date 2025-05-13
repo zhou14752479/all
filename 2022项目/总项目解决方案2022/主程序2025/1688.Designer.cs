@@ -78,7 +78,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -282,7 +281,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.listView2);
@@ -496,7 +494,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(267, 21);
             this.textBox4.TabIndex = 232;
-            this.textBox4.Text = "C:\\Users\\Administrator\\Desktop\\导出1.xlsx";
+            this.textBox4.Text = "C:\\Users\\sqwxb\\Desktop\\222222.xlsx";
             // 
             // button7
             // 
@@ -537,15 +535,6 @@
             this.button10.Text = "清空";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(100, 310);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(542, 297);
-            this.textBox2.TabIndex = 245;
-            this.textBox2.Text = "C:\\Users\\Administrator\\Desktop\\导出1.xlsx";
             // 
             // _1688
             // 
@@ -620,6 +609,5 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }

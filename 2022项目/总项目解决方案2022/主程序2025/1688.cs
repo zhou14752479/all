@@ -336,7 +336,11 @@ namespace 主程序2025
 
         
 
-
+        /// <summary>
+        /// 全部商品
+        /// </summary>
+        /// <param name="memberid"></param>
+        /// <returns></returns>
         public string getfahuo(string memberid)
         {
 
@@ -379,7 +383,7 @@ namespace 主程序2025
 
                 }
 
-                MessageBox.Show(html);
+               
 
                 if (html.Contains("挤爆啦"))
                 {
@@ -408,9 +412,7 @@ namespace 主程序2025
 
                 }
 
-                MessageBox.Show(cookie);
-
-                textBox2.Text = url+"      "+cookie;
+              
 
                 MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
                 MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
@@ -441,6 +443,226 @@ namespace 主程序2025
 
         }
 
+
+
+
+        /// <summary>
+        /// 主页最新商品
+        /// </summary>
+        /// <param name="memberid"></param>
+        /// <returns></returns>
+        public string getfahuo2(string memberid)
+        {
+
+            try
+            {
+                cookie = tk + x5;
+                string time = function.GetTimeStamp();
+
+                string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+
+                string data = "{\"dataType\":\"moduleData\",\"argString\":\"{\\\"memberId\\\":\\\""+memberid+"\\\",\\\"appName\\\":\\\"pcmodules\\\",\\\"resourceName\\\":\\\"wpOfferColumn\\\",\\\"type\\\":\\\"view\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"timedown\\\"}}\"}";
+                
+                string str = token + "&" + time + "&12574478&" + data;
+                string sign = function.Md5_utf8(str);
+
+                string url = "https://h5api.m.1688.com/h5/mtop.1688.shop.data.get/1.0/?jsv=2.7.0&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.1688.shop.data.get&v=1.0&type=json&valueType=string&dataType=json&timeout=10000";
+                string postdata = System.Web.HttpUtility.UrlEncode(data);
+                string html = "";
+                if (checkBox2.Checked)
+                {
+                    html = function.PostUrl_daili(url, "data=" + postdata, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+                }
+                else
+                {
+                    html = function.PostUrlDefault(url, "data=" + postdata, cookie);
+                }
+
+                // MessageBox.Show(html);
+
+                if (html.Contains("令牌过期"))
+                {
+                    label1.Text = "令牌过期";
+                    string cookiestr = function.getSetCookie(url, "");
+
+                    string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                    string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                    tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+
+
+
+                }
+
+              
+
+                if (html.Contains("挤爆啦"))
+                {
+                    string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (capurl.Contains("&action=captcha"))
+                    {
+                        label5.Text = DateTime.Now.ToString() + "：被挤爆啦";
+
+                        yzm_yuanma.url = capurl;
+                        yzm_yuanma.run();
+                        x5 = yzm_yuanma.x5sec;
+
+                        //MessageBox.Show(x5);
+                    }
+                    else
+                    {
+                        label1.Text = "禁止访问" + html;
+
+                        yzm_yuanma.x5sec = "";
+                        x5 = "";
+
+                    }
+
+
+
+                }
+
+
+
+                MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?)""hasTUV""");
+                MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
+                string fahuotime = "无";
+
+
+                for (int i = 0; i < agentInfo.Count; i++)
+                {
+
+                    fahuotime = Regex.Match(agentInfo[i].Groups[1].Value, @"""fahuoTime"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (fahuotime == "24")
+                    {
+                        //return "https://detail.1688.com/offer/" + id[i].Groups[1].Value + ".html";
+                        return "24";
+                    }
+
+                }
+
+                return fahuotime;
+            }
+            catch (Exception ex)
+            {
+
+                // MessageBox.Show(ex.ToString());
+                return "ex";
+            }
+
+        }
+
+
+
+        /// <summary>
+        /// 主页供应商品
+        /// </summary>
+        /// <param name="memberid"></param>
+        /// <returns></returns>
+        public string getfahuo3(string memberid)
+        {
+
+            try
+            {
+
+                Thread.Sleep(1000);
+                cookie = tk + x5;
+                string time = function.GetTimeStamp();
+
+                string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+
+                string data = "{\"dataType\":\"moduleData\",\"argString\":\"{\\\"appName\\\":\\\"pcmodules\\\",\\\"resourceName\\\":\\\"wpOfferColumn\\\",\\\"type\\\":\\\"view\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"memberId\\\":\\\""+memberid+"\\\",\\\"appdata\\\":{\\\"source\\\":\\\"index\\\",\\\"count\\\":\\\"100\\\",\\\"sortType\\\":\\\"tradenumdown\\\",\\\"catId\\\":\\\"-1\\\"}}\"}";
+                string str = token + "&" + time + "&12574478&" + data;
+                string sign = function.Md5_utf8(str);
+
+                string url = "https://h5api.m.1688.com/h5/mtop.1688.shop.data.get/1.0/?jsv=2.7.0&appKey=12574478&t="+time+"&sign="+sign+"&api=mtop.1688.shop.data.get&v=1.0&type=json&valueType=string&dataType=json&timeout=10000";
+                string postdata = System.Web.HttpUtility.UrlEncode(data);
+                string html = "";
+                if (checkBox2.Checked)
+                {
+                    html = function.PostUrl_daili(url, "data=" + postdata, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+                }
+                else
+                {
+                    html = function.PostUrlDefault(url, "data=" + postdata, cookie);
+                }
+
+
+               
+
+                if (html.Contains("令牌过期"))
+                {
+                    label1.Text = "令牌过期";
+                    string cookiestr = function.getSetCookie(url, "");
+
+                    string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                    string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                    tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+
+
+
+                }
+
+
+
+                if (html.Contains("挤爆啦"))
+                {
+                    string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (capurl.Contains("&action=captcha"))
+                    {
+                        label5.Text = DateTime.Now.ToString() + "：被挤爆啦";
+
+                        yzm_yuanma.url = capurl;
+                        yzm_yuanma.run();
+                        x5 = yzm_yuanma.x5sec;
+
+                        //MessageBox.Show(x5);
+                    }
+                    else
+                    {
+                        label1.Text = "禁止访问" + html;
+
+                        yzm_yuanma.x5sec = "";
+                        x5 = "";
+
+                    }
+
+
+
+                }
+
+
+
+                MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?)""hasTUV""");
+                MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
+                string fahuotime = "无";
+
+               
+                for (int i = 0; i < agentInfo.Count; i++)
+                {
+
+                    fahuotime = Regex.Match(agentInfo[i].Groups[1].Value, @"""fahuoTime"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (fahuotime == "24")
+                    {
+                        //return "https://detail.1688.com/offer/" + id[i].Groups[1].Value + ".html";
+                        return "24";
+                    }
+
+                }
+
+                return fahuotime;
+            }
+            catch (Exception ex)
+            {
+
+                // MessageBox.Show(ex.ToString());
+                return "ex";
+            }
+
+        }
         private void _1688_Load(object sender, EventArgs e)
         {
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt"))
@@ -552,7 +774,12 @@ namespace 主程序2025
                         string userid = Regex.Match(dt.Rows[i][1].ToString(), @"memberId=.*").Groups[0].Value.Replace("memberId=", "");
 
                        
-                       string item24 = getfahuo(userid);
+                       string item24 = getfahuo3(userid);
+
+                        if(item24=="无")
+                        {
+                            item24 = getfahuo3(userid);
+                        }
 
                         ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count).ToString()); //使用Listview展示数据 
 

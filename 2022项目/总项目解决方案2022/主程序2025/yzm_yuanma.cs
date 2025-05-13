@@ -78,10 +78,9 @@ namespace 主程序2025
                 var jsonData = JsonConvert.SerializeObject(data);
                 var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-                //var postRequest = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:3888/tb_n");
-                //var postRequest = new HttpRequestMessage(HttpMethod.Post, "http://8.155.4.205:3888/tb_n");
-        
-                var postRequest = new HttpRequestMessage(HttpMethod.Post, "http://8.153.165.134:3888/tb_n");
+                var postRequest = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:3888/tb_n");
+             
+                //var postRequest = new HttpRequestMessage(HttpMethod.Post, "http://8.153.165.134:3888/tb_n");
                 postRequest.Content = content;
                 var rp = client.SendAsync(postRequest).Result;
                 var responseContent = rp.Content.ReadAsStringAsync().Result;
