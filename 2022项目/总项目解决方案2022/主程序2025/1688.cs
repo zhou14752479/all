@@ -663,6 +663,8 @@ namespace 主程序2025
             }
 
         }
+       
+        
         private void _1688_Load(object sender, EventArgs e)
         {
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt"))

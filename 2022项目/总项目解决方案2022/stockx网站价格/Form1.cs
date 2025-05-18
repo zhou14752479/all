@@ -344,19 +344,6 @@ namespace stockx网站价格
         }
         #endregion
 
-  //      public void getsizeHtml(string huohao)
-		//{
-		//	string url = "https://stockx.com/zh-cn/"+huohao;
-
-		//	string ck = "display_location_selector=false; stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; language_code=zh; _gcl_au=1.1.1370229539.1742820353; stockx_session_id=112a033f-36f5-4edf-ac43-efce53d483ca; stockx_session=adcff755-21e9-4088-be7e-e1007c8c6a20; stockx_selected_region=CN; pxcts=a7f3728f-15fa-11f0-a42b-55e376709a13; stockx_preferred_market_activity=sales; is_gdpr=false; stockx_ip_region=CN; _px3=bd4926937b2a0b8e212fad36a73a23becdf222779b9fcb22bfa4b6b500679a1c:CM2MuY7nBWmAnkEVp09rkN0uHgQOT0JaqgaSR9gPZXtghz3MXJ8cEY+PWvpfw8LvMbBqycDAhUkdd9tNSkIWQg==:1000:emM/TXH7pYeI/fYhaKiCx4Thr+hwltZRyjZJ0Ig6Gi4WfCLhVRFoldZiOpCYvQr1w3NL8T/jveLZKpUZpxwoy/P0UQaTm40WW71Lx4ny5mXzvpABQybkarhh8Wrg7foMhJ/7KKZ/QLckE7+O2e1NWQJKgV0Xf59MDzjv0QRFoNpPRTdy8+ux/hjySnfF8tabYh4hLU1mNFpDk96KukimFaoW5foBSzBzdy6+kpgbbOI=; cto_bundle=M7XTE19DRXFkWW5JS09nV21hZUs5ZDlOTWIwJTJCQjlKejc0MkNPNktZeHpXQkJuYVBSQUFtMiUyRkFhc2lPOFcyNXpZT2h2SnBmUjJhVFQ5SVpXZ0R1VzRLbkQzN1JqNnE1ZW43VXRJYmdhelp6am90TUJuVEN2ZzN0dnZUZU9KQ3JPTEtoTTFPMlJlUW14TzRKUjR1cGU5dXBoSURnJTNEJTNE; cf_clearance=CQsXFByhOOMK0wAV4YVTRBonDsjREN1CxEMrRBK3WoI-1744283113-1.2.1.1-rESJwjHlHyC8qtOYnshzqyJDDz2cwdoO.53TDunvbBdsqG6M3AGp5M_1GMsCZzxw8ymKn9wzcRvLAw5.39jIjNcN.RlMCbFaP9mCzE9n_pejDsXKh.y5uP4ZC6Hfg6d1CsxdF6o5zLich2GJX6q5MAJaO6U98msBimwiTc0xPpcqn_ytAxSJVvKArYXEUORCy_wZ1TfR61VVj91PXyBXyrxwS2oMGLjJWnp3yXTPScs3WxpMNBa1rrkMweBhR8B.bpA6mP4wWDeiH5lNHwzMH10qJMvwl5KR.E2Yan_G_H12P9oz9zfAIBSmbwhXKqMHL32uUPgO2mSft_IwvBXj31o2WyELD15HAIR.7FILh7f_4jCeDf1F6V_VuAtJwtFy; stockx_product_visits=29; lastRskxRun=1744283120114; _pxde=0fc2388f4400d5ffa4333b6b275039325fd081c7faf33f979d2b3e3e96047ece:eyJ0aW1lc3RhbXAiOjE3NDQyODMxMjUyOTEsImZfa2IiOjB9; _pxhd=7-hlkAgbGDdY-eVaBoE/-kAHQH2I06lxOoKKGXAr4V2JUtfBpu8aRDZ9Fq1t8AlAQ6uTddzS/6quCo1SXRV1SA==:ojDdnm17F5qjMaB82j/WjHWjzYnNP6OUtgMrNCb7vcm0VkT2ox7fTrO2shwatkUx4L6Irmf74rdtumu6RKReLYmOMB3DVzcaEZ-7zJqJFSM=; _dd_s=rum=0&expire=1744284019876&logs=1&id=f22c5c69-5575-4bdc-9a1f-14ad988afe08&created=1744282680072";
-		//	string html =GetUrlWithCookie(url,ck,"utf-8");
-          
-  //          html = Regex.Match(html, @"""variants""([\s\S]*?)\}\]\}\}\]").Groups[1].Value;
-		
-			
-		//	sizejson = html;
-
-  //      }
 
 		string xiezi = "";
 
@@ -494,7 +481,7 @@ namespace stockx网站价格
 			this.listView1.Items.Clear();
 
 
-             ExecuteJavaScriptCommand("copy(Ee)");
+            
         }
 
 
@@ -505,42 +492,53 @@ namespace stockx网站价格
 
 			try
 			{
+
+				
 				string charset = "utf-8";
-				HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stockx.com/api/p/e");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://stockx.com/api/p/e");
 
-				request.KeepAlive = true;
-				request.Headers.Add("sec-ch-ua", @"""Not/A)Brand"";v=""99"", ""Google Chrome"";v=""115"", ""Chromium"";v=""115""");
-				request.Headers.Add("apollographql-client-name", @"Iron");
-				request.Headers.Add("App-Version", @"2023.10.01.01");
-				request.Headers.Add("x-operation-name", @"GetMarketData");
-				request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN");
-				request.Headers.Add("sec-ch-ua-mobile", @"?0");
-				request.Headers.Add("App-Platform", @"Iron");
-				request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
-				request.ContentType = "application/json";
-				request.Accept = "*/*";
-				request.Headers.Add("selected-country", @"US");
-				request.Headers.Add("x-stockx-device-id", @"32b6dbed-3f70-4657-a8be-b272375d26bb");
-				request.Headers.Add("apollographql-client-version", @"2025.03.16.00");
-				request.Headers.Add("x-stockx-session-id", @"d6dae96c-64c4-498e-ada8-8b4112e15125");
-				request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
-				request.Headers.Add("Origin", @"https://stockx.com");
-				request.Headers.Add("Sec-Fetch-Site", @"same-origin");
-				request.Headers.Add("Sec-Fetch-Mode", @"cors");
-				request.Headers.Add("Sec-Fetch-Dest", @"empty");
-				request.Referer = "https://stockx.com/zh-cn/nike-dunk-low-cacao-wow-womens";
-				//request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br");
-				request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; stockx_session_id=d6dae96c-64c4-498e-ada8-8b4112e15125; stockx_session=7439c87d-6078-4de5-b13a-34dd2d0b6e9d; pxcts=2d49d892-08a4-11f0-9da4-7ea5f1a97390; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; language_code=zh; stockx_selected_locale=zh; stockx_selected_currency=USD; stockx_selected_region=CN; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; display_location_selector=false; cf_clearance=s5T9zJNyChDV3PZl8aUcT32aX2.Jew7bvTeOhjbpEgQ-1742816320-1.2.1.1-IDZXsBdvLiJMxQ7JzgC7GVGJDi2DTILLJUAQOpdefEDzQhPvW8iWNj9ZsTw6hHLcGL01caffD8ixagjngBAPYZCf3lci3kTvGFhpLixA9Qnu391D2iQbT25YEUKZpxueRgQ0.iR6UHZWxnB8XtkQDrZ_Gw2K2e94tmc1kH.8pDXHWis7bko69OgerXIiRJKc076E6i2Z1JaAH_RQ6tEWQ1SlXE9FnOmV0WWEKbrNzAssxntIcG.8zKVQAOnd.fH4Lm94YsaQ8IqPEXrbM3xRcPn_A8Tyr2BYgJv9cB3mWFd1c2uiMreD_2CUArDnJR2CFtVpmi90FYm7oMukHbZO9opobE86.V4cQfnqLi7fDviqjKFZwV40C5BEDLn6R02pspH8.Jby4lANRO.QOe4.I4DK.qMZYFJoBezoyKuQL4w; is_gdpr=false; stockx_ip_region=CN; _px3=11ee5c6eba171c0b6b07b9e1b34a18e0527fbd896e9f337702e88352c6251444:w8lCJOdwr9t5W/paMxTWem5cfk5RkJvXjLIAJsKhcQdrxTF4VswPjsg0fL5fSYiBau2ZlRTtZMLTrJGpVnxhZw==:1000:jmSRgCupoYyybr8PYoPVe59UddrEu8hnykykck9ujpnppeSQcIA7he6if9V1frUSfhDDkEk2RWvU9EfRJoDOD5XoV9bijd7ZeiGG9ez2IoSM/ZAdoj/EyBa2uPM7Lf2e2aPCz7uUoss1b+7h5V0UDdpx1mohyBqlHuNMbF5SuFYjhAceFyim36aIITWC0+Org8rHnLOBvfu+M0UI6ONRNimTQxW3xI/DeGwOhP7MXxw=; _pxde=e8f23c92726642ae39ecd1fe1d31bbcccfd0586feb158c8095a1f9909ab3178a:eyJ0aW1lc3RhbXAiOjE3NDI4MTYzNTEzMzEsImZfa2IiOjB9; _dd_s=rum=0&expire=1742817279174&logs=1&id=c3c400a0-5e5d-47fd-94a9-5d30446e3866&created=1742816193537; lastRskxRun=1742816379422");
+                request.KeepAlive = true;
+                request.Headers.Add("selected-country", @"US");
+                request.Headers.Add("sec-ch-ua-platform", @"""Windows""");
+                request.Headers.Add("x-operation-name", @"GetMarketData");
+                request.Headers.Add("sec-ch-ua", @"""Chromium"";v=""136"", ""Google Chrome"";v=""136"", ""Not.A/Brand"";v=""99""");
+                request.Headers.Add("sec-ch-ua-mobile", @"?0");
+                request.Headers.Add("App-Platform", @"Iron");
+                request.Headers.Add("x-stockx-device-id", @"32b6dbed-3f70-4657-a8be-b272375d26bb");
+                request.Headers.Add("App-Version", @"2025.05.11.00");
+                request.Accept = "application/json";
+                request.Headers.Add("apollographql-client-version", @"2025.05.11.00");
+                request.ContentType = "application/json";
+                request.Headers.Add("apollographql-client-name", @"Iron");
+                request.Headers.Set(HttpRequestHeader.AcceptLanguage, "zh-CN");
+                request.Headers.Add("x-stockx-session-id", @"9779ec1f-e32b-4e37-bfda-68b91a0888dc");
+                request.Headers.Add("sec-ch-prefers-color-scheme", @"light");
+                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36";
+                request.Headers.Add("Origin", @"https://stockx.com");
+                request.Headers.Add("Sec-Fetch-Site", @"same-origin");
+                request.Headers.Add("Sec-Fetch-Mode", @"cors");
+                request.Headers.Add("Sec-Fetch-Dest", @"empty");
+                request.Referer = "https://stockx.com/zh-cn/nike-kobe-5-protro-chaos";
+                request.Headers.Set(HttpRequestHeader.AcceptEncoding, "gzip, deflate, br, zstd");
+                request.Headers.Set(HttpRequestHeader.Cookie, @"stockx_device_id=32b6dbed-3f70-4657-a8be-b272375d26bb; _pxvid=2d49ccc8-08a4-11f0-9da2-e45ef3e445ee; chakra-ui-color-mode=light; rskxRunCookie=0; rCookie=6b9z8xqdgqbkr4jd9d12iam8mzrl31; stockx_dismiss_modal=true; stockx_dismiss_modal_set=2025-03-24T11%3A36%3A41.189Z; stockx_dismiss_modal_expiration=2026-03-24T11%3A36%3A41.189Z; language_code=zh; _gcl_au=1.1.1370229539.1742820353; stockx_session_id=9779ec1f-e32b-4e37-bfda-68b91a0888dc; stockx_session=c9b1938e-61c8-4858-bb6d-91da39f918b3; stockx_preferred_market_activity=sales; is_gdpr=false; stockx_ip_region=CN; pxcts=98a70249-3201-11f0-8130-66f68f29ac6a; cto_bundle=SPhx1V9DRXFkWW5JS09nV21hZUs5ZDlOTWI2U3olMkZJeW1mU2RvWG9MZThFUllmN1NYUUNIWXg0SzNPUG81YUNNRkdReUhNbmlpdExsVTc0SzZibyUyRk9YYWt6ViUyRlZ2a3Q1a1BlUWhuQ1cxSWpyczFwUFV3TlIzSVA3ZUFXSXZpUnpRJTJGbkxYdk0yNnNHTTBpdXpxa1g3TiUyQjVpTHd3JTNEJTNE; cf_chl_rc_m=1; cf_clearance=oP34PgDL036cN8DUYGagOvGROH6c1X3UXSX66P8pGNI-1747365673-1.2.1.1-JyzkSEs4uFsYLT6XO.lubyJylFSOYbCreBg4NhMGCHCwV0SD922MfUDRA1KGUhgK9AFcqCKM_iaq5AZ.lzpe15XokHvHva2oVakNx9ew9TvFZxBVGJpI6aMgn27vnVk9eDdhjYVSkUbEiu5mjHZtkkUpl2SfeRY5Q2h.v86fKmZFwp20TXjJJBTveuGGwNsLv8JP5MQvXozIT6gKfyRQdocy9wol7OFfN4w10SXqSh_L14Q1iiUXr_yg5j9oTgRyLJyX57Tni8NnfJJZy16aNkU2uw0rkk0ecOjq7aaCGF3t7jSwZL9bpBj2KzsTP_Y6mp1JRevSNuTfEn5XM.QwIoEA8PxlvxNmMa3n8maoZa4xhGmOAVMhRSO3putM4bR.; stockx_selected_locale=zh; stockx_selected_currency=USD; stockx_selected_region=US; _px3=df91d865ec44fb879de27fda3b07dedfad8e163489f6285653f57bd80266c15a:1t8iNypNsgCIITFJrT3YSlcc7bKX9XsVS/1YT64UtJ1X3BJC4NnnAhOfVhUMKaxenoJ1zLu60REHik3Z7Hve2Q==:1000:oqY31DaK0UM81Wl2ONyR3M+CBkMxFRgheiJPIwM5AZFLD2A8lYhFaTT2pRG8Bk9yJiqjRyy/YY2hi8YxDtUC3aLOUMCyUOuaoki4cYwawo+Hk6PXTdoISphg5HdemWF5K6tdCOs3sLiMle06VUiclQJ0f9MyNcCXH2I1R/7A8oDQr0ePdKPmjhv0mBgcccjdN6PodZo5p1IPqPg+fXH4QLApoLjtK4k6BAc9oFIgnLw=; _dd_s=rum=0&expire=1747366870588&logs=1&id=4ca60858-ff2a-4cf8-9eb4-79d2e3daa6a6&created=1747364291397; stockx_product_visits=47; lastRskxRun=1747365970708; _pxde=261022664b0580ce8ec9f1f277196aed669d486122adce7f63500cf933dd004b:eyJ0aW1lc3RhbXAiOjE3NDczNjU5NjgyNzEsImZfa2IiOjB9; _pxhd=N/J3RNp1-KxOdkYwI7wDh0gz23vOxOyLnPpvlY3nD5kted9HnLKOXfHlCFNzhP00wsbUP2VCwBskPCDHAZgJfg==:nWgpZYe40hX1s7qvc9JhJRzlH50FcMAMimeR1Z5BpKVqP1VW8f0-NHicC9TjgpCzy6F4wf-48TAqm6TjriVpsBJNqTgd3BaaJP9lfwVEh3I=");
 
-				request.Method = "POST";
-				request.ServicePoint.Expect100Continue = false;
+                request.Method = "POST";
+                request.ServicePoint.Expect100Continue = false;
 
-				//string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String) {\n  product(id: $id) {\n    id\n    urlKey\n    title\n    uuid\n    contentGroup\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        bidAskData(country: $countryCode, market: $marketName) {\n          highestBid\n          highestBidSize\n          lowestAsk\n          lowestAskSize\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n      }\n    }\n    ...BidButtonFragment\n    ...BidButtonContentFragment\n    ...BuySellFragment\n    ...BuySellContentFragment\n    ...XpressAskPDPFragment\n    ...LastSaleFragment\n  }\n}\n\nfragment BidButtonFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BidButtonContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  minimumBid(currencyCode: $currencyCode)\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n      numberOfAsks\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n        numberOfAsks\n      }\n    }\n  }\n}\n\nfragment BuySellFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BuySellContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment XpressAskPDPFragment on Product {\n  market(currencyCode: $currencyCode) {\n    state(country: $countryCode) {\n      numberOfCustodialAsks\n    }\n  }\n  variants {\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode) {\n        numberOfCustodialAsks\n      }\n    }\n  }\n}\n\nfragment LastSaleFragment on Product {\n  id\n  market(currencyCode: $currencyCode) {\n    statistics(market: $marketName) {\n      ...LastSaleMarketStatistics\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      statistics(market: $marketName) {\n        ...LastSaleMarketStatistics\n      }\n    }\n  }\n}\n\nfragment LastSaleMarketStatistics on MarketStatistics {\n  lastSale {\n    amount\n    changePercentage\n    changeValue\n    sameFees\n  }\n}"",""variables"":{""id"":"""+aid+"\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":null},\"operationName\":\"GetMarketData\"}";
-				string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String, $viewerContext: MarketViewerContext) {\n product(id: $id) {\n id\n urlKey\n listingType\n title\n uuid\n contentGroup\n sizeDescriptor\n productCategory\n lockBuying\n lockSelling\n media {\n imageUrl\n    }\n minimumBid(currencyCode: $currencyCode)\n market(currencyCode: $currencyCode) {\n state(country: $countryCode, market: $marketName) {\n lowestAsk {\n amount\n chainId\n        }\n highestBid {\n amount\n        }\n askServiceLevels {\n expressExpedited {\n count\n lowest {\n amount\n chainId\n            }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n            }\n          }\n expressStandard {\n count\n lowest {\n amount\n            }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n            }\n          }\n standard {\n count\n lowest {\n amount\n chainId\n            }\n          }\n        }\n numberOfAsks\n numberOfBids\n      }\n salesInformation {\n lastSale\n salesLast72Hours\n      }\n statistics(market: $marketName, viewerContext: $viewerContext) {\n lastSale {\n amount\n changePercentage\n changeValue\n sameFees\n        }\n      }\n    }\n variants {\n id\n market(currencyCode: $currencyCode) {\n state(country: $countryCode, market: $marketName) {\n lowestAsk {\n amount\n chainId\n          }\n highestBid {\n amount\n          }\n askServiceLevels {\n expressExpedited {\n count\n lowest {\n amount\n chainId\n              }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n              }\n            }\n expressStandard {\n count\n lowest {\n amount\n chainId\n              }\n delivery {\n expectedDeliveryDate\n latestDeliveryDate\n              }\n            }\n standard {\n count\n lowest {\n amount\n chainId\n              }\n            }\n          }\n numberOfAsks\n numberOfBids\n        }\n salesInformation {\n lastSale\n salesLast72Hours\n        }\n statistics(market: $marketName, viewerContext: $viewerContext) {\n lastSale {\n amount\n changePercentage\n changeValue\n sameFees\n          }\n        }\n      }\n    }\n  }\n}"",""variables"":{""id"":""" + aid + "\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":\"US\",\"viewerContext\":\"BUYER\"},\"operationName\":\"GetMarketData\"}";
+
+               // string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String) {\n  product(id: $id) {\n    id\n    urlKey\n    title\n    uuid\n    contentGroup\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        bidAskData(country: $countryCode, market: $marketName) {\n          highestBid\n          highestBidSize\n          lowestAsk\n          lowestAskSize\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n      }\n    }\n    ...BidButtonFragment\n    ...BidButtonContentFragment\n    ...BuySellFragment\n    ...BuySellContentFragment\n    ...XpressAskPDPFragment\n    ...LastSaleFragment\n  }\n}\n\nfragment BidButtonFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BidButtonContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  minimumBid(currencyCode: $currencyCode)\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n      numberOfAsks\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n        numberOfAsks\n      }\n    }\n  }\n}\n\nfragment BuySellFragment on Product {\n  id\n  title\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  media {\n    imageUrl\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment BuySellContentFragment on Product {\n  id\n  urlKey\n  sizeDescriptor\n  productCategory\n  lockBuying\n  lockSelling\n  market(currencyCode: $currencyCode) {\n    bidAskData(country: $countryCode, market: $marketName) {\n      highestBid\n      highestBidSize\n      lowestAsk\n      lowestAskSize\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      bidAskData(country: $countryCode, market: $marketName) {\n        highestBid\n        highestBidSize\n        lowestAsk\n        lowestAskSize\n      }\n    }\n  }\n}\n\nfragment XpressAskPDPFragment on Product {\n  market(currencyCode: $currencyCode) {\n    state(country: $countryCode) {\n      numberOfCustodialAsks\n    }\n  }\n  variants {\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode) {\n        numberOfCustodialAsks\n      }\n    }\n  }\n}\n\nfragment LastSaleFragment on Product {\n  id\n  market(currencyCode: $currencyCode) {\n    statistics(market: $marketName) {\n      ...LastSaleMarketStatistics\n    }\n  }\n  variants {\n    id\n    market(currencyCode: $currencyCode) {\n      statistics(market: $marketName) {\n        ...LastSaleMarketStatistics\n      }\n    }\n  }\n}\n\nfragment LastSaleMarketStatistics on MarketStatistics {\n  lastSale {\n    amount\n    changePercentage\n    changeValue\n    sameFees\n  }\n}"",""variables"":{""id"":"""+aid+"\",\"currencyCode\":\"USD\",\"countryCode\":\"US\",\"marketName\":null},\"operationName\":\"GetMarketData\"}";
 				
 				
-				byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
-				request.ContentLength = postBytes.Length;
+			 
+
+                string body = @"{""query"":""query GetMarketData($id: String!, $currencyCode: CurrencyCode, $countryCode: String!, $marketName: String, $viewerContext: MarketViewerContext) {\n  product(id: $id) {\n    id\n    urlKey\n    listingType\n    title\n    uuid\n    contentGroup\n    sizeDescriptor\n    productCategory\n    lockBuying\n    lockSelling\n    media {\n      imageUrl\n    }\n    minimumBid(currencyCode: $currencyCode)\n    market(currencyCode: $currencyCode) {\n      state(country: $countryCode, market: $marketName) {\n        lowestAsk {\n          amount\n          chainId\n        }\n        highestBid {\n          amount\n        }\n        askServiceLevels {\n          expressExpedited {\n            count\n            lowest {\n              amount\n              chainId\n              inventoryType\n            }\n            delivery {\n              expectedDeliveryDate\n              latestDeliveryDate\n            }\n          }\n          expressStandard {\n            count\n            lowest {\n              amount\n              inventoryType\n            }\n            delivery {\n              expectedDeliveryDate\n              latestDeliveryDate\n            }\n          }\n          standard {\n            count\n            lowest {\n              amount\n              chainId\n            }\n          }\n        }\n        numberOfAsks\n        numberOfBids\n      }\n      salesInformation {\n        lastSale\n        salesLast72Hours\n      }\n      statistics(market: $marketName, viewerContext: $viewerContext) {\n        lastSale {\n          amount\n          changePercentage\n          changeValue\n          sameFees\n        }\n      }\n    }\n    variants {\n      id\n      market(currencyCode: $currencyCode) {\n        state(country: $countryCode, market: $marketName) {\n          lowestAsk {\n            amount\n            chainId\n          }\n          highestBid {\n            amount\n          }\n          askServiceLevels {\n            expressExpedited {\n              count\n              lowest {\n                amount\n                chainId\n                inventoryType\n              }\n              delivery {\n                expectedDeliveryDate\n                latestDeliveryDate\n              }\n            }\n            expressStandard {\n              count\n              lowest {\n                amount\n                chainId\n                inventoryType\n              }\n              delivery {\n                expectedDeliveryDate\n                latestDeliveryDate\n              }\n            }\n            standard {\n              count\n              lowest {\n                amount\n                chainId\n              }\n            }\n          }\n          numberOfAsks\n          numberOfBids\n        }\n        salesInformation {\n          lastSale\n          salesLast72Hours\n        }\n        statistics(market: $marketName, viewerContext: $viewerContext) {\n          lastSale {\n            amount\n            changePercentage\n            changeValue\n            sameFees\n          }\n        }\n      }\n    }\n  }\n}"",""variables"":{""id"":""kobe-6-supreme-chaos"",""currencyCode"":""USD"",""countryCode"":""US"",""marketName"":""US"",""viewerContext"":""BUYER""},""operationName"":""GetMarketData""}";
+
+
+				body = body.Replace("kobe-6-supreme-chaos",aid);
+
+				//MessageBox.Show(body);
+                byte[] postBytes = System.Text.Encoding.UTF8.GetBytes(body);
+                request.ContentLength = postBytes.Length;
 				Stream stream = request.GetRequestStream();
 				stream.Write(postBytes, 0, postBytes.Length);
 				stream.Close();
@@ -595,20 +593,20 @@ namespace stockx网站价格
 
         private void button3_Click(object sender, EventArgs e)
         {
-			// getxie();
-			//  webView21.Source = new Uri("https://stockx.com/zh-cn/"+xiezi);
+			getxie();
+			webView21.Source = new Uri("https://stockx.com/zh-cn/" + xiezi);
 
 
 
 
 			//webView21.Source = new Uri("https://search.1688.com/company/wap/factory_search.htm?_wvUseWKWebView=true&__existtitle__=1&__nosearchbox__=1&tabCode=findFactoryTab&key=%E8%8A%AD%E8%95%BE%E9%9E%8B&verticalProductFlag=wapfactory&_layoutMode_=noSort&source=search_input&searchBy=input");
-			webView21.Source = new Uri("https://ditu.amap.com/detail/get/detail");
-			
-        }
+			//webView21.Source = new Uri("https://ditu.amap.com/detail/get/detail");
 
-      
+		}
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+
+
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
 			DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 			if (dr == DialogResult.OK)

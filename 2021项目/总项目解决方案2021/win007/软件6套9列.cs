@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using myDLL;
 
 namespace win007
@@ -155,15 +156,17 @@ namespace win007
                 }
 
 
+                //新数据库更新让球所在列
+                //if (t5 != "")
+                //{
+                //    sql = sql + (" rangqiudaxiaoqiu like '" + t5.Trim() + "%' and");
+                //}
 
                 if (t5 != "")
                 {
-                    sql = sql + (" rangqiudaxiaoqiu like '" + t5.Trim() + "%' and");
+                    sql = sql + (" sjp2 like '" + t5.Trim() + "%' and");
                 }
-                //if (t6.Text != "")
-                //{
-                //    sql = sql + (" rangqiudaxiaoqiu like '%" + t6.Text.Trim() + "' and");
-                //}
+
 
 
                 if (comb1.Text != "")
@@ -1504,7 +1507,12 @@ namespace win007
                         }
 
                     }
+
+                    lv3.SubItems.Add("##");
                 }
+
+
+                lv1.SubItems.Add("##");
             }
             catch (Exception ex)
             {
@@ -1544,7 +1552,11 @@ namespace win007
             kailizhishu(lv1, lv2, lv3, comboBox3.Text);
             kailizhishu(lv1, lv2, lv3, comboBox4.Text);
             kailizhishu(lv1, lv2, lv3, comboBox5.Text);
-           
+
+
+            lv1.SubItems.Add("##");
+            lv2.SubItems.Add("##");
+            lv3.SubItems.Add("##");
         }
 
         public void kailizhishu(ListViewItem lv1, ListViewItem lv2, ListViewItem lv3,string com)
@@ -1596,7 +1608,7 @@ namespace win007
 
 
                 }
-
+                
 
 
             }
@@ -1620,6 +1632,32 @@ namespace win007
                 matchid = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
             }
             chazhi_textB.Text=function.gongsi5chazhi(matchid,comboBox1.Text,comboBox2.Text,comboBox3.Text,comboBox4.Text,comboBox5.Text);
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请选择一行");
+                return; 
+            }
+          
+            string str = Interaction.InputBox("请输入备注", "请输入备注", "请输入备注", -1, -1);
+
+            listView1.SelectedItems[0].SubItems[6].Text = str;
+        }
+
+        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.listView2.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("请选择一行");
+                return;
+            }
+
+            string str = Interaction.InputBox("请输入备注", "请输入备注", "请输入备注", -1, -1);
+
+            listView2.SelectedItems[0].SubItems[6].Text = str;
         }
     }
 
