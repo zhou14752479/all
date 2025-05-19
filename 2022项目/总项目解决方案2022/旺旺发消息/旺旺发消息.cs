@@ -203,10 +203,10 @@ namespace 旺旺发消息
             await webView.EnsureCoreWebView2Async(env);
 
 
-            WebView2list.Add(webView);  
-            webView.Source = new Uri("https://air.1688.com/app/ocms-fusion-components-1688/def_cbu_web_im_core/index.html?touid=cnalichn媚裳服装厂&siteid=cnalichn&status=1&portalId=&gid=&offerId=893587953407&itemsId=&spmid=a261y.7663282.0#/");
-
-
+            WebView2list.Add(webView);
+            //webView.Source = new Uri("https://air.1688.com/app/ocms-fusion-components-1688/def_cbu_web_im_core/index.html?touid=cnalichn媚裳服装厂&siteid=cnalichn&status=1&portalId=&gid=&offerId=893587953407&itemsId=&spmid=a261y.7663282.0#/");
+            webView.Source = new Uri("https://auth.alipay.com/login/index.htm?loginScene=7&goto=https%3A%2F%2Fauth.alipay.com%2Flogin%2Ftaobao_trust_login.htm%3Ftarget%3Dhttps%253A%252F%252Flogin.taobao.com%252Fmember%252Falipay_sign_dispatcher.jhtml%253Ftg%253Dhttp%25253A%25252F%25252Fbuyertrade.taobao.com%25252Ftrade%25252Fitemlist%25252Flist_bought_items.htm&params=VFBMX3JlZGlyZWN0X3VybD1odHRwJTNBJTJGJTJGYnV5ZXJ0cmFkZS50YW9iYW8uY29tJTJGdHJhZGUlMkZpdGVtbGlzdCUyRmxpc3RfYm91Z2h0X2l0ZW1zLmh0bQ%3D%3D");
+           
         }
         string wangwangs = "";
 
