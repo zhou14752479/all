@@ -843,10 +843,7 @@ namespace 主程序202401
                 MessageBox.Show("请输入网址");
                 return;
             }
-            if (DateTime.Now > Convert.ToDateTime("2025-07-26"))
-            {
-                return;
-            }
+           
             易优权益监控拉黑.domain = textBox2.Text.Trim();
             string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt";
 
@@ -1186,6 +1183,13 @@ namespace 主程序202401
                 string currentnum = listView2.SelectedItems[0].SubItems[5].Text;
 
                 string startnum = Interaction.InputBox("提示信息", "请输入初始值", "0", -1, -1);
+
+
+                if(old_start=="")
+                {
+                    MessageBox.Show("初始为空，请先添加初始");
+                    return;
+                }
 
 
                 tongbu(uid, startnum, currentnum);

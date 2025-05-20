@@ -48,6 +48,13 @@ namespace 旺旺发消息
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            if(textBox1.Text=="")
+            {
+                MessageBox.Show("请输入发送内容");
+                return;
+            }
+            
             status = true;
             if (thread == null || !thread.IsAlive)
             {
@@ -63,11 +70,17 @@ namespace 旺旺发消息
         public void inputTxt(WebView2 webview)
         {
 
+            string[] text = textBox1.Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
 
-           
+            Random rd = new Random();
+            int a = rd.Next(0, text.Length);
+            string msg = text[a];
+            string valueToInput = msg;
+
+
 
             string className = "edit";
-            string valueToInput = textBox1.Text;
+          
 
             if (string.IsNullOrEmpty(className))
             {
