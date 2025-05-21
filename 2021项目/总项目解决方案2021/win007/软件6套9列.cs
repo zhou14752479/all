@@ -22,11 +22,13 @@ namespace win007
         }
 
 
-    
 
+     
         private void 软件6套9列_Load(object sender, EventArgs e)
         {
-          
+           
+
+
             foreach (Control control in groupBox1.Controls)
             {
                 if (control is TextBox)
@@ -1634,30 +1636,51 @@ namespace win007
             chazhi_textB.Text=function.gongsi5chazhi(matchid,comboBox1.Text,comboBox2.Text,comboBox3.Text,comboBox4.Text,comboBox5.Text);
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        string shuzi = "";
+        private void listView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (this.listView1.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("请选择一行");
-                return; 
-            }
-          
-            string str = Interaction.InputBox("请输入备注", "请输入备注", "请输入备注", -1, -1);
+            //// 处理主键盘区数字键
+            //if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
+            //{
+            //    int number = e.KeyCode - Keys.D0;
 
-            listView1.SelectedItems[0].SubItems[6].Text = str;
+            //    e.Handled = true; // 标记事件已处理
+            //}
+            // 处理小键盘区数字键
+           if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            {
+                int number = e.KeyCode - Keys.NumPad0;
+
+                // e.Handled = true; // 标记事件已处理
+
+             
+               
+                if (this.listView1.SelectedItems.Count > 0)
+                {
+                    listView1.SelectedItems[0].SubItems[6].Text = shuzi;
+                   
+                }
+
+            }
         }
 
-        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listView2_KeyDown(object sender, KeyEventArgs e)
         {
-            if (this.listView2.SelectedItems.Count == 0)
+            if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
             {
-                MessageBox.Show("请选择一行");
-                return;
+                int number = e.KeyCode - Keys.NumPad0;
+
+                // e.Handled = true; // 标记事件已处理
+
+
+              
+                if (this.listView2.SelectedItems.Count > 0)
+                {
+                    listView2.SelectedItems[0].SubItems[6].Text = shuzi;
+
+                }
+
             }
-
-            string str = Interaction.InputBox("请输入备注", "请输入备注", "请输入备注", -1, -1);
-
-            listView2.SelectedItems[0].SubItems[6].Text = str;
         }
     }
 

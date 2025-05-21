@@ -66,6 +66,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,6 +74,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
@@ -109,8 +111,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -541,7 +541,7 @@
             this.listView2.TabIndex = 310;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView2_MouseDoubleClick);
+            this.listView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView2_KeyDown);
             // 
             // columnHeader6
             // 
@@ -567,6 +567,11 @@
             // 
             this.columnHeader12.Text = "五";
             // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "备注";
+            this.columnHeader14.Width = 200;
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -587,7 +592,7 @@
             this.listView1.TabIndex = 309;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
+            this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             // 
             // columnHeader7
             // 
@@ -612,6 +617,11 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "五";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "备注";
+            this.columnHeader13.Width = 200;
             // 
             // button1
             // 
@@ -979,16 +989,6 @@
             this.webBrowser1.Size = new System.Drawing.Size(1020, 757);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "备注";
-            this.columnHeader13.Width = 200;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "备注";
-            this.columnHeader14.Width = 200;
             // 
             // 软件6套9列
             // 
