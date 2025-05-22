@@ -94,7 +94,7 @@ namespace 主程序2025
 
 
       
-        string tk = "_m_h5_tk=027ab8360e3c115042978d4dd68b5689_1745999827223; _m_h5_tk_enc=b58f5211e8fd2e61ac93fe8225759863;";
+        string tk = "_m_h5_tk=97624facf78d7f3a426c8c64f0fb5c1f_1747920391562; _m_h5_tk_enc=8e0816a5bc0740da7ab9a836aa9a47dd;";
         string x5 = "";
         string cookie = "";
         
@@ -178,7 +178,7 @@ namespace 主程序2025
 
                         string html = function.GetUrlWithCookie(url, cookie, "utf-8");
 
-
+                       
                       
                         if (html.Contains("令牌过期"))
                         {
@@ -210,8 +210,8 @@ namespace 主程序2025
                                 yzm_yuanma.url = capurl;
                                 yzm_yuanma.run();
                                 x5 = yzm_yuanma.x5sec;
-                              
-                              
+
+                               
                             }
                             else
                             {
