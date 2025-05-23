@@ -95,7 +95,7 @@ namespace 主程序2025
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);  //创建一个链接
 
                 // request.Proxy = null;//防止代理抓包
-                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 AliApp(1688/11.56.1) WindVane/8.7.2 A2U/x 1170x2532 x-i18n/zh-CN WK";
+                request.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 AliApp(1688/11.59.1) WindVane/8.7.2 A2U/x 1170x2532 x-i18n/zh-CN WK\r\n";
                 WebHeaderCollection headers = request.Headers;
                 headers.Add("f-pTraceId: WVNet_WV_6-6-124");
                 headers.Add("bx-v: 2.5.11, 2.5.11");
@@ -299,14 +299,14 @@ namespace 主程序2025
 
         public static void log(string data)
         {
-            
 
-            //FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
-            //StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
-            //sw.WriteLine(DateTime.Now.ToString()+"："+data);
-            //sw.Close();
-            //fs1.Close();
-            //sw.Dispose();
+
+            FileStream fs1 = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt", FileMode.Append, FileAccess.Write);//创建写入文件 
+            StreamWriter sw = new StreamWriter(fs1, Encoding.GetEncoding("UTF-8"));
+            sw.WriteLine(DateTime.Now.ToString() + "：" + data);
+            sw.Close();
+            fs1.Close();
+            sw.Dispose();
 
         }
 
