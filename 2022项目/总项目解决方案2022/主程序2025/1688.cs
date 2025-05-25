@@ -94,8 +94,8 @@ namespace 主程序2025
 
 
 
-        string tk = "_m_h5_tk=97624facf78d7f3a426c8c64f0fb5c1f_1747920391562; _m_h5_tk_enc=8e0816a5bc0740da7ab9a836aa9a47dd;";
-      
+        // string tk = "_m_h5_tk=97624facf78d7f3a426c8c64f0fb5c1f_1747920391562; _m_h5_tk_enc=8e0816a5bc0740da7ab9a836aa9a47dd;";
+        string tk = "_m_h5_tk=1ac800c84da25489617f7703c415ff6b_1748152357506; _m_h5_tk_enc=62d87057306ba254c1aa934be3b953f4;";
         string x5 = "";
         string cookie = "";
         
@@ -206,37 +206,38 @@ namespace 主程序2025
 
                             if (capurl.Contains("&action=captcha&"))
                             {
-                                label1.Text =DateTime.Now.ToString()+ "：被挤爆啦--滑块";
+                                label1.Text =DateTime.Now.ToString()+ "：被挤爆啦--滑块"+page;
                               
                                 yzm_yuanma.url = capurl;
                                 yzm_yuanma.run();
                                 x5 = yzm_yuanma.x5sec;
 
+                                cookie = tk + x5;
+                                html = function.GetUrlWithCookie(url, cookie, "utf-8");
+                            }
+                           //else if (capurl.Contains("&action=captchacapslidev2&"))
+                           // {
+                           //     label1.Text = DateTime.Now.ToString() + "：被挤爆啦--水果";
+
+                           //     shuiguo.url = capurl;
+                           //     shuiguo.run();
+                           //     x5 = shuiguo.x5sec;
+
                                
-                            }
-                           else if (capurl.Contains("&action=captchacapslidev2&"))
-                            {
-                                label1.Text = DateTime.Now.ToString() + "：被挤爆啦--水果";
+                           // }
 
-                                shuiguo.url = capurl;
-                                shuiguo.run();
-                                x5 = shuiguo.x5sec;
-
-                                MessageBox.Show(html + x5);
-                            }
-
-                            else
-                            {
-                                label1.Text = "禁止访问"+html;
-                                page = page - 50;
-                                yzm_yuanma.x5sec = "";
-                                shuiguo.x5sec = "";
-                                x5 = "";
+                           // else
+                           // {
+                           //     label1.Text = "禁止访问"+html;
+                           //     page = page - 50;
+                           //     yzm_yuanma.x5sec = "";
+                           //     shuiguo.x5sec = "";
+                           //     x5 = "";
                                
-                            }
+                           // }
 
                             Thread.Sleep(2000);
-                            continue;
+                          
                             
                         }
                      
@@ -252,6 +253,11 @@ namespace 主程序2025
 
                         if (facName.Count == 0)
                             break;
+
+                        if(facName.Count>0)
+                        {
+                            x5 = "";
+                        }
                         for (int j = 0; j < facName.Count; j++)
                         {
                            

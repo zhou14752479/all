@@ -237,7 +237,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "C:\\Users\\sqwxb\\Desktop\\导入.txt";
+            this.textBox1.Text = "C:\\Users\\Administrator\\Desktop\\导入.txt";
             // 
             // button1
             // 
