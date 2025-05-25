@@ -181,23 +181,9 @@ namespace 主程序2025
 
                        
                       
-                        if (html.Contains("令牌过期"))
-                        {
-                            label1.Text = "令牌过期";
-                            string cookiestr = function.getSetCookie(url,cookie);
-                          
-                            string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                            string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                            tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-
-
-                            page = page - 50;
-                            continue;
-
-                           
-                        }
+                      
                        // textBox9.Text = html;
-                        //MessageBox.Show("");
+                       
 
 
                         if (html.Contains("挤爆啦"))
@@ -215,33 +201,49 @@ namespace 主程序2025
                                 cookie = tk + x5;
                                 html = function.GetUrlWithCookie(url, cookie, "utf-8");
                             }
-                           //else if (capurl.Contains("&action=captchacapslidev2&"))
-                           // {
-                           //     label1.Text = DateTime.Now.ToString() + "：被挤爆啦--水果";
 
-                           //     shuiguo.url = capurl;
-                           //     shuiguo.run();
-                           //     x5 = shuiguo.x5sec;
+                            //else if (capurl.Contains("&action=captchacapslidev2&"))
+                            // {
+                            //     label1.Text = DateTime.Now.ToString() + "：被挤爆啦--水果";
 
-                               
-                           // }
+                            //     shuiguo.url = capurl;
+                            //     shuiguo.run();
+                            //     x5 = shuiguo.x5sec;
 
-                           // else
-                           // {
-                           //     label1.Text = "禁止访问"+html;
-                           //     page = page - 50;
-                           //     yzm_yuanma.x5sec = "";
-                           //     shuiguo.x5sec = "";
-                           //     x5 = "";
-                               
-                           // }
 
-                            Thread.Sleep(2000);
+                            // }
+
+                            // else
+                            // {
+                            //     label1.Text = "禁止访问"+html;
+                            //     page = page - 50;
+                            //     yzm_yuanma.x5sec = "";
+                            //     shuiguo.x5sec = "";
+                            //     x5 = "";
+
+                            // }
+
+                           
+                            if (html.Contains("令牌过期"))
+                            {
+                                label1.Text = "令牌过期";
+                                string cookiestr = function.getSetCookie(url, cookie);
+
+                                string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                                string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                                tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+                                x5 = "";
+                                page = 0;
+                                continue;
+
+
+                            }
+                            
                           
                             
                         }
-                     
 
+                      
 
                         MatchCollection facName = Regex.Matches(html, @"\\""facName\\"":\\""([\s\S]*?)\\""");
                         MatchCollection wangwang = Regex.Matches(html, @"\\""loginId\\"":\\""([\s\S]*?)\\""");
