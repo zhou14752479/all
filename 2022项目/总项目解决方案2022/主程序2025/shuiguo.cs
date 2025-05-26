@@ -19,13 +19,19 @@ namespace 主程序2025
         private int _success = 0;
         private int _fail = 0;
 
-        public  string GetX5Sec(string url)
+        public static string url = "";
+        public static string x5sec = "";
+        public  string GetX5Sec()
         {
             try
             {
                 // 获取验证码配置
-                var captchaConfig = GetCaptchaConfig("https://rest-sig.imaitix.com//api/user/userLogin/_____tmd_____/punish?reqeust=getpunishpage&source=xagent&x5secdata=xcjdo7RF4AYoD1%2fIUrIzu0vTppBIukYTSzK25EjWDbyrA6tGu4DQSGRJnNas9sSvPGRL%2f0Q%2bJTLD3pW2DnBC4wVssE5Qf6w6tJvn9axCXsvUMDGMSkM%2flOA5pVnSE%2feCgFEghYbP7QJRnwSJPKToZ0avJR6zctlHSfyBsnwaEphtY96RU9MlBEqBc08jjo77sHcgfWc25MBa%2f5wlI6562Fy1CcO3hWb69egCzYpt2yo0QAGzrQTlV%2bhfJxg4epc6lL__bx__rest-sig.imaitix.com%2fapi%2fuser%2fuserLogin&x5step=2");
-                Console.WriteLine(JsonConvert.SerializeObject(captchaConfig));
+
+                //var captchaConfig = GetCaptchaConfig("https://rest-sig.imaitix.com//api/user/userLogin/_____tmd_____/punish?reqeust=getpunishpage&source=xagent&x5secdata=xcjdo7RF4AYoD1%2fIUrIzu0vTppBIukYTSzK25EjWDbyrA6tGu4DQSGRJnNas9sSvPGRL%2f0Q%2bJTLD3pW2DnBC4wVssE5Qf6w6tJvn9axCXsvUMDGMSkM%2flOA5pVnSE%2feCgFEghYbP7QJRnwSJPKToZ0avJR6zctlHSfyBsnwaEphtY96RU9MlBEqBc08jjo77sHcgfWc25MBa%2f5wlI6562Fy1CcO3hWb69egCzYpt2yo0QAGzrQTlV%2bhfJxg4epc6lL__bx__rest-sig.imaitix.com%2fapi%2fuser%2fuserLogin&x5step=2");
+
+                var captchaConfig = GetCaptchaConfig(url);
+
+               // Console.WriteLine(JsonConvert.SerializeObject(captchaConfig));
                 //Logger.Info($"当前验证码类型:{captchaConfig["action"]}");
 
                 // 构建验证码URL
@@ -91,8 +97,11 @@ namespace 主程序2025
                         {
                             Logger.Success(cookies);
                             _success++;
-                            MessageBox.Show(cookie);
-                            return cookie;
+                            // MessageBox.Show(cookie);
+                            //return cookie;
+                            
+                            x5sec = Regex.Match(cookie, @"x5sec=([\s\S]*?);").Groups[1].Value;
+                            x5sec = "x5sec=" + x5sec;
                         }
                     }
                 }

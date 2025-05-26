@@ -83,7 +83,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="shuiguo.cs" />
-    <Compile Include="yzm.cs" />
     <Compile Include="yzm_yuanma.cs" />
     <Compile Include="轨迹反推.cs">
       <SubType>Form</SubType>

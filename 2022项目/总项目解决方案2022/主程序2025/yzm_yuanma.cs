@@ -46,6 +46,7 @@ namespace 主程序2025
                     throw new Exception();
                 }
             }
+
             catch (Exception ex)
             {
                 function.log($"获取验证码配置信息时出错：{ex.Message}");
