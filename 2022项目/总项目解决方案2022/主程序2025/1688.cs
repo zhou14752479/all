@@ -704,14 +704,15 @@ namespace 主程序2025
 
         private void button5_Click(object sender, EventArgs e)
         {
-          //string x5=  yzm.getx5("https://ditu.amap.com/detail/get/detail");
-          //  MessageBox.Show(x5);
-            //MessageBox.Show(getfahuo("b2b-220748602880961213"));
+          
             listView1.Items.Clear();
 
             //yzm_yuanma.url = "https://ditu.amap.com/detail/get/detail?id=B00155L3DHo";
             //yzm_yuanma.run();
             //MessageBox.Show(yzm_yuanma.x5sec);
+
+            var shuiguohelper = new shuiguo();
+            shuiguohelper.GetX5Sec("");
         }
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
