@@ -49,7 +49,7 @@ namespace 主程序2025
 
             catch (Exception ex)
             {
-                function.log($"获取验证码配置信息时出错：{ex.Message}");
+                //function.log($"获取验证码配置信息时出错：{ex.Message}");
                 throw;
             }
         }
@@ -112,21 +112,21 @@ namespace 主程序2025
                     }
                     else
                     {
-                        function.log($"失败: {x5secResponseContent}");
+                        //function.log($"失败: {x5secResponseContent}");
                         fail++;
                     }
                 }
                 else
                 {
-                    function.log($"失败: 未获取到 Set-Cookie 头");
+                    //function.log($"失败: 未获取到 Set-Cookie 头");
                     fail++;
                 }
 
-                function.log($"当前成功率:{Math.Round((double)success / (success + fail) * 100, 2)} 次数:{(success + fail)}");
+                //function.log($"当前成功率:{Math.Round((double)success / (success + fail) * 100, 2)} 次数:{(success + fail)}");
             }
             catch (Exception ex)
             {
-                function.log($"处理 X5Sec 时出错：{ex.Message}");
+                //function.log($"处理 X5Sec 时出错：{ex.Message}");
             }
         }
 

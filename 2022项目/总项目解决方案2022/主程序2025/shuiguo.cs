@@ -95,7 +95,7 @@ namespace 主程序2025
                     {
                         if (cookie.Contains("x5sec"))
                         {
-                            Logger.Success(cookies);
+                            //Logger.Success(cookies);
                             _success++;
                             // MessageBox.Show(cookie);
                             //return cookie;
@@ -108,11 +108,11 @@ namespace 主程序2025
 
                 if (responseText.Contains("\"code\":306"))
                 {
-                    Logger.Debug("识别距离问题!");
+                    //Logger.Debug("识别距离问题!");
                 }
                 else
                 {
-                    Logger.Error("校验未通过!");
+                    //Logger.Error("校验未通过!");
                 }
 
                 _fail++;
@@ -120,7 +120,7 @@ namespace 主程序2025
             }
             catch (Exception ex)
             {
-                Logger.Error($"处理过程中发生错误: {ex.ToString()}");
+               // Logger.Error($"处理过程中发生错误: {ex.ToString()}");
                 _fail++;
                 return null;
             }
