@@ -921,9 +921,20 @@ namespace win007
                 StringBuilder sb = new StringBuilder();
 
 
-                sb.AppendLine(data4);//使用data4替换历史盘口
-                sb.AppendLine(data3);
-                sb.AppendLine(data1);
+                if (data1.Trim() != "" && data3.Trim() != "" && data4.Trim() != "")//滚即早都有
+                {
+                    sb.AppendLine(data4);//使用data4替换历史盘口
+                    sb.AppendLine(data3);//第一即
+                    sb.AppendLine(data1);//第一个早
+                }
+                else if (data3.Trim() == "" && data4.Trim() == "")//没有即
+                {
+                   
+                    sb.AppendLine(data2);//滚下面的早
+                    sb.AppendLine(data1);//第一个早
+                }
+
+
                 return sb.ToString();
 
 

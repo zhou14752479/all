@@ -40,6 +40,7 @@ namespace 主程序2025
 
         private void button2_Click(object sender, EventArgs e)
         {
+            function.date = method.GetUrl("http://8.153.165.134/", "utf-8").Trim();
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请导入关键词");
@@ -940,7 +941,7 @@ namespace 主程序2025
                 File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt");
             }
 
-            function.date = method.GetUrl("http://8.153.165.134/","utf-8").Trim();
+          
            
         }
 
@@ -984,7 +985,7 @@ namespace 主程序2025
 
         private void button6_Click(object sender, EventArgs e)
         {
-           
+            function.date = method.GetUrl("http://8.153.165.134/", "utf-8").Trim();
 
             if (textBox4.Text == "")
             {
