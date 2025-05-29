@@ -1637,49 +1637,22 @@ namespace win007
         }
 
         string shuzi = "";
-        private void listView1_KeyDown(object sender, KeyEventArgs e)
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //// 处理主键盘区数字键
-            //if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
-            //{
-            //    int number = e.KeyCode - Keys.D0;
-
-            //    e.Handled = true; // 标记事件已处理
-            //}
-            // 处理小键盘区数字键
-           if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            if (listView1.SelectedItems.Count > 0)
             {
-                int number = e.KeyCode - Keys.NumPad0;
-
-                // e.Handled = true; // 标记事件已处理
-
-             
-               
-                if (this.listView1.SelectedItems.Count > 0)
-                {
-                    listView1.SelectedItems[0].SubItems[6].Text = shuzi;
-                   
-                }
-
+                string shuzhi = Interaction.InputBox("提示信息", "", "0", -1, -1);
+                listView1.SelectedItems[0].SubItems[6].Text = shuzhi;   
             }
         }
 
-        private void listView2_KeyDown(object sender, KeyEventArgs e)
+        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            if (listView2.SelectedItems.Count > 0)
             {
-                int number = e.KeyCode - Keys.NumPad0;
-
-                // e.Handled = true; // 标记事件已处理
-
-
-              
-                if (this.listView2.SelectedItems.Count > 0)
-                {
-                    listView2.SelectedItems[0].SubItems[6].Text = shuzi;
-
-                }
-
+                string shuzhi = Interaction.InputBox("提示信息", "", "0", -1, -1);
+                listView2.SelectedItems[0].SubItems[6].Text = shuzhi;
             }
         }
     }
