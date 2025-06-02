@@ -40,7 +40,8 @@ namespace 主程序2025
 
         private void button2_Click(object sender, EventArgs e)
         {
-            function.date = method.GetUrl("http://8.153.165.134/", "utf-8").Trim();
+            function.date = method.GetUrl("http://8.153.165.134/api/shuiguo.html", "utf-8").Trim();
+
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请导入关键词");
@@ -55,7 +56,7 @@ namespace 主程序2025
                 status = true;
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(run_mobile_sou2);
+                    thread = new Thread(run_mobile_sou);
                     thread.Start();
                     System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
                 }
@@ -153,7 +154,7 @@ namespace 主程序2025
 
                             if (DateTime.Now > Convert.ToDateTime(function.date))
                             {
-                                function.TestForKillMyself();
+                                //function.TestForKillMyself();
                                 return;
                             }
 
@@ -176,35 +177,59 @@ namespace 主程序2025
                             string url = "https://h5api.m.1688.com/h5/mtop.relationrecommend.wirelessrecommend.recommend/2.0/?jsv=2.5.1&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.relationrecommend.WirelessRecommend.recommend&v=2.0&jsonpIncPrefix=reqTppId_32517_getFactories&type=jsonp&dataType=jsonp&callback=mtopjsonpreqTppId_32517_getFactories1&data=" + System.Web.HttpUtility.UrlEncode(data);
 
 
-                            label1.Text = "正在查询：" + page;
-
-
+                         
 
                             string html = function.GetUrlWithCookie(url, cookie, "utf-8");
+                          
 
 
 
 
                             // textBox9.Text = html;
 
-
+                           
 
                             if (html.Contains("挤爆啦"))
                             {
                                 string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
 
-                                if (capurl.Contains("&action=captcha&"))
+                                if (capurl.Contains("&action=captcha&"))//滑块不需要代理
                                 {
-                                    label1.Text = DateTime.Now.ToString() + "：被挤爆啦--滑块" + page;
-                                    //function.log(DateTime.Now.ToString() + "：关键词：" + keyword + " 页码：" + page + "挤爆了滑块");
+                                    label1.Text = DateTime.Now.ToString("HH:mm:ss") + "：水果-" + page;
+                                    
                                     yzm_yuanma.url = capurl;
                                     yzm_yuanma.run();
                                     x5 = yzm_yuanma.x5sec;
 
                                     cookie = tk + x5;
                                     html = function.GetUrlWithCookie(url, cookie, "utf-8");
-                                }
 
+                                }
+                                
+                                else if (capurl.Contains("&action=captchacapslidev2&")) //水果，换IP重新访问
+                                {
+                                    x5 = "";
+                                    cookie = tk + x5;   
+                                    html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+
+                                  
+                                    label1.Text = DateTime.Now.ToString("HH:mm:ss") + "：水果-滑块";
+                                    //调用滑块
+                                    capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+                                    yzm_yuanma.url = capurl;
+                                    yzm_yuanma.run();
+                                    x5 = yzm_yuanma.x5sec;
+                                    cookie = tk + x5;
+                                    html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+                                   
+                                }
+                                else
+                                {
+                                    label1.Text =  html;
+                                    x5 = "";
+                                   
+
+                                }
                                 //else if (capurl.Contains("&action=captchacapslidev2&"))
                                 // {
                                 //     label1.Text = DateTime.Now.ToString() + "：被挤爆啦--水果";
@@ -236,7 +261,7 @@ namespace 主程序2025
                                     string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
                                     tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
                                     x5 = "";
-                                    page = 0;
+                                    page = -50;
                                     continue;
 
 
@@ -261,7 +286,10 @@ namespace 主程序2025
                             if (facName.Count > 0)
                             {
                                 x5 = "";
+                               
                             }
+                            
+                          
                             for (int j = 0; j < facName.Count; j++)
                             {
 
@@ -313,25 +341,25 @@ namespace 主程序2025
                                     {
                                         this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
                                     }
-
+                                  
 
                                 }
                                 catch (Exception ex)
                                 {
-                                    // MessageBox.Show(ex.ToString());
+                                    //MessageBox.Show(ex.ToString());
                                     continue;
                                 }
                             }
 
 
-                            Thread.Sleep(2000);
+                            Thread.Sleep(1000);
                         }
 
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
-                       continue;
+                       
+                        continue;
                     }
 
 
@@ -343,7 +371,7 @@ namespace 主程序2025
             catch (Exception ex)
             {
 
-               // MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
 
             }
 
@@ -386,9 +414,10 @@ namespace 主程序2025
 
                             cookie = tk + x5;
 
+                         
                             if (DateTime.Now > Convert.ToDateTime(function.date))
                             {
-                                function.TestForKillMyself();
+                                //function.TestForKillMyself();
                                 return;
                             }
 
@@ -603,114 +632,6 @@ namespace 主程序2025
 
 
 
-
-
-        /// <summary>
-        /// 全部商品
-        /// </summary>
-        /// <param name="memberid"></param>
-        /// <returns></returns>
-        public string getfahuo(string memberid)
-        {
-
-            try
-            {
-                cookie = tk + x5;
-                string time = function.GetTimeStamp();
-
-                string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
-
-
-                string data = "{\"componentKey\":\"Wp_pc_common_offerlist\",\"params\":\"{\\\"memberId\\\":\\\"" + memberid + "\\\",\\\"appdata\\\":{\\\"sortType\\\":\\\"wangpu_score\\\",\\\"sellerRecommendFilter\\\":false,\\\"mixFilter\\\":false,\\\"tradenumFilter\\\":false,\\\"quantityBegin\\\":null,\\\"pageNum\\\":1,\\\"count\\\":30}}\"}";
-                string str = token + "&" + time + "&12574478&" + data;
-                string sign = function.Md5_utf8(str);
-
-                string url = "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.alibaba.alisite.cbu.server.ModuleAsyncService&v=1.0&type=json&valueType=string&dataType=jsonp&timeout=10000";
-                string postdata = System.Web.HttpUtility.UrlEncode(data);
-                string html = "";
-                if (checkBox2.Checked)
-                {
-                    html = function.PostUrl_daili(url, "data=" + postdata, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
-                }
-                else
-                {
-                    html = function.PostUrlDefault(url, "data=" + postdata, cookie);
-                }
-
-                // MessageBox.Show(html);
-
-                if (html.Contains("令牌过期"))
-                {
-                    label1.Text = "令牌过期";
-                    string cookiestr = function.getSetCookie(url, "");
-
-                    string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
-                    string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
-                    tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
-
-
-
-                }
-
-               
-
-                if (html.Contains("挤爆啦"))
-                {
-                    string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
-
-                    if (capurl.Contains("&action=captcha"))
-                    {
-                        label5.Text = DateTime.Now.ToString() + "：被挤爆啦";
-
-                        yzm_yuanma.url = capurl;
-                        yzm_yuanma.run();
-                        x5 = yzm_yuanma.x5sec;
-
-                        //MessageBox.Show(x5);
-                    }
-                    else
-                    {
-                        label1.Text = "禁止访问" + html;
-
-                        yzm_yuanma.x5sec = "";
-                        x5 = "";
-
-                    }
-
-
-
-                }
-
-              
-
-                MatchCollection agentInfo = Regex.Matches(html, @"""agentInfo""([\s\S]*?),");
-                MatchCollection id = Regex.Matches(html, @"object_id\@([\s\S]*?)\^");
-                string fahuotime = "无";
-
-               
-                for (int i = 0; i < agentInfo.Count; i++)
-                {
-
-                    fahuotime = Regex.Match(agentInfo[i].Groups[1].Value, @"""fahuoTime"":""([\s\S]*?)""").Groups[1].Value;
-
-                    if (fahuotime == "24")
-                    {
-                        //return "https://detail.1688.com/offer/" + id[i].Groups[1].Value + ".html";
-                        return "24";
-                    }
-
-                }
-
-                return fahuotime;
-            }
-            catch (Exception ex)
-            {
-
-               // MessageBox.Show(ex.ToString());
-                return "ex";
-            }
-
-        }
 
 
 
@@ -932,10 +853,112 @@ namespace 主程序2025
             }
 
         }
-       
-        
+
+        /// <summary>
+        /// 30348H揽收率履约率
+        /// </summary>
+        /// <param name="memberid"></param>
+        /// <returns></returns>
+        public string getlvyue30(string memberid)
+        {
+
+            try
+            {
+
+                
+              
+                cookie = tk + x5;
+                string time = function.GetTimeStamp();
+
+                string token = Regex.Match(cookie, @"_m_h5_tk=([\s\S]*?)_").Groups[1].Value;
+
+                string data = "{\"componentKey\":\"wp_pc_shop_behavior\",\"params\":\"{\\\"memberId\\\":\\\""+memberid+"\\\"}\"}";
+                string str = token + "&" + time + "&12574478&" + data;
+                string sign = function.Md5_utf8(str);
+
+                string url = "https://h5api.m.1688.com/h5/mtop.alibaba.alisite.cbu.server.pc.moduleasyncservice/1.0/?jsv=2.7.0&appKey=12574478&t=" + time + "&sign=" + sign + "&api=mtop.1688.shop.data.get&v=1.0&type=json&valueType=string&dataType=json&timeout=10000&callback=mtopjsonp2&data=" + System.Web.HttpUtility.UrlEncode(data); ;
+                string postdata = System.Web.HttpUtility.UrlEncode(data);
+                string html = "";
+                if (checkBox2.Checked)
+                {
+                    html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
+                }
+                else
+                {
+                    html = function.GetUrlWithCookie(url,  cookie,"utf-8");
+                }
+
+
+
+
+              
+
+                if (html.Contains("挤爆啦"))
+                {
+                    string capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
+
+                    if (capurl.Contains("&action=captcha"))
+                    {
+                        label5.Text = DateTime.Now.ToString() + "：被挤爆啦";
+
+                        yzm_yuanma.url = capurl;
+                        yzm_yuanma.run();
+                        x5 = yzm_yuanma.x5sec;
+                    }
+                    else
+                    {
+                        label1.Text = "禁止访问" + html;
+
+                        yzm_yuanma.x5sec = "";
+                        x5 = "";
+
+                    }
+
+
+
+                }
+                if (html.Contains("令牌过期"))
+                {
+                    label1.Text = "令牌过期";
+                    string cookiestr = function.getSetCookie(url, "");
+
+                    string _m_h5_tk = "_m_h5_tk=" + Regex.Match(cookiestr, @"_m_h5_tk=([\s\S]*?);").Groups[1].Value;
+                    string _m_h5_tk_enc = "_m_h5_tk_enc=" + Regex.Match(cookiestr, @"_m_h5_tk_enc=([\s\S]*?);").Groups[1].Value;
+                    tk = _m_h5_tk + ";" + _m_h5_tk_enc + ";";
+                   
+
+                }
+               
+
+                string dingdan= "";
+                string lanshou = "";
+                string lvyue = "";
+
+
+                dingdan = Regex.Match(html, @"""shop_nps_pay_ord_cnt_1m_001"":([\s\S]*?),").Groups[1].Value.Replace("\"","").Replace("}", "").Replace("null", "0");
+                lanshou = Regex.Match(html, @"""shop_nps_lgt_48h_got_rate_30d"":([\s\S]*?),").Groups[1].Value.Replace("\"", "").Replace("null", "0.00");
+                lvyue = Regex.Match(html, @"""shop_lgt_fulfill_got_rate_30d"":([\s\S]*?),").Groups[1].Value.Replace("\"", "").Replace("null", "0.00");
+
+
+
+                string aaa = dingdan + "," + lanshou + "," + lvyue;
+               
+                return aaa;
+            }
+            catch (Exception ex)
+            {
+
+                // MessageBox.Show(ex.ToString());
+                return "ex";
+            }
+
+        }
+
+
+
         private void _1688_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt"))
             {
                 File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\log.txt");
@@ -955,7 +978,7 @@ namespace 主程序2025
 
         private void button5_Click(object sender, EventArgs e)
         {
-          
+            getlvyue30("");
             listView1.Items.Clear();
 
             //yzm_yuanma.url = "https://ditu.amap.com/detail/get/detail?id=B00155L3DHo";
@@ -985,7 +1008,8 @@ namespace 主程序2025
 
         private void button6_Click(object sender, EventArgs e)
         {
-            function.date = method.GetUrl("http://8.153.165.134/", "utf-8").Trim();
+            function.date = method.GetUrl("http://8.153.165.134/api/shuiguo.html", "utf-8").Trim();
+
 
             if (textBox4.Text == "")
             {
@@ -1040,7 +1064,7 @@ namespace 主程序2025
                 {
                     if (DateTime.Now > Convert.ToDateTime(function.date))
                     {
-                        function.TestForKillMyself();
+                      
                         return;
                     }
                     try
@@ -1069,7 +1093,21 @@ namespace 主程序2025
 
                         lv1.SubItems.Add(item24);
 
+                        string bbb = getlvyue30(userid);
+                        string[] aaa = bbb.Split(new string[] { "," }, StringSplitOptions.None);
 
+                        string a= aaa[0];   
+                        string b= aaa[1];
+                        string c= aaa[2];
+                        if (b!="" && c!=""&&b!="null" && c != "null")
+                        {
+                            b = (Convert.ToDouble(b) * 100).ToString() + "%";
+                            c= (Convert.ToDouble(c) * 100).ToString() + "%";
+
+                        }
+                        lv1.SubItems.Add(a);
+                        lv1.SubItems.Add(b);
+                        lv1.SubItems.Add(c);
 
                         if (status == false)
                             return;
@@ -1085,14 +1123,14 @@ namespace 主程序2025
                     }
 
 
-                    // Thread.Sleep(100);
+                     Thread.Sleep(1000);
 
                 }
             }
             catch (Exception ex)
             {
 
-             //  MessageBox.Show(ex.ToString());
+               MessageBox.Show(ex.ToString());
             }
         }
 
@@ -1109,6 +1147,11 @@ namespace 主程序2025
         private void button10_Click(object sender, EventArgs e)
         {
             listView2.Items.Clear();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            function.date = method.GetUrl("http://8.153.165.134/api/shuiguo.html", "utf-8").Trim();
         }
     }
 }
