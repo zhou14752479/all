@@ -417,6 +417,7 @@ namespace win007
                 string data7 = "0";
                 string data8 = "0";
                 string data9 = "0";
+                string time1 = "";
                 try
                 {
 
@@ -429,6 +430,7 @@ namespace win007
                             data1 = data_a[0].Replace(cid, "").Replace("^", "");
                             data2 = data_a[1];
                             data3 = data_a[2];
+                            time1= data_a[3];   
                         }
 
                         string[] data_b = datasresult[1].Split(new string[] { "|" }, StringSplitOptions.None);
@@ -448,8 +450,10 @@ namespace win007
                             data9 = data_c[2];
                         }
 
-                        sb.Append(cid + "," + data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6 + "," + data7 + "," + data8 + "," + data9);
+                        sb.Append(cid + "," + data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6 + "," + data7 + "," + data8 + "," + data9 + "," +time1);
                     }
+
+                  
                 }
                 catch (Exception ex)
                 {
@@ -458,13 +462,16 @@ namespace win007
 
 
             }
-
+            MessageBox.Show(sb.ToString());
             return sb.ToString();
         }
 
 
         #endregion
 
+
+
+       
 
         #region 获取当前实时凯丽数据
         public static string getshishi_kailidata(string matchid, string com)

@@ -134,7 +134,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1034, 801);
+            this.tabControl1.Size = new System.Drawing.Size(1390, 801);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -143,7 +143,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1026, 763);
+            this.tabPage1.Size = new System.Drawing.Size(1382, 763);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "----主界面-----";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -178,7 +178,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1020, 757);
+            this.groupBox2.Size = new System.Drawing.Size(1376, 757);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "7";
@@ -927,7 +927,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1026, 763);
+            this.tabPage2.Size = new System.Drawing.Size(1382, 763);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "----浏览器-----";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -986,7 +986,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1020, 757);
+            this.webBrowser1.Size = new System.Drawing.Size(1376, 757);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
@@ -994,7 +994,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 801);
+            this.ClientSize = new System.Drawing.Size(1390, 801);
             this.Controls.Add(this.tabControl1);
             this.Name = "软件6套9列";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

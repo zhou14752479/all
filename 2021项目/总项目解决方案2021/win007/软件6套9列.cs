@@ -399,7 +399,7 @@ namespace win007
             return "";
         }
 
-        public Dictionary<int, string> getshishidata(string company)
+        public Dictionary<int, string> get_data(string company)
         {
 
             Dictionary<int, string> dic = new Dictionary<int, string>();
@@ -1173,19 +1173,44 @@ namespace win007
 
             
         }
-
-
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        /// <summary>
+        /// 获取所有combox1的公司三行赔率，按照时间排序
+        /// </summary>
+        /// <returns></returns>
+        public void getpaixu()
         {
-            getshishidata(comboBox1.Text.Trim());
 
             string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
             if (id == "")
             {
                 id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
             }
-           textBox1.Text= function.getdata_yarang(id);
+
+            foreach (string company in comboBox1.Items)
+            {
+
+               
+                string data = function.getshishidata(id, company);
+
+                string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
+                string time1 = text[10];
+                MessageBox.Show(time1);
+            }
+           
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            get_data(comboBox1.Text.Trim());
+
+            string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
+            if (id == "")
+            {
+                id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
+            }
+           textBox1.Text= function.getdata_yarang(id);//获取亚让
+            getpaixu();//获取排序
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)
@@ -1227,7 +1252,7 @@ namespace win007
 
         public void allbutton()
         {
-            dic = getshishidata(comboBox1.Text.Trim());
+            dic = get_data(comboBox1.Text.Trim());
             if (dic.Count == 0)
             {
                 dic.Add(1, "0");
@@ -1254,7 +1279,7 @@ namespace win007
                 if (status1 && status2 && status3 && status4  && status5 && status6 )
                 {
                    
-                    dic = getshishidata(comboBox2.Text.Trim());
+                    dic = get_data(comboBox2.Text.Trim());
                     if (dic.Count == 0)
                     {
                         dic.Add(1, "0");
@@ -1284,7 +1309,7 @@ namespace win007
                 if (status1 && status2 && status3 && status4 && status5 && status6)
                 {
 
-                    dic = getshishidata(comboBox3.Text.Trim());
+                    dic = get_data(comboBox3.Text.Trim());
                     if (dic.Count == 0)
                     {
                         dic.Add(1, "0");
@@ -1314,7 +1339,7 @@ namespace win007
                 if (status1 && status2 && status3 && status4 && status5 && status6)
                 {
 
-                    dic = getshishidata(comboBox4.Text.Trim());
+                    dic = get_data(comboBox4.Text.Trim());
                     if (dic.Count == 0)
                     {
                         dic.Add(1, "0");
@@ -1344,7 +1369,7 @@ namespace win007
                 if (status1 && status2 && status3 && status4 && status5 && status6)
                 {
 
-                    dic = getshishidata(comboBox5.Text.Trim());
+                    dic = get_data(comboBox5.Text.Trim());
                     if (dic.Count == 0)
                     {
                         dic.Add(1, "0");
