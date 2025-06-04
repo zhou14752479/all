@@ -1186,31 +1186,25 @@ namespace win007
                 id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
             }
 
-            foreach (string company in comboBox1.Items)
-            {
-
-               
-                string data = function.getshishidata(id, company);
-
-                string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
-                string time1 = text[10];
-                MessageBox.Show(time1);
-            }
-           
-
+            textBox2.Text = function.getshishidata_array(id,comboBox1);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            get_data(comboBox1.Text.Trim());
+          
 
             string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
             if (id == "")
             {
                 id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
             }
-           textBox1.Text= function.getdata_yarang(id);//获取亚让
-            getpaixu();//获取排序
+            //get_data(comboBox1.Text.Trim());
+            //textBox1.Text= function.getdata_yarang(id);//获取亚让
+
+
+            // getpaixu();//获取公司赔率时间排序
+
+            function.teshujiance(id,comboBox1);//特殊数据检测
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)
@@ -1680,6 +1674,8 @@ namespace win007
                 listView2.SelectedItems[0].SubItems[6].Text = shuzhi;
             }
         }
+
+       
     }
 
 }

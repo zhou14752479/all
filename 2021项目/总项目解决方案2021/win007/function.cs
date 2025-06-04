@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using myDLL;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace win007
 {
@@ -298,8 +301,8 @@ namespace win007
 
 
 
-        #region 获取当前实时比赛赔率
-        public static string getshishidata(string matchid, string com)
+        #region 获取当前实时比赛赔率（一次一家公司，三行数据）
+        public static string getshishidata(string matchid, string company)
         {
 
             Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
@@ -421,7 +424,7 @@ namespace win007
                 try
                 {
 
-                    if (cid == gongsi_dics[com])
+                    if (cid == gongsi_dics[company])
                     {
 
                         string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
@@ -462,7 +465,202 @@ namespace win007
 
 
             }
-            MessageBox.Show(sb.ToString());
+           
+            return sb.ToString();
+        }
+
+
+        #endregion
+
+        #region 获取当前实时比赛赔率（多个公司，四行数据）
+        public static string getshishidata_4(string matchid, System.Windows.Forms.ComboBox comb1)
+        {
+
+            Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
+
+            string datajsurl = "http://1x2d.titan007.com/" + matchid + ".js?r=007132848760362108507";
+            string datajs = method.GetUrl(datajsurl, "gb2312");
+
+
+
+
+            //动态添加公司ID
+            MatchCollection gongsis = Regex.Matches(datajs, @"\d{1,5}\|\d{8,10}\|([\s\S]*?)\|");
+            for (int a = 0; a < gongsis.Count; a++)
+            {
+                string cid = Regex.Match(gongsis[a].ToString(), @"\d{8,10}").Groups[0].Value;
+                string cname = gongsis[a].Groups[1].ToString();
+
+                if (!gongsi_dics.ContainsKey(cname))
+                {
+                    switch (cname)
+                    {
+                        case "SNAI":
+                            gongsi_dics.Add("SNAI", cid);
+                            break;
+                        case "Titanbet":
+                            gongsi_dics.Add("Titanbet", cid);
+                            break;
+                        case "Bethard":
+                            gongsi_dics.Add("Bethard", cid);
+                            break;
+                        case "ComeOn":
+                            gongsi_dics.Add("ComeOn", cid);
+                            break;
+                        case "Intertops":
+                            gongsi_dics.Add("Intertops", cid);
+                            break;
+                        case "Bet3000":
+                            gongsi_dics.Add("Bet3000", cid);
+                            break;
+                        case "Crown":
+                            gongsi_dics.Add("Crown", cid);
+                            break;
+                        case "William Hill":
+                            gongsi_dics.Add("William Hill", cid);
+                            break;
+                        case "Bet-at-home":
+                            gongsi_dics.Add("Bet-at-home", cid);
+                            break;
+                        case "Lottery Official":
+                            gongsi_dics.Add("Lottery Official", cid);
+                            break;
+                        case "Vcbet":
+                            gongsi_dics.Add("Vcbet", cid);
+                            break;
+
+                        //bet瑞典
+                        case "Betsson":
+                            gongsi_dics.Add("Betsson", cid);
+                            break;
+                        case "TopSport":
+                            gongsi_dics.Add("TopSport", cid);
+                            break;
+
+                        case "Dafabet":
+                            gongsi_dics.Add("Dafabet", cid);
+                            break;
+
+
+
+
+
+                        case "Betfair Exchange":
+                            gongsi_dics.Add("Betfair Exchange", cid);
+                            break;
+                        case "Betfair":
+                            gongsi_dics.Add("Betfair", cid);
+                            break;
+                        case "BetClic.fr":
+                            gongsi_dics.Add("BetClic.fr", cid);
+                            break;
+
+
+                    }
+                }
+
+            }
+
+            //动态添加公司ID结束
+
+
+
+
+
+
+
+
+            string datas = Regex.Match(datajs, @"gameDetail=Array\(([\s\S]*?)\)").Groups[1].Value;
+
+            string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int j = 0; j < datastext.Length; j++)
+            {
+
+                string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
+                string[] datasresult = datastext[j].Split(new string[] { ";" }, StringSplitOptions.None);
+
+                string data1 = "0";
+                string data2 = "0";
+                string data3 = "0";
+
+                string data4 = "0";
+                string data5 = "0";
+                string data6 = "0";
+
+                string data7 = "0";
+                string data8 = "0";
+                string data9 = "0";
+
+                string data10 = "0";
+                string data11 = "0";
+                string data12 = "0";
+
+                string time1 = "";
+                try
+                {
+
+
+                    for (int i = 0; i < comb1.Items.Count; i++)
+                    {
+
+                        string company=comb1.Items[i].ToString();
+                      
+                        if (cid == gongsi_dics[company])
+                        {
+
+                            
+                            string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
+                            if (data_a.Length > 2)
+                            {
+                                data1 = data_a[0].Replace(cid, "").Replace("^", "");
+                                data2 = data_a[1];
+                                data3 = data_a[2];
+                                time1 = data_a[3];
+                            }
+
+                            string[] data_b = datasresult[1].Split(new string[] { "|" }, StringSplitOptions.None);
+                            if (data_b.Length > 2)
+                            {
+                                data4 = data_b[0];
+                                data5 = data_b[1];
+                                data6 = data_b[2];
+                            }
+
+
+                            string[] data_c = datasresult[2].Split(new string[] { "|" }, StringSplitOptions.None);
+                            if (data_c.Length > 2)
+                            {
+                                data7 = data_c[0];
+                                data8 = data_c[1];
+                                data9 = data_c[2];
+                            }
+
+                            string[] data_d = datasresult[3].Split(new string[] { "|" }, StringSplitOptions.None);
+                            if (data_d.Length > 2)
+                            {
+                                data10 = data_d[0];
+                                data11 = data_d[1];
+                                data12= data_d[2];
+                            }
+
+                            sb.AppendLine(company + "," + data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6 + "," + data7 + "," + data8 + "," + data9 + "," + data10+ "," + data11+ "," + data12);
+
+                           
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.ToString());
+                }
+
+
+            }
+
             return sb.ToString();
         }
 
@@ -470,8 +668,74 @@ namespace win007
         #endregion
 
 
+        #region 获取当前实时比赛赔率_array
+        public static string getshishidata_array(string matchid, System.Windows.Forms.ComboBox comb1)
+        {
 
-       
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+
+            string datajsurl = "http://1x2d.titan007.com/" + matchid + ".js?r=007132848760362108507";
+            string datajs = method.GetUrl(datajsurl, "gb2312");
+
+
+
+
+
+
+            string datas = Regex.Match(datajs, @"game=Array\(([\s\S]*?)\);").Groups[1].Value;
+
+            string[] datastext = datas.Split(new string[] { "\",\"" }, StringSplitOptions.None);
+
+           
+            StringBuilder sb = new StringBuilder();
+
+            
+            for (int j = 0; j < datastext.Length; j++)
+            {
+
+                string cid = Regex.Match(datastext[j], @"\d{8,10}").Groups[0].Value.Trim();
+                string[] datasresult = datastext[j].Split(new string[] { "|" }, StringSplitOptions.None);
+                
+                if (datasresult.Length > 2)
+                {
+                    string company = datasresult[2];
+                   
+                    string timeStr = datasresult[datasresult.Length - 4].Replace("-1", "");
+
+                    string format = "yyyy,MM,dd,HH,mm,ss";
+                    if (DateTime.TryParseExact(timeStr, format, null, System.Globalization.DateTimeStyles.None, out DateTime dt))
+                    {
+                        // 增加8小时
+                        dt = dt.AddHours(8);
+
+                        // 输出结果（保持相同格式）
+                        string newTimeStr = dt.ToString("yyyy-MM-dd HH:mm:ss");
+                        if (comb1.Items.Contains(company))
+                        {
+                            dict.Add(company, newTimeStr);
+                        }
+
+                    }
+
+                   
+                }
+
+            }
+
+            var sortedDict = dict.OrderByDescending(pair => pair.Value)
+                             .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            foreach (string key in sortedDict.Keys)
+            {
+                sb.AppendLine(sortedDict[key] + " " + key );
+            }
+         
+            return sb.ToString();
+        }
+
+
+        #endregion
+
 
         #region 获取当前实时凯丽数据
         public static string getshishi_kailidata(string matchid, string com)
@@ -647,8 +911,18 @@ namespace win007
         #endregion
 
 
+        /// <summary>
+        /// 特殊数值检测
+        /// </summary>
+        public static void teshujiance(string id, System.Windows.Forms.ComboBox comb1)
+        {
+            StringBuilder sb = new StringBuilder();
+            string data = function.getshishidata_4(id, comb1);
 
+           
+            string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
 
+        }
 
         public static double FindDifference(double num1, double num2, double num3, double num4, double num5)
         {
