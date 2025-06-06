@@ -281,7 +281,7 @@ namespace 主程序2025
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                
                 return ex.ToString();
 
             }

@@ -919,7 +919,7 @@ namespace win007
             StringBuilder sb = new StringBuilder();
             string data = function.getshishidata_4(id, comb1);
 
-           
+            MessageBox.Show(data);
             string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
 
         }
