@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using myDLL;
+using NPOI.SS.Formula.Functions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace win007
@@ -914,13 +915,57 @@ namespace win007
         /// <summary>
         /// 特殊数值检测
         /// </summary>
-        public static void teshujiance(string id, System.Windows.Forms.ComboBox comb1)
+        public static string teshujiance(string id, System.Windows.Forms.ComboBox comb1)
         {
             StringBuilder sb = new StringBuilder();
             string data = function.getshishidata_4(id, comb1);
+           
+            string[] texts = data.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+            for (int i = 0; i < texts.Length; i++)
+            {
+              
+                if (texts[i].Trim()!="")
+                {
+                    string[] text = texts[i].Split(new string[] { "," }, StringSplitOptions.None);
 
-            MessageBox.Show(data);
-            string[] text = data.Split(new string[] { "," }, StringSplitOptions.None);
+                    if (text.Length > 8)
+                    {
+                        //特殊数值检测
+                        if (Convert.ToDouble(text[2]) - Convert.ToDouble(text[1]) == 0)
+                        {
+                            sb.Append(text[0] + ",");
+
+                        }
+                        else if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
+                        {
+                            sb.Append(text[0] + ",");
+
+                        }
+                        else if (Convert.ToDouble(text[8]) - Convert.ToDouble(text[7]) == 0)
+                        {
+                            sb.Append(text[0] + ",");
+
+                        }
+
+
+                        //三行计算
+                        //第一行
+                        double s1 = Convert.ToDouble(text[4]) - Convert.ToDouble(text[1]);
+                        string v1= s1 > 0 ? "↑" : "↓";
+
+
+
+
+
+
+
+                    }
+                }
+
+
+            }
+
+            return sb.ToString();
 
         }
 

@@ -31,6 +31,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rule9_txtbox_3 = new System.Windows.Forms.TextBox();
             this.rule8_txtbox_3 = new System.Windows.Forms.TextBox();
@@ -49,6 +59,10 @@
             this.rule1_txtbox_5 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_5 = new System.Windows.Forms.TextBox();
             this.rule3_txtbox_5 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.chazhi_textB = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,6 +79,13 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.button47 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rule6_txtbox_6 = new System.Windows.Forms.TextBox();
             this.rule1_txtbox_6 = new System.Windows.Forms.TextBox();
@@ -86,51 +107,39 @@
             this.rule1_txtbox = new System.Windows.Forms.TextBox();
             this.rule2_txtbox = new System.Windows.Forms.TextBox();
             this.rule3_txtbox = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button47 = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.chazhi_textB = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -158,6 +167,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox13);
+            this.groupBox2.Controls.Add(this.groupBox12);
+            this.groupBox2.Controls.Add(this.groupBox11);
             this.groupBox2.Controls.Add(this.groupBox8);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.groupBox9);
@@ -193,6 +205,147 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "7";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.textBox1);
+            this.groupBox8.Location = new System.Drawing.Point(1013, 196);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(276, 92);
+            this.groupBox8.TabIndex = 325;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "亚盘";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox1.Location = new System.Drawing.Point(3, 17);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(270, 72);
+            this.textBox1.TabIndex = 265;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox3);
+            this.groupBox10.Location = new System.Drawing.Point(1013, 293);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(278, 55);
+            this.groupBox10.TabIndex = 324;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "特殊数值检测";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox3.Location = new System.Drawing.Point(3, 17);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(272, 35);
+            this.textBox3.TabIndex = 265;
+            this.textBox3.Text = "无";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.textBox2);
+            this.groupBox9.Location = new System.Drawing.Point(1013, 7);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(278, 186);
+            this.groupBox9.TabIndex = 323;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "时间降序";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox2.Location = new System.Drawing.Point(3, 17);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(272, 166);
+            this.textBox2.TabIndex = 265;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "SNAI",
+            "Crown",
+            "William Hill",
+            "Vcbet",
+            "Betsson",
+            "Dafabet",
+            "Bet-at-home",
+            "Betfair Exchange",
+            "Betfair",
+            "Lottery Official"});
+            this.comboBox5.Location = new System.Drawing.Point(456, 24);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(105, 20);
+            this.comboBox5.TabIndex = 322;
+            this.comboBox5.Text = "SNAI";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "SNAI",
+            "Crown",
+            "William Hill",
+            "Vcbet",
+            "Betsson",
+            "Dafabet",
+            "Bet-at-home",
+            "Betfair Exchange",
+            "Betfair",
+            "Lottery Official"});
+            this.comboBox4.Location = new System.Drawing.Point(345, 24);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(105, 20);
+            this.comboBox4.TabIndex = 321;
+            this.comboBox4.Text = "SNAI";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "SNAI",
+            "Crown",
+            "William Hill",
+            "Vcbet",
+            "Betsson",
+            "Dafabet",
+            "Bet-at-home",
+            "Betfair Exchange",
+            "Betfair",
+            "Lottery Official"});
+            this.comboBox3.Location = new System.Drawing.Point(236, 24);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(105, 20);
+            this.comboBox3.TabIndex = 320;
+            this.comboBox3.Text = "SNAI";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "SNAI",
+            "Crown",
+            "William Hill",
+            "Vcbet",
+            "Betsson",
+            "Dafabet",
+            "Bet-at-home",
+            "Betfair Exchange",
+            "Betfair",
+            "Lottery Official"});
+            this.comboBox2.Location = new System.Drawing.Point(125, 24);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(105, 20);
+            this.comboBox2.TabIndex = 319;
+            this.comboBox2.Text = "SNAI";
             // 
             // groupBox3
             // 
@@ -361,6 +514,52 @@
             this.rule3_txtbox_5.Size = new System.Drawing.Size(484, 23);
             this.rule3_txtbox_5.TabIndex = 264;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.button3.Location = new System.Drawing.Point(832, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(49, 26);
+            this.button3.TabIndex = 313;
+            this.button3.Text = "差值";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.chazhi_textB);
+            this.groupBox7.Location = new System.Drawing.Point(1013, 354);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(273, 39);
+            this.groupBox7.TabIndex = 312;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "母大差";
+            // 
+            // chazhi_textB
+            // 
+            this.chazhi_textB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chazhi_textB.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chazhi_textB.Location = new System.Drawing.Point(6, 16);
+            this.chazhi_textB.Name = "chazhi_textB";
+            this.chazhi_textB.Size = new System.Drawing.Size(102, 16);
+            this.chazhi_textB.TabIndex = 0;
+            this.chazhi_textB.Text = "0.00 0.00 0.00";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.button2.Location = new System.Drawing.Point(778, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(49, 26);
+            this.button2.TabIndex = 311;
+            this.button2.Text = "数值";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // listView2
             // 
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -462,6 +661,77 @@
             // 
             this.columnHeader13.Text = "备注";
             this.columnHeader13.Width = 200;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.ForeColor = System.Drawing.Color.Navy;
+            this.button1.Location = new System.Drawing.Point(719, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 26);
+            this.button1.TabIndex = 308;
+            this.button1.Text = "计算";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(454, 53);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(11, 12);
+            this.label35.TabIndex = 297;
+            this.label35.Text = "-";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(343, 53);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(11, 12);
+            this.label34.TabIndex = 296;
+            this.label34.Text = "-";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(235, 53);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(11, 12);
+            this.label33.TabIndex = 295;
+            this.label33.Text = "-";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(123, 53);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(11, 12);
+            this.label32.TabIndex = 294;
+            this.label32.Text = "-";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(12, 53);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(11, 12);
+            this.label31.TabIndex = 293;
+            this.label31.Text = "-";
+            // 
+            // button47
+            // 
+            this.button47.BackColor = System.Drawing.Color.White;
+            this.button47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button47.ForeColor = System.Drawing.Color.Black;
+            this.button47.Location = new System.Drawing.Point(656, 20);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(57, 27);
+            this.button47.TabIndex = 292;
+            this.button47.Text = "全部";
+            this.button47.UseVisualStyleBackColor = false;
+            this.button47.Click += new System.EventHandler(this.button47_Click);
             // 
             // groupBox6
             // 
@@ -653,6 +923,33 @@
             this.rule3_txtbox.Size = new System.Drawing.Size(484, 23);
             this.rule3_txtbox.TabIndex = 264;
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(567, 23);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(70, 21);
+            this.textBox5.TabIndex = 59;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "SNAI",
+            "Crown",
+            "William Hill",
+            "Vcbet",
+            "Betsson",
+            "Dafabet",
+            "Bet-at-home",
+            "Betfair Exchange",
+            "Betfair",
+            "Lottery Official"});
+            this.comboBox1.Location = new System.Drawing.Point(14, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(105, 20);
+            this.comboBox1.TabIndex = 49;
+            this.comboBox1.Text = "SNAI";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.linkLabel3);
@@ -661,18 +958,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1315, 789);
+            this.tabPage2.Size = new System.Drawing.Size(1315, 867);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "----浏览器-----";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(9, 10);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(451, 21);
-            this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "https://op1.titan007.com/oddslist/2700477.htm";
             // 
             // linkLabel3
             // 
@@ -706,9 +995,17 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1309, 783);
+            this.webBrowser1.Size = new System.Drawing.Size(1309, 861);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(9, 10);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(451, 21);
+            this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "https://op1.titan007.com/oddslist/2700477.htm";
             // 
             // panel1
             // 
@@ -733,289 +1030,65 @@
             this.linkLabel1.Text = "获取数据";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // groupBox9
+            // groupBox11
             // 
-            this.groupBox9.Controls.Add(this.textBox2);
-            this.groupBox9.Location = new System.Drawing.Point(1019, 177);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(278, 186);
-            this.groupBox9.TabIndex = 323;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "时间降序";
+            this.groupBox11.Controls.Add(this.textBox4);
+            this.groupBox11.Location = new System.Drawing.Point(1013, 399);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(273, 39);
+            this.groupBox11.TabIndex = 326;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "子大差";
             // 
-            // textBox2
+            // textBox4
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textBox2.Location = new System.Drawing.Point(3, 17);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(272, 166);
-            this.textBox2.TabIndex = 265;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox4.Location = new System.Drawing.Point(6, 16);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(102, 16);
+            this.textBox4.TabIndex = 0;
+            this.textBox4.Text = "0.00 0.00 0.00";
             // 
-            // groupBox10
+            // groupBox12
             // 
-            this.groupBox10.Controls.Add(this.textBox3);
-            this.groupBox10.Location = new System.Drawing.Point(1019, 372);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(278, 81);
-            this.groupBox10.TabIndex = 324;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "特殊数值检测";
+            this.groupBox12.Controls.Add(this.textBox7);
+            this.groupBox12.Location = new System.Drawing.Point(1013, 446);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(273, 39);
+            this.groupBox12.TabIndex = 327;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "集团公司最小差";
             // 
-            // textBox3
+            // textBox7
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textBox3.Location = new System.Drawing.Point(3, 17);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(272, 61);
-            this.textBox3.TabIndex = 265;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox7.Location = new System.Drawing.Point(6, 16);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(102, 16);
+            this.textBox7.TabIndex = 0;
+            this.textBox7.Text = "0.00 0.00 0.00";
             // 
-            // groupBox8
+            // groupBox13
             // 
-            this.groupBox8.Controls.Add(this.textBox1);
-            this.groupBox8.Location = new System.Drawing.Point(1021, 79);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(276, 92);
-            this.groupBox8.TabIndex = 325;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "亚盘";
+            this.groupBox13.Controls.Add(this.textBox8);
+            this.groupBox13.Location = new System.Drawing.Point(1018, 498);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(278, 186);
+            this.groupBox13.TabIndex = 328;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "三行计算";
             // 
-            // textBox1
+            // textBox8
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textBox1.Location = new System.Drawing.Point(3, 17);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 72);
-            this.textBox1.TabIndex = 265;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "SNAI",
-            "Crown",
-            "William Hill",
-            "Vcbet",
-            "Betsson",
-            "Dafabet",
-            "Bet-at-home",
-            "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
-            this.comboBox1.Location = new System.Drawing.Point(14, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(105, 20);
-            this.comboBox1.TabIndex = 49;
-            this.comboBox1.Text = "SNAI";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(567, 23);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(70, 21);
-            this.textBox5.TabIndex = 59;
-            // 
-            // button47
-            // 
-            this.button47.BackColor = System.Drawing.Color.White;
-            this.button47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button47.ForeColor = System.Drawing.Color.Black;
-            this.button47.Location = new System.Drawing.Point(656, 20);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(57, 27);
-            this.button47.TabIndex = 292;
-            this.button47.Text = "全部";
-            this.button47.UseVisualStyleBackColor = false;
-            this.button47.Click += new System.EventHandler(this.button47_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(12, 53);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(11, 12);
-            this.label31.TabIndex = 293;
-            this.label31.Text = "-";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(123, 53);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(11, 12);
-            this.label32.TabIndex = 294;
-            this.label32.Text = "-";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(235, 53);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(11, 12);
-            this.label33.TabIndex = 295;
-            this.label33.Text = "-";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(343, 53);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(11, 12);
-            this.label34.TabIndex = 296;
-            this.label34.Text = "-";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(454, 53);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(11, 12);
-            this.label35.TabIndex = 297;
-            this.label35.Text = "-";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.ForeColor = System.Drawing.Color.Navy;
-            this.button1.Location = new System.Drawing.Point(719, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 26);
-            this.button1.TabIndex = 308;
-            this.button1.Text = "计算";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(778, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(49, 26);
-            this.button2.TabIndex = 311;
-            this.button2.Text = "数值";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // chazhi_textB
-            // 
-            this.chazhi_textB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chazhi_textB.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chazhi_textB.Location = new System.Drawing.Point(6, 18);
-            this.chazhi_textB.Name = "chazhi_textB";
-            this.chazhi_textB.Size = new System.Drawing.Size(129, 16);
-            this.chazhi_textB.TabIndex = 0;
-            this.chazhi_textB.Text = "0.00 0.00 0.00";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.chazhi_textB);
-            this.groupBox7.Location = new System.Drawing.Point(1022, 24);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(272, 50);
-            this.groupBox7.TabIndex = 312;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "差值";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.button3.Location = new System.Drawing.Point(832, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(49, 26);
-            this.button3.TabIndex = 313;
-            this.button3.Text = "差值";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "SNAI",
-            "Crown",
-            "William Hill",
-            "Vcbet",
-            "Betsson",
-            "Dafabet",
-            "Bet-at-home",
-            "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
-            this.comboBox2.Location = new System.Drawing.Point(125, 24);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(105, 20);
-            this.comboBox2.TabIndex = 319;
-            this.comboBox2.Text = "SNAI";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "SNAI",
-            "Crown",
-            "William Hill",
-            "Vcbet",
-            "Betsson",
-            "Dafabet",
-            "Bet-at-home",
-            "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
-            this.comboBox3.Location = new System.Drawing.Point(236, 24);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(105, 20);
-            this.comboBox3.TabIndex = 320;
-            this.comboBox3.Text = "SNAI";
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "SNAI",
-            "Crown",
-            "William Hill",
-            "Vcbet",
-            "Betsson",
-            "Dafabet",
-            "Bet-at-home",
-            "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
-            this.comboBox4.Location = new System.Drawing.Point(345, 24);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(105, 20);
-            this.comboBox4.TabIndex = 321;
-            this.comboBox4.Text = "SNAI";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "SNAI",
-            "Crown",
-            "William Hill",
-            "Vcbet",
-            "Betsson",
-            "Dafabet",
-            "Bet-at-home",
-            "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
-            this.comboBox5.Location = new System.Drawing.Point(456, 24);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(105, 20);
-            this.comboBox5.TabIndex = 322;
-            this.comboBox5.Text = "SNAI";
+            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox8.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox8.Location = new System.Drawing.Point(3, 17);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(272, 166);
+            this.textBox8.TabIndex = 265;
             // 
             // 软件6套9列
             // 
@@ -1033,12 +1106,20 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1049,14 +1130,12 @@
             this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1151,5 +1230,11 @@
         private System.Windows.Forms.Button button47;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }

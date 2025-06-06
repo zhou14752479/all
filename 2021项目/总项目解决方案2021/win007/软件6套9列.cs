@@ -1198,13 +1198,13 @@ namespace win007
             {
                 id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
             }
-            //get_data(comboBox1.Text.Trim());
-            //textBox1.Text= function.getdata_yarang(id);//获取亚让
+            get_data(comboBox1.Text.Trim());
+            textBox1.Text = function.getdata_yarang(id);//获取亚让
 
 
-            // getpaixu();//获取公司赔率时间排序
+            getpaixu();//获取公司赔率时间排序
 
-            function.teshujiance(id,comboBox1);//特殊数据检测
+            textBox3.Text=  function.teshujiance(id,comboBox1);//特殊数据检测
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)
