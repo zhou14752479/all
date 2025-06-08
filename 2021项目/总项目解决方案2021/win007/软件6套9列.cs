@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using myDLL;
+using NPOI.SS.Formula.Functions;
 
 namespace win007
 {
@@ -1173,25 +1174,30 @@ namespace win007
 
             
         }
-        /// <summary>
-        /// 获取所有combox1的公司三行赔率，按照时间排序
-        /// </summary>
-        /// <returns></returns>
-        public void getpaixu()
-        {
-
-            string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
-            if (id == "")
-            {
-                id = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
-            }
-
-            textBox2.Text = function.getshishidata_array(id,comboBox1);
-        }
+    
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-          
+            sanci(); //独立的三次计算
+
+
+            //凯利指数
+            listView2.Items.Clear();
+            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            ListViewItem lv3 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+            kailizhishu(lv1, lv2, lv3, comboBox1.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox2.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox3.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox4.Text);
+            kailizhishu(lv1, lv2, lv3, comboBox5.Text);
+
+
+            lv1.SubItems.Add("##");
+            lv2.SubItems.Add("##");
+            lv3.SubItems.Add("##");
+
+
 
             string id = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value;
             if (id == "")
@@ -1202,9 +1208,19 @@ namespace win007
             textBox1.Text = function.getdata_yarang(id);//获取亚让
 
 
-            getpaixu();//获取公司赔率时间排序
+           
 
-            textBox3.Text=  function.teshujiance(id,comboBox1);//特殊数据检测
+            string data= function.teshujiance(id, comboBox1);
+            string[] text = data.Split(new string[] { "#" }, StringSplitOptions.None);
+            textBox3.Text = text[0]; //特殊数据检测
+            textBox8.Text = text[1];  //三行运算
+
+
+            textBox2.Text = function.paixuStr;//获取公司赔率时间排序
+                                             
+            textBox4.Text= function.chazhi_mu(id); //母大差
+            
+            textBox7.Text = function.chazhi_zi(id);//子大差
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)
@@ -1557,28 +1573,9 @@ namespace win007
 
       
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            sanci();
-        }
+       
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            listView2.Items.Clear();
-            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            ListViewItem lv2 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            ListViewItem lv3 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-            kailizhishu(lv1, lv2, lv3, comboBox1.Text) ;
-            kailizhishu(lv1, lv2, lv3, comboBox2.Text);
-            kailizhishu(lv1, lv2, lv3, comboBox3.Text);
-            kailizhishu(lv1, lv2, lv3, comboBox4.Text);
-            kailizhishu(lv1, lv2, lv3, comboBox5.Text);
-
-
-            lv1.SubItems.Add("##");
-            lv2.SubItems.Add("##");
-            lv3.SubItems.Add("##");
-        }
+      
 
         public void kailizhishu(ListViewItem lv1, ListViewItem lv2, ListViewItem lv3,string com)
         {
@@ -1645,15 +1642,7 @@ namespace win007
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string matchid = Regex.Match(linkLabel1.Text.Trim(), @"\(([\s\S]*?)\)").Groups[1].Value.Trim();
-            if (matchid == "")
-            {
-                matchid = Regex.Match(textBox6.Text.Trim(), @"\d{6,}").Groups[0].Value;
-            }
-            chazhi_textB.Text=function.gongsi5chazhi(matchid,comboBox1.Text,comboBox2.Text,comboBox3.Text,comboBox4.Text,comboBox5.Text);
-        }
+       
 
         string shuzi = "";
 

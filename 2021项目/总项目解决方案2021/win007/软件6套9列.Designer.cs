@@ -31,6 +31,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -59,10 +65,8 @@
             this.rule1_txtbox_5 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_5 = new System.Windows.Forms.TextBox();
             this.rule3_txtbox_5 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.chazhi_textB = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.listView2 = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -79,7 +83,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -116,15 +119,12 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -137,9 +137,6 @@
             this.groupBox18.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -180,12 +177,9 @@
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.groupBox5);
-            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.groupBox7);
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.listView2);
             this.groupBox2.Controls.Add(this.listView1);
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label34);
             this.groupBox2.Controls.Add(this.label33);
@@ -205,6 +199,67 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "7";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.textBox8);
+            this.groupBox13.Location = new System.Drawing.Point(1018, 498);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(278, 357);
+            this.groupBox13.TabIndex = 328;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "三行计算";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox8.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox8.Location = new System.Drawing.Point(3, 17);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox8.Size = new System.Drawing.Size(272, 337);
+            this.textBox8.TabIndex = 265;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.textBox9);
+            this.groupBox12.Location = new System.Drawing.Point(1013, 446);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(273, 39);
+            this.groupBox12.TabIndex = 327;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "集团公司最小差";
+            // 
+            // textBox9
+            // 
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox9.Location = new System.Drawing.Point(8, 17);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(102, 16);
+            this.textBox9.TabIndex = 1;
+            this.textBox9.Text = "0.00 0.00 0.00";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.textBox7);
+            this.groupBox11.Location = new System.Drawing.Point(1013, 399);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(273, 39);
+            this.groupBox11.TabIndex = 326;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "子大差";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox7.Location = new System.Drawing.Point(8, 17);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(102, 16);
+            this.textBox7.TabIndex = 0;
+            this.textBox7.Text = "0.00 0.00 0.00";
             // 
             // groupBox8
             // 
@@ -279,8 +334,7 @@
             "Dafabet",
             "Bet-at-home",
             "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
+            "Betfair"});
             this.comboBox5.Location = new System.Drawing.Point(456, 24);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(105, 20);
@@ -299,8 +353,7 @@
             "Dafabet",
             "Bet-at-home",
             "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
+            "Betfair"});
             this.comboBox4.Location = new System.Drawing.Point(345, 24);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(105, 20);
@@ -319,8 +372,7 @@
             "Dafabet",
             "Bet-at-home",
             "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
+            "Betfair"});
             this.comboBox3.Location = new System.Drawing.Point(236, 24);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(105, 20);
@@ -339,8 +391,7 @@
             "Dafabet",
             "Bet-at-home",
             "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
+            "Betfair"});
             this.comboBox2.Location = new System.Drawing.Point(125, 24);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(105, 20);
@@ -514,22 +565,9 @@
             this.rule3_txtbox_5.Size = new System.Drawing.Size(484, 23);
             this.rule3_txtbox_5.TabIndex = 264;
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.button3.Location = new System.Drawing.Point(832, 20);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(49, 26);
-            this.button3.TabIndex = 313;
-            this.button3.Text = "差值";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.chazhi_textB);
+            this.groupBox7.Controls.Add(this.textBox4);
             this.groupBox7.Location = new System.Drawing.Point(1013, 354);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(273, 39);
@@ -537,28 +575,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "母大差";
             // 
-            // chazhi_textB
+            // textBox4
             // 
-            this.chazhi_textB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.chazhi_textB.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chazhi_textB.Location = new System.Drawing.Point(6, 16);
-            this.chazhi_textB.Name = "chazhi_textB";
-            this.chazhi_textB.Size = new System.Drawing.Size(102, 16);
-            this.chazhi_textB.TabIndex = 0;
-            this.chazhi_textB.Text = "0.00 0.00 0.00";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(778, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(49, 26);
-            this.button2.TabIndex = 311;
-            this.button2.Text = "数值";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox4.Location = new System.Drawing.Point(8, 17);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(102, 16);
+            this.textBox4.TabIndex = 0;
+            this.textBox4.Text = "0.00 0.00 0.00";
             // 
             // listView2
             // 
@@ -661,19 +686,6 @@
             // 
             this.columnHeader13.Text = "备注";
             this.columnHeader13.Width = 200;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.ForeColor = System.Drawing.Color.Navy;
-            this.button1.Location = new System.Drawing.Point(719, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 26);
-            this.button1.TabIndex = 308;
-            this.button1.Text = "计算";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label35
             // 
@@ -942,8 +954,7 @@
             "Dafabet",
             "Bet-at-home",
             "Betfair Exchange",
-            "Betfair",
-            "Lottery Official"});
+            "Betfair"});
             this.comboBox1.Location = new System.Drawing.Point(14, 24);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(105, 20);
@@ -1005,7 +1016,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(451, 21);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "https://op1.titan007.com/oddslist/2700477.htm";
+            this.textBox6.Text = "https://op1.titan007.com/oddslist/2719854.htm";
             // 
             // panel1
             // 
@@ -1030,66 +1041,6 @@
             this.linkLabel1.Text = "获取数据";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.textBox4);
-            this.groupBox11.Location = new System.Drawing.Point(1013, 399);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(273, 39);
-            this.groupBox11.TabIndex = 326;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "子大差";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox4.Location = new System.Drawing.Point(6, 16);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(102, 16);
-            this.textBox4.TabIndex = 0;
-            this.textBox4.Text = "0.00 0.00 0.00";
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.textBox7);
-            this.groupBox12.Location = new System.Drawing.Point(1013, 446);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(273, 39);
-            this.groupBox12.TabIndex = 327;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "集团公司最小差";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox7.Location = new System.Drawing.Point(6, 16);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(102, 16);
-            this.textBox7.TabIndex = 0;
-            this.textBox7.Text = "0.00 0.00 0.00";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.textBox8);
-            this.groupBox13.Location = new System.Drawing.Point(1018, 498);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(278, 186);
-            this.groupBox13.TabIndex = 328;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "三行计算";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textBox8.Location = new System.Drawing.Point(3, 17);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(272, 166);
-            this.textBox8.TabIndex = 265;
-            // 
             // 软件6套9列
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1106,6 +1057,12 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox10.ResumeLayout(false);
@@ -1130,12 +1087,6 @@
             this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1217,11 +1168,7 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox chazhi_textB;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
@@ -1236,5 +1183,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox9;
     }
 }

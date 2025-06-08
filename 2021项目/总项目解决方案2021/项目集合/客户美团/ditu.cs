@@ -501,42 +501,50 @@ namespace 客户美团
 
                         for (int i = 0; i < names.Count; i++)
                         {
-                            string tel = tels[i].Groups[1].Value;
-                            string tel1 = tel;
-                            string tel2 = tel;
-                            if (tel.Contains(")"))
+                            try
                             {
-                                tel1 = "";
+                                string tel = tels[i].Groups[1].Value;
+                                string tel1 = tel;
+                                string tel2 = tel;
+                                if (tel.Contains(")"))
+                                {
+                                    tel1 = "";
+                                }
+                                else
+                                {
+                                    tel2 = "";
+                                }
+
+
+
+
+
+
+                                ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
+
+                                lv1.SubItems.Add(names[i].Groups[1].Value);
+                                lv1.SubItems.Add(tel1);
+                                lv1.SubItems.Add(tel2);
+                                lv1.SubItems.Add(contact_address[i].Groups[1].Value);
+                                lv1.SubItems.Add(business_scopes[i].Groups[1].Value);
+                                lv1.SubItems.Add(comboBox1.Text + comboBox2.Text);
+                                lv1.SubItems.Add("360地图");
+                                lv1.SubItems.Add(keyword);
+                                if (status == false)
+                                    return;
+                                if (listView1.Items.Count > 2)
+                                {
+                                    this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
+                                }
+                                Thread.Sleep(100);
+                                count = count + 1;
+                                label4.Text = count.ToString();
                             }
-                            else
+                            catch (Exception)
                             {
-                                tel2 = "";
+
+                                continue;
                             }
-
-                           
-                           
-
-
-
-                            ListViewItem lv1 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据
-
-                            lv1.SubItems.Add(names[i].Groups[1].Value);
-                            lv1.SubItems.Add(tel1);
-                            lv1.SubItems.Add(tel2);
-                            lv1.SubItems.Add(contact_address[i].Groups[1].Value);
-                            lv1.SubItems.Add(business_scopes[i].Groups[1].Value);
-                            lv1.SubItems.Add(comboBox1.Text + comboBox2.Text);
-                            lv1.SubItems.Add("360地图");
-                            lv1.SubItems.Add(keyword);
-                            if (status == false)
-                                return;
-                            if (listView1.Items.Count > 2)
-                            {
-                                this.listView1.Items[this.listView1.Items.Count - 1].EnsureVisible();
-                            }
-                            Thread.Sleep(100);
-                            count = count + 1;
-                            label4.Text = count.ToString();
 
                         }
 
@@ -549,7 +557,7 @@ namespace 客户美团
             catch (Exception e)
             {
 
-                MessageBox.Show(e.ToString());
+               MessageBox.Show(e.ToString());
             }
 
         }
@@ -732,10 +740,10 @@ namespace 客户美团
         private void button1_Click(object sender, EventArgs e)
         {
            
-            if(token=="")
-            {
-               token= gettoken();
-            }
+            //if(token=="")
+            //{
+            //   token= gettoken();
+            //}
           
             status = true;
             Control.CheckForIllegalCrossThreadCalls = false;
@@ -743,7 +751,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(baidu);
+                    thread = new Thread(so360);
                     thread.Start();
 
                 }
@@ -773,7 +781,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(baidu);
+                    thread = new Thread(so360);
                     thread.Start();
                     
                 }
@@ -788,7 +796,7 @@ namespace 客户美团
             {
                 if (thread == null || !thread.IsAlive)
                 {
-                    thread = new Thread(baidu);
+                    thread = new Thread(so360);
                     thread.Start();
 
                 }
