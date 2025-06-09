@@ -692,7 +692,7 @@ namespace win007
                                 string[] data_a = datasresult[0].Split(new string[] { "|" }, StringSplitOptions.None);
                                 if (data_a.Length > 2)
                                 {
-                                    data1 = data_a[0].Replace(cid, "").Replace("^", "");
+                                    data1 = data_a[0].Replace(cid, "").Replace("^", "").Replace("\"", "");
                                     data2 = data_a[1];
                                     data3 = data_a[2];
                                     time1 = data_a[3];
@@ -973,6 +973,7 @@ namespace win007
               
                 if (texts[i].Trim()!="")
                 {
+                   
                     string[] text = texts[i].Split(new string[] { "," }, StringSplitOptions.None);
 
                     string company=text[0]; 

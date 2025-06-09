@@ -70,6 +70,9 @@
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -78,9 +81,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -145,7 +145,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(104, 21);
             this.textBox7.TabIndex = 245;
-            this.textBox7.Text = "t14583255975415";
+            this.textBox7.Text = "t14943684798391";
             // 
             // label8
             // 
@@ -163,7 +163,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(66, 21);
             this.textBox8.TabIndex = 243;
-            this.textBox8.Text = "cmuxj93h";
+            this.textBox8.Text = "yqhrblb0";
             // 
             // textBox6
             // 
@@ -189,7 +189,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(111, 21);
             this.textBox5.TabIndex = 0;
-            this.textBox5.Text = "p197.kdltps.com";
+            this.textBox5.Text = "r134.kdltps.com";
             // 
             // checkBox1
             // 
@@ -452,6 +452,21 @@
             // 
             this.columnHeader18.Text = "发货";
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "30天订单";
+            this.columnHeader6.Width = 70;
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "30天揽收率";
+            this.columnHeader19.Width = 80;
+            // 
+            // columnHeader20
+            // 
+            this.columnHeader20.Text = "30天履约率";
+            this.columnHeader20.Width = 80;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -525,21 +540,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 600000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "30天订单";
-            this.columnHeader6.Width = 70;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "30天揽收率";
-            this.columnHeader19.Width = 80;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.Text = "30天履约率";
-            this.columnHeader20.Width = 80;
             // 
             // _1688
             // 
