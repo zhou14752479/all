@@ -549,7 +549,7 @@ namespace win007
         #region 获取当前实时比赛赔率（多个公司，四行数据）
         public static string getshishidata_4(string matchid, System.Windows.Forms.ComboBox comb1)
         {
-
+            company_data_dic.Clear();
             Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
 
             string datajsurl = "http://1x2d.titan007.com/" + matchid + ".js?r=007132848760362108507";
@@ -744,6 +744,7 @@ namespace win007
                                 
                                 company_data_dic.Add(company, data);
                             }
+                           
 
                         }
 
