@@ -40,8 +40,9 @@ namespace 主程序2025
 
         private void button2_Click(object sender, EventArgs e)
         {
-            function.date = method.GetUrl("http://8.153.165.134/api/shuiguo.html", "utf-8").Trim();
+            //function.date = method.GetUrl("http://8.153.165.134/api/shuiguo.html", "utf-8").Trim();
 
+            function.date = "2025-06-21";
             if (textBox1.Text == "")
             {
                 MessageBox.Show("请导入关键词");
@@ -212,7 +213,7 @@ namespace 主程序2025
                                     cookie = tk + x5;   
                                     html = function.GetUrlWithCookie_ip(url, cookie, textBox5.Text.Trim(), textBox6.Text.Trim(), textBox7.Text.Trim(), textBox8.Text.Trim());
 
-                                  
+                                   
                                     label1.Text = DateTime.Now.ToString("HH:mm:ss") + "：水果-滑块";
                                     //调用滑块
                                     capurl = Regex.Match(html, @"""url"":""([\s\S]*?)""").Groups[1].Value;
@@ -756,7 +757,6 @@ namespace 主程序2025
             try
             {
 
-                Thread.Sleep(1000);
                 cookie = tk + x5;
                 string time = function.GetTimeStamp();
 
@@ -1093,21 +1093,21 @@ namespace 主程序2025
 
                         lv1.SubItems.Add(item24);
 
-                        string bbb = getlvyue30(userid);
-                        string[] aaa = bbb.Split(new string[] { "," }, StringSplitOptions.None);
+                        //string bbb = getlvyue30(userid);
+                        //string[] aaa = bbb.Split(new string[] { "," }, StringSplitOptions.None);
 
-                        string a= aaa[0];   
-                        string b= aaa[1];
-                        string c= aaa[2];
-                        if (b!="" && c!=""&&b!="null" && c != "null")
-                        {
-                            b = (Convert.ToDouble(b) * 100).ToString() + "%";
-                            c= (Convert.ToDouble(c) * 100).ToString() + "%";
+                        //string a= aaa[0];   
+                        //string b= aaa[1];
+                        //string c= aaa[2];
+                        //if (b!="" && c!=""&&b!="null" && c != "null")
+                        //{
+                        //    b = (Convert.ToDouble(b) * 100).ToString() + "%";
+                        //    c= (Convert.ToDouble(c) * 100).ToString() + "%";
 
-                        }
-                        lv1.SubItems.Add(a);
-                        lv1.SubItems.Add(b);
-                        lv1.SubItems.Add(c);
+                        //}
+                        //lv1.SubItems.Add(a);
+                        //lv1.SubItems.Add(b);
+                        //lv1.SubItems.Add(c);
 
                         if (status == false)
                             return;
@@ -1123,7 +1123,7 @@ namespace 主程序2025
                     }
 
 
-                     Thread.Sleep(1000);
+                   
 
                 }
             }

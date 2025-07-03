@@ -84,12 +84,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="shuiguo.cs" />
     <Compile Include="yzm_yuanma.cs" />
-    <Compile Include="轨迹反推.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="轨迹反推.Designer.cs">
-      <DependentUpon>轨迹反推.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="1688.resx">
       <DependentUpon>1688.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,9 +96,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="轨迹反推.resx">
-      <DependentUpon>轨迹反推.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

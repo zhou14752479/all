@@ -194,8 +194,6 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("宋体", 10F);
             this.checkBox1.Location = new System.Drawing.Point(453, 75);
             this.checkBox1.Name = "checkBox1";

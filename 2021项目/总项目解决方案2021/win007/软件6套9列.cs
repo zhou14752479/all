@@ -27,7 +27,7 @@ namespace win007
      
         private void 软件6套9列_Load(object sender, EventArgs e)
         {
-           
+          
 
 
             foreach (Control control in groupBox1.Controls)
@@ -1221,6 +1221,8 @@ namespace win007
             textBox4.Text= function.chazhi_mu(id); //母大差
             
             textBox7.Text = function.chazhi_zi(id);//子大差
+
+            textBox9.Text = function.chazhi_jituan(id);//集团差
         }
 
         private void 软件6套9列_FormClosing(object sender, FormClosingEventArgs e)

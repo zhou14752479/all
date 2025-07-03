@@ -301,11 +301,12 @@ namespace win007
 
         static Dictionary<string,string>  company_data_dic=new Dictionary<string,string>();
 
-
+         static Dictionary<string, string> sortedDict = new Dictionary<string, string>();
         #region 获取当前实时比赛赔率_array
         public static string getshishidata_array(string matchid, System.Windows.Forms.ComboBox comb1)
         {
 
+            sortedDict.Clear();
             Dictionary<string, string> dict = new Dictionary<string, string>();
 
             string datajsurl = "http://1x2d.titan007.com/" + matchid + ".js?r=007132848760362108507";
@@ -359,7 +360,7 @@ namespace win007
 
             }
 
-            var sortedDict = dict.OrderByDescending(pair => pair.Value)
+             sortedDict = dict.OrderByDescending(pair => pair.Value)
                              .ToDictionary(pair => pair.Key, pair => pair.Value);
 
             foreach (string key in sortedDict.Keys)
@@ -375,6 +376,9 @@ namespace win007
 
 
         public static string paixuStr;
+
+       public static Dictionary<string, string> paixudict = new Dictionary<string, string>();
+
         #region 获取当前实时比赛赔率（一次一家公司，三行数据）
         public static string getshishidata(string matchid, string company)
         {
@@ -550,10 +554,30 @@ namespace win007
         public static string getshishidata_4(string matchid, System.Windows.Forms.ComboBox comb1)
         {
             company_data_dic.Clear();
+            paixudict.Clear();
             Dictionary<string, string> gongsi_dics = new Dictionary<string, string>();
 
             string datajsurl = "http://1x2d.titan007.com/" + matchid + ".js?r=007132848760362108507";
             string datajs = method.GetUrl(datajsurl, "gb2312");
+
+
+            //获取比赛时间
+            string timeStr = Regex.Match(datajs, @"MatchTime=""([\s\S]*?)""").Groups[1].Value.Replace("-1", ""); ;
+            string format = "yyyy,MM,dd,HH,mm,ss";
+
+           
+            if (DateTime.TryParseExact(timeStr, format, null, System.Globalization.DateTimeStyles.None, out DateTime dt))
+            {
+                // 增加8小时
+                dt = dt.AddHours(8);
+
+                // 输出结果（保持相同格式）
+                matchtime = dt.ToString("yyyy-MM-dd HH:mm:ss");
+               
+
+            }
+
+
 
 
 
@@ -639,7 +663,7 @@ namespace win007
 
 
 
-            Dictionary<string, string> paixudict = new Dictionary<string, string>();
+            
 
             string datas = Regex.Match(datajs, @"gameDetail=Array\(([\s\S]*?)\)").Groups[1].Value;
 
@@ -958,16 +982,22 @@ namespace win007
 
         #endregion
 
-
+        public static string matchtime = "";
         /// <summary>
-        /// 特殊数值检测
+        /// 特殊数值检测  三行运算
         /// </summary>
         public static string teshujiance(string id, System.Windows.Forms.ComboBox comb1)
         {
             StringBuilder sb = new StringBuilder();
             StringBuilder sb2 = new StringBuilder();
             string data = function.getshishidata_4(id, comb1);
-           
+
+            
+
+            string hang1 = "";
+            string hang2 = "";
+            string hang3 = "";
+            string hang4 = "";
             string[] texts = data.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             for (int i = 0; i < texts.Length; i++)
             {
@@ -1001,48 +1031,67 @@ namespace win007
                         //三行计算
                         //第一行
                         double s11 = Convert.ToDouble(text[4]) - Convert.ToDouble(text[1]);
-                        string v11= s11 > 0 ? "↑" : "↓";
+                        string v11= s11 > 0 ? "↓" : "↑";
 
                         double s12 = Convert.ToDouble(text[5]) - Convert.ToDouble(text[2]);
-                        string v12 = s12 > 0 ? "↑" : "↓";
+                        string v12 = s12 > 0 ? "↓" : "↑";
 
                         double s13 = Convert.ToDouble(text[6]) - Convert.ToDouble(text[3]);
-                        string v13 = s13 > 0 ? "↑" : "↓";
+                        string v13 = s13 > 0 ? "↓" : "↑";
 
 
 
                         double s21= Convert.ToDouble(text[7]) - Convert.ToDouble(text[4]);
-                        string v21 = s21 > 0 ? "↑" : "↓";
+                        string v21 = s21 > 0 ? "↓" : "↑";
                         double s22 = Convert.ToDouble(text[8]) - Convert.ToDouble(text[5]);
-                        string v22 = s22 > 0 ? "↑" : "↓";
+                        string v22 = s22 > 0 ? "↓" : "↑";
                         double s23 = Convert.ToDouble(text[9]) - Convert.ToDouble(text[6]);
-                        string v23 = s23 > 0 ? "↑" : "↓";
+                        string v23 = s23 > 0 ? "↓" : "↑";
 
 
                         double s31 = Convert.ToDouble(text[10]) - Convert.ToDouble(text[7]);
-                        string v31 = s31 > 0 ? "↑" : "↓";
+                        string v31 = s31 > 0 ? "↓" : "↑";
                         double s32 = Convert.ToDouble(text[11]) - Convert.ToDouble(text[8]);
-                        string v32 = s32 > 0 ? "↑" : "↓";
+                        string v32 = s32 > 0 ? "↓" : "↑";
                         double s33 = Convert.ToDouble(text[12]) - Convert.ToDouble(text[9]);
-                        string v33 = s33 > 0 ? "↑" : "↓";
+                        string v33 = s33 > 0 ? "↓" : "↑";
 
 
-                        sb2.AppendLine(company);
-                        sb2.AppendLine(s11.ToString("F2") + v11+"  "+s12.ToString("F2") + v12+"  "+s13.ToString("F2") + v13+"\r\n"+s21.ToString("F2") +v21+"  "+s22.ToString("F2") + v22+"  "+s23.ToString("F2") +v23+ "\r\n" + s31.ToString("F2") + v31 + "  " + s32.ToString("F2") + v32 + "  " + s33.ToString("F2") + v33+"\r\n");
+                        //string comdata = company+"\r\n"+s11.ToString("F2") + v11 + "  " + s12.ToString("F2") + v12 + "  " + s13.ToString("F2") + v13 + "\r\n" + s21.ToString("F2") + v21 + "  " + s22.ToString("F2") + v22 + "  " + s23.ToString("F2") + v23 + "\r\n" + s31.ToString("F2") + v31 + "  " + s32.ToString("F2") + v32 + "  " + s33.ToString("F2") + v33+"\r\n";
+
+                        hang1 += "       " + company+"       ";
+                        hang2 += s11.ToString("F2") + v11 + "," + s12.ToString("F2") + v12 + "," + s13.ToString("F2") + v13+"    ";
+                        hang3 += s21.ToString("F2") + v21 + "," + s22.ToString("F2") + v22 + "," + s23.ToString("F2") + v23 + "    ";
+                        hang4 += s31.ToString("F2") + v31 + "," + s32.ToString("F2") + v32 + "," + s33.ToString("F2") + v33 + "    ";
+
+
 
                     }
                 }
 
 
+              
+
+
             }
 
+            sb2.AppendLine(hang1);
+            sb2.AppendLine(hang2);
+            sb2.AppendLine(hang3);
+            sb2.AppendLine(hang4);
             return sb.ToString()+"#"+sb2.ToString();
 
         }
 
-        public static double FindDifference(double num1, double num2, double num3, double num4, double num5)
+        public static double FindDifference(double num1, double num2, double num3, double num4, double num5,double num6)
         {
-            double[] numbers = { num1, num2, num3, num4, num5 };
+
+            double[] numbers = { num1, num2, num3, num4, num5 ,num6};
+
+
+            //为0代表没有值，不参与计算
+            numbers = numbers.Where(num => num != 0).ToArray();
+
             return numbers.Max() - numbers.Min();
         }
 
@@ -1239,9 +1288,11 @@ namespace win007
 
                 }
 
-                string value1 = function.FindDifference(a0, b0, c0, d0, e0).ToString("F2");
-                string value2 = function.FindDifference(a1, b1, c1, d1, e1).ToString("F2");
-                string value3 = function.FindDifference(a2, b2, c2, d2, e2).ToString("F2");
+                //MessageBox.Show(a0+" "+b0+" "+c0+" "+d0+" "+e0);
+
+                string value1 = function.FindDifference(a0, b0, c0, d0, e0,0).ToString("F2");
+                string value2 = function.FindDifference(a1, b1, c1, d1, e1, 0).ToString("F2");
+                string value3 = function.FindDifference(a2, b2, c2, d2, e2, 0).ToString("F2");
 
                 return value1 + "  " + value2 + "  " + value3;
             }
@@ -1266,41 +1317,69 @@ namespace win007
 
             string data1 = "", data2 = "", data3 = "", data4 = "", data5 = "", data6 = "";
 
+            DateTime b = Convert.ToDateTime(matchtime);
+
 
             if (company_data_dic.ContainsKey("William Hill"))
             {
-                data1 = company_data_dic["William Hill"];
+
+
+                if ((Convert.ToDateTime("2025-" + paixudict["William Hill"]) - b).TotalHours < 1)
+                {
+                    data1 = company_data_dic["William Hill"];
+                }
+
+
             }
             if (company_data_dic.ContainsKey("Bet-at-home"))
             {
-                data2 = company_data_dic["Bet-at-home"];
+                if ((Convert.ToDateTime("2025-" + paixudict["Bet-at-home"]) - b).TotalHours < 1)
+                {
+                    data2 = company_data_dic["Bet-at-home"];
+                }
             }
             if (company_data_dic.ContainsKey("SNAI"))
             {
-                data3 = company_data_dic["SNAI"];
+                if ((Convert.ToDateTime("2025-" + paixudict["SNAI"]) - b).TotalHours < 1)
+                {
+                    data3 = company_data_dic["SNAI"];
+                }
             }
             if (company_data_dic.ContainsKey("Crown"))
             {
-                data4 = company_data_dic["Crown"];
+                if ((Convert.ToDateTime("2025-" + paixudict["Crown"]) - b).TotalHours < 1)
+                {
+                    data4 = company_data_dic["Crown"];
+                }
             }
             if (company_data_dic.ContainsKey("Dafabet"))
             {
-                data5 = company_data_dic["Dafabet"];
+                if ((Convert.ToDateTime("2025-" + paixudict["Dafabet"]) - b).TotalHours < 1)
+                {
+                    data5 = company_data_dic["Dafabet"];
+                }
             }
             if (company_data_dic.ContainsKey("Vcbet"))
             {
-                data6 = company_data_dic["Vcbet"];
+                if ((Convert.ToDateTime("2025-" + paixudict["Vcbet"]) - b).TotalHours < 1)
+                {
+                    data6 = company_data_dic["Vcbet"];
+                }
             }
 
             try
             {
+
                 string[] text1 = data1.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text2 = data2.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text3 = data3.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text4 = data4.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text5 = data5.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text6 = data6.Split(new string[] { "," }, StringSplitOptions.None);
 
-                double a0 = 0, a1 = 0, a2 = 0, b0 = 0, b1 = 0, b2 = 0, c0 = 0, c1 = 0, c2 = 0, d0 = 0, d1 = 0, d2 = 0, e0 = 0, e1 = 0, e2 = 0;
+
+
+                double a0 = 0, a1 = 0, a2 = 0, b0 = 0, b1 = 0, b2 = 0, c0 = 0, c1 = 0, c2 = 0, d0 = 0, d1 = 0, d2 = 0, e0 = 0, e1 = 0, e2 = 0,f0=0,f1=0,f2=0;
 
 
                 if (text1.Length > 1)
@@ -1339,9 +1418,17 @@ namespace win007
 
                 }
 
-                string value1 = function.FindDifference(a0, b0, c0, d0, e0).ToString("F2");
-                string value2 = function.FindDifference(a1, b1, c1, d1, e1).ToString("F2");
-                string value3 = function.FindDifference(a2, b2, c2, d2, e2).ToString("F2");
+                if (text6.Length > 1)
+                {
+                    f0 = Convert.ToDouble(text6[1]);
+                    f1 = Convert.ToDouble(text6[2]);
+                    f2 = Convert.ToDouble(text6[3]);
+
+                }
+
+                string value1 = function.FindDifference(a0, b0, c0, d0, e0,f0).ToString("F2");
+                string value2 = function.FindDifference(a1, b1, c1, d1, e1,f1).ToString("F2");
+                string value3 = function.FindDifference(a2, b2, c2, d2, e2,f2).ToString("F2");
 
                 return value1 + "  " + value2 + "  " + value3;
             }
@@ -1352,6 +1439,121 @@ namespace win007
                 return "";
             }
         }
+
+
+
+
+
+        /// <summary>
+        /// 集团差
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string chazhi_jituan(string id)
+        {
+            // "Betfair", "Betfair Exchange", "SNAI", "Betsson", "Dafabet"
+
+            string data1 = "", data2 = "", data3 = "", data4 = "", data5 = "", data6 = "";
+
+
+            if (company_data_dic.ContainsKey("William Hill"))
+            {
+                data1 = company_data_dic["William Hill"];
+            }
+            if (company_data_dic.ContainsKey("Bet-at-home"))
+            {
+                data2 = company_data_dic["Bet-at-home"];
+            }
+            if (company_data_dic.ContainsKey("SNAI"))
+            {
+                data3 = company_data_dic["SNAI"];
+            }
+            if (company_data_dic.ContainsKey("Crown"))
+            {
+                data4 = company_data_dic["Crown"];
+            }
+            if (company_data_dic.ContainsKey("Dafabet"))
+            {
+                data5 = company_data_dic["Dafabet"];
+            }
+            if (company_data_dic.ContainsKey("Vcbet"))
+            {
+                data6 = company_data_dic["Vcbet"];
+            }
+
+            try
+            {
+                string[] text1 = data1.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text2 = data2.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text3 = data3.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text4 = data4.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text5 = data5.Split(new string[] { "," }, StringSplitOptions.None);
+                string[] text6 = data6.Split(new string[] { "," }, StringSplitOptions.None);
+
+
+
+                double a0 = 0, a1 = 0, a2 = 0, b0 = 0, b1 = 0, b2 = 0, c0 = 0, c1 = 0, c2 = 0, d0 = 0, d1 = 0, d2 = 0, e0 = 0, e1 = 0, e2 = 0, f0 = 0, f1 = 0, f2 = 0;
+
+
+                if (text1.Length > 1)
+                {
+                    a0 = Convert.ToDouble(text1[1]);
+                    a1 = Convert.ToDouble(text1[2]);
+                    a2 = Convert.ToDouble(text1[3]);
+
+                }
+                if (text2.Length > 1)
+                {
+                    b0 = Convert.ToDouble(text2[1]);
+                    b1 = Convert.ToDouble(text2[2]);
+                    b2 = Convert.ToDouble(text2[3]);
+
+                }
+                if (text3.Length > 1)
+                {
+                    c0 = Convert.ToDouble(text3[1]);
+                    c1 = Convert.ToDouble(text3[2]);
+                    c2 = Convert.ToDouble(text3[3]);
+
+                }
+                if (text4.Length > 1)
+                {
+                    d0 = Convert.ToDouble(text4[1]);
+                    d1 = Convert.ToDouble(text4[2]);
+                    d2 = Convert.ToDouble(text4[3]);
+
+                }
+                if (text5.Length > 1)
+                {
+                    e0 = Convert.ToDouble(text5[1]);
+                    e1 = Convert.ToDouble(text5[2]);
+                    e2 = Convert.ToDouble(text5[3]);
+
+                }
+
+                if (text6.Length > 1)
+                {
+                    f0 = Convert.ToDouble(text6[1]);
+                    f1 = Convert.ToDouble(text6[2]);
+                    f2 = Convert.ToDouble(text6[3]);
+
+                }
+
+                string value1 = function.FindDifference(a0, b0, c0, d0, e0, f0).ToString("F2");
+                string value2 = function.FindDifference(a1, b1, c1, d1, e1, f1).ToString("F2");
+                string value3 = function.FindDifference(a2, b2, c2, d2, e2, f2).ToString("F2");
+
+                return value1 + "  " + value2 + "  " + value3;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                return "";
+            }
+
+        }
+
 
         /// <summary>
         /// 获取指定比赛，皇冠亚让数据
