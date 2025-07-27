@@ -81,7 +81,7 @@ namespace WebView2
         }
         #endregion
 
-        public string[] mobileList = { "13292447109","17521704272","19930453849","18532659748","19931467960", "15049985581" };
+        public string[] mobileList = { "13292447109","17521704272","19930453849","18532659748","19931467960", "15049985581", "13330025712" };
       
         private string username = "";
         private string password = "A14752479a";
@@ -176,7 +176,7 @@ namespace WebView2
             cookies = "xk.passport.ticket.v2=" + ticket;
            while (ticket != null)  
             {
-                textBox2.Text += DateTime.Now.ToString() + "  获取cookie成功"+"\r\n";
+                
                 break;
             }
            
@@ -191,13 +191,17 @@ namespace WebView2
             timer1.Start();
             timer1.Interval = Convert.ToInt32(textBox1.Text.Trim()) * 60 * 1000;
             webView21.NavigationCompleted += WebView2_NavigationCompleted;
-            webView21.Source = new System.Uri("https://sso.zxxk.com/login?service=https%3A%2F%2Fauth.zxxk.com%2Fuser%2Fcallback%3Fcurl%3Dhttps%3A%2F%2Fwww.zxxk.com%2F");
+            webView21.Source = new System.Uri("https://sso.zxxk.com/login");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            webView21.Reload();
-            
+
+            webView21.Source = new System.Uri("https://sso.zxxk.com/login");
+            if(webView21.Source.ToString().Contains("login"))
+            {
+                textBox2.Text += DateTime.Now.ToString() + "  正在登录..." + "\r\n";
+            }
         }
 
 
@@ -321,7 +325,7 @@ namespace WebView2
                 await webView21.CoreWebView2.ExecuteScriptAsync(script22);
             }));
 
-
+           
         }
 
 
@@ -335,6 +339,8 @@ namespace WebView2
 
                 try
                 {
+                    
+                    //MessageBox.Show(webView21.Source.ToString());
                     // 注入JavaScript执行登录操作
                     await ExecuteLoginScript();
                     writeCookie();

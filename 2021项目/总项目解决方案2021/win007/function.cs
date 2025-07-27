@@ -1007,25 +1007,32 @@ namespace win007
                    
                     string[] text = texts[i].Split(new string[] { "," }, StringSplitOptions.None);
 
-                    string company=text[0]; 
+                    string company=text[0];
+
+                    //string aaa = "";
+                    //for (int a= 0; a< text.Length; a++)
+                    //{
+                    //    aaa = aaa + text[a].Trim() + "  ";
+                    //}
+                    //MessageBox.Show(company+aaa);
+
                     if (text.Length > 8)
                     {
                         //特殊数值检测
-                        if (Convert.ToDouble(text[2]) - Convert.ToDouble(text[1]) == 0)
+                        double zhu1=Convert.ToDouble(text[1]);
+                        double he1 = Convert.ToDouble(text[2]);
+                        double ke1 = Convert.ToDouble(text[3]);
+
+                        double zhu2 = Convert.ToDouble(text[4]);
+                        double he2 = Convert.ToDouble(text[5]);
+                        double ke2 = Convert.ToDouble(text[6]);
+
+                        if (he1==zhu1 || he1==ke1 || ke2==zhu2 || he2==ke2)
                         {
-                            sb.Append(company + ",");
+                            sb.Append(company+"   |     ");
 
                         }
-                        else if (Convert.ToDouble(text[5]) - Convert.ToDouble(text[4]) == 0)
-                        {
-                            sb.Append(company + ",");
-
-                        }
-                        else if (Convert.ToDouble(text[8]) - Convert.ToDouble(text[7]) == 0)
-                        {
-                            sb.Append(company  + ",");
-
-                        }
+                        
 
 
                         //三行计算
@@ -1060,9 +1067,9 @@ namespace win007
                         //string comdata = company+"\r\n"+s11.ToString("F2") + v11 + "  " + s12.ToString("F2") + v12 + "  " + s13.ToString("F2") + v13 + "\r\n" + s21.ToString("F2") + v21 + "  " + s22.ToString("F2") + v22 + "  " + s23.ToString("F2") + v23 + "\r\n" + s31.ToString("F2") + v31 + "  " + s32.ToString("F2") + v32 + "  " + s33.ToString("F2") + v33+"\r\n";
 
                         hang1 += "       " + company+"       ";
-                        hang2 += s11.ToString("F2") + v11 + "," + s12.ToString("F2") + v12 + "," + s13.ToString("F2") + v13+"    ";
-                        hang3 += s21.ToString("F2") + v21 + "," + s22.ToString("F2") + v22 + "," + s23.ToString("F2") + v23 + "    ";
-                        hang4 += s31.ToString("F2") + v31 + "," + s32.ToString("F2") + v32 + "," + s33.ToString("F2") + v33 + "    ";
+                        hang2 += s11.ToString("F2").Replace("-", "") + v11 + "," + s12.ToString("F2").Replace("-", "") + v12 + "," + s13.ToString("F2").Replace("-", "") + v13+"    ";    //去掉负号
+                        hang3 += s21.ToString("F2").Replace("-", "") + v21 + "," + s22.ToString("F2").Replace("-", "") + v22 + "," + s23.ToString("F2").Replace("-", "") + v23 + "    ";//去掉负号
+                        hang4 += s31.ToString("F2").Replace("-", "") + v31 + "," + s32.ToString("F2").Replace("-", "") + v32 + "," + s33.ToString("F2").Replace("-", "") + v33 + "    ";//去掉负号
 
 
 
@@ -1319,12 +1326,15 @@ namespace win007
 
             DateTime b = Convert.ToDateTime(matchtime);
 
+           
 
+            string year = b.Year.ToString();
+            
             if (company_data_dic.ContainsKey("William Hill"))
             {
 
 
-                if ((Convert.ToDateTime("2025-" + paixudict["William Hill"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year+ "-" + paixudict["William Hill"]) - b).TotalHours < 1)
                 {
                     data1 = company_data_dic["William Hill"];
                 }
@@ -1333,35 +1343,35 @@ namespace win007
             }
             if (company_data_dic.ContainsKey("Bet-at-home"))
             {
-                if ((Convert.ToDateTime("2025-" + paixudict["Bet-at-home"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year + "-" + paixudict["Bet-at-home"]) - b).TotalHours < 1)
                 {
                     data2 = company_data_dic["Bet-at-home"];
                 }
             }
             if (company_data_dic.ContainsKey("SNAI"))
             {
-                if ((Convert.ToDateTime("2025-" + paixudict["SNAI"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year + "-" + paixudict["SNAI"]) - b).TotalHours < 1)
                 {
                     data3 = company_data_dic["SNAI"];
                 }
             }
             if (company_data_dic.ContainsKey("Crown"))
             {
-                if ((Convert.ToDateTime("2025-" + paixudict["Crown"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year + "-" + paixudict["Crown"]) - b).TotalHours < 1)
                 {
                     data4 = company_data_dic["Crown"];
                 }
             }
             if (company_data_dic.ContainsKey("Dafabet"))
             {
-                if ((Convert.ToDateTime("2025-" + paixudict["Dafabet"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year + "-" + paixudict["Dafabet"]) - b).TotalHours < 1)
                 {
                     data5 = company_data_dic["Dafabet"];
                 }
             }
             if (company_data_dic.ContainsKey("Vcbet"))
             {
-                if ((Convert.ToDateTime("2025-" + paixudict["Vcbet"]) - b).TotalHours < 1)
+                if ((Convert.ToDateTime(year + "-" + paixudict["Vcbet"]) - b).TotalHours < 1)
                 {
                     data6 = company_data_dic["Vcbet"];
                 }
@@ -1435,7 +1445,7 @@ namespace win007
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
                 return "";
             }
         }
@@ -1453,7 +1463,7 @@ namespace win007
         {
             // "Betfair", "Betfair Exchange", "SNAI", "Betsson", "Dafabet"
 
-            string data1 = "", data2 = "", data3 = "", data4 = "", data5 = "", data6 = "";
+            string data1 = "", data2 = "", data3 = "";
 
 
             if (company_data_dic.ContainsKey("William Hill"))
@@ -1468,31 +1478,17 @@ namespace win007
             {
                 data3 = company_data_dic["SNAI"];
             }
-            if (company_data_dic.ContainsKey("Crown"))
-            {
-                data4 = company_data_dic["Crown"];
-            }
-            if (company_data_dic.ContainsKey("Dafabet"))
-            {
-                data5 = company_data_dic["Dafabet"];
-            }
-            if (company_data_dic.ContainsKey("Vcbet"))
-            {
-                data6 = company_data_dic["Vcbet"];
-            }
+           
 
             try
             {
                 string[] text1 = data1.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text2 = data2.Split(new string[] { "," }, StringSplitOptions.None);
                 string[] text3 = data3.Split(new string[] { "," }, StringSplitOptions.None);
-                string[] text4 = data4.Split(new string[] { "," }, StringSplitOptions.None);
-                string[] text5 = data5.Split(new string[] { "," }, StringSplitOptions.None);
-                string[] text6 = data6.Split(new string[] { "," }, StringSplitOptions.None);
+              
 
 
-
-                double a0 = 0, a1 = 0, a2 = 0, b0 = 0, b1 = 0, b2 = 0, c0 = 0, c1 = 0, c2 = 0, d0 = 0, d1 = 0, d2 = 0, e0 = 0, e1 = 0, e2 = 0, f0 = 0, f1 = 0, f2 = 0;
+                double a0 = 0, a1 = 0, a2 = 0, b0 = 0, b1 = 0, b2 = 0, c0 = 0, c1 = 0, c2 = 0;
 
 
                 if (text1.Length > 1)
@@ -1516,32 +1512,11 @@ namespace win007
                     c2 = Convert.ToDouble(text3[3]);
 
                 }
-                if (text4.Length > 1)
-                {
-                    d0 = Convert.ToDouble(text4[1]);
-                    d1 = Convert.ToDouble(text4[2]);
-                    d2 = Convert.ToDouble(text4[3]);
+               
 
-                }
-                if (text5.Length > 1)
-                {
-                    e0 = Convert.ToDouble(text5[1]);
-                    e1 = Convert.ToDouble(text5[2]);
-                    e2 = Convert.ToDouble(text5[3]);
-
-                }
-
-                if (text6.Length > 1)
-                {
-                    f0 = Convert.ToDouble(text6[1]);
-                    f1 = Convert.ToDouble(text6[2]);
-                    f2 = Convert.ToDouble(text6[3]);
-
-                }
-
-                string value1 = function.FindDifference(a0, b0, c0, d0, e0, f0).ToString("F2");
-                string value2 = function.FindDifference(a1, b1, c1, d1, e1, f1).ToString("F2");
-                string value3 = function.FindDifference(a2, b2, c2, d2, e2, f2).ToString("F2");
+                string value1 = function.FindDifference(a0, b0, c0, 0, 0, 0).ToString("F2");
+                string value2 = function.FindDifference(a1, b1, c1, 0, 0, 0).ToString("F2");
+                string value3 = function.FindDifference(a2, b2, c2, 0, 0, 0).ToString("F2");
 
                 return value1 + "  " + value2 + "  " + value3;
             }
@@ -1589,12 +1564,13 @@ namespace win007
                     //string time = Regex.Match(trhtml, @"(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])").Groups[0].Value;
                     if (a.Count == 2)
                     {
-                        data = a[0].Groups[1].Value + "," + rang + "," + a[1].Groups[1].Value ;
+                        data = a[0].Groups[1].Value + "  ,  " + rang + "  ,  " + a[1].Groups[1].Value ;
                     }
 
 
                     if (trhtml.Contains("早"))
                     {
+                       
                         zao_list.Add(data);
                     }
 
@@ -1617,19 +1593,19 @@ namespace win007
                 string data5 = "";
                 string data6 = "";
 
-                if (zao_list.Count > 1)
+                if (zao_list.Count > 0)
                 {
                     data2 = zao_list[0];
                     data1 = zao_list[zao_list.Count - 1];
                 }
 
-                if (ji_list.Count > 1)
+                if (ji_list.Count > 0)
                 {
                     data4 = ji_list[0];
                     data3 = ji_list[ji_list.Count - 1];
                 }
 
-                if (gun_list.Count > 1)
+                if (gun_list.Count > 0)
                 {
                     data6 = gun_list[0];
                     data5 = gun_list[gun_list.Count - 1];
@@ -1638,6 +1614,7 @@ namespace win007
 
                 StringBuilder sb = new StringBuilder();
 
+             
 
                 if (data1.Trim() != "" && data3.Trim() != "" && data4.Trim() != "")//滚即早都有
                 {

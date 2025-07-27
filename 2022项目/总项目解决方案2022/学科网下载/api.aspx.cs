@@ -20,6 +20,7 @@ namespace 学科网下载
         public static string constr = "Host =localhost;Database=xueke;Username=root;Password=root";
 
         public static string cookie = "";
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,12 +34,19 @@ namespace 学科网下载
 
             string cishu = Request["cishu"];
             string day = Request["day"];
+            string vip = Request["vip"];
 
+
+           
             if (method == "getfile" && link != "" && key != "")
             {
                 getfile(key, link);
             }
-           
+            if (method == "getkey"  && key != "")
+            {
+                getkey(key, vip);
+            }
+
 
         }
 
@@ -157,7 +165,8 @@ namespace 学科网下载
 
                 if (extime == "")
                 {
-                    editetime(key, Convert.ToInt32(day));  //最后修改时间
+                    extime =  DateTime.Now.AddDays(Convert.ToInt32(day)).ToString("yyyy-MM-dd HH:mm:ss");
+                    editetime(key, extime);  //最后修改时间
                 }
 
 
@@ -191,8 +200,15 @@ namespace 学科网下载
                 }
                 else
                 {
-                   
-                    Response.Write("{\"status\":\"1\",\"filename\":\"" + filename + "\",\"fileurl\":\"" + fileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
+                    int cishu_new = Convert.ToInt32(cishu) - 1;
+
+
+                    string protocol = Request.Url.Scheme; // "http" 或 "https"
+                    string host = Request.Url.Host;       // 域名或IP
+                    int port = Request.Url.Port;
+                    string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + Base64Encode(Encoding.GetEncoding("utf-8") ,fileurl);
+        
+                    Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
                     
                     editekey(key); //下载成功  减去次数
 
@@ -242,7 +258,7 @@ namespace 学科网下载
 
         #region  修改时间
 
-        public void editetime(string key,int day)
+        public void editetime(string key,string time)
         {
 
             try
@@ -251,7 +267,7 @@ namespace 学科网下载
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
-                string time = DateTime.Now.AddDays(day).ToString("yyyy-MM-dd HH:mm:ss");
+               
                 
                 MySqlCommand cmd = new MySqlCommand("update mykeys SET extime = '" + time+ " '  where mykey='" + key + " ' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
@@ -285,21 +301,40 @@ namespace 学科网下载
         }
         #endregion
 
-        #region  插入数据
+        #region  客户端购买
 
-        public void getkey(string cishu, int day)
+        public void getkey(string mykey, string vip)
         {
 
             try
             {
+                int day = 30;
+                int cishu = 999999;
+                string isvip = "0";
                 string extime = DateTime.Now.AddDays(day).ToString("yyyy-MM-dd HH:mm:ss");
-                string mykey = GetMD5(extime);
-
+               
                 MySqlConnection mycon = new MySqlConnection(constr);
                 mycon.Open();
 
+                switch (vip)
+                {
+                    case "0":
+                       
+                        isvip = "0";
+                        break;
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO mykeys (mykey,cishu,extime)VALUES('" + mykey + " ', '" + cishu + " ', '" + extime + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
+                    case "1":
+                       
+                        isvip = "1";
+                        break;
+                  
+
+
+                }
+
+
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO mykeys (mykey,cishu,extime,day,isvip)VALUES('" + mykey + " ', '" + cishu + " ', '" + extime + " ', '" + day + " ', '" + isvip + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
 
 
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
@@ -307,12 +342,12 @@ namespace 学科网下载
                 {
 
                     mycon.Close();
-                    Response.Write(mykey);
+                    Response.Write("{\"status\":\"1\",\"msg\":\"开通成功！\"}");
 
                 }
                 else
                 {
-                    Response.Write("生成失败1");
+                    Response.Write("{\"status\":\"0\",\"msg\":\"开通失败，请联系客服！\"}");
                 }
 
 
@@ -320,8 +355,25 @@ namespace 学科网下载
 
             catch (System.Exception ex)
             {
-                Response.Write("生成失败2");
+                Response.Write("{\"status\":\"0\",\"msg\":\"开通失败，请联系客服！\"}");
             }
+        }
+        #endregion
+
+        #region Base64编码
+        public static string Base64Encode(Encoding encodeType, string source)
+        {
+            string encode = string.Empty;
+            byte[] bytes = encodeType.GetBytes(source);
+            try
+            {
+                encode = Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                encode = source;
+            }
+            return encode;
         }
         #endregion
     }
