@@ -1647,6 +1647,228 @@ namespace win007
         }
 
 
+        /// <summary>
+        /// 凯利指数计算
+        /// </summary>
+        /// <param name="lv1"></param>
+        public static void kaili_jisuan(System.Windows.Forms.ListView lv1)
+        {
+            try
+            {
+                string v11 = get_333(lv1.Items[0].SubItems[1].Text);
+                string v12 = get_333(lv1.Items[0].SubItems[2].Text);
+                string v13 = get_333(lv1.Items[0].SubItems[3].Text);
+                string v14 = get_333(lv1.Items[0].SubItems[4].Text);
+                string v15 = get_333(lv1.Items[0].SubItems[5].Text);
+
+              
+
+
+                int s1 = Convert.ToInt32(v11) + Convert.ToInt32(v12) + Convert.ToInt32(v13) + Convert.ToInt32(v14) + Convert.ToInt32(v15);
+                int s2 = 0;
+                int s4 = 0;
+                int s6 = 0;
+               
+
+                string v21 = get_333(lv1.Items[1].SubItems[1].Text);
+                string v22 = get_333(lv1.Items[1].SubItems[2].Text);
+                string v23 = get_333(lv1.Items[1].SubItems[3].Text);
+                string v24 = get_333(lv1.Items[1].SubItems[4].Text);
+                string v25 = get_333(lv1.Items[1].SubItems[5].Text);
+
+                int s3 = Convert.ToInt32(v21) + Convert.ToInt32(v22) + Convert.ToInt32(v23) + Convert.ToInt32(v24) + Convert.ToInt32(v25);
+
+
+                int h1 = Convert.ToInt32(v11) + Convert.ToInt32(v21);
+                int h2 = Convert.ToInt32(v12) + Convert.ToInt32(v22);
+                int h3 = Convert.ToInt32(v13) + Convert.ToInt32(v23);
+                int h4 = Convert.ToInt32(v14) + Convert.ToInt32(v24);
+                int h5 = Convert.ToInt32(v15) + Convert.ToInt32(v25);
+
+              s2=  get_he(h1)+ get_he(h2)+ get_he(h3)+ get_he(h4)+ get_he(h5);
+
+
+
+
+
+                lv1.Items[0].SubItems[6].Text = s1.ToString() + s2.ToString();
+
+
+
+                string v31 = get_333(lv1.Items[2].SubItems[1].Text);
+                string v32 = get_333(lv1.Items[2].SubItems[2].Text);
+                string v33 = get_333(lv1.Items[2].SubItems[3].Text);
+                string v34 = get_333(lv1.Items[2].SubItems[4].Text);
+                string v35 = get_333(lv1.Items[2].SubItems[5].Text);
+
+                int s5 = Convert.ToInt32(v31) + Convert.ToInt32(v32) + Convert.ToInt32(v33) + Convert.ToInt32(v34) + Convert.ToInt32(v35);
+
+
+                int h11 = Convert.ToInt32(v31) + Convert.ToInt32(v21);
+                int h22 = Convert.ToInt32(v32) + Convert.ToInt32(v22);
+                int h33 = Convert.ToInt32(v33) + Convert.ToInt32(v23);
+                int h44 = Convert.ToInt32(v34) + Convert.ToInt32(v24);
+                int h55 = Convert.ToInt32(v35) + Convert.ToInt32(v25);
+
+                s4 = get_he(h11) + get_he(h22) + get_he(h33) + get_he(h44) + get_he(h55);
+
+                s6= get_he3(h11+ Convert.ToInt32(v11)) + get_he3(h22+ Convert.ToInt32(v12)) + get_he3(h33+ Convert.ToInt32(v13)) + get_he3(h44+ Convert.ToInt32(v14)) + get_he3(h55+ Convert.ToInt32(v15));
+
+
+                lv1.Items[1].SubItems[6].Text = s3.ToString() + s4.ToString();
+                lv1.Items[2].SubItems[6].Text = s5.ToString() + s6.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                //MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        public  static string get_333(string item)
+        {
+            string aa = "";
+            switch (item.Trim())
+               {
+             
+
+                    //主
+                case "321":
+                    aa = "01";
+                    break;
+                case "312":
+                    aa = "01";
+                    break;
+                case "322":
+                    aa = "01";
+                    break;
+                //和
+                case "132":
+                    aa = "11";
+                    break;
+                case "232":
+                    aa = "11";
+                    break;
+                case "231":
+                    aa = "11";
+                    break;
+                //客
+                case "123":
+                    aa = "10";
+                    break;
+                case "223":
+                    aa = "10";
+                    break;
+                case "213":
+                    aa = "10";
+                    break;
+
+                //大于2个3
+                case "323":
+                    aa = "11";
+                    break;
+                case "233":
+                    aa = "11";
+                    break;
+                case "332":
+                    aa = "11";
+                    break;
+                case "333":
+                    aa = "11";
+                    break;
+
+
+                //为空
+                case "":
+                    aa = "0";
+                    break;
+            }
+
+            return aa;    
+        }
+
+        //获取和值
+        public static int get_he(int item)
+        {
+            int aa = 0;
+            switch (item)
+            {
+
+
+                //11+01
+                case 02:
+                    aa = 01;
+                    break;
+                case 12:
+                    aa = 01;
+                    break;
+             
+                case 20:
+                    aa = 10;
+                    break;
+               
+                case 21:
+                    aa = 10;
+                    break;
+              
+                case 22:
+                    aa = 11;
+                    break;
+              
+               
+            }
+
+            return aa;
+        }
+
+        public static int get_he3(int item)
+        {
+            int aa = 0;
+            switch (item)
+            {
+
+              
+                case 13:
+                    aa = 01;
+                    break;
+                case 23:
+                    aa = 01;
+                    break;
+              
+                case 03:
+                    aa = 01;
+                    break;
+               
+
+                case 30:
+                    aa = 10;
+                    break;
+                case 31:
+                    aa = 10;
+                    break;
+                case 32:
+                    aa = 10;
+                    break;
+                //11+11+11
+
+              
+                case 33:
+                    aa = 11;
+                    break;
+
+
+
+            }
+
+            return aa;
+        }
+
+
+
+
+
+
 
     }
 }

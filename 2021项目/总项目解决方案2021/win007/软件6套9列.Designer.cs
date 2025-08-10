@@ -31,7 +31,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rule1_txtbox_2 = new System.Windows.Forms.TextBox();
+            this.rule2_txtbox_2 = new System.Windows.Forms.TextBox();
+            this.rule3_txtbox_2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -40,8 +47,6 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
@@ -49,19 +54,9 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.rule9_txtbox_3 = new System.Windows.Forms.TextBox();
-            this.rule8_txtbox_3 = new System.Windows.Forms.TextBox();
-            this.rule7_txtbox_3 = new System.Windows.Forms.TextBox();
             this.rule1_txtbox_3 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_3 = new System.Windows.Forms.TextBox();
             this.rule3_txtbox_3 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rule9_txtbox_2 = new System.Windows.Forms.TextBox();
-            this.rule8_txtbox_2 = new System.Windows.Forms.TextBox();
-            this.rule7_txtbox_2 = new System.Windows.Forms.TextBox();
-            this.rule1_txtbox_2 = new System.Windows.Forms.TextBox();
-            this.rule2_txtbox_2 = new System.Windows.Forms.TextBox();
-            this.rule3_txtbox_2 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rule1_txtbox_5 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_5 = new System.Windows.Forms.TextBox();
@@ -91,23 +86,14 @@
             this.label31 = new System.Windows.Forms.Label();
             this.button47 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.rule6_txtbox_6 = new System.Windows.Forms.TextBox();
             this.rule1_txtbox_6 = new System.Windows.Forms.TextBox();
-            this.rule5_txtbox_6 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_6 = new System.Windows.Forms.TextBox();
-            this.rule4_txtbox_6 = new System.Windows.Forms.TextBox();
             this.rule3_txtbox_6 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.rule6_txtbox_4 = new System.Windows.Forms.TextBox();
             this.rule1_txtbox_4 = new System.Windows.Forms.TextBox();
-            this.rule5_txtbox_4 = new System.Windows.Forms.TextBox();
             this.rule2_txtbox_4 = new System.Windows.Forms.TextBox();
-            this.rule4_txtbox_4 = new System.Windows.Forms.TextBox();
             this.rule3_txtbox_4 = new System.Windows.Forms.TextBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.rule9_txtbox = new System.Windows.Forms.TextBox();
-            this.rule8_txtbox = new System.Windows.Forms.TextBox();
-            this.rule7_txtbox = new System.Windows.Forms.TextBox();
             this.rule1_txtbox = new System.Windows.Forms.TextBox();
             this.rule2_txtbox = new System.Windows.Forms.TextBox();
             this.rule3_txtbox = new System.Windows.Forms.TextBox();
@@ -123,14 +109,14 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -146,10 +132,10 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tabControl1.ItemSize = new System.Drawing.Size(50, 20);
-            this.tabControl1.Location = new System.Drawing.Point(0, 37);
+            this.tabControl1.Location = new System.Drawing.Point(0, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1323, 895);
+            this.tabControl1.Size = new System.Drawing.Size(1277, 829);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -158,13 +144,15 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1315, 867);
+            this.tabPage1.Size = new System.Drawing.Size(1269, 801);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "----主界面-----";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox10);
+            this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.groupBox13);
@@ -177,7 +165,6 @@
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox7);
             this.groupBox2.Controls.Add(this.listView2);
@@ -196,27 +183,93 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1309, 861);
+            this.groupBox2.Size = new System.Drawing.Size(1263, 795);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "7";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(1015, 758);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(233, 21);
+            this.textBox10.TabIndex = 330;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.rule1_txtbox_2);
+            this.groupBox1.Controls.Add(this.rule2_txtbox_2);
+            this.groupBox1.Controls.Add(this.rule3_txtbox_2);
+            this.groupBox1.Location = new System.Drawing.Point(5, 562);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(496, 107);
+            this.groupBox1.TabIndex = 260;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "2";
+            // 
+            // rule1_txtbox_2
+            // 
+            this.rule1_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.rule1_txtbox_2.Location = new System.Drawing.Point(7, 13);
+            this.rule1_txtbox_2.Name = "rule1_txtbox_2";
+            this.rule1_txtbox_2.Size = new System.Drawing.Size(484, 23);
+            this.rule1_txtbox_2.TabIndex = 262;
+            // 
+            // rule2_txtbox_2
+            // 
+            this.rule2_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.rule2_txtbox_2.Location = new System.Drawing.Point(7, 42);
+            this.rule2_txtbox_2.Name = "rule2_txtbox_2";
+            this.rule2_txtbox_2.Size = new System.Drawing.Size(484, 23);
+            this.rule2_txtbox_2.TabIndex = 263;
+            // 
+            // rule3_txtbox_2
+            // 
+            this.rule3_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.rule3_txtbox_2.Location = new System.Drawing.Point(7, 68);
+            this.rule3_txtbox_2.Name = "rule3_txtbox_2";
+            this.rule3_txtbox_2.Size = new System.Drawing.Size(484, 23);
+            this.rule3_txtbox_2.TabIndex = 264;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 81);
+            this.label1.Location = new System.Drawing.Point(11, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 329;
             this.label1.Text = "状态";
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox3);
+            this.groupBox10.Location = new System.Drawing.Point(1012, 421);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(236, 96);
+            this.groupBox10.TabIndex = 324;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "特殊数值检测";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.textBox3.Location = new System.Drawing.Point(3, 17);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(230, 76);
+            this.textBox3.TabIndex = 265;
+            this.textBox3.Text = "无";
+            // 
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.textBox8);
-            this.groupBox13.Location = new System.Drawing.Point(5, 114);
+            this.groupBox13.Location = new System.Drawing.Point(8, 96);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(1031, 152);
+            this.groupBox13.Size = new System.Drawing.Size(1240, 135);
             this.groupBox13.TabIndex = 328;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "三行计算";
@@ -230,15 +283,15 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox8.Size = new System.Drawing.Size(1025, 132);
+            this.textBox8.Size = new System.Drawing.Size(1234, 115);
             this.textBox8.TabIndex = 265;
             // 
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.textBox9);
-            this.groupBox12.Location = new System.Drawing.Point(1015, 811);
+            this.groupBox12.Location = new System.Drawing.Point(1013, 711);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(273, 39);
+            this.groupBox12.Size = new System.Drawing.Size(236, 39);
             this.groupBox12.TabIndex = 327;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "集团公司最小差";
@@ -256,9 +309,9 @@
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.textBox7);
-            this.groupBox11.Location = new System.Drawing.Point(1015, 764);
+            this.groupBox11.Location = new System.Drawing.Point(1013, 666);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(273, 39);
+            this.groupBox11.Size = new System.Drawing.Size(236, 39);
             this.groupBox11.TabIndex = 326;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "子大差";
@@ -276,9 +329,9 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.textBox1);
-            this.groupBox8.Location = new System.Drawing.Point(1014, 627);
+            this.groupBox8.Location = new System.Drawing.Point(1012, 523);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(276, 92);
+            this.groupBox8.Size = new System.Drawing.Size(236, 92);
             this.groupBox8.TabIndex = 325;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "亚盘";
@@ -290,37 +343,15 @@
             this.textBox1.Location = new System.Drawing.Point(3, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 72);
+            this.textBox1.Size = new System.Drawing.Size(230, 72);
             this.textBox1.TabIndex = 265;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.textBox3);
-            this.groupBox10.Location = new System.Drawing.Point(1015, 284);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(282, 108);
-            this.groupBox10.TabIndex = 324;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "特殊数值检测";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.textBox3.Location = new System.Drawing.Point(3, 17);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(276, 88);
-            this.textBox3.TabIndex = 265;
-            this.textBox3.Text = "无";
             // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.textBox2);
-            this.groupBox9.Location = new System.Drawing.Point(1042, 77);
+            this.groupBox9.Location = new System.Drawing.Point(12, 234);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(226, 186);
+            this.groupBox9.Size = new System.Drawing.Size(425, 186);
             this.groupBox9.TabIndex = 323;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "时间降序";
@@ -332,7 +363,7 @@
             this.textBox2.Location = new System.Drawing.Point(3, 17);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 166);
+            this.textBox2.Size = new System.Drawing.Size(419, 166);
             this.textBox2.TabIndex = 265;
             // 
             // comboBox5
@@ -352,7 +383,7 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(105, 20);
             this.comboBox5.TabIndex = 322;
-            this.comboBox5.Text = "SNAI";
+            this.comboBox5.Text = "Dafabet";
             // 
             // comboBox4
             // 
@@ -371,7 +402,7 @@
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(105, 20);
             this.comboBox4.TabIndex = 321;
-            this.comboBox4.Text = "SNAI";
+            this.comboBox4.Text = "Betsson";
             // 
             // comboBox3
             // 
@@ -409,47 +440,20 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(105, 20);
             this.comboBox2.TabIndex = 319;
-            this.comboBox2.Text = "SNAI";
+            this.comboBox2.Text = "Betfair Exchange";
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.groupBox3.Controls.Add(this.rule9_txtbox_3);
-            this.groupBox3.Controls.Add(this.rule8_txtbox_3);
-            this.groupBox3.Controls.Add(this.rule7_txtbox_3);
             this.groupBox3.Controls.Add(this.rule1_txtbox_3);
             this.groupBox3.Controls.Add(this.rule2_txtbox_3);
             this.groupBox3.Controls.Add(this.rule3_txtbox_3);
-            this.groupBox3.Location = new System.Drawing.Point(1, 673);
+            this.groupBox3.Location = new System.Drawing.Point(3, 676);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(507, 187);
+            this.groupBox3.Size = new System.Drawing.Size(502, 108);
             this.groupBox3.TabIndex = 261;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "软件三";
-            // 
-            // rule9_txtbox_3
-            // 
-            this.rule9_txtbox_3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule9_txtbox_3.Location = new System.Drawing.Point(11, 151);
-            this.rule9_txtbox_3.Name = "rule9_txtbox_3";
-            this.rule9_txtbox_3.Size = new System.Drawing.Size(484, 23);
-            this.rule9_txtbox_3.TabIndex = 275;
-            // 
-            // rule8_txtbox_3
-            // 
-            this.rule8_txtbox_3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule8_txtbox_3.Location = new System.Drawing.Point(11, 125);
-            this.rule8_txtbox_3.Name = "rule8_txtbox_3";
-            this.rule8_txtbox_3.Size = new System.Drawing.Size(484, 23);
-            this.rule8_txtbox_3.TabIndex = 274;
-            // 
-            // rule7_txtbox_3
-            // 
-            this.rule7_txtbox_3.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule7_txtbox_3.Location = new System.Drawing.Point(11, 99);
-            this.rule7_txtbox_3.Name = "rule7_txtbox_3";
-            this.rule7_txtbox_3.Size = new System.Drawing.Size(484, 23);
-            this.rule7_txtbox_3.TabIndex = 273;
+            this.groupBox3.Text = "3";
             // 
             // rule1_txtbox_3
             // 
@@ -475,81 +479,18 @@
             this.rule3_txtbox_3.Size = new System.Drawing.Size(484, 23);
             this.rule3_txtbox_3.TabIndex = 264;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.groupBox1.Controls.Add(this.rule9_txtbox_2);
-            this.groupBox1.Controls.Add(this.rule8_txtbox_2);
-            this.groupBox1.Controls.Add(this.rule7_txtbox_2);
-            this.groupBox1.Controls.Add(this.rule1_txtbox_2);
-            this.groupBox1.Controls.Add(this.rule2_txtbox_2);
-            this.groupBox1.Controls.Add(this.rule3_txtbox_2);
-            this.groupBox1.Location = new System.Drawing.Point(0, 486);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 181);
-            this.groupBox1.TabIndex = 260;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "软件二";
-            // 
-            // rule9_txtbox_2
-            // 
-            this.rule9_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule9_txtbox_2.Location = new System.Drawing.Point(7, 148);
-            this.rule9_txtbox_2.Name = "rule9_txtbox_2";
-            this.rule9_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule9_txtbox_2.TabIndex = 275;
-            // 
-            // rule8_txtbox_2
-            // 
-            this.rule8_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule8_txtbox_2.Location = new System.Drawing.Point(7, 122);
-            this.rule8_txtbox_2.Name = "rule8_txtbox_2";
-            this.rule8_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule8_txtbox_2.TabIndex = 274;
-            // 
-            // rule7_txtbox_2
-            // 
-            this.rule7_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule7_txtbox_2.Location = new System.Drawing.Point(7, 96);
-            this.rule7_txtbox_2.Name = "rule7_txtbox_2";
-            this.rule7_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule7_txtbox_2.TabIndex = 273;
-            // 
-            // rule1_txtbox_2
-            // 
-            this.rule1_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule1_txtbox_2.Location = new System.Drawing.Point(7, 16);
-            this.rule1_txtbox_2.Name = "rule1_txtbox_2";
-            this.rule1_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule1_txtbox_2.TabIndex = 262;
-            // 
-            // rule2_txtbox_2
-            // 
-            this.rule2_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule2_txtbox_2.Location = new System.Drawing.Point(7, 42);
-            this.rule2_txtbox_2.Name = "rule2_txtbox_2";
-            this.rule2_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule2_txtbox_2.TabIndex = 263;
-            // 
-            // rule3_txtbox_2
-            // 
-            this.rule3_txtbox_2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule3_txtbox_2.Location = new System.Drawing.Point(7, 68);
-            this.rule3_txtbox_2.Name = "rule3_txtbox_2";
-            this.rule3_txtbox_2.Size = new System.Drawing.Size(484, 23);
-            this.rule3_txtbox_2.TabIndex = 264;
-            // 
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBox5.Controls.Add(this.rule1_txtbox_5);
             this.groupBox5.Controls.Add(this.rule2_txtbox_5);
             this.groupBox5.Controls.Add(this.rule3_txtbox_5);
-            this.groupBox5.Location = new System.Drawing.Point(510, 579);
+            this.groupBox5.Location = new System.Drawing.Point(507, 562);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(499, 98);
             this.groupBox5.TabIndex = 290;
             this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "5";
             // 
             // rule1_txtbox_5
             // 
@@ -581,9 +522,9 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.textBox4);
-            this.groupBox7.Location = new System.Drawing.Point(1015, 719);
+            this.groupBox7.Location = new System.Drawing.Point(1012, 621);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(273, 39);
+            this.groupBox7.Size = new System.Drawing.Size(236, 39);
             this.groupBox7.TabIndex = 312;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "母大差";
@@ -612,9 +553,9 @@
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(516, 293);
+            this.listView2.Location = new System.Drawing.Point(798, 237);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(485, 121);
+            this.listView2.Size = new System.Drawing.Size(451, 183);
             this.listView2.TabIndex = 310;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -669,9 +610,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(1017, 394);
+            this.listView1.Location = new System.Drawing.Point(443, 237);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(282, 222);
+            this.listView1.Size = new System.Drawing.Size(349, 183);
             this.listView1.TabIndex = 309;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -764,7 +705,7 @@
             this.button47.ForeColor = System.Drawing.Color.Black;
             this.button47.Location = new System.Drawing.Point(656, 20);
             this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(57, 27);
+            this.button47.Size = new System.Drawing.Size(66, 27);
             this.button47.TabIndex = 292;
             this.button47.Text = "全部";
             this.button47.UseVisualStyleBackColor = false;
@@ -773,25 +714,16 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.groupBox6.Controls.Add(this.rule6_txtbox_6);
             this.groupBox6.Controls.Add(this.rule1_txtbox_6);
-            this.groupBox6.Controls.Add(this.rule5_txtbox_6);
             this.groupBox6.Controls.Add(this.rule2_txtbox_6);
-            this.groupBox6.Controls.Add(this.rule4_txtbox_6);
             this.groupBox6.Controls.Add(this.rule3_txtbox_6);
-            this.groupBox6.Location = new System.Drawing.Point(509, 683);
+            this.groupBox6.Location = new System.Drawing.Point(507, 676);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(499, 179);
+            this.groupBox6.Size = new System.Drawing.Size(498, 107);
             this.groupBox6.TabIndex = 291;
             this.groupBox6.TabStop = false;
-            // 
-            // rule6_txtbox_6
-            // 
-            this.rule6_txtbox_6.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule6_txtbox_6.Location = new System.Drawing.Point(7, 143);
-            this.rule6_txtbox_6.Name = "rule6_txtbox_6";
-            this.rule6_txtbox_6.Size = new System.Drawing.Size(484, 23);
-            this.rule6_txtbox_6.TabIndex = 267;
+            this.groupBox6.Text = "6";
+            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // rule1_txtbox_6
             // 
@@ -801,14 +733,6 @@
             this.rule1_txtbox_6.Size = new System.Drawing.Size(484, 23);
             this.rule1_txtbox_6.TabIndex = 262;
             // 
-            // rule5_txtbox_6
-            // 
-            this.rule5_txtbox_6.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule5_txtbox_6.Location = new System.Drawing.Point(7, 117);
-            this.rule5_txtbox_6.Name = "rule5_txtbox_6";
-            this.rule5_txtbox_6.Size = new System.Drawing.Size(484, 23);
-            this.rule5_txtbox_6.TabIndex = 266;
-            // 
             // rule2_txtbox_6
             // 
             this.rule2_txtbox_6.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -816,14 +740,6 @@
             this.rule2_txtbox_6.Name = "rule2_txtbox_6";
             this.rule2_txtbox_6.Size = new System.Drawing.Size(484, 23);
             this.rule2_txtbox_6.TabIndex = 263;
-            // 
-            // rule4_txtbox_6
-            // 
-            this.rule4_txtbox_6.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule4_txtbox_6.Location = new System.Drawing.Point(7, 91);
-            this.rule4_txtbox_6.Name = "rule4_txtbox_6";
-            this.rule4_txtbox_6.Size = new System.Drawing.Size(484, 23);
-            this.rule4_txtbox_6.TabIndex = 265;
             // 
             // rule3_txtbox_6
             // 
@@ -836,62 +752,36 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.groupBox4.Controls.Add(this.rule6_txtbox_4);
             this.groupBox4.Controls.Add(this.rule1_txtbox_4);
-            this.groupBox4.Controls.Add(this.rule5_txtbox_4);
             this.groupBox4.Controls.Add(this.rule2_txtbox_4);
-            this.groupBox4.Controls.Add(this.rule4_txtbox_4);
             this.groupBox4.Controls.Add(this.rule3_txtbox_4);
-            this.groupBox4.Location = new System.Drawing.Point(508, 411);
+            this.groupBox4.Location = new System.Drawing.Point(510, 444);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(499, 166);
+            this.groupBox4.Size = new System.Drawing.Size(499, 100);
             this.groupBox4.TabIndex = 289;
             this.groupBox4.TabStop = false;
-            // 
-            // rule6_txtbox_4
-            // 
-            this.rule6_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule6_txtbox_4.Location = new System.Drawing.Point(6, 139);
-            this.rule6_txtbox_4.Name = "rule6_txtbox_4";
-            this.rule6_txtbox_4.Size = new System.Drawing.Size(484, 23);
-            this.rule6_txtbox_4.TabIndex = 267;
+            this.groupBox4.Text = "4";
             // 
             // rule1_txtbox_4
             // 
             this.rule1_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule1_txtbox_4.Location = new System.Drawing.Point(6, 9);
+            this.rule1_txtbox_4.Location = new System.Drawing.Point(6, 17);
             this.rule1_txtbox_4.Name = "rule1_txtbox_4";
             this.rule1_txtbox_4.Size = new System.Drawing.Size(484, 23);
             this.rule1_txtbox_4.TabIndex = 262;
             // 
-            // rule5_txtbox_4
-            // 
-            this.rule5_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule5_txtbox_4.Location = new System.Drawing.Point(6, 113);
-            this.rule5_txtbox_4.Name = "rule5_txtbox_4";
-            this.rule5_txtbox_4.Size = new System.Drawing.Size(484, 23);
-            this.rule5_txtbox_4.TabIndex = 266;
-            // 
             // rule2_txtbox_4
             // 
             this.rule2_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule2_txtbox_4.Location = new System.Drawing.Point(6, 35);
+            this.rule2_txtbox_4.Location = new System.Drawing.Point(6, 43);
             this.rule2_txtbox_4.Name = "rule2_txtbox_4";
             this.rule2_txtbox_4.Size = new System.Drawing.Size(484, 23);
             this.rule2_txtbox_4.TabIndex = 263;
             // 
-            // rule4_txtbox_4
-            // 
-            this.rule4_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule4_txtbox_4.Location = new System.Drawing.Point(6, 87);
-            this.rule4_txtbox_4.Name = "rule4_txtbox_4";
-            this.rule4_txtbox_4.Size = new System.Drawing.Size(484, 23);
-            this.rule4_txtbox_4.TabIndex = 265;
-            // 
             // rule3_txtbox_4
             // 
             this.rule3_txtbox_4.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule3_txtbox_4.Location = new System.Drawing.Point(6, 61);
+            this.rule3_txtbox_4.Location = new System.Drawing.Point(6, 69);
             this.rule3_txtbox_4.Name = "rule3_txtbox_4";
             this.rule3_txtbox_4.Size = new System.Drawing.Size(484, 23);
             this.rule3_txtbox_4.TabIndex = 264;
@@ -899,42 +789,15 @@
             // groupBox18
             // 
             this.groupBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.groupBox18.Controls.Add(this.rule9_txtbox);
-            this.groupBox18.Controls.Add(this.rule8_txtbox);
-            this.groupBox18.Controls.Add(this.rule7_txtbox);
             this.groupBox18.Controls.Add(this.rule1_txtbox);
             this.groupBox18.Controls.Add(this.rule2_txtbox);
             this.groupBox18.Controls.Add(this.rule3_txtbox);
-            this.groupBox18.Location = new System.Drawing.Point(1, 293);
+            this.groupBox18.Location = new System.Drawing.Point(3, 435);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(504, 187);
+            this.groupBox18.Size = new System.Drawing.Size(495, 109);
             this.groupBox18.TabIndex = 259;
             this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "软件一";
-            // 
-            // rule9_txtbox
-            // 
-            this.rule9_txtbox.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule9_txtbox.Location = new System.Drawing.Point(7, 151);
-            this.rule9_txtbox.Name = "rule9_txtbox";
-            this.rule9_txtbox.Size = new System.Drawing.Size(484, 23);
-            this.rule9_txtbox.TabIndex = 275;
-            // 
-            // rule8_txtbox
-            // 
-            this.rule8_txtbox.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule8_txtbox.Location = new System.Drawing.Point(7, 125);
-            this.rule8_txtbox.Name = "rule8_txtbox";
-            this.rule8_txtbox.Size = new System.Drawing.Size(484, 23);
-            this.rule8_txtbox.TabIndex = 274;
-            // 
-            // rule7_txtbox
-            // 
-            this.rule7_txtbox.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.rule7_txtbox.Location = new System.Drawing.Point(7, 99);
-            this.rule7_txtbox.Name = "rule7_txtbox";
-            this.rule7_txtbox.Size = new System.Drawing.Size(484, 23);
-            this.rule7_txtbox.TabIndex = 273;
+            this.groupBox18.Text = "1";
             // 
             // rule1_txtbox
             // 
@@ -984,7 +847,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(105, 20);
             this.comboBox1.TabIndex = 49;
-            this.comboBox1.Text = "SNAI";
+            this.comboBox1.Text = "Betfair";
             // 
             // tabPage2
             // 
@@ -994,7 +857,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1315, 867);
+            this.tabPage2.Size = new System.Drawing.Size(1269, 801);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "----浏览器-----";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1031,7 +894,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(3, 3);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1309, 861);
+            this.webBrowser1.Size = new System.Drawing.Size(1263, 795);
             this.webBrowser1.TabIndex = 1;
             this.webBrowser1.NewWindow += new System.ComponentModel.CancelEventHandler(this.webBrowser1_NewWindow);
             // 
@@ -1041,7 +904,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(451, 21);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "https://op1.titan007.com/oddslist/2591233.htm";
+            this.textBox6.Text = "https://op1.titan007.com/oddslist/2838678.htm";
             // 
             // panel1
             // 
@@ -1050,7 +913,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1323, 37);
+            this.panel1.Size = new System.Drawing.Size(1277, 49);
             this.panel1.TabIndex = 1;
             // 
             // linkLabel1
@@ -1070,7 +933,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 932);
+            this.ClientSize = new System.Drawing.Size(1277, 878);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Name = "软件6套9列";
@@ -1082,6 +945,10 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox12.ResumeLayout(false);
@@ -1090,14 +957,10 @@
             this.groupBox11.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1136,32 +999,17 @@
         private System.Windows.Forms.TextBox rule2_txtbox;
         private System.Windows.Forms.TextBox rule3_txtbox;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox rule6_txtbox_6;
         private System.Windows.Forms.TextBox rule1_txtbox_6;
-        private System.Windows.Forms.TextBox rule5_txtbox_6;
         private System.Windows.Forms.TextBox rule2_txtbox_6;
-        private System.Windows.Forms.TextBox rule4_txtbox_6;
         private System.Windows.Forms.TextBox rule3_txtbox_6;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox rule1_txtbox_5;
         private System.Windows.Forms.TextBox rule2_txtbox_5;
         private System.Windows.Forms.TextBox rule3_txtbox_5;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox rule6_txtbox_4;
         private System.Windows.Forms.TextBox rule1_txtbox_4;
-        private System.Windows.Forms.TextBox rule5_txtbox_4;
         private System.Windows.Forms.TextBox rule2_txtbox_4;
-        private System.Windows.Forms.TextBox rule4_txtbox_4;
         private System.Windows.Forms.TextBox rule3_txtbox_4;
-        private System.Windows.Forms.TextBox rule9_txtbox_3;
-        private System.Windows.Forms.TextBox rule8_txtbox_3;
-        private System.Windows.Forms.TextBox rule7_txtbox_3;
-        private System.Windows.Forms.TextBox rule9_txtbox_2;
-        private System.Windows.Forms.TextBox rule8_txtbox_2;
-        private System.Windows.Forms.TextBox rule7_txtbox_2;
-        private System.Windows.Forms.TextBox rule9_txtbox;
-        private System.Windows.Forms.TextBox rule8_txtbox;
-        private System.Windows.Forms.TextBox rule7_txtbox;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.TextBox textBox6;
@@ -1210,5 +1058,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }

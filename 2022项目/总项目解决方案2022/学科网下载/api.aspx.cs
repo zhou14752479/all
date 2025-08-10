@@ -1,23 +1,26 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO.Compression;
+using System.Data.SqlClient;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text.RegularExpressions;
-using System.Security.Cryptography;
 
 namespace 学科网下载
 {
     public partial class api : System.Web.UI.Page
     {
-        public static string constr = "Host =localhost;Database=xueke;Username=root;Password=root";
+        
 
         public static string cookie = "";
        
@@ -35,9 +38,9 @@ namespace 学科网下载
             string cishu = Request["cishu"];
             string day = Request["day"];
             string vip = Request["vip"];
+            string page = Request["page"];
 
 
-           
             if (method == "getfile" && link != "" && key != "")
             {
                 getfile(key, link);
@@ -46,7 +49,7 @@ namespace 学科网下载
             {
                 getkey(key, vip);
             }
-
+           
 
         }
 
@@ -61,58 +64,15 @@ namespace 学科网下载
 
 
 
-        #region GET请求带COOKIE
-        public string GetUrlWithCookie(string Url, string COOKIE)
-        {
-            string charset = "utf-8";
-            string result;
-            try
-            {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
-                request.AllowAutoRedirect = true;
-                request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36";
-                request.Referer = Url;
-                //WebHeaderCollection headers = request.Headers;
-                //headers.Add("version:TYC-XCX-WX");
-                request.Headers.Add("Cookie", COOKIE);
-                request.Headers.Add("Accept-Encoding", "gzip");
-                request.KeepAlive = true;
-                request.Accept = "*/*";
-                request.Timeout = 5000;
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                bool flag = response.Headers["Content-Encoding"] == "gzip";
-                string html;
-                if (flag)
-                {
-                    GZipStream gzip = new GZipStream(response.GetResponseStream(), CompressionMode.Decompress);
-                    StreamReader reader = new StreamReader(gzip, Encoding.GetEncoding(charset));
-                    html = reader.ReadToEnd();
-                    reader.Close();
-                }
-                else
-                {
-                    StreamReader reader2 = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(charset));
-                    html = reader2.ReadToEnd();
-                    reader2.Close();
-                }
-                response.Close();
-                result = html;
-            }
-            catch (WebException ex)
-            {
-                result = ex.ToString();
-
-            }
-            return result;
-        }
-        #endregion
+        
 
 
-        #region 获取文件地址
+        #region 下载文件
         public void getfile(string key, string link)
         {
-            MySqlConnection mycon = new MySqlConnection(constr);
+            string userIp = Request.UserHostAddress;
+
+            MySqlConnection mycon = new MySqlConnection(method.constr);
             mycon.Open();
             string query = "SELECT * FROM mykeys where mykey= '" + key + "' ";
             MySqlCommand command = new MySqlCommand(query, mycon);
@@ -166,13 +126,26 @@ namespace 学科网下载
                 if (extime == "")
                 {
                     extime =  DateTime.Now.AddDays(Convert.ToInt32(day)).ToString("yyyy-MM-dd HH:mm:ss");
-                    editetime(key, extime);  //最后修改时间
+                    editetime(key, extime);  //第一次登录
+
+                  string area=  method.getip(key,userIp);
+
+                    if (area.Contains("北京市房山区") || area.Contains("学科网"))
+                    {
+
+                        Response.Write("{\"status\":\"0\",\"msg\":\"服务不支持，请联系客服！\"}");
+
+                        //设置过期
+                        extime = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss");
+                        editetime(key, extime); 
+                        return;
+                    }
                 }
 
 
                 string url = "https://user.zxxk.com/creator/api/v1/creator-resource/get-resource-detail?resourceId=" + fileid;
 
-                string html = GetUrlWithCookie(url, cookie);
+                string html = method.GetUrlWithCookie(url, cookie);
                 string fileurl = Regex.Match(html, @"""fileUrl"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string filename = Regex.Match(html, @"""fileName"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string fileSize = Regex.Match(html, @"""fileSize"":([\s\S]*?),").Groups[1].Value.Trim();
@@ -211,7 +184,7 @@ namespace 学科网下载
                     Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
                     
                     editekey(key); //下载成功  减去次数
-
+                    
                 }
 
              
@@ -231,6 +204,10 @@ namespace 学科网下载
         }
         #endregion
 
+       
+       
+       
+
         #region  修改次数
 
         public void editekey(string key)
@@ -239,7 +216,7 @@ namespace 学科网下载
             try
             {
 
-                MySqlConnection mycon = new MySqlConnection(constr);
+                MySqlConnection mycon = new MySqlConnection(method.constr);
                 mycon.Open();
 
                 MySqlCommand cmd = new MySqlCommand("update mykeys SET cishu = cishu - 1  where mykey='" + key + " ' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
@@ -264,7 +241,7 @@ namespace 学科网下载
             try
             {
 
-                MySqlConnection mycon = new MySqlConnection(constr);
+                MySqlConnection mycon = new MySqlConnection(method.constr);
                 mycon.Open();
 
                
@@ -301,6 +278,8 @@ namespace 学科网下载
         }
         #endregion
 
+        
+
         #region  客户端购买
 
         public void getkey(string mykey, string vip)
@@ -313,7 +292,7 @@ namespace 学科网下载
                 string isvip = "0";
                 string extime = DateTime.Now.AddDays(day).ToString("yyyy-MM-dd HH:mm:ss");
                
-                MySqlConnection mycon = new MySqlConnection(constr);
+                MySqlConnection mycon = new MySqlConnection(method.constr);
                 mycon.Open();
 
                 switch (vip)
@@ -376,5 +355,18 @@ namespace 学科网下载
             return encode;
         }
         #endregion
+
+
+
+
+
+
+        
+
+
+
+
+
+
     }
 }
