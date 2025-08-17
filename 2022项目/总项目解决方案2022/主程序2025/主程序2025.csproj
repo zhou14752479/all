@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\HarfBuzzSharp.8.3.0.1\lib\net462\HarfBuzzSharp.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\..\源码\DLL备份\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -59,11 +62,27 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\myDLL\bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="Spire.Doc, Version=13.8.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Doc.13.8.1\lib\net48\Spire.Doc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,6 +103,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="shuiguo.cs" />
     <Compile Include="yzm_yuanma.cs" />
+    <Compile Include="删除文件.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="删除文件.Designer.cs">
+      <DependentUpon>删除文件.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文档处理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文档处理.Designer.cs">
+      <DependentUpon>文档处理.cs</DependentUpon>
+    </Compile>
     <Compile Include="自动获取cookie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,9 +133,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="删除文件.resx">
+      <DependentUpon>删除文件.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文档处理.resx">
+      <DependentUpon>文档处理.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="自动获取cookie.resx">
       <DependentUpon>自动获取cookie.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

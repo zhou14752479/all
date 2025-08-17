@@ -29,7 +29,7 @@ namespace 学科网下载
 
 
             cookie = File.ReadAllText(Server.MapPath("~/") + "cookie.txt").Trim();
-
+            //cookie = "xk.passport.ticket.v2=WkUEXloV0ISaRMHJb8t7jYFsDUWpn0rdOUWW5WLwJihPR0QLYSEz0lJjlGwmx66U";
            
             string method = Request["method"];
             string key = Request["key"];
@@ -175,14 +175,28 @@ namespace 学科网下载
                 {
                     int cishu_new = Convert.ToInt32(cishu) - 1;
 
+                    //原网址下载
+                    //string protocol = Request.Url.Scheme; // "http" 或 "https"
+                    //string host = Request.Url.Host;       // 域名或IP
+                    //int port = Request.Url.Port;
+                    //string jiamifilekey = "aN5aD6aH5c" + Base64Encode(Encoding.GetEncoding("utf-8"), fileurl);
+                    //string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + jiamifilekey;
+                    //Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
 
-                    string protocol = Request.Url.Scheme; // "http" 或 "https"
-                    string host = Request.Url.Host;       // 域名或IP
-                    int port = Request.Url.Port;
-                    string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + Base64Encode(Encoding.GetEncoding("utf-8") ,fileurl);
-        
-                    Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
-                    
+
+                    filename = CleanUrlKeepChinese(filename);
+                    filename = AddIDToFileName(filename,fileid);
+                    //下载文件下载
+                    //string oss = Server.MapPath("~/") + @"oss\";
+                    string oss = @"C:\Users\Administrator\Desktop\xueke\oss\";
+                    string filepath = "http://8.153.165.134:8080/oss/" + filename;
+                    string ex= method.downloadFile(fileurl, oss, filename);
+                   
+                    Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + filepath + "\",\"fileSize\":\"" + ex.ToString() + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
+
+
+
+
                     editekey(key); //下载成功  减去次数
                     
                 }
@@ -204,9 +218,40 @@ namespace 学科网下载
         }
         #endregion
 
-       
-       
-       
+        /// <summary>
+        /// 正规文件名 不包含特殊字符
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static string CleanUrlKeepChinese(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return url;
+
+            // 正则表达式：保留中文、字母、数字和 -_.~ 符号，其他全部移除
+            // \u4e00-\u9fa5 是中文Unicode范围
+            return Regex.Replace(url, @"[^\u4e00-\u9fa5a-zA-Z0-9-_.]", "");
+        }
+
+        /// <summary>
+        /// 给文件名添加数字后缀（保留原扩展名）
+        /// </summary>
+        /// <param name="originalFileName">原始文件名（如：今天.docx）</param>
+        /// <param name="number">要添加的数字</param>
+        /// <returns>处理后的文件名（如：今天-1561.docx）</returns>
+        public static string AddIDToFileName(string originalFileName, string number)
+        {
+            if (string.IsNullOrEmpty(originalFileName))
+                throw new ArgumentException("文件名不能为空", nameof(originalFileName));
+
+            // 获取文件名（不含扩展名）
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFileName);
+            // 获取扩展名（含.）
+            string extension = Path.GetExtension(originalFileName);
+
+            // 拼接新文件名（格式：原文件名-数字.扩展名）
+            return $"{fileNameWithoutExtension}_{number}{extension}";
+        }
 
         #region  修改次数
 

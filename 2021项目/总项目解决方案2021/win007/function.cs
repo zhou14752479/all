@@ -1691,7 +1691,7 @@ namespace win007
 
 
 
-                lv1.Items[0].SubItems[6].Text = s1.ToString() + s2.ToString();
+                lv1.Items[0].SubItems[6].Text = s1.ToString("00") + s2.ToString("00");
 
 
 
@@ -1714,9 +1714,9 @@ namespace win007
 
                 s6= get_he3(h11+ Convert.ToInt32(v11)) + get_he3(h22+ Convert.ToInt32(v12)) + get_he3(h33+ Convert.ToInt32(v13)) + get_he3(h44+ Convert.ToInt32(v14)) + get_he3(h55+ Convert.ToInt32(v15));
 
-
-                lv1.Items[1].SubItems[6].Text = s3.ToString() + s4.ToString();
-                lv1.Items[2].SubItems[6].Text = s5.ToString() + s6.ToString();
+               
+                lv1.Items[1].SubItems[6].Text = s3.ToString("00") + s4.ToString("00");
+                lv1.Items[2].SubItems[6].Text = s5.ToString("00") + s6.ToString("00");
             }
             catch (Exception ex)
             {

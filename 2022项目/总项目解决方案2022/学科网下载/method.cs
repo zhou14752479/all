@@ -108,5 +108,33 @@ namespace 学科网下载
 
 
         #endregion
+
+
+        #region 下载文件
+        public static string downloadFile(string URLAddress, string subPath, string name)
+        {
+            try
+            {
+                string path = Directory.GetCurrentDirectory();
+                WebClient client = new WebClient();
+                client.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+               // client.Headers.Add("Cookie", COOKIE);
+                //client.Headers.Add("Referer", "https://m.mm131.net/chemo/89_5.html");
+                bool flag = !Directory.Exists(subPath);
+                if (flag)
+                {
+                    Directory.CreateDirectory(subPath);
+                }
+                client.DownloadFile(URLAddress, subPath + "\\" + name);
+                return "";
+            }
+            catch (WebException ex)
+            {
+               return ex.ToString();
+            }
+
+
+        }
+        #endregion
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 主程序2025
+namespace 文档处理
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace 主程序2025
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 删除文件());
+            Application.Run(new Form1());
         }
     }
 }

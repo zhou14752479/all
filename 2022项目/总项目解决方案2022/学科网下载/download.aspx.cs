@@ -18,7 +18,8 @@ namespace 学科网下载
 
             if (filekey != "" && filekey != null)
             {
-               
+
+                filekey = filekey.Replace("aN5aD6aH5c","");
                 string fileurl = Base64Decode(Encoding.GetEncoding("utf-8"), filekey);
                
                 Response.Redirect(fileurl, false);
