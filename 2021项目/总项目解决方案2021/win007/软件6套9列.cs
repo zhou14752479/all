@@ -889,7 +889,10 @@ namespace win007
             string data = function.teshujiance(id, comboBox1);
             string[] text = data.Split(new string[] { "#" }, StringSplitOptions.None);
             textBox3.Text = text[0]; //特殊数据检测
-            textBox8.Text = text[1];  //三行运算
+            richTextBox1.Text = text[1];  //三行运算
+
+           function.HighlightNumbersGreaterThanOne(richTextBox1);
+
 
 
             get_data(comboBox1.Text.Trim());

@@ -28,43 +28,41 @@ namespace 学科网下载
         {
 
 
-            cookie = File.ReadAllText(Server.MapPath("~/") + "cookie.txt").Trim();
-            //cookie = "xk.passport.ticket.v2=WkUEXloV0ISaRMHJb8t7jYFsDUWpn0rdOUWW5WLwJihPR0QLYSEz0lJjlGwmx66U";
-           
-            string method = Request["method"];
-            string key = Request["key"];
-            string link = Request["link"];
-
-            string cishu = Request["cishu"];
-            string day = Request["day"];
-            string vip = Request["vip"];
-            string page = Request["page"];
-
-
-            if (method == "getfile" && link != "" && key != "")
+            try
             {
-                getfile(key, link);
+                cookie = File.ReadAllText(Server.MapPath("~/") + "cookie.txt").Trim();
+                //cookie = "xk.passport.ticket.v2=WkUEXloV0ISaRMHJb8t7jYFsDUWpn0rdOUWW5WLwJihPR0QLYSEz0lJjlGwmx66U";
+
+                string method = Request["method"];
+                string key = Request["key"];
+                string link = Request["link"];
+
+                string cishu = Request["cishu"];
+                string day = Request["day"];
+                string vip = Request["vip"];
+                string page = Request["page"];
+
+
+                if (method == "getfile" && link != "" && key != "")
+                {
+                    getfile(key, link);
+                }
+                else
+                {
+                    Response.Write("{\"status\":\"0\",\"msg\":\"网址输入有误，请联系客服\"}");
+                }
             }
-            if (method == "getkey"  && key != "")
+            catch (Exception ex)
             {
-                getkey(key, vip);
+                Response.Write("{\"status\":\"0\",\"msg\":\"服务异常，请联系客服\"}");
             }
+            
            
 
         }
 
 
 
-
-
-
-
-
-
-
-
-
-        
 
 
         #region 下载文件
@@ -114,6 +112,7 @@ namespace 学科网下载
                    
                 }
 
+                //第一次筛选中职
                 if (isvip == "0" || isvip == "")
                 {
                     if (link.Contains("zhijiao"))
@@ -123,21 +122,22 @@ namespace 学科网下载
                     }
                 }
 
+                //第一次下载
                 if (extime == "")
                 {
                     extime =  DateTime.Now.AddDays(Convert.ToInt32(day)).ToString("yyyy-MM-dd HH:mm:ss");
-                    editetime(key, extime);  //第一次登录
+                    method.editetime(key, extime);  //第一次登录
 
-                  string area=  method.getip(key,userIp);
+                  string area=  method.addiplog(key,userIp);  //获取IP信息
 
-                    if (area.Contains("北京市房山区") || area.Contains("学科网"))
+                    if (area.Contains("北京市") || area.Contains("学科"))
                     {
 
-                        Response.Write("{\"status\":\"0\",\"msg\":\"服务不支持，请联系客服！\"}");
+                        Response.Write("{\"status\":\"0\",\"msg\":\"服务暂不支持，请咨询客服！\"}");
 
                         //设置过期
                         extime = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss");
-                        editetime(key, extime); 
+                        method.editetime(key, extime); 
                         return;
                     }
                 }
@@ -152,17 +152,39 @@ namespace 学科网下载
                 string provider = Regex.Match(html, @"""provider"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string price = Regex.Match(html, @"""price"":([\s\S]*?),").Groups[1].Value.Trim();
                 string shopId = Regex.Match(html, @"""shopId"":([\s\S]*?),").Groups[1].Value.Trim();
+                string scenarioId = Regex.Match(html, @"""scenarioId"":""([\s\S]*?)""").Groups[1].Value.Trim();
 
-                if (isvip == "0" || isvip =="")
+                //筛选教辅、中职
+                if (provider.Contains("公司") || provider.Contains("店") || provider.Contains("图书") || provider.Contains("教育") || provider.Contains("科技") || provider.Contains("文化") || provider.Contains("创作") || provider.Contains("职教") || filename.Contains("职教"))
                 {
-                    if (provider.Contains("公司") || provider.Contains("店"))
+                    //账号不符合的跳过
+                    if (isvip == "0" || isvip == "")
                     {
-                        Response.Write("{\"status\":\"0\",\"msg\":\"当前购买的权限不能下载教辅及中职资料，请拍下对应选项的商品！\"}");
+                        Response.Write("{\"status\":\"0\",\"msg\":\"当前购买的权限不能下载教辅及中职，请拍对应选项（当前账户可下：精品、特供、普通、≤5储值的资料）\"}");
                         return;
                     }
+                    //教辅的不超过5块
+                    if (price != "")
+                    {
+                        if (Convert.ToDouble(price) > 5)
+                        {
+                            Response.Write("{\"status\":\"0\",\"msg\":\"无法下载大于5储值的教辅，请咨询客服\"}");
+                            return;
+                        }
+                    }
 
-                   
                 }
+
+                //普通的不超过20
+                if (price != "")
+                {
+                    if (Convert.ToDouble(price) > 19)
+                    {
+                        Response.Write("{\"status\":\"0\",\"msg\":\"当前购买的权限无法下载价格过高资料，请咨询客服\"}");
+                        return;
+                    }
+                }
+
 
 
 
@@ -176,29 +198,31 @@ namespace 学科网下载
                     int cishu_new = Convert.ToInt32(cishu) - 1;
 
                     //原网址下载
-                    //string protocol = Request.Url.Scheme; // "http" 或 "https"
-                    //string host = Request.Url.Host;       // 域名或IP
-                    //int port = Request.Url.Port;
-                    //string jiamifilekey = "aN5aD6aH5c" + Base64Encode(Encoding.GetEncoding("utf-8"), fileurl);
-                    //string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + jiamifilekey;
-                    //Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
-
-
-                    filename = CleanUrlKeepChinese(filename);
-                    filename = AddIDToFileName(filename,fileid);
-                    //下载文件下载
-                    //string oss = Server.MapPath("~/") + @"oss\";
-                    string oss = @"C:\Users\Administrator\Desktop\xueke\oss\";
-                    string filepath = "http://8.153.165.134:8080/oss/" + filename;
-                    string ex= method.downloadFile(fileurl, oss, filename);
-                   
-                    Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + filepath + "\",\"fileSize\":\"" + ex.ToString() + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
+                    string protocol = Request.Url.Scheme; // "http" 或 "https"
+                    string host = Request.Url.Host;       // 域名或IP
+                    int port = Request.Url.Port;
+                    string suiji =method.GenerateRandomString(10);
+                    string jiamifilekey = method.Base64Encode(Encoding.GetEncoding("utf-8"), fileurl).Replace("a",suiji);
+                    string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + jiamifilekey+"&suiji="+suiji;
+                    Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
 
 
 
+                    ////下载文件下载
+                    //filename = method.CleanUrlKeepChinese(filename);
+                    //filename = method.AddIDToFileName(filename, fileid);
 
-                    editekey(key); //下载成功  减去次数
-                    
+                    //string oss = @"C:\Users\Administrator\Desktop\xueke\oss\";
+                    //string ex = method.downloadFile(fileurl, oss, filename);
+
+                    //Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + filepath + "\",\"fileSize\":\"" + ex.ToString() + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
+
+
+
+
+                    method.editekey(key); //下载成功  减去次数
+                    method.adddownlog(key,link,isvip,cishu,day,price, scenarioId); //下载成功  添加下载记录
+
                 }
 
              
@@ -218,188 +242,21 @@ namespace 学科网下载
         }
         #endregion
 
-        /// <summary>
-        /// 正规文件名 不包含特殊字符
-        /// </summary>
-        /// <param name="url"></param>
-        /// <returns></returns>
-        public static string CleanUrlKeepChinese(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-                return url;
+       
 
-            // 正则表达式：保留中文、字母、数字和 -_.~ 符号，其他全部移除
-            // \u4e00-\u9fa5 是中文Unicode范围
-            return Regex.Replace(url, @"[^\u4e00-\u9fa5a-zA-Z0-9-_.]", "");
-        }
-
-        /// <summary>
-        /// 给文件名添加数字后缀（保留原扩展名）
-        /// </summary>
-        /// <param name="originalFileName">原始文件名（如：今天.docx）</param>
-        /// <param name="number">要添加的数字</param>
-        /// <returns>处理后的文件名（如：今天-1561.docx）</returns>
-        public static string AddIDToFileName(string originalFileName, string number)
-        {
-            if (string.IsNullOrEmpty(originalFileName))
-                throw new ArgumentException("文件名不能为空", nameof(originalFileName));
-
-            // 获取文件名（不含扩展名）
-            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFileName);
-            // 获取扩展名（含.）
-            string extension = Path.GetExtension(originalFileName);
-
-            // 拼接新文件名（格式：原文件名-数字.扩展名）
-            return $"{fileNameWithoutExtension}_{number}{extension}";
-        }
-
-        #region  修改次数
-
-        public void editekey(string key)
-        {
-
-            try
-            {
-
-                MySqlConnection mycon = new MySqlConnection(method.constr);
-                mycon.Open();
-
-                MySqlCommand cmd = new MySqlCommand("update mykeys SET cishu = cishu - 1  where mykey='" + key + " ' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                mycon.Close();
-            }
-
-            catch (System.Exception ex)
-            {
-
-            }
-        }
-        #endregion
-
-
-        #region  修改时间
-
-        public void editetime(string key,string time)
-        {
-
-            try
-            {
-
-                MySqlConnection mycon = new MySqlConnection(method.constr);
-                mycon.Open();
-
-               
-                
-                MySqlCommand cmd = new MySqlCommand("update mykeys SET extime = '" + time+ " '  where mykey='" + key + " ' ", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                mycon.Close();
-            }
-
-            catch (System.Exception ex)
-            {
-
-            }
-        }
-        #endregion
-
-        #region  MD5加密
-        public static string GetMD5(string txt)
-        {
-            string result;
-            using (MD5 mi = MD5.Create())
-            {
-                byte[] buffer = Encoding.Default.GetBytes(txt);
-                byte[] newBuffer = mi.ComputeHash(buffer);
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < newBuffer.Length; i++)
-                {
-                    sb.Append(newBuffer[i].ToString("x2"));
-                }
-                result = sb.ToString();
-            }
-            return result;
-        }
-        #endregion
 
         
 
-        #region  客户端购买
 
-        public void getkey(string mykey, string vip)
-        {
+        
 
-            try
-            {
-                int day = 30;
-                int cishu = 999999;
-                string isvip = "0";
-                string extime = DateTime.Now.AddDays(day).ToString("yyyy-MM-dd HH:mm:ss");
-               
-                MySqlConnection mycon = new MySqlConnection(method.constr);
-                mycon.Open();
+        
 
-                switch (vip)
-                {
-                    case "0":
-                       
-                        isvip = "0";
-                        break;
+        
 
-                    case "1":
-                       
-                        isvip = "1";
-                        break;
-                  
+        
 
-
-                }
-
-
-
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO mykeys (mykey,cishu,extime,day,isvip)VALUES('" + mykey + " ', '" + cishu + " ', '" + extime + " ', '" + day + " ', '" + isvip + " ')", mycon);         //SQL语句读取textbox的值'"+skinTextBox1.Text+"'
-
-
-                int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
-                if (count > 0)
-                {
-
-                    mycon.Close();
-                    Response.Write("{\"status\":\"1\",\"msg\":\"开通成功！\"}");
-
-                }
-                else
-                {
-                    Response.Write("{\"status\":\"0\",\"msg\":\"开通失败，请联系客服！\"}");
-                }
-
-
-            }
-
-            catch (System.Exception ex)
-            {
-                Response.Write("{\"status\":\"0\",\"msg\":\"开通失败，请联系客服！\"}");
-            }
-        }
-        #endregion
-
-        #region Base64编码
-        public static string Base64Encode(Encoding encodeType, string source)
-        {
-            string encode = string.Empty;
-            byte[] bytes = encodeType.GetBytes(source);
-            try
-            {
-                encode = Convert.ToBase64String(bytes);
-            }
-            catch
-            {
-                encode = source;
-            }
-            return encode;
-        }
-        #endregion
+        
 
 
 

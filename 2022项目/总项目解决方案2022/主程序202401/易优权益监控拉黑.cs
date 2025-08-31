@@ -901,9 +901,9 @@ namespace 主程序202401
 
                 MatchCollection buy_number = Regex.Matches(html, @"""buy_number"":([\s\S]*?),");
                 MatchCollection start_num = Regex.Matches(html, @"""start_num"":([\s\S]*?),");
+                MatchCollection goods_name = Regex.Matches(html, @"""goods_name"": ""([\s\S]*?)""");
 
 
-              
                 if (links.Count == 0)
                 {
                     label1.Text = "无符合订单";
@@ -918,6 +918,12 @@ namespace 主程序202401
 
 
                     if (delist_list.Contains(link))
+                    {
+                        continue;
+                    }
+
+
+                    if (!goods_name[i].Groups[1].Value.Contains("赞"))
                     {
                         continue;
                     }

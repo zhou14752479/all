@@ -13,42 +13,35 @@ namespace 学科网下载
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string filekey = Request["filekey"];
-
-
-            if (filekey != "" && filekey != null)
-            {
-
-                filekey = filekey.Replace("aN5aD6aH5c","");
-                string fileurl = Base64Decode(Encoding.GetEncoding("utf-8"), filekey);
-               
-                Response.Redirect(fileurl, false);
-            }
-            else
-            {
-
-                Response.Write("{\"status\":\"0\",\"msg\":\"地址错误\"}");
-            }
-
-
-
-        }
-
-        #region Base64解码
-        public static string Base64Decode(Encoding encodeType, string result)
-        {
-            string decode = string.Empty;
-            byte[] bytes = Convert.FromBase64String(result);
             try
             {
-                decode = encodeType.GetString(bytes);
+                string filekey = Request["filekey"];
+                string suiji = Request["suiji"];
+
+                if (filekey != "" && filekey != null)
+                {
+
+                    filekey = filekey.Replace(suiji, "a");
+                    string fileurl = method.Base64Decode(Encoding.GetEncoding("utf-8"), filekey);
+
+                    Response.Redirect(fileurl, false);
+                }
+                else
+                {
+
+                    Response.Write("{\"status\":\"0\",\"msg\":\"地址错误\"}");
+                }
             }
-            catch
+            catch (Exception)
             {
-                decode = result;
+
+                Response.Write("{\"status\":\"0\",\"msg\":\"服务异常，请联系客服\"}");
             }
-            return decode;
+
+
+
         }
-        #endregion
+
+        
     }
 }

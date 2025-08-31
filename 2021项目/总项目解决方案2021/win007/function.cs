@@ -1,8 +1,11 @@
-﻿using System;
+﻿using myDLL;
+using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -11,8 +14,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
-using myDLL;
-using NPOI.SS.Formula.Functions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace win007
@@ -1066,10 +1067,10 @@ namespace win007
 
                         //string comdata = company+"\r\n"+s11.ToString("F2") + v11 + "  " + s12.ToString("F2") + v12 + "  " + s13.ToString("F2") + v13 + "\r\n" + s21.ToString("F2") + v21 + "  " + s22.ToString("F2") + v22 + "  " + s23.ToString("F2") + v23 + "\r\n" + s31.ToString("F2") + v31 + "  " + s32.ToString("F2") + v32 + "  " + s33.ToString("F2") + v33+"\r\n";
 
-                        hang1 += "       " + company+"       ";
-                        hang2 += s11.ToString("F2").Replace("-", "") + v11 + "," + s12.ToString("F2").Replace("-", "") + v12 + "," + s13.ToString("F2").Replace("-", "") + v13+"    ";    //去掉负号
-                        hang3 += s21.ToString("F2").Replace("-", "") + v21 + "," + s22.ToString("F2").Replace("-", "") + v22 + "," + s23.ToString("F2").Replace("-", "") + v23 + "    ";//去掉负号
-                        hang4 += s31.ToString("F2").Replace("-", "") + v31 + "," + s32.ToString("F2").Replace("-", "") + v32 + "," + s33.ToString("F2").Replace("-", "") + v33 + "    ";//去掉负号
+                        hang1 += company.Replace("Betfair Exchange", "BetfairEx").Replace("Bet-at-home", "Betathome") +"                  ";
+                        hang2 += s11.ToString("F2") + v11 + "," + s12.ToString("F2") + v12 + "," + s13.ToString("F2") + v13+"    ";    //去掉负号
+                        hang3 += s21.ToString("F2") + v21 + "," + s22.ToString("F2") + v22 + "," + s23.ToString("F2") + v23 + "    ";//去掉负号
+                        hang4 += s31.ToString("F2") + v31 + "," + s32.ToString("F2") + v32 + "," + s33.ToString("F2") + v33 + "    ";//去掉负号
 
 
 
@@ -1866,6 +1867,48 @@ namespace win007
 
 
 
+
+
+       public static void HighlightNumbersGreaterThanOne(RichTextBox richTextBox)
+        {
+            // 保存当前的文本和选择
+            string originalText = richTextBox.Text;
+            int originalSelectionStart = richTextBox.SelectionStart;
+            int originalSelectionLength = richTextBox.SelectionLength;
+
+            // 清除所有格式
+            richTextBox.Clear();
+            richTextBox.Text = originalText;
+
+            // 使用正则表达式匹配所有数字（包括整数和小数）
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"-?\d+(\.\d+)?");
+            System.Text.RegularExpressions.MatchCollection matches = regex.Matches(richTextBox.Text);
+
+            // 遍历所有匹配项
+            foreach (System.Text.RegularExpressions.Match match in matches)
+            {
+                // 尝试将匹配的文本转换为数字
+                if (double.TryParse(match.Value, out double number))
+                {
+                    // 如果数字大于1，则标红
+                    if (number > 0.13)
+                    {
+                        richTextBox.Select(match.Index, match.Length);
+                        richTextBox.SelectionColor = Color.Green;
+                    }
+                    if (number < -0.13)
+                    {
+                        richTextBox.Select(match.Index, match.Length);
+                        richTextBox.SelectionColor = Color.Red;
+                        
+                    }
+                }
+            }
+
+            // 恢复原始选择
+            richTextBox.Select(originalSelectionStart, originalSelectionLength);
+            richTextBox.SelectionColor = richTextBox.ForeColor; // 恢复默认颜色
+        }
 
 
 
