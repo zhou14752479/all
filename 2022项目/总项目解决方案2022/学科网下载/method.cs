@@ -227,7 +227,7 @@ namespace 学科网下载
 
         #region  添加下载记录
 
-        public static void adddownlog(string key, string link, string isvip,string cishu,string day,string price,string scenarioId)
+        public static void adddownlog(string key, string link, string isvip,string cishu,string day,string price,string commercialLevel)
         {
             try
             {
@@ -237,7 +237,7 @@ namespace 学科网下载
                 MySqlConnection mycon = new MySqlConnection(method.constr);
                 mycon.Open();
 
-                string sql = "INSERT INTO downlogs (mykey,link,isvip,downtime,cishu,day,price,scenarioId)VALUES(@key, @link, @isvip, @downtime,@cishu,@day,@price,@scenarioId)";
+                string sql = "INSERT INTO downlogs (mykey,link,isvip,downtime,cishu,day,price,commercialLevel)VALUES(@key, @link, @isvip, @downtime,@cishu,@day,@price,@commercialLevel)";
 
 
                 MySqlCommand cmd = new MySqlCommand(sql, mycon);
@@ -248,7 +248,7 @@ namespace 学科网下载
                 cmd.Parameters.AddWithValue("@cishu", cishu);
                 cmd.Parameters.AddWithValue("@day", day);
                 cmd.Parameters.AddWithValue("@price", price);
-                cmd.Parameters.AddWithValue("@scenarioId", scenarioId);
+                cmd.Parameters.AddWithValue("@commercialLevel", commercialLevel);
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
 
 
@@ -344,6 +344,22 @@ namespace 学科网下载
                 decode = result;
             }
             return decode;
+        }
+        #endregion
+
+        #region 获取重定向网址
+        public static string GetRedirectUrl(string url)
+        {
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "HEAD";
+            req.AllowAutoRedirect = false;
+            HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
+            bool flag = myResp.StatusCode == HttpStatusCode.Found;
+            if (flag)
+            {
+                url = myResp.GetResponseHeader("Location");
+            }
+            return url;
         }
         #endregion
     }

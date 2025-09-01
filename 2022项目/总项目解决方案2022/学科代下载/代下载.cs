@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,17 +23,40 @@ namespace 学科代下载
         {
             InitializeComponent();
         }
+
+        #region 获取重定向网址
+        public static string GetRedirectUrl(string url)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            //req.Method = "HEAD";
+            req.KeepAlive = true;
+            req.Headers.Add("Accept-Encoding", "gzip");
+            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36";
+            //req.AllowAutoRedirect = false;
+            HttpWebResponse myResp = (HttpWebResponse)req.GetResponse();
+            bool flag = myResp.StatusCode == HttpStatusCode.Found;
+            if (flag)
+            {
+                url = myResp.GetResponseHeader("Location");
+            }
+            return url;
+        }
+        #endregion
+
         Thread thread;
         bool zanting = true;
         bool status = true;
         private void button1_Click(object sender, EventArgs e)
         {
-            if (thread == null || !thread.IsAlive)
-            {
-                thread = new Thread(run);
-                thread.Start();
-                Control.CheckForIllegalCrossThreadCalls = false;
-            }
+
+            MessageBox.Show(GetRedirectUrl("https://www.zxxk.com/soft/46669538.html"));
+            //if (thread == null || !thread.IsAlive)
+            //{
+            //    thread = new Thread(run);
+            //    thread.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
         }
 
         string path = AppDomain.CurrentDomain.BaseDirectory;

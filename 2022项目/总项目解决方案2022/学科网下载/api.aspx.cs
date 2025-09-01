@@ -45,7 +45,22 @@ namespace 学科网下载
 
                 if (method == "getfile" && link != "" && key != "")
                 {
-                    getfile(key, link);
+                    if(link.Contains("zxxk") || link.Contains("xkw"))
+                    {
+                        if (link.Contains("m.zxxk.com"))
+                        {
+                            Response.Write("{\"status\":\"0\",\"msg\":\"请输入电脑端资料网址\"}");
+                        }
+                        else
+                        {
+                            getfile(key, link);
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("{\"status\":\"0\",\"msg\":\"网址输入有误，请联系客服\"}");
+                    }
+                    
                 }
                 else
                 {
@@ -152,10 +167,16 @@ namespace 学科网下载
                 string provider = Regex.Match(html, @"""provider"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string price = Regex.Match(html, @"""price"":([\s\S]*?),").Groups[1].Value.Trim();
                 string shopId = Regex.Match(html, @"""shopId"":([\s\S]*?),").Groups[1].Value.Trim();
-                string scenarioId = Regex.Match(html, @"""scenarioId"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                string commercialLevel = Regex.Match(html, @"""commercialLevel"":""([\s\S]*?)""").Groups[1].Value.Trim();
 
+                /*"1202","普通"
+                "1203","精品"
+                "1204","特供"
+                "1205","中职"
+                "1205","教辅"
+                */
                 //筛选教辅、中职
-                if (provider.Contains("公司") || provider.Contains("店") || provider.Contains("图书") || provider.Contains("教育") || provider.Contains("科技") || provider.Contains("文化") || provider.Contains("创作") || provider.Contains("职教") || filename.Contains("职教"))
+                if (commercialLevel=="1205" || provider.Contains("公司") || provider.Contains("店")  || provider.Contains("职") || filename.Contains("职"))
                 {
                     //账号不符合的跳过
                     if (isvip == "0" || isvip == "")
@@ -174,6 +195,18 @@ namespace 学科网下载
                     }
 
                 }
+
+                //else if(commercialLevel=="1203")
+                //{
+
+                //    if (isvip == "0" || isvip == "")
+                //    {
+
+                //        Response.Write("{\"status\":\"0\",\"msg\":\"当前购买的权限不能下载教辅及中职，请拍对应选项（当前账户可下：精品、特供、普通、≤5储值的资料）\"}");
+                //        return;
+                //    }
+                   
+                //}
 
                 //普通的不超过20
                 if (price != "")
@@ -221,7 +254,7 @@ namespace 学科网下载
 
 
                     method.editekey(key); //下载成功  减去次数
-                    method.adddownlog(key,link,isvip,cishu,day,price, scenarioId); //下载成功  添加下载记录
+                    method.adddownlog(key,link,isvip,cishu,day,price, commercialLevel); //下载成功  添加下载记录
 
                 }
 
