@@ -20,7 +20,7 @@ namespace 学科网下载
 
                 if (filekey != "" && filekey != null)
                 {
-
+                   
                     filekey = filekey.Replace(suiji, "a");
                     string fileurl = method.Base64Decode(Encoding.GetEncoding("utf-8"), filekey);
 

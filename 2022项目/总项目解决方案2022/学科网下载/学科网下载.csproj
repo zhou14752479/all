@@ -74,19 +74,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin.aspx" />
     <Content Include="api.aspx" />
     <Content Include="download.aspx" />
+    <Content Include="KeyHandler.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="admin.aspx.cs">
-      <DependentUpon>admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin.aspx.designer.cs">
-      <DependentUpon>admin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="api.aspx.cs">
       <DependentUpon>api.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,6 +93,13 @@
     </Compile>
     <Compile Include="download.aspx.designer.cs">
       <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KeyHandler.aspx.cs">
+      <DependentUpon>KeyHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KeyHandler.aspx.designer.cs">
+      <DependentUpon>KeyHandler.aspx</DependentUpon>
     </Compile>
     <Compile Include="method.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

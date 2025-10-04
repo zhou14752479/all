@@ -7,11 +7,11 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace 学科网下载
+namespace 模板下载
 {
 
 
-    public partial class admin
+    public partial class api
     {
     }
 }

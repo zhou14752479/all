@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡密管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#2196F3',
+                        danger: '#f44336',
+                        warning: '#ff9800',
+                        light: '#f8f9fa',
+                        dark: '#343a40'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <header class="mb-8">
+            <h1 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-2">卡密管理系统</h1>
+            <p class="text-gray-600" id="location-info">加载中...</p>
+        </header>
+
+        <!-- 消息提示框 -->
+        <div id="message-box" class="hidden mb-6 p-4 rounded-lg transition-all-300"></div>
+
+        <!-- 查询面板 -->
+        <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
+            <h2 class="text-xl font-semibold mb-4 text-dark">卡密查询</h2>
+            <div class="flex flex-wrap gap-4 items-end">
+                <div class="flex-1 min-w-[250px]">
+                    <label for="search-key" class="block text-sm font-medium text-gray-700 mb-1">卡密模糊查询</label>
+                    <input type="text" id="search-key" placeholder="输入卡密关键词" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div class="flex gap-3">
+                    <button id="btn-search" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-md transition-all-300 flex items-center">
+                        <i class="fa fa-search mr-2"></i>查询
+                    </button>
+                    <button id="btn-show-all" class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-md transition-all-300 flex items-center">
+                        <i class="fa fa-list mr-2"></i>显示全部
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 批量生成卡密面板 -->
+        <div class="bg-white rounded-lg p-6 mb-6 card-shadow">
+            <h2 class="text-xl font-semibold mb-4 text-dark">批量生成卡密</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="batch-count" class="block text-sm font-medium text-gray-700 mb-1">生成数量</label>
+                    <input type="number" id="batch-count" value="10" min="1" max="10000" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <div class="flex gap-3 mt-2">
+                        <button onclick="setBatchCount(10)" class="text-sm px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 transition-all-300">10个</button>
+                        <button onclick="setBatchCount(100)" class="text-sm px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 transition-all-300">100个</button>
+                        <button onclick="setBatchCount(500)" class="text-sm px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 transition-all-300">500个</button>
+                        <button onclick="setBatchCount(1000)" class="text-sm px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 transition-all-300">1000个</button>
+                    </div>
+                </div>
+                <div>
+                    <label for="key-length" class="block text-sm font-medium text-gray-700 mb-1">卡密长度</label>
+                    <input type="number" id="key-length" value="16" min="6" max="100" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                    <p class="text-xs text-gray-500 mt-1">6-100个字符</p>
+                </div>
+                <div>
+                    <label for="key-prefix" class="block text-sm font-medium text-gray-700 mb-1">卡密前缀（可选）</label>
+                    <input type="text" id="key-prefix" placeholder="如VIP-、XK-等" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="batch-cishu" class="block text-sm font-medium text-gray-700 mb-1">次数</label>
+                    <input type="number" id="batch-cishu" min="0" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="batch-day" class="block text-sm font-medium text-gray-700 mb-1">天数</label>
+                    <input type="number" id="batch-day" min="0" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="batch-extime" class="block text-sm font-medium text-gray-700 mb-1">过期时间（可选）</label>
+                    <input type="datetime-local" id="batch-extime" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="batch-isvip" class="block text-sm font-medium text-gray-700 mb-1">是否会员</label>
+                    <select id="batch-isvip" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-6">
+                <button id="btn-generate" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-md transition-all-300 flex items-center">
+                    <i class="fa fa-key mr-2"></i>第一步：生成卡密
+                </button>
+            </div>
+
+            <!-- 生成的卡密列表 -->
+            <div id="generated-keys-panel" class="mt-6 hidden">
+                <h3 class="text-lg font-semibold mb-3 text-dark">生成的卡密列表（共 <span id="generated-count">0</span> 个）</h3>
+                <div id="generated-keys" class="max-h-60 overflow-y-auto border border-gray-200 rounded-md p-4 bg-gray-50 mb-4 text-sm"></div>
+                <div class="flex gap-3">
+                    <button id="btn-add-batch" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-md transition-all-300 flex items-center">
+                        <i class="fa fa-database mr-2"></i>第二步：确认添加到数据库
+                    </button>
+                    <button id="btn-regenerate" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-md transition-all-300 flex items-center">
+                        <i class="fa fa-refresh mr-2"></i>重新生成
+                    </button>
+                    <button id="btn-copy-keys" class="bg-warning hover:bg-warning/90 text-white px-6 py-2 rounded-md transition-all-300 flex items-center">
+                        <i class="fa fa-copy mr-2"></i>一键复制卡密
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡密列表 -->
+        <div class="bg-white rounded-lg p-6 card-shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-dark">卡密列表</h2>
+                <div class="text-sm text-gray-600" id="pagination-info">加载中...</div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">卡密</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">次数</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">天数</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">过期时间</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">是否会员</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keys-table-body" class="bg-white divide-y divide-gray-200">
+                        <!-- 卡密数据将通过JS动态加载 -->
+                        <tr>
+                            <td colspan="7" class="px-6 py-10 text-center text-gray-500">
+                                <i class="fa fa-spinner fa-spin mr-2"></i>加载卡密数据中...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 分页控件 -->
+            <div id="pagination" class="flex justify-between items-center mt-6">
+                <div class="flex-1"></div>
+                <div class="flex gap-2" id="pagination-buttons">
+                    <!-- 分页按钮将通过JS动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑模态框 -->
+    <div id="edit-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg w-full max-w-md p-6 transform transition-all">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-dark">修改卡密</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <input type="hidden" id="edit-id">
+            <div class="space-y-4">
+                <div>
+                    <label for="edit-mykey" class="block text-sm font-medium text-gray-700 mb-1">卡密</label>
+                    <input type="text" id="edit-mykey" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="edit-cishu" class="block text-sm font-medium text-gray-700 mb-1">次数</label>
+                    <input type="number" id="edit-cishu" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="edit-day" class="block text-sm font-medium text-gray-700 mb-1">天数</label>
+                    <input type="number" id="edit-day" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="edit-extime" class="block text-sm font-medium text-gray-700 mb-1">过期时间</label>
+                    <input type="datetime-local" id="edit-extime" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                </div>
+                <div>
+                    <label for="edit-isvip" class="block text-sm font-medium text-gray-700 mb-1">是否会员</label>
+                    <select id="edit-isvip" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <button id="btn-update" class="flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md transition-all-300">
+                        更新
+                    </button>
+                    <button id="btn-cancel-edit" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-all-300">
+                        取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 复制提示 -->
+    <div id="copy-toast" class="fixed bottom-6 right-6 bg-dark text-white px-4 py-2 rounded-md shadow-lg transform translate-y-20 opacity-0 transition-all-300 z-50">
+        卡密已复制到剪贴板
+    </div>
+
+    <script>
+        // 全局变量
+        let currentPage = 1;
+        let totalPages = 1;
+        let pageSize = 20;
+        let generatedKeys = [];
+        let currentSearchKey = '';
+
+        // DOM加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载位置信息
+           // loadLocationInfo();
+            
+            // 加载卡密列表
+            loadKeys();
+            
+            // 绑定事件
+            bindEvents();
+        });
+
+        // 绑定所有事件
+        function bindEvents() {
+            // 查询按钮
+            document.getElementById('btn-search').addEventListener('click', function() {
+                currentSearchKey = document.getElementById('search-key').value.trim();
+                currentPage = 1;
+                loadKeys();
+            });
+            
+            // 显示全部按钮
+            document.getElementById('btn-show-all').addEventListener('click', function() {
+                document.getElementById('search-key').value = '';
+                currentSearchKey = '';
+                currentPage = 1;
+                loadKeys();
+            });
+            
+            // 生成卡密按钮
+            document.getElementById('btn-generate').addEventListener('click', generateKeys);
+            
+            // 重新生成卡密按钮
+            document.getElementById('btn-regenerate').addEventListener('click', generateKeys);
+            
+            // 添加卡密到数据库按钮
+            document.getElementById('btn-add-batch').addEventListener('click', addBatchKeys);
+            
+            // 复制卡密按钮
+            document.getElementById('btn-copy-keys').addEventListener('click', copyAllKeys);
+            
+            // 关闭模态框按钮
+            document.getElementById('close-modal').addEventListener('click', closeEditModal);
+            document.getElementById('btn-cancel-edit').addEventListener('click', closeEditModal);
+            
+            // 更新按钮
+            document.getElementById('btn-update').addEventListener('click', updateKey);
+        }
+
+        // 设置批量生成数量
+        function setBatchCount(count) {
+            document.getElementById('batch-count').value = count;
+        }
+
+        // 加载位置信息
+        function loadLocationInfo() {
+            ajaxRequest('LocationInfo.aspx', 'GET', null, function(response) {
+                if (response.status === 0) {
+                    document.getElementById('location-info').textContent = `当前位置: ${response.msg}`;
+                } else {
+                    showMessage('获取位置信息失败', 'error');
+                }
+            }, function(error) {
+                showMessage('获取位置信息失败: ' + error, 'error');
+            });
+        }
+
+        // 加载卡密列表
+        function loadKeys() {
+            const params = {
+                page: currentPage,
+                pageSize: pageSize,
+                searchKey: currentSearchKey
+            };
+            
+            showTableLoading();
+            
+            ajaxRequest('KeyHandler.aspx?action=list', 'GET', params, function(response) {
+                if (response.success) {
+                    totalPages = response.totalPages;
+                    renderKeysTable(response.data);
+                    updatePaginationInfo(response.totalCount);
+                    renderPagination();
+                } else {
+                    showMessage('加载卡密失败: ' + response.message, 'error');
+                    renderEmptyTable();
+                }
+            }, function(error) {
+                showMessage('加载卡密失败: ' + error, 'error');
+                renderEmptyTable();
+            });
+        }
+
+        // 渲染卡密表格
+        function renderKeysTable(keys) {
+            const tableBody = document.getElementById('keys-table-body');
+            tableBody.innerHTML = '';
+            
+            if (keys.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="px-6 py-10 text-center text-gray-500">
+                            没有找到匹配的卡密记录
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            keys.forEach(key => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50 transition-all-300';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${key.id}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${key.mykey}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${key.cishu}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${key.day}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${key.extime || '无'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${key.isvip === 1 ? '是' : '否'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button onclick="editKey(${key.id})" class="text-secondary hover:text-secondary/80 mr-4">
+                            <i class="fa fa-pencil mr-1"></i>修改
+                        </button>
+                        <button onclick="deleteKey(${key.id})" class="text-danger hover:text-danger/80">
+                            <i class="fa fa-trash mr-1"></i>删除
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // 显示表格加载状态
+        function showTableLoading() {
+            const tableBody = document.getElementById('keys-table-body');
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="px-6 py-10 text-center text-gray-500">
+                        <i class="fa fa-spinner fa-spin mr-2"></i>加载中...
+                    </td>
+                </tr>
+            `;
+        }
+
+        // 渲染空表格
+        function renderEmptyTable() {
+            const tableBody = document.getElementById('keys-table-body');
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="px-6 py-10 text-center text-gray-500">
+                        加载失败，请重试
+                    </td>
+                </tr>
+            `;
+        }
+
+        // 更新分页信息
+        function updatePaginationInfo(totalCount) {
+            document.getElementById('pagination-info').textContent = 
+                `共 ${totalCount} 条记录，当前第 ${currentPage} 页，共 ${totalPages} 页`;
+        }
+
+        // 渲染分页控件
+        function renderPagination() {
+            const paginationContainer = document.getElementById('pagination-buttons');
+            paginationContainer.innerHTML = '';
+            
+            // 首页按钮
+            const firstBtn = createPaginationButton('首页', 1, currentPage === 1);
+            paginationContainer.appendChild(firstBtn);
+            
+            // 上一页按钮
+            const prevBtn = createPaginationButton('上一页', currentPage - 1, currentPage === 1);
+            paginationContainer.appendChild(prevBtn);
+            
+            // 页码按钮 - 只显示当前页附近的页码
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            // 显示省略号（如果需要）
+            if (startPage > 1) {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'px-3 py-1 text-gray-500';
+                ellipsis.textContent = '...';
+                paginationContainer.appendChild(ellipsis);
+            }
+            
+            // 页码按钮
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = createPaginationButton(i, i, currentPage === i);
+                paginationContainer.appendChild(pageBtn);
+            }
+            
+            // 显示省略号（如果需要）
+            if (endPage < totalPages) {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'px-3 py-1 text-gray-500';
+                ellipsis.textContent = '...';
+                paginationContainer.appendChild(ellipsis);
+            }
+            
+            // 下一页按钮
+            const nextBtn = createPaginationButton('下一页', currentPage + 1, currentPage === totalPages);
+            paginationContainer.appendChild(nextBtn);
+            
+            // 末页按钮
+            const lastBtn = createPaginationButton('末页', totalPages, currentPage === totalPages);
+            paginationContainer.appendChild(lastBtn);
+        }
+
+        // 创建分页按钮
+        function createPaginationButton(text, page, isDisabled) {
+            const button = document.createElement('button');
+            button.textContent = text;
+            button.className = `px-3 py-1 rounded border transition-all-300 ${
+                isDisabled 
+                    ? 'border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed' 
+                    : 'border-primary text-primary hover:bg-primary hover:text-white'
+            }`;
+            
+            if (!isDisabled) {
+                button.addEventListener('click', function() {
+                    currentPage = page;
+                    loadKeys();
+                });
+            }
+            
+            return button;
+        }
+
+        // 生成卡密
+        function generateKeys() {
+            const count = parseInt(document.getElementById('batch-count').value);
+            const length = parseInt(document.getElementById('key-length').value);
+            const cishu = parseInt(document.getElementById('batch-cishu').value);
+            const day = parseInt(document.getElementById('batch-day').value);
+            const extime = document.getElementById('batch-extime').value;
+            const isvip = parseInt(document.getElementById('batch-isvip').value);
+            const prefix = document.getElementById('key-prefix').value;
+            
+            // 验证输入
+            if (isNaN(count) || count <= 0 || count > 10000) {
+                showMessage('请输入有效的数量（1-10000）', 'error');
+                return;
+            }
+            
+            if (isNaN(length) || length < 6 || length > 100) {
+                showMessage('请输入有效的卡密长度（6-100）', 'error');
+                return;
+            }
+            
+            if (isNaN(cishu) || cishu < 0) {
+                showMessage('请输入有效的次数', 'error');
+                return;
+            }
+            
+            if (isNaN(day) || day < 0) {
+                showMessage('请输入有效的天数', 'error');
+                return;
+            }
+            
+            const params = {
+                count: count,
+                length: length,
+                prefix: prefix
+            };
+            
+            showMessage('正在生成卡密，请稍候...', 'info');
+            
+            ajaxRequest('KeyHandler.aspx?action=generate', 'GET', params, function(response) {
+                if (response.success) {
+                    generatedKeys = response.keys;
+                    showGeneratedKeys();
+                    showMessage(`成功生成 ${generatedKeys.length} 个卡密`, 'success');
+                } else {
+                    showMessage('生成卡密失败: ' + response.message, 'error');
+                }
+            }, function(error) {
+                showMessage('生成卡密失败: ' + error, 'error');
+            });
+        }
+
+        // 显示生成的卡密
+        function showGeneratedKeys() {
+            const panel = document.getElementById('generated-keys-panel');
+            const keysContainer = document.getElementById('generated-keys');
+            const countElement = document.getElementById('generated-count');
+            
+            keysContainer.innerHTML = '';
+            countElement.textContent = generatedKeys.length;
+            
+            generatedKeys.forEach((key, index) => {
+                const keyElement = document.createElement('div');
+                keyElement.className = 'py-1 border-b border-gray-100 last:border-0';
+                keyElement.innerHTML = `<span class="text-gray-500 mr-2">${index + 1}.</span><span class="font-mono">${key}</span>`;
+                keysContainer.appendChild(keyElement);
+            });
+            
+            panel.classList.remove('hidden');
+        }
+
+        // 添加批量卡密到数据库
+        function addBatchKeys() {
+            if (generatedKeys.length === 0) {
+                showMessage('没有可添加的卡密，请先生成', 'error');
+                return;
+            }
+            
+            const cishu = parseInt(document.getElementById('batch-cishu').value);
+            const day = parseInt(document.getElementById('batch-day').value);
+            const extime = document.getElementById('batch-extime').value;
+            const isvip = parseInt(document.getElementById('batch-isvip').value);
+            
+            // 验证输入
+            if (isNaN(cishu) || cishu < 0) {
+                showMessage('请输入有效的次数', 'error');
+                return;
+            }
+            
+            if (isNaN(day) || day < 0) {
+                showMessage('请输入有效的天数', 'error');
+                return;
+            }
+            
+            const data = {
+                keys: generatedKeys,
+                cishu: cishu,
+                day: day,
+                extime: extime,
+                isvip: isvip
+            };
+            
+            showMessage('正在添加卡密到数据库，请稍候...', 'info');
+            
+            ajaxRequest('KeyHandler.aspx?action=addbatch', 'POST', data, function(response) {
+                if (response.success) {
+                    generatedKeys = [];
+                    document.getElementById('generated-keys-panel').classList.add('hidden');
+                    showMessage(`成功添加 ${response.count} 个卡密到数据库`, 'success');
+                    // 重新加载卡密列表
+                    currentPage = 1;
+                    loadKeys();
+                } else {
+                    showMessage('添加卡密失败: ' + response.message, 'error');
+                }
+            }, function(error) {
+                showMessage('添加卡密失败: ' + error, 'error');
+            });
+        }
+
+        // 复制所有卡密
+        function copyAllKeys() {
+            if (generatedKeys.length === 0) {
+                showMessage('没有可复制的卡密', 'error');
+                return;
+            }
+            
+            const textToCopy = generatedKeys.join('\n');
+            
+            // 尝试使用Clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => showCopyToast())
+                    .catch(() => fallbackCopyText(textToCopy));
+            } else {
+                fallbackCopyText(textToCopy);
+            }
+        }
+
+        // 降级复制方法
+        function fallbackCopyText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopyToast();
+                } else {
+                    showMessage('复制失败，请手动复制', 'error');
+                }
+            } catch (err) {
+                showMessage('复制失败，请手动复制', 'error');
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // 显示复制提示
+        function showCopyToast() {
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // 编辑卡密
+        function editKey(id) {
+            ajaxRequest(`KeyHandler.aspx?action=get&id=${id}`, 'GET', null, function(response) {
+                if (response.success) {
+                    const key = response.data;
+                    document.getElementById('edit-id').value = key.id;
+                    document.getElementById('edit-mykey').value = key.mykey;
+                    document.getElementById('edit-cishu').value = key.cishu;
+                    document.getElementById('edit-day').value = key.day;
+                    
+                    // 格式化日期时间
+                    if (key.extime) {
+                        const date = new Date(key.extime);
+                        document.getElementById('edit-extime').value = date.toISOString().slice(0, 16);
+                    } else {
+                        document.getElementById('edit-extime').value = '';
+                    }
+                    
+                    document.getElementById('edit-isvip').value = key.isvip;
+                    
+                    // 显示模态框
+                    document.getElementById('edit-modal').classList.remove('hidden');
+                } else {
+                    showMessage('获取卡密信息失败: ' + response.message, 'error');
+                }
+            }, function(error) {
+                showMessage('获取卡密信息失败: ' + error, 'error');
+            });
+        }
+
+        // 关闭编辑模态框
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+        }
+
+        // 更新卡密
+        function updateKey() {
+            const id = document.getElementById('edit-id').value;
+            const mykey = document.getElementById('edit-mykey').value.trim();
+            const cishu = parseInt(document.getElementById('edit-cishu').value);
+            const day = parseInt(document.getElementById('edit-day').value);
+            const extime = document.getElementById('edit-extime').value;
+            const isvip = parseInt(document.getElementById('edit-isvip').value);
+            
+            // 验证输入
+            if (!mykey) {
+                showMessage('卡密不能为空', 'error');
+                return;
+            }
+            
+            if (isNaN(cishu) || cishu < 0) {
+                showMessage('请输入有效的次数', 'error');
+                return;
+            }
+            
+            if (isNaN(day) || day < 0) {
+                showMessage('请输入有效的天数', 'error');
+                return;
+            }
+            
+            const data = {
+                id: id,
+                mykey: mykey,
+                cishu: cishu,
+                day: day,
+                extime: extime,
+                isvip: isvip
+            };
+            
+            ajaxRequest('KeyHandler.aspx?action=update', 'POST', data, function(response) {
+                if (response.success) {
+                    closeEditModal();
+                    showMessage('卡密更新成功', 'success');
+                    loadKeys(); // 重新加载卡密列表
+                } else {
+                    showMessage('卡密更新失败: ' + response.message, 'error');
+                }
+            }, function(error) {
+                showMessage('卡密更新失败: ' + error, 'error');
+            });
+        }
+
+        // 删除卡密
+        function deleteKey(id) {
+            if (!confirm('确定要删除这条卡密记录吗？')) {
+                return;
+            }
+            
+            ajaxRequest(`KeyHandler.aspx?action=delete&id=${id}`, 'GET', null, function(response) {
+                if (response.success) {
+                    showMessage('卡密删除成功', 'success');
+                    // 检查当前页是否还有数据
+                    const currentRows = document.getElementById('keys-table-body').querySelectorAll('tr').length;
+                    if (currentRows <= 1 && currentPage > 1) {
+                        currentPage--; // 如果当前页只有一条数据且删除了，就回到上一页
+                    }
+                    loadKeys(); // 重新加载卡密列表
+                } else {
+                    showMessage('卡密删除失败: ' + response.message, 'error');
+                }
+            }, function(error) {
+                showMessage('卡密删除失败: ' + error, 'error');
+            });
+        }
+
+        // 显示消息提示
+        function showMessage(message, type = 'info') {
+            const messageBox = document.getElementById('message-box');
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'bg-success', 'bg-error', 'bg-info', 'text-white');
+            
+            switch(type) {
+                case 'success':
+                    messageBox.classList.add('bg-green-500', 'text-white');
+                    break;
+                case 'error':
+                    messageBox.classList.add('bg-red-500', 'text-white');
+                    break;
+                default:
+                    messageBox.classList.add('bg-blue-500', 'text-white');
+            }
+            
+            // 3秒后自动隐藏
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 3000);
+        }
+
+        // AJAX请求封装
+        function ajaxRequest(url, method, data, successCallback, errorCallback) {
+            const xhr = new XMLHttpRequest();
+            
+            // 处理GET请求参数
+            if (method.toUpperCase() === 'GET' && data) {
+                const params = new URLSearchParams();
+                Object.keys(data).forEach(key => {
+                    params.append(key, data[key]);
+                });
+                url += (url.includes('?') ? '&' : '?') + params.toString();
+            }
+            
+            xhr.open(method, url, true);
+            
+            // 设置请求头
+            if (method.toUpperCase() === 'POST') {
+                xhr.setRequestHeader('Content-Type', 'application/json');
+            }
+            
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        successCallback(response);
+                    } catch (e) {
+                        errorCallback('解析响应失败: ' + e.message);
+                    }
+                } else {
+                    errorCallback('请求失败，状态码: ' + xhr.status);
+                }
+            };
+            
+            xhr.onerror = function() {
+                errorCallback('网络错误');
+            };
+            
+            // 发送请求数据
+            if (method.toUpperCase() === 'POST' && data) {
+                xhr.send(JSON.stringify(data));
+            } else {
+                xhr.send();
+            }
+        }
+    </script>
+</body>
+</html>
+    

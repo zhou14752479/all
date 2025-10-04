@@ -85,6 +85,7 @@
             this.删除链接ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改同步ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加初始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关闭声音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -109,7 +110,7 @@
             this.删除此行ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.关闭声音ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button11 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -143,7 +144,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(286, 763);
+            this.groupBox1.Size = new System.Drawing.Size(286, 824);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作界面";
@@ -161,7 +162,7 @@
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(2, 502);
+            this.panel1.Location = new System.Drawing.Point(2, 563);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(282, 259);
             this.panel1.TabIndex = 50;
@@ -328,7 +329,7 @@
             this.tabControl1.Location = new System.Drawing.Point(286, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(659, 763);
+            this.tabControl1.Size = new System.Drawing.Size(764, 824);
             this.tabControl1.TabIndex = 23;
             // 
             // tabPage1
@@ -337,7 +338,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 23);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(651, 736);
+            this.tabPage1.Size = new System.Drawing.Size(756, 797);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "  订单列表  ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -358,7 +359,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(645, 730);
+            this.listView1.Size = new System.Drawing.Size(750, 791);
             this.listView1.TabIndex = 52;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -408,6 +409,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button11);
             this.tabPage2.Controls.Add(this.textBox11);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.textBox10);
@@ -422,7 +424,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 23);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(651, 736);
+            this.tabPage2.Size = new System.Drawing.Size(756, 797);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "  点赞同步  ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -532,9 +534,9 @@
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(3, 105);
+            this.listView2.Location = new System.Drawing.Point(3, 124);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(645, 628);
+            this.listView2.Size = new System.Drawing.Size(750, 670);
             this.listView2.TabIndex = 59;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -584,7 +586,7 @@
             this.添加初始ToolStripMenuItem,
             this.关闭声音ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 114);
             // 
             // 复制链接ToolStripMenuItem
             // 
@@ -614,6 +616,13 @@
             this.添加初始ToolStripMenuItem.Text = "添加初始";
             this.添加初始ToolStripMenuItem.Click += new System.EventHandler(this.添加初始ToolStripMenuItem_Click);
             // 
+            // 关闭声音ToolStripMenuItem
+            // 
+            this.关闭声音ToolStripMenuItem.Name = "关闭声音ToolStripMenuItem";
+            this.关闭声音ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.关闭声音ToolStripMenuItem.Text = "关闭声音";
+            this.关闭声音ToolStripMenuItem.Click += new System.EventHandler(this.关闭声音ToolStripMenuItem_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button8);
@@ -628,7 +637,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 23);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(651, 736);
+            this.tabPage3.Size = new System.Drawing.Size(756, 797);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "  巨量数据  ";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -725,9 +734,9 @@
             this.listView3.FullRowSelect = true;
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(3, 175);
+            this.listView3.Location = new System.Drawing.Point(3, 236);
             this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(645, 558);
+            this.listView3.Size = new System.Drawing.Size(750, 558);
             this.listView3.TabIndex = 63;
             this.listView3.UseCompatibleStateImageBehavior = false;
             this.listView3.View = System.Windows.Forms.View.Details;
@@ -805,18 +814,21 @@
             this.timer3.Interval = 20000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // 关闭声音ToolStripMenuItem
+            // button11
             // 
-            this.关闭声音ToolStripMenuItem.Name = "关闭声音ToolStripMenuItem";
-            this.关闭声音ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.关闭声音ToolStripMenuItem.Text = "关闭声音";
-            this.关闭声音ToolStripMenuItem.Click += new System.EventHandler(this.关闭声音ToolStripMenuItem_Click);
+            this.button11.Location = new System.Drawing.Point(636, 18);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 71;
+            this.button11.Text = "解除删除";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // 易优权益监控拉黑
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 763);
+            this.ClientSize = new System.Drawing.Size(1050, 824);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Name = "易优权益监控拉黑";
@@ -925,5 +937,6 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ToolStripMenuItem 关闭声音ToolStripMenuItem;
+        private System.Windows.Forms.Button button11;
     }
 }

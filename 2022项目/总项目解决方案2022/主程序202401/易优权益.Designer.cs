@@ -100,7 +100,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(162, 21);
             this.textBox2.TabIndex = 29;
-            this.textBox2.Text = "gl.ad0000.top";
+            this.textBox2.Text = "gl.yy114.top";
             // 
             // label2
             // 

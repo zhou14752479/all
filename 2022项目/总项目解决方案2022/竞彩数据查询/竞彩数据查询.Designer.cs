@@ -163,7 +163,6 @@
             this.button3.TabIndex = 74;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox4
@@ -360,7 +359,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "竞彩数据查询";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "竞彩数据查询";
+            this.Text = "本地数据库软件，仅供学习交流，请勿用于其他用途";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.竞彩数据查询_FormClosing);
             this.Load += new System.EventHandler(this.竞彩数据查询_Load);
             this.panel1.ResumeLayout(false);

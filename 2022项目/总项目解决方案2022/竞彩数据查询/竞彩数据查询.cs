@@ -91,7 +91,7 @@ namespace 竞彩数据查询
 
 
 
-            for (DateTime dt = Convert.ToDateTime("2022-07-20"); dt < Convert.ToDateTime("2023-07-20"); dt = dt.AddDays(1))
+            for (DateTime dt = Convert.ToDateTime("2024-01-02"); dt < Convert.ToDateTime("2025-09-05"); dt = dt.AddDays(1))
             {
                 try
                 {

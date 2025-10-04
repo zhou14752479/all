@@ -31,8 +31,7 @@ namespace 学科网下载
             try
             {
                 cookie = File.ReadAllText(Server.MapPath("~/") + "cookie.txt").Trim();
-                //cookie = "xk.passport.ticket.v2=WkUEXloV0ISaRMHJb8t7jYFsDUWpn0rdOUWW5WLwJihPR0QLYSEz0lJjlGwmx66U";
-
+                
                 string method = Request["method"];
                 string key = Request["key"];
                 string link = Request["link"];
@@ -47,14 +46,7 @@ namespace 学科网下载
                 {
                     if(link.Contains("zxxk") || link.Contains("xkw"))
                     {
-                        if (link.Contains("m.zxxk.com"))
-                        {
-                            Response.Write("{\"status\":\"0\",\"msg\":\"请输入电脑端资料网址\"}");
-                        }
-                        else
-                        {
-                            getfile(key, link);
-                        }
+                        getfile(key, link);
                     }
                     else
                     {
@@ -69,7 +61,7 @@ namespace 学科网下载
             }
             catch (Exception ex)
             {
-                Response.Write("{\"status\":\"0\",\"msg\":\"服务异常，请联系客服\"}");
+                Response.Write("{\"status\":\"0\",\"msg\":\"服务异常，请联系客服\"}"+ex.ToString());
             }
             
            
@@ -99,7 +91,7 @@ namespace 学科网下载
                 string extime = reader["extime"].ToString().Trim();
                 string day = reader["day"].ToString().Trim();
                 string isvip = reader["isvip"].ToString().Trim();
-                string fileid = Regex.Match(link, @"\d{6,}").Groups[0].Value;
+                string fileid = Regex.Match(link, @"\d{5,}").Groups[0].Value;
 
                 mycon.Close();
                 reader.Close();
@@ -158,9 +150,16 @@ namespace 学科网下载
                 }
 
 
-                string url = "https://user.zxxk.com/creator/api/v1/creator-resource/get-resource-detail?resourceId=" + fileid;
-
+                string url = "http://115.190.166.221/xk.aspx?method=kd0ph8fynbhj&id=" + fileid;
+               
+                
                 string html = method.GetUrlWithCookie(url, cookie);
+                if(!html.Contains("fileUrl"))
+                {
+                    url = method.methodurl + fileid;
+                    html = method.GetUrlWithCookie(url, cookie);
+                }
+
                 string fileurl = Regex.Match(html, @"""fileUrl"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string filename = Regex.Match(html, @"""fileName"":""([\s\S]*?)""").Groups[1].Value.Trim();
                 string fileSize = Regex.Match(html, @"""fileSize"":([\s\S]*?),").Groups[1].Value.Trim();
@@ -168,6 +167,9 @@ namespace 学科网下载
                 string price = Regex.Match(html, @"""price"":([\s\S]*?),").Groups[1].Value.Trim();
                 string shopId = Regex.Match(html, @"""shopId"":([\s\S]*?),").Groups[1].Value.Trim();
                 string commercialLevel = Regex.Match(html, @"""commercialLevel"":""([\s\S]*?)""").Groups[1].Value.Trim();
+                string gradeId = Regex.Match(html, @"""gradeId"":([\s\S]*?),").Groups[1].Value.Trim();
+                string courseId = Regex.Match(html, @"""courseId"":([\s\S]*?),").Groups[1].Value.Trim();
+                string stageId = Regex.Match(html, @"""stageId"":([\s\S]*?),").Groups[1].Value.Trim();
 
                 /*"1202","普通"
                 "1203","精品"
@@ -176,7 +178,7 @@ namespace 学科网下载
                 "1205","教辅"
                 */
                 //筛选教辅、中职
-                if (commercialLevel=="1205" || provider.Contains("公司") || provider.Contains("店")  || provider.Contains("职") || filename.Contains("职"))
+                if (commercialLevel=="1205" || stageId=="6")
                 {
                     //账号不符合的跳过
                     if (isvip == "0" || isvip == "")
@@ -196,17 +198,7 @@ namespace 学科网下载
 
                 }
 
-                //else if(commercialLevel=="1203")
-                //{
-
-                //    if (isvip == "0" || isvip == "")
-                //    {
-
-                //        Response.Write("{\"status\":\"0\",\"msg\":\"当前购买的权限不能下载教辅及中职，请拍对应选项（当前账户可下：精品、特供、普通、≤5储值的资料）\"}");
-                //        return;
-                //    }
-                   
-                //}
+               
 
                 //普通的不超过20
                 if (price != "")
@@ -235,6 +227,7 @@ namespace 学科网下载
                     string host = Request.Url.Host;       // 域名或IP
                     int port = Request.Url.Port;
                     string suiji =method.GenerateRandomString(10);
+                   
                     string jiamifilekey = method.Base64Encode(Encoding.GetEncoding("utf-8"), fileurl).Replace("a",suiji);
                     string jiamifileurl = protocol + "://" + host + ":" + port + "/download.aspx?filekey=" + jiamifilekey+"&suiji="+suiji;
                     Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + jiamifileurl + "\",\"fileSize\":\"" + fileSize + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
@@ -249,13 +242,11 @@ namespace 学科网下载
                     //string ex = method.downloadFile(fileurl, oss, filename);
 
                     //Response.Write("{\"status\":\"1\",  \"cishu\":\"" + cishu_new + "\", \"extime\":\"" + extime + "\",   \"filename\":\"" + filename + "\",\"fileurl\":\"" + filepath + "\",\"fileSize\":\"" + ex.ToString() + "\",\"msg\":\"下载成功,请查看浏览器下载列表\"}");
-
-
-
-
+                  
+                   
+                    method.adddownlog(key,link,isvip,cishu,day,price, commercialLevel, gradeId, courseId, stageId); //下载成功  添加下载记录
+                   
                     method.editekey(key); //下载成功  减去次数
-                    method.adddownlog(key,link,isvip,cishu,day,price, commercialLevel); //下载成功  添加下载记录
-
                 }
 
              

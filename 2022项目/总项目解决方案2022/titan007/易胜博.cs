@@ -80,9 +80,13 @@ namespace titan007
 
         private void 易胜博_Load(object sender, EventArgs e)
         {
+           
             method.SetFeatures(11000);
             webBrowser1.ScriptErrorsSuppressed = true;
+           
             webBrowser1.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(WB_DocumentCompleted);
+
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -92,7 +96,12 @@ namespace titan007
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (DateTime.Now>Convert.ToDateTime("2025-11-01"))
+            {
+                return;
+            }
             status = true;
+            listView1.Items.Clear();
             if (thread == null || !thread.IsAlive)
             {
                 thread = new Thread(run);
@@ -148,7 +157,7 @@ namespace titan007
 
 
 
-
+           
 
             string html = method.GetUrl("http://live.titan007.com/vbsxml/bfdata_ut.js?r=0071657803475000", "utf-8");
 
@@ -258,11 +267,12 @@ namespace titan007
                 string home = Regex.Match(html, @"<div class=""home"">([\s\S]*?)title=""([\s\S]*?)""").Groups[2].Value.Replace(" ", "");
                 string guest = Regex.Match(html, @"<div class=""guest"">([\s\S]*?)title=""([\s\S]*?)""").Groups[2].Value.Replace(" ", "");
                 string liansai = Regex.Match(html, @"LName([\s\S]*?)>([\s\S]*?)<").Groups[2].Value.Replace(" ", "");
-                string time = Regex.Match(html, @"2023-([\s\S]*?)<").Groups[1].Value.Replace(" ", "").Trim().Replace("&nbsp;", "");
+                string time = Regex.Match(html, @"2025-([\s\S]*?)<").Groups[1].Value.Replace(" ", "").Trim().Replace("&nbsp;", "");
                 string chu = Regex.Match(html, @"初盘平均值([\s\S]*?)即时平均值").Groups[1].Value;
 
-                string[] text = chu.Replace("<td>", "").Replace("<td class=\"rb\">", "").Replace("<td>", "").Split(new string[] { "</td>" }, StringSplitOptions.None);
+                string[] text = chu.Replace("<td>", "").Replace("<td class=\"rb\">", "").Replace("<td width=\"60\" class=\"rb\">","").Replace("<td width=\"60\">", "").Split(new string[] { "</td>" }, StringSplitOptions.None);
 
+              
 
 
                 //string jishi = Regex.Match(html, @"即时平均值([\s\S]*?)</tr>").Groups[1].Value;
@@ -275,9 +285,9 @@ namespace titan007
 
 
               
-                string datas = getchu(uid);
+                //string datas = getchu(uid);
                
-                string[] dataa = datas.Split(new string[] { "," }, StringSplitOptions.None); ;
+                //string[] dataa = datas.Split(new string[] { "," }, StringSplitOptions.None); ;
                 
                 if (home != "")
                 {
@@ -285,27 +295,48 @@ namespace titan007
                     lv1.SubItems.Add(liansai);
                     lv1.SubItems.Add(home);
                     lv1.SubItems.Add(guest);
-                    lv1.SubItems.Add("2023-" + time);
-
-
-                    //初盘平均
+                    lv1.SubItems.Add("2025-" + time);
+                    lv1.SubItems.Add("初盘平均值");
+                    //初盘最高
                     lv1.SubItems.Add(text[1].Trim());
                     lv1.SubItems.Add(text[2].Trim());
                     lv1.SubItems.Add(text[3].Trim());
 
-                    //初盘值
-                    lv1.SubItems.Add(dataa[0]);
-                    lv1.SubItems.Add(dataa[1]);
-                    lv1.SubItems.Add(dataa[2]);
 
 
+                    string datas = getchu_12(uid);
 
-                    //lv1.SubItems.Add(text2[1].Trim());
-                    //lv1.SubItems.Add(text2[2].Trim());
-                    //lv1.SubItems.Add(text2[3].Trim());
+                    string[] dataa = datas.Split(new string[] { "," }, StringSplitOptions.None);
+                    if (dataa.Length > 2)
+                    {
+                        string sheng = dataa[0];
+                        string he = dataa[1];
+                        string fu = dataa[2];
+                        ListViewItem lv2 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                        lv2.SubItems.Add(liansai);
+                        lv2.SubItems.Add(home);
+                        lv2.SubItems.Add(guest);
+                        lv2.SubItems.Add("2025-" + time);
+                        lv2.SubItems.Add("12BET");
 
+                        lv2.SubItems.Add(sheng.Trim());
+                        lv2.SubItems.Add(he.Trim());
+                        lv2.SubItems.Add(fu.Trim());
+                    }
+                   
+
+                  
+
+                    ListViewItem lv5 = listView1.Items.Add((listView1.Items.Count + 1).ToString()); //使用Listview展示数据   
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
+                    lv5.SubItems.Add("--------------------");
                     Thread.Sleep(1000);
-                    
                 }
 
 
@@ -317,8 +348,37 @@ namespace titan007
 
         }
 
+        public string getchu_12(string id)
+        {
+            string aurl = "http://1x2d.titan007.com/" + id + ".js?r=007133062314590247588";
+            string ahtml = method.GetUrl(aurl, "utf-8");
+            string s = "";
+            string data = Regex.Match(ahtml, @"12bet([\s\S]*?)12\*").Groups[1].Value;
+         
 
+            string[] dataa = data.Split(new string[] { "|" }, StringSplitOptions.None);
 
+            if (dataa.Length > 2)
+            {
+                s = dataa[1] + "," + dataa[2] + "," + dataa[3];
 
+            }
+
+            return s;
+        }
+
+        private void 易胜博_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("确定要关闭吗？", "关闭", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dr == DialogResult.OK)
+            {
+                // Environment.Exit(0);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
+            else
+            {
+                e.Cancel = true;//点取消的代码 
+            }
+        }
     }
 }

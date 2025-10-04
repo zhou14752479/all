@@ -1303,19 +1303,7 @@ namespace titan007
 
 
 
-            #region 通用检测
-
-
-            string html = method.GetUrl("http://www.acaiji.com/index/index/vip.html", "utf-8");
-
-            if (!html.Contains(@"dtwi"))
-            {
-                TestForKillMyself();
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
-                return;
-            }
-
-            #endregion
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

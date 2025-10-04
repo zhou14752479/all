@@ -1,6 +1,7 @@
 ﻿using Gecko;
 using Gecko.DOM;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,8 +35,34 @@ namespace 微博Cookie
             {
                 MessageBox.Show("请在浏览器加载完成后重启软件");
             }
-        }
 
+
+
+
+            // 初始化系统托盘
+            notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = SystemIcons.Application; // 设置图标
+            notifyIcon.Text = "我的程序"; // 鼠标悬停提示
+            notifyIcon.Visible = true;
+
+            // 添加右键菜单（显示/退出）
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+            ToolStripMenuItem showItem = new ToolStripMenuItem("显示窗口");
+            showItem.Click += (s, e) => this.Show(); // 显示窗口
+
+            ToolStripMenuItem yincangItem = new ToolStripMenuItem("隐藏窗口");
+            yincangItem.Click += (s, e) => this.Hide(); // 隐藏窗口
+            ToolStripMenuItem exitItem = new ToolStripMenuItem("退出");
+            exitItem.Click += (s, e) => Application.Exit(); // 退出程序
+           
+            
+            contextMenu.Items.Add(showItem);
+            contextMenu.Items.Add(yincangItem);
+            contextMenu.Items.Add(exitItem);
+            notifyIcon.ContextMenuStrip = contextMenu;
+        }
+        // 系统托盘控件
+        private NotifyIcon notifyIcon;
         private void MainForm_Load(object sender, EventArgs e)
         {
            

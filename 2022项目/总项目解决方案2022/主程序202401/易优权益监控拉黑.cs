@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using myDLL;
+using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +11,14 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using myDLL;
+using static NPOI.HSSF.Util.HSSFColor;
 using static System.Windows.Forms.LinkLabel;
 
 namespace 主程序202401
@@ -183,6 +186,7 @@ namespace 主程序202401
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
+              
                 // request.Proxy = null;
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("version:TYC-XCX-WX");
@@ -237,6 +241,11 @@ namespace 主程序202401
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.Method = "Post";
+                // Timeout属性包括建立连接和接收响应的总时间
+                request.Timeout = 2000;
+
+                // 对于异步操作，可以设置ReadWriteTimeout
+                request.ReadWriteTimeout = 2000;
                 // request.Proxy = null;
                 //WebHeaderCollection headers = request.Headers;
                 //headers.Add("version:TYC-XCX-WX");
@@ -244,11 +253,11 @@ namespace 主程序202401
                 //request.ContentType = "application/json";
                 request.ContentLength = (long)Encoding.UTF8.GetBytes(postData).Length;
                 request.Headers.Add("Accept-Encoding", "gzip");
-                request.AllowAutoRedirect = false;
-                request.KeepAlive = true;
+               // request.AllowAutoRedirect = false;
+               // request.KeepAlive = true;
                 request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36";
                 request.Headers.Add("Cookie", COOKIE);
-                request.Referer = url;
+                //request.Referer = url;
                 StreamWriter sw = new StreamWriter(request.GetRequestStream());
                 sw.Write(postData);
                 sw.Flush();
@@ -633,8 +642,15 @@ namespace 主程序202401
         #endregion
         Thread thread;
         public static string domain= "gl.yy114.top";
+        // 用于计时10分钟的延迟定时器
+        private System.Windows.Forms.Timer delayTimer = new System.Windows.Forms.Timer();
         private void 易优权益监控拉黑_Load(object sender, EventArgs e)
         {
+            // 初始化延迟定时器，设置为10分钟(600000毫秒)
+            delayTimer.Interval = 600000; // 10分钟 = 10 * 60 * 1000毫秒
+            delayTimer.Tick += DelayTimer_Tick;
+            delayTimer.Enabled = false; // 初始不启用
+
             if (File.Exists(filePath))
             {
                 try
@@ -654,6 +670,14 @@ namespace 主程序202401
                 }
             }
             pictureBox1.Image = GetImage("http://wxpusher.zjiecode.com/api/qrcode/voD1HgXICEUzBMQQq6fhNY996iSiqKBCpml2CBqxshU0abAJJq5AVGerJUHT1H4u.jpg");
+        }
+
+        // 延迟定时器触发时执行 - 重启主定时器
+        private void DelayTimer_Tick(object sender, EventArgs e)
+        {
+            delayTimer.Enabled = false;
+            timer2.Enabled = true;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -838,6 +862,7 @@ namespace 主程序202401
         Thread thread2;
         private void button6_Click(object sender, EventArgs e)
         {
+            timer2.Start();
             if(textBox2.Text=="")
             {
                 MessageBox.Show("请输入网址");
@@ -857,7 +882,7 @@ namespace 主程序202401
                 login();
             }
             
-            timer2.Start();
+          
             timer2.Interval = Convert.ToInt32(textBox10.Text);
             if (thread2 == null || !thread2.IsAlive)
             {
@@ -874,9 +899,14 @@ namespace 主程序202401
       
         string yuyin = "";
 
+        List<string> jingtai_list=new List<string>();
         public void run_tongbu()
         {
-
+            if(listView2.Items.Count>2)
+            {
+                listView2.Items[listView2.Items.Count - 1].BackColor = Color.White;
+            }
+           
             StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt", method.EncodingType.GetTxtType(AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt"));
             //一次性读取完 
             string tongbu_texts = sr.ReadToEnd();
@@ -884,9 +914,7 @@ namespace 主程序202401
             sr.Dispose();   //销毁流内存
 
 
-           
-
-            listView2.Items.Clear();
+                
             try
             {
 
@@ -896,7 +924,7 @@ namespace 主程序202401
 
 
 
-                MatchCollection links = Regex.Matches(html, @"name"": ""作品链接([\s\S]*?)""value"": ""([\s\S]*?)""");
+                MatchCollection links = Regex.Matches(html, @"""is_default"":([\s\S]*?)""value"": ""([\s\S]*?)""");
                 MatchCollection ids = Regex.Matches(html, @"""id"":([\s\S]*?),");
 
                 MatchCollection buy_number = Regex.Matches(html, @"""buy_number"":([\s\S]*?),");
@@ -932,10 +960,17 @@ namespace 主程序202401
                     {
                         string startnum = Getlikecount(link).Trim();
                         string id = GetDouyinVideoId(link);
-                        writeTxt(uid + "#" + link + "#" + buy + "#" + startnum+"#"+id, "tongbu");
+                        if (startnum != "")
+                        {
+                            writeTxt(uid + "#" + link + "#" + buy + "#" + startnum + "#" + id, "tongbu");
+
+                            tongbu(uid,startnum,startnum);
+                        }
+
+
                     }
 
-
+                   
                    
                 }
 
@@ -956,9 +991,9 @@ namespace 主程序202401
                     {
 
                         string[] v = text2[i].Split(new string[] { "#" }, StringSplitOptions.None);
-
+                        string aid = v[0];
                         string linkk = v[1];
-
+                        string buy = v[2];
                         string start = v[3];
                         string id = v[4];
 
@@ -967,90 +1002,33 @@ namespace 主程序202401
                             continue;
                         }
 
+                        string currentnum = "";
 
 
 
-                        string currentnum = Getlikecount(linkk);
-
-
-                       
-                        while (currentnum.Trim() == "")
+                      
+                        if (!jingtai_list.Contains(linkk))
                         {
-                            currentnum = Getlikecount(linkk);
-                            if (currentnum != "")
-                            {
-                                break;
-                            }
+                            jingtai_list.Add(linkk);
                            
-                        }
 
-
-
-
-
-                        string[] ss = getstatus(linkk.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
-                        string aid = ss[0];
-                        string buys = ss[1];
-                        string status = ss[2];
-                       
-
-
-                        ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
-                        lv1.SubItems.Add(aid);
-                        lv1.SubItems.Add(linkk);
-                        lv1.SubItems.Add(buys);
-                        lv1.SubItems.Add(start);
-                        lv1.SubItems.Add(currentnum);
-
-
-                        int cha = 0;
-
-                        if (currentnum != "" && start != "" && currentnum != "失效")
-                        {
-                            tongbu(aid, start, currentnum);
-                            cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
-                        }
-
-
-                        lv1.SubItems.Add(cha.ToString());
-                        lv1.SubItems.Add(status);
-
-                        //新增提前报警
-
-                       
-
-                        if (buys.Trim() != "")
-                        {
-                            int tiqian = Convert.ToInt32(buys.Trim()) - Convert.ToInt32(textBox11.Text);
-
-                            if (cha >= Convert.ToInt32(buys.Trim()))
+                            ListViewItem lv1 = listView2.Items.Add((listView2.Items.Count + 1).ToString()); //使用Listview展示数据
+                            lv1.SubItems.Add(aid);
+                            lv1.SubItems.Add(linkk);
+                            lv1.SubItems.Add(buy);
+                            lv1.SubItems.Add(start);
+                            lv1.SubItems.Add(currentnum);
+                            lv1.SubItems.Add(start);
+                            lv1.SubItems.Add("");
+                            if (listView2.Items.Count > 2)
                             {
-                                lv1.ForeColor = Color.Blue;
-                                yuyin = yuyin = v[0] + "  ,";
 
-                                if (!guanbi_shengyin_list.Contains(aid))
-                                {
-                                    易优权益监控拉黑.Speak(aid + "提醒");
-                                }
-
+                                this.listView2.Items[this.listView2.Items.Count - 1].EnsureVisible();
                             }
-
-                           else if (cha >= tiqian)
-                            {
-                                lv1.ForeColor = Color.Red;
-                                yuyin = yuyin = v[0] + "  ,";
-
-                                if (!guanbi_shengyin_list.Contains(aid))
-                                {
-                                    易优权益监控拉黑.Speak(aid + "提醒");
-                                }
-                            }
-
-                           
                         }
-
 
                     }
+
                     catch (Exception ex)
                     {
                         label1.Text = ex.Message;
@@ -1058,7 +1036,14 @@ namespace 主程序202401
                         continue;
                     }
                 }
-               
+
+
+
+
+
+                xunhuan();
+
+
             }
             catch (Exception ex)
             {
@@ -1068,8 +1053,120 @@ namespace 主程序202401
 
         }
 
+        /// <summary>
+        /// 静态循环获取当前Like count
+        /// </summary>
+        public void xunhuan()
+        {
+
+            for (int i = 0; i < listView2.Items.Count; i++)
+            {
+                try
+                {
+
+                   
+                    if (i > 1)
+                    {
+                        listView2.Items[i].BackColor = Color.Yellow;
+                        listView2.Items[i-1].BackColor = Color.White;
+                    }
+                    string aid = listView2.Items[i].SubItems[1].Text.Trim();
+                    string link = listView2.Items[i].SubItems[2].Text.Trim();
+                    string currentnum = Getlikecount(link);
+                   string buys= listView2.Items[i].SubItems[3].Text.Trim();
+
+                    string start= listView2.Items[i].SubItems[4].Text.Trim(); ;
+                    // string status = listView2.Items[i].SubItems[7].Text.Trim();
 
 
+                    string[] ss = getstatus(link.Trim()).Trim().Split(new string[] { "#" }, StringSplitOptions.None);
+                    //string aid = ss[0];
+                    //string buys = ss[1];
+                    string status = ss[2];
+                   
+
+
+                    if(start!="")
+                    {
+                        listView2.Items[i].SubItems[4].Text = start;
+                        listView2.Items[i].SubItems[7].Text = status;
+                    }
+
+                    int cha = 0;
+                    if (currentnum != "" && start != "" && currentnum != "失效" && start != "失效")
+                    {
+                        tongbu(aid, start, currentnum);
+                        cha = Convert.ToInt32(currentnum) - Convert.ToInt32(start);
+                    }
+
+                    if (currentnum != "")
+                    {
+                        
+                        listView2.Items[i].SubItems[5].Text = currentnum;
+                        listView2.Items[i].SubItems[6].Text = cha.ToString();
+                    }
+
+                    if (buys.Trim() != "")
+                    {
+                        int tiqian = Convert.ToInt32(buys.Trim()) - Convert.ToInt32(textBox11.Text);
+
+                        if (cha >= Convert.ToInt32(buys.Trim()))
+                        {
+                            listView2.Items[i].ForeColor = Color.Blue;
+                            if (status == "处理中")
+                            {
+                                finish(aid);
+                            }
+                            //yuyin = yuyin = v[0] + "  ,";
+
+                            if (!guanbi_shengyin_list.Contains(aid))
+                            {
+                                易优权益监控拉黑.Speak(aid + "提醒");
+                            }
+
+                        }
+
+                        else if (cha >= tiqian)
+                        {
+                            listView2.Items[i].ForeColor = Color.Red;
+                            //yuyin = yuyin = v[0] + "  ,";
+
+                            if (!guanbi_shengyin_list.Contains(aid))
+                            {
+                                易优权益监控拉黑.Speak(aid + "提醒");
+                            }
+                        }
+
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                   // MessageBox.Show(ex.ToString());
+                    continue;
+                }
+            }
+
+
+
+            //if(isshuaxin)
+            //{
+            //    jingtai_list.Clear();
+            //    listView2.Items.Clear();    
+            //    isshuaxin = false;
+            //}
+
+            for (int i = listView2.Items.Count - 1; i >= 0; i--)
+            {
+                if (delete_index.Contains(listView2.Items[i].SubItems[1].Text))
+                {
+                    listView2.Items.RemoveAt(i);
+                }
+            }
+
+            listView2.Refresh();
+            delete_index.Clear();
+        }
     
 
 
@@ -1082,7 +1179,7 @@ namespace 主程序202401
                 string postdata = "{\"id\":" + id + ",\"start_num\":" + start_num + ",\"current_num\":" + current_num + "}";
 
                 string html = PostUrlDefault(url, postdata, cookie);
-
+                  
                 if (html.Contains("商品不存在"))
                 {
                     url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/ScheduleHandle";
@@ -1097,22 +1194,48 @@ namespace 主程序202401
            
         }
 
+
+        public void finish(string id)
+        {
+
+            try
+            {
+                string url = "http://" + 易优权益监控拉黑.domain + "/api/supplier/Order/StatusHandle";
+                string postdata = "{\"old_status\":3,\"new_status\":6,\"id\":"+id+",\"remark\":\"\"}";
+
+                string html = PostUrlDefault(url, postdata, cookie);
+
+                if (html.Contains("商品不存在"))
+                {
+                    url = "http://" + 易优权益监控拉黑.domain + "/api/supplier/Order/StatusHandle";
+                    html = PostUrlDefault(url, postdata, cookie);
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+        }
         public string getstatus(string link)
         {
 
             try
             {
                 string url = "http://" + 易优权益监控拉黑.domain + "/api/console/OrderManage/Paging";
-                string postdata = "{\"type\":0,\"page\":1,\"list_rows\":10,\"status\":0,\"goods_name\":\"\",\"docking_status\":0,\"id\":null,\"goods_id\":null,\"customer_id\":null,\"buy_params\":\"" + link + "\",\"docking_site_id\":0,\"supplier_id\":null}";
+                //string postdata = "{\"type\":0,\"page\":1,\"list_rows\":10,\"status\":0,\"goods_name\":\"\",\"docking_status\":0,\"id\":null,\"goods_id\":null,\"customer_id\":null,\"buy_params\":\"" + link + "\",\"docking_site_id\":0,\"supplier_id\":null}";
 
+                string postdata = "{\"page\":1,\"list_rows\":10,\"status\":0,\"id\":null,\"goods_id\":null,\"buy_params\":\""+link+"\"}";
                 string html = PostUrlDefault(url, postdata, cookie);
 
+                
                 string status = Regex.Match(html, @"""status"":([\s\S]*?),").Groups[1].Value.Trim().Replace("1", "已付款").Replace("2", "待处理").Replace("3", "处理中").Replace("4", "补单中").Replace("5", "退单中").Replace("6", "已完成").Replace("7", "已退单").Replace("8", "已退款");
                 string buy = Regex.Match(html, @"""buy_number"":([\s\S]*?),").Groups[1].Value.Trim();
                 string id = Regex.Match(html, @"""id"":([\s\S]*?),").Groups[1].Value.Trim();
+                string start = Regex.Match(html, @"""start_num"":([\s\S]*?),").Groups[1].Value.Trim();
 
-
-                return id + "#" + buy + "#" + status;
+                return id + "#" + buy + "#" + status+"#"+ start;
 
             }
             catch (Exception)
@@ -1131,26 +1254,52 @@ namespace 主程序202401
             }
         }
 
+        Thread thread33;
         private void timer2_Tick(object sender, EventArgs e)
         {
             timer2.Interval = Convert.ToInt32(textBox10.Text);
 
-            if (thread2== null || !thread2.IsAlive)
+            if (thread2 == null || !thread2.IsAlive)
             {
                 thread2 = new Thread(run_tongbu);
                 thread2.Start();
                 Control.CheckForIllegalCrossThreadCalls = false;
             }
+
+            //if (thread33== null || !thread33.IsAlive)
+            //{
+            //    thread33 = new Thread(xunhuan);
+            //    thread33.Start();
+            //    Control.CheckForIllegalCrossThreadCalls = false;
+            //}
         }
 
         List<string> delist_list = new List<string>();
+
+        bool isshuaxin = false;
+
+        List<string> delete_index = new List<string>();
         private void 删除链接ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (listView2.SelectedItems.Count > 0)
             {
-                delist_list.Add(listView2.SelectedItems[0].SubItems[2].Text);
-                string link = listView2.SelectedItems[0].SubItems[2].Text;
+               
+               
+                string link= listView2.SelectedItems[0].SubItems[2].Text;
+                delist_list.Add(link);
+                isshuaxin= true;
 
+                for (int i = 0; i <listView2.SelectedItems.Count; i++)
+                {
+                    delete_index.Add(listView2.SelectedItems[i].SubItems[1].Text.Trim());
+                }
+               
+                //int index = listView2.SelectedItems[0].Index;
+                //listView2.Items.RemoveAt(index);    
+
+
+                //jingtai_list.Clear();
+                //listView2.Items.Clear();    
                 try
                 {
                 
@@ -1188,7 +1337,12 @@ namespace 主程序202401
                 string old_start = listView2.SelectedItems[0].SubItems[4].Text;
                 string currentnum = listView2.SelectedItems[0].SubItems[5].Text;
 
-                string startnum = Interaction.InputBox("提示信息", "请输入初始值", "0", -1, -1);
+                if(currentnum.Trim()=="")
+                {
+                    MessageBox.Show("当前值为空");
+                    return;
+                }
+                string startnum_new = Interaction.InputBox("提示信息", "请输入初始值", "0", -1, -1);
 
 
                 if(old_start=="")
@@ -1198,15 +1352,15 @@ namespace 主程序202401
                 }
 
 
-                tongbu(uid, startnum, currentnum);
-
+                tongbu(uid, startnum_new, currentnum);
+                listView2.SelectedItems[0].SubItems[4].Text = startnum_new;
                 string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\tongbu.txt";
                 List<string> lines = new List<string>(File.ReadAllLines(filePath));
                 for (int i = 0; i < lines.Count; i++)
                 {
                     if (lines[i].Contains(link))
                     {
-                        lines[i] = lines[i].Replace("#"+ old_start, "#" + startnum);
+                        lines[i] = lines[i].Replace("#"+ old_start, "#" + startnum_new);
                     }
                 }
                 File.WriteAllLines(filePath, lines);
@@ -1229,7 +1383,7 @@ namespace 主程序202401
 
         private void button5_Click(object sender, EventArgs e)
         {
-          
+            delayTimer.Enabled = true;
             timer2.Stop();
         }
 
@@ -1509,14 +1663,20 @@ namespace 主程序202401
 
                 string aid = listView2.SelectedItems[0].SubItems[1].Text;
                 guanbi_shengyin_list.Add(aid);
+                listView2.SelectedItems[0].ForeColor = Color.Green;
 
-              
+
             }
             else
             {
                 MessageBox.Show("请选中一行");
             }
           
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            delist_list.Remove(textBox7.Text.Trim());
         }
     }
 }

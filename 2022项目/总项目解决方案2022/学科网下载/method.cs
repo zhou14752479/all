@@ -15,7 +15,7 @@ namespace 学科网下载
     public class method
     {
         public static string constr = "Host =localhost;Database=xueke;Username=root;Password=YB29ts9bWM7nKnChvfd3";
-
+      
         #region GET请求带COOKIE
         public static string GetUrlWithCookie(string Url, string COOKIE)
         {
@@ -64,7 +64,7 @@ namespace 学科网下载
         #endregion
 
 
-        
+       public static string methodurl = method.Base64Decode(Encoding.GetEncoding("utf-8"), "aHR0cHM6Ly91c2VyLnp4eGsuY29tL2NyZWF0b3IvYXBpL3YxL2NyZWF0b3ItcmVzb3VyY2UvZ2V0LXJlc291cmNlLWRldGFpbD9yZXNvdXJjZUlkPQ==");
 
 
         #region 下载文件
@@ -179,7 +179,7 @@ namespace 学科网下载
         #endregion
 
 
-        #region 获取Ip等信息
+        #region 添加Ip等信息
         public static string addiplog(string key,string userIp)
         {
             try
@@ -225,9 +225,12 @@ namespace 学科网下载
 
         #endregion
 
+
+        
+
         #region  添加下载记录
 
-        public static void adddownlog(string key, string link, string isvip,string cishu,string day,string price,string commercialLevel)
+        public static void adddownlog(string key, string link, string isvip,string cishu,string day,string price,string commercialLevel,string gradeId, string courseId,string stageId)
         {
             try
             {
@@ -237,7 +240,7 @@ namespace 学科网下载
                 MySqlConnection mycon = new MySqlConnection(method.constr);
                 mycon.Open();
 
-                string sql = "INSERT INTO downlogs (mykey,link,isvip,downtime,cishu,day,price,commercialLevel)VALUES(@key, @link, @isvip, @downtime,@cishu,@day,@price,@commercialLevel)";
+                string sql = "INSERT INTO downlogs (mykey,link,isvip,downtime,cishu,day,price,commercialLevel,gradeId, courseId, stageId)VALUES(@key, @link, @isvip, @downtime,@cishu,@day,@price,@commercialLevel,@gradeId, @courseId, @stageId)";
 
 
                 MySqlCommand cmd = new MySqlCommand(sql, mycon);
@@ -249,6 +252,9 @@ namespace 学科网下载
                 cmd.Parameters.AddWithValue("@day", day);
                 cmd.Parameters.AddWithValue("@price", price);
                 cmd.Parameters.AddWithValue("@commercialLevel", commercialLevel);
+                cmd.Parameters.AddWithValue("@gradeId", gradeId);
+                cmd.Parameters.AddWithValue("@courseId", courseId);
+                cmd.Parameters.AddWithValue("@stageId", stageId);
                 int count = cmd.ExecuteNonQuery();  //count就是受影响的行数,如果count>0说明执行成功,如果=0说明没有成功.
 
 

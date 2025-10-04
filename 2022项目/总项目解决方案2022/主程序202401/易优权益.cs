@@ -316,7 +316,7 @@ namespace 主程序202401
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now > Convert.ToDateTime("2025-03-26"))
+            if (DateTime.Now > Convert.ToDateTime("2025-10-26"))
             {
                 return;
             }
